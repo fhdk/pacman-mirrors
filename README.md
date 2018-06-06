@@ -12,7 +12,7 @@ Package that provides all mirrors for Manjaro Linux.
 - Generate a new mirror list by using several options:
     - method      : rank or random.
     - country     : a single, a list or all.
-    - fasttrack   : updated and responsive mirrors.
+    - fasttrack   : limited ranked list of `x` up-to-date mirrors.
     - geoip       : mirrors for country if available.
 - Information
     - get-branch  : get current branch from config
