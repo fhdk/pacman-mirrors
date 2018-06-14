@@ -21,7 +21,7 @@
 
 # http constants
 URL_MIRROR_JSON = \
-    "https://github.com/manjaro/manjaro-web-repo/raw/master/mirrors.json"
+    "https://gitlab.manjaro.org/tools/maintenance-tools/manjaro-web-repo/blob/master/mirrors.json"
 URL_STATUS_JSON = "http://repo.manjaro.org/status.json"
 INET_CONN_CHECK_URLS = ["https://wikipedia.org",
                         "https://github.com",
