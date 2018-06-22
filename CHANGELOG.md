@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.11.0] 2018-06-22
+* Added       : Implemented issue [#135](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/135)
+* Description : A non-reponsive mirror is eliminated from the mirrorlist
+*             : If a mirror is blacklisted in the systems hosts file the mirror becomes unresponsive
+
 ## [4.10.1] 2018-04-01
 * Added       : Implemented issue [#128](https://github.com/manjaro/pacman-mirrors/issues/128)
 * Description : `-s/--no-status` Allow mirror list with not up-to-date mirrors
