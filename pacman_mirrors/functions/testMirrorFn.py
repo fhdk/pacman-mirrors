@@ -44,6 +44,7 @@ def test_mirrors(self, worklist):
     http_wait = self.max_wait_time
     ssl_wait = self.max_wait_time * 2
     ssl_verify = self.config["ssl_verify"]
+    result = []
     for mirror in worklist:
         colon = mirror["url"].find(":")
         url = mirror["url"][colon:]
@@ -60,9 +61,10 @@ def test_mirrors(self, worklist):
             else:
                 self.max_wait_time = http_wait
             # let's see how responsive you are
-            mirror["resp_time"] = httpFn.get_mirror_response(
-                mirror["url"], maxwait=self.max_wait_time,
-                quiet=self.quiet, ssl_verify=ssl_verify)
+            mirror["resp_time"] = httpFn.get_mirror_response(mirror["url"],
+                                                             maxwait=self.max_wait_time,
+                                                             quiet=self.quiet,
+                                                             ssl_verify=ssl_verify)
 
             if float(mirror["resp_time"]) >= self.max_wait_time:
                 if not self.quiet:
@@ -72,5 +74,7 @@ def test_mirrors(self, worklist):
                     print("\r   {:<5}{}{} ".format(color.GREEN,
                                                    mirror["resp_time"],
                                                    color.ENDCOLOR))
-    return worklist
+                result.append(mirror)
+
+    return result
 
