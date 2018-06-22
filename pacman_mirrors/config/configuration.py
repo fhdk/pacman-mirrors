@@ -42,6 +42,3 @@ PROTOCOLS = ("https", "http", "ftp", "ftps")
 METHODS = ("rank", "random")
 SSL = ("True", "False")
 REPO_ARCH = "/$repo/$arch"
-# special cases
-O_CUST_FILE = "/var/lib/pacman-mirrors/Custom"
-TO_BE_REMOVED = "/var/lib/pacman-mirrors/mirrors.json"
