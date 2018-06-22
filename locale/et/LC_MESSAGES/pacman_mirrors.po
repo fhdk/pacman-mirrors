@@ -4,45 +4,41 @@
 # project.
 # 
 # Translators:
-# Andrew L <lone.mortician@gmail.com>, 2018
-# dsafsadf <heneral@gmail.com>, 2017
-# Mark Ukrainian <svmisak@ukr.net>, 2018
-# Paul S <paul.smbg@gmail.com>, 2018
-# zubr139, 2016-2017
+# Madis, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pacman-mirrors\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-23 20:55+0200\n"
-"PO-Revision-Date: 2018-06-22 11:49+0000\n"
-"Last-Translator: Paul S <paul.smbg@gmail.com>\n"
-"Language-Team: Ukrainian (http://www.transifex.com/manjarolinux/manjaro-pacman-mirrors/language/uk/)\n"
+"PO-Revision-Date: 2018-06-05 18:55+0000\n"
+"Last-Translator: Madis\n"
+"Language-Team: Estonian (http://www.transifex.com/manjarolinux/manjaro-pacman-mirrors/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.5.1\n"
-"Language: uk\n"
-"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+"Language: et\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: pacman_mirrors/constants/txt.py:29
 msgid "ERROR"
-msgstr "ПОМИЛКА"
+msgstr "VIGA"
 
 #: pacman_mirrors/constants/txt.py:30
 msgid "INFO"
-msgstr "ІНФО"
+msgstr "TEAVE"
 
 #: pacman_mirrors/constants/txt.py:31
 msgid "WARNING"
-msgstr "УВАГА"
+msgstr "HOIATUS"
 
 #: pacman_mirrors/constants/txt.py:33
 msgid "HTTPException"
-msgstr "Виняток HTTP"
+msgstr "HTTPException"
 
 #: pacman_mirrors/constants/txt.py:34
 msgid "TIMEOUT"
-msgstr "ТАЙМ-АУТ"
+msgstr "AJALÕPP"
 
 #: pacman_mirrors/constants/txt.py:36
 msgid "API"
@@ -50,47 +46,47 @@ msgstr "API"
 
 #: pacman_mirrors/constants/txt.py:37
 msgid "BRANCH"
-msgstr "ГІЛКА"
+msgstr "HARU"
 
 #: pacman_mirrors/constants/txt.py:38
 msgid "COUNTRY"
-msgstr "КРАЇНА"
+msgstr "RIIK"
 
 #: pacman_mirrors/constants/txt.py:39
 msgid "FILE"
-msgstr "ФАЙЛ"
+msgstr "FAIL"
 
 #: pacman_mirrors/constants/txt.py:40
 msgid "METHOD"
-msgstr "МЕТОД"
+msgstr "MEETOD"
 
 #: pacman_mirrors/constants/txt.py:41
 msgid "METHODS"
-msgstr "МЕТОДИ"
+msgstr "MEETODID"
 
 #: pacman_mirrors/constants/txt.py:42
 msgid "MISC"
-msgstr "РІЗНЕ"
+msgstr "VARIA"
 
 #: pacman_mirrors/constants/txt.py:43
 msgid "NUMBER"
-msgstr "ЧИСЛО"
+msgstr "ARV"
 
 #: pacman_mirrors/constants/txt.py:44
 msgid "PATH"
-msgstr "ШЛЯХ"
+msgstr "FAILITEE"
 
 #: pacman_mirrors/constants/txt.py:45
 msgid "PREFIX"
-msgstr "ПРЕФІКС"
+msgstr "EESLIIDE"
 
 #: pacman_mirrors/constants/txt.py:46
 msgid "PROTO"
-msgstr "ПРОТО"
+msgstr "PROTOKOLL"
 
 #: pacman_mirrors/constants/txt.py:47
 msgid "SECONDS"
-msgstr "СЕКУНД"
+msgstr "SEKUNDIT"
 
 #: pacman_mirrors/constants/txt.py:48 pacman_mirrors/constants/txt.py:125
 msgid "URL"
@@ -98,296 +94,296 @@ msgstr "URL"
 
 #: pacman_mirrors/constants/txt.py:49
 msgid "USAGE"
-msgstr "ВИКОРИСТАННЯ"
+msgstr "KASUTUS"
 
 #: pacman_mirrors/constants/txt.py:51
 msgid "Return branch from configuration"
-msgstr "Замінити гілку в конфігурації"
+msgstr "Tagasta haru konfiguratsioonist"
 
 #: pacman_mirrors/constants/txt.py:52
 msgid "Set prefix to"
-msgstr "Встановити префікс"
+msgstr "Sea eesliideseks"
 
 #: pacman_mirrors/constants/txt.py:53
 msgid "Replace protocols in configuration"
-msgstr "Замінити протоколи в конфігурації"
+msgstr "Asenda konfiguratsioonis protokollid"
 
 #: pacman_mirrors/constants/txt.py:54
 msgid "Replace branch in mirrorlist"
-msgstr "Замінити гілку у списку дзеркал"
+msgstr "Asenda peeglite nimekirjas haru"
 
 #: pacman_mirrors/constants/txt.py:55
 msgid "Replace branch in configuration"
-msgstr "Замінити гілку в конфігурації"
+msgstr "Asenda konfiguratsioonis haru"
 
 #: pacman_mirrors/constants/txt.py:56
 msgid "Replace mirror url in mirrorlist"
-msgstr "Замінити посилання на дзеркало у списку"
+msgstr "Asenda peeglite nimekirjas peegli URL"
 
 #: pacman_mirrors/constants/txt.py:57
 msgid "Branch name"
-msgstr "Назва гілки"
+msgstr "Haru nimi"
 
 #: pacman_mirrors/constants/txt.py:58
 msgid "Comma separated list of countries, from which mirrors will be used"
-msgstr "Розділений комами список країн, з яких будуть використовуватися дзеркала"
+msgstr "Komaga eraldatud riikide nimekiri, mille peegleid kasutatakse"
 
 #: pacman_mirrors/constants/txt.py:60
 msgid "Load default mirror file"
-msgstr "Використання типового файла дзеркала"
+msgstr "Laadi vaikimisi peeglifail"
 
 #: pacman_mirrors/constants/txt.py:61
 msgid "Generate mirrorlist with a number of up-to-date mirrors. Ignores:"
-msgstr ""
+msgstr "Genereeri peeglite nimekiri mitmete kaasaegsete peeglitega. Ignoreerib:"
 
 #: pacman_mirrors/constants/txt.py:63
 msgid "Generate mirrorlist with defaults"
-msgstr ""
+msgstr "Genereeri peeglite nimekiri vaikeväärtustega"
 
 #: pacman_mirrors/constants/txt.py:64
 msgid "Get current country using geolocation"
-msgstr "Визначити поточну країну за допомогою геолокації"
+msgstr "Hangi praegune riik, kasutades geolokatsiooni"
 
 #: pacman_mirrors/constants/txt.py:65
 msgid "List all available countries"
-msgstr "Список доступних країн"
+msgstr "Nimeta kõik saadaolevad riigid"
 
 #: pacman_mirrors/constants/txt.py:66
 msgid "Generate custom mirrorlist"
-msgstr "Створити окремий список дзеркал"
+msgstr "Genereeri kohandatud peeglite nimekiri"
 
 #: pacman_mirrors/constants/txt.py:67
 msgid "Generation method"
-msgstr "Спосіб генерації"
+msgstr "Generatsioonimeetod"
 
 #: pacman_mirrors/constants/txt.py:68
 msgid "Use to skip generation of mirrorlist"
-msgstr ""
+msgstr "Kasuta seda, et jätta peeglite nimekirja genereerimine vahele"
 
 #: pacman_mirrors/constants/txt.py:69
 msgid "Quiet mode - less verbose output"
-msgstr "Тихий режим - менш детальний вивід"
+msgstr "Vaikne režiim - vähem häälekas väljund"
 
 #: pacman_mirrors/constants/txt.py:70
 msgid "Syncronize pacman databases"
-msgstr "Синхронізувати бази даних pacman"
+msgstr "Sünkroniseeri pacmani andmebaasid"
 
 #: pacman_mirrors/constants/txt.py:71
 msgid "Maximum waiting time for server response"
-msgstr "Максимальний час очікування відповіді сервера"
+msgstr "Maksimaalne serveri vastuse ooteaeg"
 
 #: pacman_mirrors/constants/txt.py:72
 msgid "Print the pacman-mirrors version"
-msgstr "Вивести версію pacman-mirrors"
+msgstr "Kuva pacman-mirrors versioon"
 
 #: pacman_mirrors/constants/txt.py:74
 msgid "Branch in config is changed"
-msgstr "Гілку в конфігурації змінено"
+msgstr "Haru on konfiguratsioonis muutunud"
 
 #: pacman_mirrors/constants/txt.py:75
 msgid "Protocols in config is changed"
-msgstr "Протоколи в конфігурації змінено"
+msgstr "Protokollid on konfiguratsioonis muutunud"
 
 #: pacman_mirrors/constants/txt.py:76
 msgid "Re-branch requires a branch to work with"
-msgstr ""
+msgstr "Haru taasloomine vajab haru, mille kallal töödata"
 
 #: pacman_mirrors/constants/txt.py:77
 msgid "Branch in mirror list is changed"
-msgstr "Гілку в списку дзеркал змінено"
+msgstr "Haru on peeglite nimekirjas muutunud"
 
 #: pacman_mirrors/constants/txt.py:78
 msgid "Available countries are"
-msgstr "Доступні країни"
+msgstr "Saadaolevad riigid on"
 
 #: pacman_mirrors/constants/txt.py:79
 msgid "Could not download from"
-msgstr "Не вдалося завантажити з"
+msgstr "Ei saanud allalaadida asukohast"
 
 #: pacman_mirrors/constants/txt.py:80
 msgid "Cannot read file"
-msgstr "Неможливо прочитати файл"
+msgstr "Faili ei saanud lugeda"
 
 #: pacman_mirrors/constants/txt.py:81
 msgid "Cannot write file"
-msgstr "Неможливо записати файл"
+msgstr "Faili ei saanud kirjutada"
 
 #: pacman_mirrors/constants/txt.py:82
 msgid "Converting custom mirror file to new format"
-msgstr "Перетворення призначеного для користувача файлу дзеркала в новий формат"
+msgstr "Konverteerin kohandatud peeglite nimekirja uude vormingusse"
 
 #: pacman_mirrors/constants/txt.py:83
 msgid "Custom mirror file"
-msgstr "Файл користувальницького дзеркала"
+msgstr "Kohandatud peeglifail"
 
 #: pacman_mirrors/constants/txt.py:84
 msgid "Custom mirror file saved"
-msgstr "Користувацький файл дзеркала збережений"
+msgstr "Kohandatud peeglifail salvestatud"
 
 #: pacman_mirrors/constants/txt.py:85
 msgid "User generated mirror list"
-msgstr "Користувач створив список дзеркал"
+msgstr "Kasutaja-genereeritud peeglite nimekiri"
 
 #: pacman_mirrors/constants/txt.py:86
 msgid "Deprecated argument"
-msgstr "Непідтверджений аргумент"
+msgstr "Toetuse lõpetanud argument"
 
 #: pacman_mirrors/constants/txt.py:87
 msgid "doesn't exist."
-msgstr "не існує"
+msgstr "pole olemas."
 
 #: pacman_mirrors/constants/txt.py:88
 msgid "Downloading mirrors from"
-msgstr "Завантаження дзеркал з repo.manjaro.org"
+msgstr "Laadin peegleid alla asukohast"
 
 #: pacman_mirrors/constants/txt.py:89
 msgid "Falling back to"
-msgstr "Відкотити назад до"
+msgstr "Pöördun tagasi"
 
 #: pacman_mirrors/constants/txt.py:90
 msgid "Internet connection appears to be down"
-msgstr "Зв'язок з інтернетом не встановлено"
+msgstr "Internetiühendus paistab olevat maas"
 
 #: pacman_mirrors/constants/txt.py:91
 msgid "Mirror list is generated using random method"
-msgstr ""
+msgstr "Peeglite nimekiri genereeritud, kasutades juhuslikku meetodit"
 
 #: pacman_mirrors/constants/txt.py:92
 msgid "is missing"
-msgstr "відсутнє"
+msgstr "on puudu"
 
 #: pacman_mirrors/constants/txt.py:93
 msgid "The mirror file"
-msgstr "Файл дзеркала"
+msgstr "Peeglifail"
 
 #: pacman_mirrors/constants/txt.py:94
 msgid "Mirror list generated and saved to"
-msgstr "Список дзеркал створено та збережено до"
+msgstr "Peeglite nimekiri genereeritud ja salvestatud asukohta"
 
 #: pacman_mirrors/constants/txt.py:95
 msgid "Generated on"
-msgstr "Створено на"
+msgstr "Genereeritud kell"
 
 #: pacman_mirrors/constants/txt.py:96
 msgid "custom mirrorlist"
-msgstr "власний список дзеркал"
+msgstr "kohandatud peeglite nimekiri"
 
 #: pacman_mirrors/constants/txt.py:97
 msgid "to reset custom mirrorlist"
-msgstr "скинути список власних дзеркал"
+msgstr "et lähtestada kohandatud peeglite nimekirja"
 
 #: pacman_mirrors/constants/txt.py:98
 msgid "default mirrorlist"
-msgstr "типовий список дзеркал"
+msgstr "vaikimisi peeglite nimekiri"
 
 #: pacman_mirrors/constants/txt.py:99
 msgid "to modify mirrorlist"
-msgstr "змінити список дзеркал"
+msgstr "et muuta peeglite nimekirja"
 
 #: pacman_mirrors/constants/txt.py:100
 msgid "Mirror ranking is not available"
-msgstr "Рейтинг дзеркал недоступний"
+msgstr "Peeglite järjestamine pole saadaval"
 
 #: pacman_mirrors/constants/txt.py:101
 msgid "Must have root privileges"
-msgstr "Мають бути привілеї root"
+msgstr "Vajab juurkasutaja õiguseid"
 
 #: pacman_mirrors/constants/txt.py:102
 msgid "The mirrors has not changed"
-msgstr "Список дзеркал не змінюється"
+msgstr "Peeglid pole muutunud"
 
 #: pacman_mirrors/constants/txt.py:103
 msgid "No mirrors in selection"
-msgstr "Немає дзеркал для вибору"
+msgstr "Valikus pole peegleid"
 
 #: pacman_mirrors/constants/txt.py:104
 msgid "Option"
-msgstr "Опції"
+msgstr "Valik"
 
 #: pacman_mirrors/constants/txt.py:105
 msgid "Please use"
-msgstr "Використовуйте"
+msgstr "Palun kasuta"
 
 #: pacman_mirrors/constants/txt.py:106
 msgid "Querying mirrors"
-msgstr "Запит дзеркал"
+msgstr "Pärin peegleid"
 
 #: pacman_mirrors/constants/txt.py:107
 msgid "Randomizing mirror list"
-msgstr "Рандомізація списку дзеркал"
+msgstr "Muudan peeglite nimekirja juhuslikuks"
 
 #: pacman_mirrors/constants/txt.py:108
 msgid "To remove custom config run "
-msgstr "Для скидання власних налаштувань виконайте"
+msgstr "Et eemaldada kohandatud konfiguratsiooni, käivita"
 
 #: pacman_mirrors/constants/txt.py:109
 msgid "This may take some time"
-msgstr "Це може зайняти деякий час"
+msgstr "See võib võtta natuke aega"
 
 #: pacman_mirrors/constants/txt.py:110
 msgid "unknown country"
-msgstr "невідома країна"
+msgstr "tundmatu rii"
 
 #: pacman_mirrors/constants/txt.py:111
 msgid "Use 0 for all mirrors"
-msgstr "Використовувати 0 для всіх дзеркал"
+msgstr "Kasuta 0 kõigi peeglite puhu"
 
 #: pacman_mirrors/constants/txt.py:112
 msgid "Using all mirrors"
-msgstr "Використання усіх дзеркал"
+msgstr "Kasutan kõiki peegleid"
 
 #: pacman_mirrors/constants/txt.py:113
 msgid "Using custom mirror file"
-msgstr "Використання спеціального файла дзеркала"
+msgstr "Kasutan kohandatud peeglifaili"
 
 #: pacman_mirrors/constants/txt.py:114
 msgid "Using default mirror file"
-msgstr "Використання типового файла дзеркала"
+msgstr "Kasutan vaikimisi peeglifaili"
 
 #: pacman_mirrors/constants/txt.py:115
 msgid "Writing mirror list"
-msgstr "Зчитування списку дзеркал"
+msgstr "Kirjutan peeglite nimekirja"
 
 #: pacman_mirrors/constants/txt.py:118
 msgid "Manjaro mirrors by response time"
-msgstr "Manjaro дзеркал за часом відгуку"
+msgstr "Manjaro peeglid vastuse aja järgi"
 
 #: pacman_mirrors/constants/txt.py:119
 msgid "Manjaro mirrors in random order"
-msgstr "Manjaro дзеркал у випадковому порядку"
+msgstr "Manjaro peeglid juhuslikus järjekorras"
 
 #: pacman_mirrors/constants/txt.py:120
 msgid "Check mirrors for your personal list"
-msgstr "Перевірте дзеркала особистого списку"
+msgstr "Kontrolli peegleid oma isikliku nimekirja tarbeks"
 
 #: pacman_mirrors/constants/txt.py:121
 msgid "Use"
-msgstr "Використання"
+msgstr "Kasuta"
 
 #: pacman_mirrors/constants/txt.py:122
 msgid "Country"
-msgstr "Країна"
+msgstr "Riik"
 
 #: pacman_mirrors/constants/txt.py:123
 msgid "Resp"
-msgstr "Resp"
+msgstr "Vastus"
 
 #: pacman_mirrors/constants/txt.py:124
 msgid "Sync"
-msgstr "Синхронізація"
+msgstr "Sünk"
 
 #: pacman_mirrors/constants/txt.py:126
 msgid "Cancel"
-msgstr "Скасувати"
+msgstr "Tühista"
 
 #: pacman_mirrors/constants/txt.py:127
 msgid "OK"
-msgstr "Гаразд"
+msgstr "OK"
 
 #: pacman_mirrors/constants/txt.py:128
 msgid "Confirm selections"
-msgstr "Підтвердіть вибір"
+msgstr "Kinnita valikud"
 
 #: pacman_mirrors/constants/txt.py:129
 msgid "I want to use these mirrors"
-msgstr "Я бажаю використовувати ці дзеркала"
+msgstr "Ma soovin kasutada neid peegleid"
