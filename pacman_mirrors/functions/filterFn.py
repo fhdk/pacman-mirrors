@@ -72,11 +72,11 @@ def filter_mirror_protocols(mirror_pool, protocols=None):
     return result
 
 
-def filter_poor_mirrors(mirror_pool, interval=9999):
+def filter_poor_mirrors(mirror_pool, interval=720):
     """
     Remove poorly updated mirrors last_sync is more than interval hours
     :param mirror_pool: object
-    :param interval: hours since last sync
+    :param interval: hours since last sync - defaults to 30 days
     :return: list with mirrors removed which has not synced since interval
     """
     result = []
