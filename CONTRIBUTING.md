@@ -106,16 +106,9 @@ Developing environment
 2. Pandoc converter `pacman -Syu pandoc`
 3. Python environment  
     ```
-    sudo pacman -Syu python-pip
-    sudo pip install virtualenvwrapper
+    sudo pacman -Syu python-pip virtualenvwrapper
     mkvirtualenv pacman-mirrors
     python setup.py develop
-    pip install mkdocs
-    pip install tox
-    pip install coverage
-    pip install babel
-    pip install flake8
-    pip install npyscreen
-    pip install transifex-client
+    pip install mkdocs tox coverage babel flake8 npyscreen transifex-client
     
     ```
