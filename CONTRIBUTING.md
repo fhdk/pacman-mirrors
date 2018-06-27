@@ -106,9 +106,11 @@ To run a subset of tests:
 2. Pandoc converter `pacman -Syu pandoc`
 3. Python environment  
     ```
-    sudo pacman -Syu python-pip virtualenvwrapper
-    mkvirtualenv pacman-mirrors
-    python setup.py develop
-    pip install mkdocs tox coverage babel flake8 npyscreen transifex-client
+    $ git clone https://gitlab.manjaro.org/applications/pacman-mirrors.git
+    $ cd pacman-mirrors
+    $ sudo pacman -Syu python-pip python-virtualenvwrapper
+    $ mkvirtualenv pacman-mirrors
+    $ python setup.py develop
+    $ pip install mkdocs tox coverage babel flake8 npyscreen transifex-client
     
     ```
