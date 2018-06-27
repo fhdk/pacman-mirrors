@@ -9,21 +9,22 @@ You can contribute in many ways:
 
 ### Report Bugs
 
-Report bugs at https://github.com/manjaro/pacman-mirrors/issues.
+Report bugs at [Manjaro Gitlab](https://gitlab.manjaro.org/applications/pacman-mirrors/issues).
 
 If you are reporting a bug, please include:
+
 - Your operating system name and version.
 - Any details about your local setup that might be helpful in troubleshooting.
 - Detailed steps to reproduce the bug.
 
 ### Fix Bugs
 
-Look through the GitHub issues for bugs. Anything tagged with "bug"
+Look through the Gitlab issues for bugs. Anything tagged with "bug"
 is open to whoever wants to implement it.
 
 ### Implement Features
 
-Look through the GitHub issues for features. Anything tagged with "feature"
+Look through the Gitlab issues for features. Anything tagged with "feature"
 is open to whoever wants to implement it.
 
 ### Write Documentation
@@ -38,57 +39,70 @@ Help us to ship pacman-mirrors in your language by helping our translators on [T
 
 ### Submit Feedback
 
-The best way to send feedback is to file an issue at https://github.com/manjaro/pacman-mirrors/issues.
+The best way to send feedback is to file an issue at [Manjaro Gitlab](https://gitlab.manjaro.org/applications/pacman-mirrors/issues).
 
 If you are proposing a feature:
-- Explain in detail how it would work.
-- Keep the scope as narrow as possible, to make it easier to implement.
-- Remember that this is a volunteer-driven project, and that contributions
+
+* Explain in detail how it would work.
+* Keep the scope as narrow as possible, to make it easier to implement.
+* Remember that this is a volunteer-driven project, and that contributions
   are welcome :)
 
 ## Get Started!
 
 Ready to contribute? Here's how to set up `pacman-mirrors` for local development.
 
-1. Fork the `pacman-mirrors` repo on GitHub.
-2. Clone your fork locally:
+* Fork the `pacman-mirrors` repo on GitHub.
+* Clone your fork locally:
+    
+```
+$ git clone https://gitlab.manjaro.org/your-name-here/pacman-mirrors.git
+```
+    
+* Install your local copy into a virtualenv. Assuming you have [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) installed, this is how you set up your fork for local development
 
-    $ `git clone git@github.com:your_name_here/pacman-mirrors.git`
+```    
+$ mkvirtualenv pacman-mirrors
+$ cd pacman-mirrors/
+$ python setup.py develop
+```
 
-3. Install your local copy into a virtualenv. Assuming you have [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) installed, this is how you set up your fork for local development:
-    - $ `mkvirtualenv pacman-mirrors`
-    - $ `cd pacman-mirrors/`
-    - $ `python setup.py develop`
+* Create a branch for local development:
 
-4. Create a branch for local development:
-
-    $ `git checkout -b name-of-your-bugfix-or-feature`
+```
+$ git checkout -b name-of-your-bugfix-or-feature
+```
 
    Now you can make your changes locally.
 
-5. When you're done making changes, check that your changes pass flake8 and the tests, including testing other Python versions with tox:
-    - $ `flake8 pacman-mirrors tests`
-    - $ `python setup.py test`
-    - $ `tox`
+* When you're done making changes, check that your changes pass flake8 and the tests, including testing other Python versions with tox:
 
-    To get flake8 and tox, just pip install them into your virtualenv.
+```
+$ flake8 pacman-mirrors tests
+$ python setup.py test
+$ tox
+```
 
-6. Commit your changes and push your branch to GitHub:
-    - $ `git add .`
-    - $ `git commit -m "Your detailed description of your changes."`
-    - $ `git push origin name-of-your-bugfix-or-feature`
+* To get flake8 and tox, just pip install them into your virtualenv.
+* Commit your changes and push your branch to GitHub:
 
-7. Submit a pull request through the GitHub website.
+```
+$ git add
+$ git commit -m "Your detailed description of your changes."
+$ git push origin name-of-your-bugfix-or-feature
+```
+
+* Submit a pull request through the GitHub website.
 
 ## Pull Request Guidelines
 
 Before you submit a pull request, check that it meets these guidelines:
 
-1. The pull request should include tests.
-2. If the pull request adds functionality, the docs should be updated. Put
+* The pull request should include tests.
+* If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring, and add the
    feature to the list in README.md.
-3. The pull request should work for Python 3.4+, and for PyPy. Check
+* The pull request should work for Python 3.4+, and for PyPy. Check
    https://travis-ci.org/manjaro/pacman-mirrors/pull_requests
    and make sure that the tests pass for all supported Python versions.
 
@@ -96,19 +110,23 @@ Before you submit a pull request, check that it meets these guidelines:
 
 To run a subset of tests:
 
-    $ `python -m unittest tests.test_pacman_mirrors`
+```
+$ python -m unittest tests.test_pacman_mirrors
+```
 
-Developing environment
+## Developing environment
 
-1. An editor of choice e.g.
+* An editor of choice e.g.
    * Visual Studio Code `yay -S visual-studio-code`
    * PyCharm Community `pacman -Syu pycharm-community`
-2. Pandoc converter `pacman -Syu pandoc`
-3. Python environment  
+* Pandoc converter `pacman -Syu pandoc`
+* Python environment
+
     ```
-    sudo pacman -Syu python-pip virtualenvwrapper
-    mkvirtualenv pacman-mirrors
-    python setup.py develop
-    pip install mkdocs tox coverage babel flake8 npyscreen transifex-client
-    
+    $ git clone https://gitlab.manjaro.org/applications/pacman-mirrors.git
+    $ cd pacman-mirrors
+    $ sudo pacman -Syu python-pip python-virtualenvwrapper
+    $ mkvirtualenv pacman-mirrors
+    $ python setup.py develop
+    $ pip install mkdocs tox coverage babel flake8 npyscreen transifex-client
     ```
