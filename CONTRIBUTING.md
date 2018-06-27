@@ -98,7 +98,7 @@ To run a subset of tests:
 
     $ `python -m unittest tests.test_pacman_mirrors`
 
-Developing environment
+## Developing environment
 
 1. An editor of choice e.g.
    * Visual Studio Code `yay -S visual-studio-code`
