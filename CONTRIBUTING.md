@@ -19,12 +19,12 @@ If you are reporting a bug, please include:
 
 ### Fix Bugs
 
-Look through the GitHub issues for bugs. Anything tagged with "bug"
+Look through the Gitlab issues for bugs. Anything tagged with "bug"
 is open to whoever wants to implement it.
 
 ### Implement Features
 
-Look through the GitHub issues for features. Anything tagged with "feature"
+Look through the Gitlab issues for features. Anything tagged with "feature"
 is open to whoever wants to implement it.
 
 ### Write Documentation
