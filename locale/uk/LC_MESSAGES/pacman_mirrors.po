@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: manjaro-pacman-mirrors\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-23 20:55+0200\n"
-"PO-Revision-Date: 2018-06-22 11:49+0000\n"
+"PO-Revision-Date: 2018-06-22 12:20+0000\n"
 "Last-Translator: Paul S <paul.smbg@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/manjarolinux/manjaro-pacman-mirrors/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -114,7 +114,7 @@ msgstr "Замінити протоколи в конфігурації"
 
 #: pacman_mirrors/constants/txt.py:54
 msgid "Replace branch in mirrorlist"
-msgstr "Замінити гілку у списку дзеркал"
+msgstr "Замінити гілку в списку дзеркал"
 
 #: pacman_mirrors/constants/txt.py:55
 msgid "Replace branch in configuration"
@@ -138,11 +138,11 @@ msgstr "Використання типового файла дзеркала"
 
 #: pacman_mirrors/constants/txt.py:61
 msgid "Generate mirrorlist with a number of up-to-date mirrors. Ignores:"
-msgstr ""
+msgstr "Створити список з актуальних дзеркал. Ігнорує:"
 
 #: pacman_mirrors/constants/txt.py:63
 msgid "Generate mirrorlist with defaults"
-msgstr ""
+msgstr "Створити список дзеркал з типовими налаштуваннями"
 
 #: pacman_mirrors/constants/txt.py:64
 msgid "Get current country using geolocation"
@@ -162,7 +162,7 @@ msgstr "Спосіб генерації"
 
 #: pacman_mirrors/constants/txt.py:68
 msgid "Use to skip generation of mirrorlist"
-msgstr ""
+msgstr "Використати, щоб пропустити створення списку дзеркал"
 
 #: pacman_mirrors/constants/txt.py:69
 msgid "Quiet mode - less verbose output"
@@ -190,7 +190,7 @@ msgstr "Протоколи в конфігурації змінено"
 
 #: pacman_mirrors/constants/txt.py:76
 msgid "Re-branch requires a branch to work with"
-msgstr ""
+msgstr "Зміна гілки потребує гілки для виконання"
 
 #: pacman_mirrors/constants/txt.py:77
 msgid "Branch in mirror list is changed"
@@ -250,7 +250,7 @@ msgstr "Зв'язок з інтернетом не встановлено"
 
 #: pacman_mirrors/constants/txt.py:91
 msgid "Mirror list is generated using random method"
-msgstr ""
+msgstr "Список дзеркал створено випадковим способом"
 
 #: pacman_mirrors/constants/txt.py:92
 msgid "is missing"
