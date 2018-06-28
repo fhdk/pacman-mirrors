@@ -27,9 +27,9 @@ import gettext
 #  The translation files will be under
 #  @LOCALE_DIR@/@LANGUAGE@/LC_MESSAGES/@APP_NAME@.mo
 APP_NAME = "pacman_mirrors"
-
 APP_DIR = os.path.join(sys.prefix, "share")
 LOCALE_DIR = os.path.join(APP_DIR, "locale")
+CODESET = "utf-8"
 
 # Now we need to choose the language. We will provide a list, and gettext
 # will use the first translation available in the list
@@ -47,7 +47,7 @@ LANGUAGES += ["en_US"]
 #  (nothing to change here for you)
 gettext.install(True)
 gettext.bindtextdomain(APP_NAME, LOCALE_DIR)
-gettext.bind_textdomain_codeset(APP_NAME, codeset='utf-8')
+gettext.bind_textdomain_codeset(APP_NAME, codeset=CODESET)
 gettext.textdomain(APP_NAME)
 language = gettext.translation(APP_NAME, LOCALE_DIR, LANGUAGES, fallback=True)
 
