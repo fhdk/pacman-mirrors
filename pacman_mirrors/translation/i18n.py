@@ -40,7 +40,7 @@ try:
         LANGUAGES += user_locale
 except ValueError:
     pass
-LANGUAGES += os.environ.get("LANG", "").split(":")
+LANGUAGES += os.environ.get("LANGUAGE", "").split(":")
 LANGUAGES += ["en_US"]
 
 # Lets tell those details to gettext
