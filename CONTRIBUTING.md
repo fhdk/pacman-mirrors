@@ -130,3 +130,5 @@ $ python -m unittest tests.test_pacman_mirrors
     $ python setup.py develop
     $ pip install mkdocs tox coverage babel flake8 npyscreen transifex-client
     ```
+
+* Remember to `source /usr/bin/virtualenvwrapper.sh` to get the virtualenv CLI
