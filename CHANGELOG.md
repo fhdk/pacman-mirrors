@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.11.2]
+* Final build with fix for [#136](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/136)
+* The change of call to gettext in the i18n module to return unicode messages fixed the issue.
+
+## [4.11.1dev]
+* Attempt to fix [#136](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/136)
+* The issue manifests when the translation makes use of unicode chars (Hungarian) maybe others
+* The call to gettext in the i18n module has been changed to return unicode messages.
+
 ## [4.11.0] 2018-06-22
 * Added       : Implemented issue [#135](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/135)
 * Description : A non-reponsive mirror is eliminated from the mirrorlist
