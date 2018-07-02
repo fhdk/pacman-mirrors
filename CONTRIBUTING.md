@@ -75,15 +75,14 @@ $ git checkout -b name-of-your-bugfix-or-feature
 
    Now you can make your changes locally.
 
-* When you're done making changes, check that your changes pass flake8 and the tests, including testing other Python versions with tox:
+* When you're done making changes, check that your changes pass flake8 and the tests:
 
 ```
 $ flake8 pacman-mirrors tests
 $ python setup.py test
-$ tox
 ```
 
-* To get flake8 and tox, just pip install them into your virtualenv.
+* To get flake8, just pip install it into your virtualenv (see notes below).
 * Commit your changes and push your branch to GitHub:
 
 ```
@@ -128,7 +127,7 @@ $ python -m unittest tests.test_pacman_mirrors
     $ sudo pacman -Syu python-pip python-virtualenvwrapper
     $ mkvirtualenv pacman-mirrors
     $ python setup.py develop
-    $ pip install mkdocs tox coverage babel flake8 npyscreen transifex-client
+    $ pip install mkdocs coverage babel flake8 npyscreen transifex-client
     ```
 
 * Remember to `source /usr/bin/virtualenvwrapper.sh` to get the virtualenv CLI
