@@ -71,6 +71,13 @@
         "url": "http://linorg.usp.br/manjaro/"
     },
     {
+        "country": "Brazil",
+        "protocols": [
+            "http"
+        ],
+        "url": "http://mirror.ufam.edu.br/manjaro/"
+    },
+    {
         "country": "Bulgaria",
         "protocols": [
             "https"
@@ -144,11 +151,25 @@
         "url": "https://mirrors.shuosc.org/manjaro/"
     },
     {
+        "country": "China",
+        "protocols": [
+            "https"
+        ],
+        "url": "https://mirrors.sjtug.sjtu.edu.cn/manjaro"
+    },
+    {
         "country": "Costa_Rica",
         "protocols": [
             "https"
         ],
         "url": "https://mirrors.ucr.ac.cr/manjaro/"
+    },
+    {
+        "country": "Colombia",
+        "protocols": [
+            "http"
+        ],
+        "url": "http://mirror.upb.edu.co/manjaro"
     },
     {
         "country": "Czech",
