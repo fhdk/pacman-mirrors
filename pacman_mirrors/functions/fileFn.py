@@ -99,29 +99,25 @@ def write_mirror_list(config, servers, custom=False,
             write_mirrorlist_header(outfile, custom=custom)
             cols, lines = pacman_mirrors.functions.util.terminal_size()
             for server in servers:
+                url = server["url"]
+                protocol = server["protocols"][0]
+                pos = url.find(":")
+                server["url"] = "{}{}{}{}".format(protocol,
+                                                  url[pos:],
+                                                  config["branch"],
+                                                  config["repo_arch"])
                 if server["resp_time"] == "99.99":
                     # do not write bad servers to mirrorlist
                     continue
                 if interactive:
-                    server["url"] = "{}{}{}".format(server["url"],
-                                                    config["branch"],
-                                                    config["repo_arch"])
                     if not quiet:
                         message = "   {:<15} : {}".format(server["country"],
                                                           server["url"])
                         print("{:.{}}".format(message, cols))
                 else:
-                    url = server["url"]
-                    protocol = server["protocols"][0]
-                    pos = url.find(":")
                     msg_url = server["url"] = "{}{}{}".format(protocol,
                                                               url[pos:],
                                                               config["branch"])
-
-                    server["url"] = "{}{}{}{}".format(protocol,
-                                                      url[pos:],
-                                                      config["branch"],
-                                                      config["repo_arch"])
                     if not quiet:
                         message = "   {:<15} : {}".format(server["country"],
                                                           msg_url)
