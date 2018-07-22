@@ -7,16 +7,16 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: pacman-mirrors 4.10.0\n"
+"Project-Id-Version: pacman-mirrors 4.11.3\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-04-01 14:24+0200\n"
+"POT-Creation-Date: 2018-07-22 12:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.5.3\n"
+"Generated-By: Babel 2.6.0\n"
 
 #: pacman_mirrors/constants/txt.py:29
 msgid "ERROR"
@@ -331,7 +331,7 @@ msgid "You have chosen to override the status for your system branch."
 msgstr ""
 
 #: pacman_mirrors/constants/txt.py:113
-msgid "Servers in the mirror list might not be up-tp-date."
+msgid "Servers in the mirror list might not be up-to-date."
 msgstr ""
 
 #: pacman_mirrors/constants/txt.py:114

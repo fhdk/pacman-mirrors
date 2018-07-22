@@ -6,20 +6,22 @@
 # Translators:
 # Dušan Kazik <prescott66@gmail.com>, 2016-2017
 # Igor Stefanko <citro33@zoznam.sk>, 2017
+# mufi muflonovie <mufi20@gmail.com>, 2018
+# Radoslav Bjel <radobjel@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pacman-mirrors\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-23 20:55+0200\n"
-"PO-Revision-Date: 2017-10-29 20:58+0000\n"
-"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
+"PO-Revision-Date: 2018-07-05 10:14+0000\n"
+"Last-Translator: Radoslav Bjel <radobjel@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/manjarolinux/manjaro-pacman-mirrors/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.5.1\n"
 "Language: sk\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #: pacman_mirrors/constants/txt.py:29
 msgid "ERROR"
@@ -119,7 +121,7 @@ msgstr "Nahradí vetvu v konfigurácii"
 
 #: pacman_mirrors/constants/txt.py:56
 msgid "Replace mirror url in mirrorlist"
-msgstr ""
+msgstr "Nahraď url zrkadla v zozname zrkadiel"
 
 #: pacman_mirrors/constants/txt.py:57
 msgid "Branch name"
@@ -163,7 +165,7 @@ msgstr "Použite na vynechanie generácie zoznamu zrkadiel"
 
 #: pacman_mirrors/constants/txt.py:69
 msgid "Quiet mode - less verbose output"
-msgstr ""
+msgstr "Tíchý mód - úspornejší výstup"
 
 #: pacman_mirrors/constants/txt.py:70
 msgid "Syncronize pacman databases"
@@ -187,7 +189,7 @@ msgstr "Protokoly v konfigurácii sú zmenené"
 
 #: pacman_mirrors/constants/txt.py:76
 msgid "Re-branch requires a branch to work with"
-msgstr ""
+msgstr "Nahradenie vetvy vyžaduje zadať vetvu s ktorou je možné pracovať"
 
 #: pacman_mirrors/constants/txt.py:77
 msgid "Branch in mirror list is changed"
@@ -359,7 +361,7 @@ msgstr "Skontrolujte zrkadlá pre váš osobný zoznam"
 
 #: pacman_mirrors/constants/txt.py:121
 msgid "Use"
-msgstr ""
+msgstr "Použiť"
 
 #: pacman_mirrors/constants/txt.py:122
 msgid "Country"
@@ -367,11 +369,11 @@ msgstr "Krajina"
 
 #: pacman_mirrors/constants/txt.py:123
 msgid "Resp"
-msgstr ""
+msgstr "Odozva"
 
 #: pacman_mirrors/constants/txt.py:124
 msgid "Sync"
-msgstr ""
+msgstr "Sync"
 
 #: pacman_mirrors/constants/txt.py:126
 msgid "Cancel"
@@ -383,7 +385,7 @@ msgstr "OK"
 
 #: pacman_mirrors/constants/txt.py:128
 msgid "Confirm selections"
-msgstr ""
+msgstr "Potvrď vybrané"
 
 #: pacman_mirrors/constants/txt.py:129
 msgid "I want to use these mirrors"
