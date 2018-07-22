@@ -77,14 +77,14 @@ def test_mirrors(self, worklist, limit=None):
                     print("\r   {:<5}{}{} ".format(color.GREEN,
                                                    mirror_proto["resp_time"],
                                                    color.ENDCOLOR))
-        mirror = filter_bad_ssl(work_mirror)
+        probed_mirror = filter_bad_ssl(work_mirror)
         if limit is not None:
             if mirror["resp_time"] == txt.SERVER_RES:
                 continue
             counter += 1
-            result.append(mirror)
+            result.append(probed_mirror)
         else:
-            result.append(mirror)
+            result.append(probed_mirror)
         """
         Equality check will stop execution
         when the desired number is reached.
