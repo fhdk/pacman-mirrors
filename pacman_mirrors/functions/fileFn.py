@@ -115,9 +115,9 @@ def write_mirror_list(config, servers, custom=False,
                                                           server["url"])
                         print("{:.{}}".format(message, cols))
                 else:
-                    msg_url = server["url"] = "{}{}{}".format(protocol,
-                                                              url[pos:],
-                                                              config["branch"])
+                    msg_url = "{}{}{}".format(protocol,
+                                              url[pos:],
+                                              config["branch"])
                     if not quiet:
                         message = "   {:<15} : {}".format(server["country"],
                                                           msg_url)
