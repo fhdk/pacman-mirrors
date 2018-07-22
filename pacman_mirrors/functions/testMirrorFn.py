@@ -46,35 +46,83 @@ def test_mirrors(self, worklist):
     ssl_verify = self.config["ssl_verify"]
     result = []
     for mirror in worklist:
-        colon = mirror["url"].find(":")
-        url = mirror["url"][colon:]
-        for idx, proto in enumerate(mirror["protocols"]):
-            mirror["url"] = "{}{}".format(proto, url)
+        work_mirror = mirror_protocols(mirror)
+        colon = work_mirror[0]["url"].find(":")
+        url = work_mirror[0]["url"][colon:]
+        for mirror_proto in work_mirror:
+            proto = mirror_proto["protocols"][0]
+            mirror_proto["url"] = "{}{}".format(proto, url)
             if not self.quiet:
-                message = "   ..... {:<15}: {}".format(mirror["country"],
-                                                       mirror["url"])
+                message = "   ..... {:<15}: {}".format(mirror_proto["country"],
+                                                       mirror_proto["url"])
                 print("{:.{}}".format(message, cols), end="")
                 sys.stdout.flush()
-            # https sometimes takes longer for handshake
-            if proto == "https" or proto == "ftps":
+            # https/ftps sometimes takes longer for handshake
+            if proto.endswith("tps"):  # https or ftps
                 self.max_wait_time = ssl_wait
             else:
                 self.max_wait_time = http_wait
             # let's see how responsive you are
-            mirror["resp_time"] = httpFn.get_mirror_response(mirror["url"],
-                                                             maxwait=self.max_wait_time,
-                                                             quiet=self.quiet,
-                                                             ssl_verify=ssl_verify)
+            mirror_proto["resp_time"] = httpFn.get_mirror_response(mirror_proto["url"],
+                                                                   maxwait=self.max_wait_time,
+                                                                   quiet=self.quiet,
+                                                                   ssl_verify=ssl_verify)
 
-            if float(mirror["resp_time"]) >= self.max_wait_time:
+            if float(mirror_proto["resp_time"]) >= self.max_wait_time:
                 if not self.quiet:
                     print("\r")
             else:
                 if not self.quiet:
                     print("\r   {:<5}{}{} ".format(color.GREEN,
-                                                   mirror["resp_time"],
+                                                   mirror_proto["resp_time"],
                                                    color.ENDCOLOR))
-                result.append(mirror)
+        mirror = filter_bad_ssl(work_mirror)
+        result.append(mirror)
 
     return result
 
+
+def mirror_protocols(mirror):
+    """
+    Return a number of copies of mirror - one copy per protocol
+    :param: mirror dictionary with a number of protocols
+    :return: dictionaries as a copy of the mirror for probing - one per protocol
+    """
+    result = []
+    for idx, protocol in enumerate(mirror["protocols"]):
+        m = {
+                "branches": mirror["branches"],
+                "country": mirror["country"],
+                "last_sync": mirror["last_sync"],
+                "protocols": [protocol],
+                "resp_time": mirror["resp_time"],
+                "url": mirror["url"],
+            }
+        result.append(m)
+    return result
+
+
+def filter_bad_ssl(work):
+    """
+    filter bad ssl if mirror has more than one protocol
+    :param work:
+    :return: mirror
+    """
+    result = {
+        "branches": work[0]["branches"],
+        "country": work[0]["country"],
+        "last_sync": work[0]["last_sync"],
+        "protocols": [],
+        "resp_time": "",
+        "url": work[0]["url"]
+    }
+    if len(work) > 1:
+        for item in work:
+            if item["protocols"][0].endswith("tps") and item["resp_time"] == txt.SERVER_RES:
+                continue
+            try:
+                result["protocols"].append(item["protocols"][0])
+                result["resp_time"] = item["resp_time"]
+            except IndexError:
+                continue
+    return result
