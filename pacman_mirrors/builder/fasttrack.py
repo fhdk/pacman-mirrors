@@ -19,20 +19,17 @@
 
 """Pacman-Mirrors Interactive Fasttrack Mirror List Builder Module"""
 
-import sys
-
 from operator import itemgetter
 from random import shuffle
 
 
-from pacman_mirrors.constants import txt, colors as color
+from pacman_mirrors.constants import txt
 from pacman_mirrors.functions import filterFn
-from pacman_mirrors.functions import httpFn
 from pacman_mirrors.functions import outputFn
-from pacman_mirrors.functions import util
+from pacman_mirrors.functions import testMirrorFn
 
 
-def build_mirror_list(self, number):
+def build_mirror_list(self, limit):
     """
     Fast-track the mirrorlist by filtering only up-to-date mirrors
     The function takes into account the branch selected by the user
@@ -61,41 +58,41 @@ def build_mirror_list(self, number):
     Shuffle the list
     """
     shuffle(up_to_date_mirrors)
-    worklist = []
     print(".: {}: {} - {}".format(txt.INF_CLR,
                                   txt.QUERY_MIRRORS,
                                   txt.TAKES_TIME))
-    counter = 0
-    cols, lines = util.terminal_size()
-    for mirror in up_to_date_mirrors:
-        if not self.quiet:
-            message = "   ..... {:<15}: {}: {}".format(
-                mirror["country"], mirror["last_sync"], mirror["url"])
-            print("{:.{}}".format(message, cols), end="")
-            sys.stdout.flush()
-        resp_time = httpFn.get_mirror_response(mirror["url"],
-                                               maxwait=self.max_wait_time,
-                                               quiet=self.quiet)
-        mirror["resp_time"] = resp_time
-        if float(resp_time) > self.max_wait_time:
-            if not self.quiet:
-                print("\r")
-        else:
-            if not self.quiet:
-                print("\r   {:<5}{}{} ".format(color.GREEN,
-                                               resp_time,
-                                               color.ENDCOLOR))
-            worklist.append(mirror)
-            counter += 1
-        """
-        Equality check will stop execution
-        when the desired number is reached.
-        In the possible event the first mirror's
-        response time exceeds the predefined response time,
-        the loop would stop execution if the check for zero is not present
-        """
-        if counter is not 0 and counter == number:
-            break
+    worklist = testMirrorFn.test_mirrors(self, up_to_date_mirrors, limit)
+    # counter = 0
+    # cols, lines = util.terminal_size()
+    # for mirror in up_to_date_mirrors:
+    #     if not self.quiet:
+    #         message = "   ..... {:<15}: {}: {}".format(
+    #             mirror["country"], mirror["last_sync"], mirror["url"])
+    #         print("{:.{}}".format(message, cols), end="")
+    #         sys.stdout.flush()
+    #     resp_time = httpFn.get_mirror_response(mirror["url"],
+    #                                            maxwait=self.max_wait_time,
+    #                                            quiet=self.quiet)
+    #     mirror["resp_time"] = resp_time
+    #     if float(resp_time) > self.max_wait_time:
+    #         if not self.quiet:
+    #             print("\r")
+    #     else:
+    #         if not self.quiet:
+    #             print("\r   {:<5}{}{} ".format(color.GREEN,
+    #                                            resp_time,
+    #                                            color.ENDCOLOR))
+    #         worklist.append(mirror)
+    #         counter += 1
+    #     """
+    #     Equality check will stop execution
+    #     when the desired number is reached.
+    #     In the possible event the first mirror's
+    #     response time exceeds the predefined response time,
+    #     the loop would stop execution if the check for zero is not present
+    #     """
+    #     if counter is not 0 and counter == number:
+    #         break
     worklist = sorted(worklist,
                       key=itemgetter("resp_time"))
     """
