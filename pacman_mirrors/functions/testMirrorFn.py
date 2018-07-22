@@ -26,7 +26,7 @@ from pacman_mirrors.functions import httpFn
 from pacman_mirrors.functions import util
 
 
-def test_mirrors(self, worklist):
+def test_mirrors(self, worklist, limit=None):
     """
     Query server for response time
     """
@@ -39,6 +39,7 @@ def test_mirrors(self, worklist):
     print(".: {} {} - {}".format(txt.INF_CLR,
                                  txt.QUERY_MIRRORS,
                                  txt.TAKES_TIME))
+    counter = 0
     cols, lines = util.terminal_size()
     # set connection timeouts
     http_wait = self.max_wait_time
@@ -77,7 +78,22 @@ def test_mirrors(self, worklist):
                                                    mirror_proto["resp_time"],
                                                    color.ENDCOLOR))
         mirror = filter_bad_ssl(work_mirror)
-        result.append(mirror)
+        if limit is not None:
+            if mirror["resp_time"] == txt.SERVER_RES:
+                continue
+            counter += 1
+            result.append(mirror)
+        else:
+            result.append(mirror)
+        """
+        Equality check will stop execution
+        when the desired number is reached.
+        In the possible event the first mirror's
+        response time exceeds the predefined response time,
+        the loop would stop execution if the check for zero is not present
+        """
+        if limit is not None and counter is not 0 and counter == limit:
+            break
 
     return result
 
@@ -120,9 +136,7 @@ def filter_bad_ssl(work):
         for item in work:
             if item["protocols"][0].endswith("tps") and item["resp_time"] == txt.SERVER_RES:
                 continue
-            try:
-                result["protocols"].append(item["protocols"][0])
-                result["resp_time"] = item["resp_time"]
-            except IndexError:
-                continue
-    return result
+            result["protocols"].append(item["protocols"][0])
+            result["resp_time"] = item["resp_time"]
+        return result
+    return work[0]
