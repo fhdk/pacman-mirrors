@@ -102,7 +102,7 @@ def mirror_protocols(mirror):
     """
     Return a number of copies of mirror - one copy per protocol
     :param: mirror dictionary with a number of protocols
-    :return: dictionaries as a copy of the mirror for probing - one per protocol
+    :return: list of mirror dictionaries with one protocol per dictionary
     """
     result = []
     for idx, protocol in enumerate(mirror["protocols"]):
@@ -121,8 +121,8 @@ def mirror_protocols(mirror):
 def filter_bad_ssl(work):
     """
     filter bad ssl if mirror has more than one protocol
-    :param work:
-    :return: mirror
+    :param work: list of mirror dictionaries with one protocol per dictionary
+    :return: mirror dictionary with invalid ssl removed
     """
     result = {
         "branches": work[0]["branches"],
