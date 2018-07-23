@@ -23,70 +23,85 @@ from pacman_mirrors.constants import txt
 from pacman_mirrors.functions import util
 
 
-def translate_interactive_to_pool(interactive_pool, mirror_pool, config):
+def translate_interactive_to_pool(custom_selection, mirror_pool, config):
     """
-    Translate mirror pool for interactive display
-    :param interactive_pool:
-    :param mirror_pool:
-    :param config:
-    :return:
+    Translate the interactive selection back to mirror pool
+    :param custom_selection: the custom selection
+    :param mirror_pool: the default mirror pool
+    :param config: the active pacman-mirrors configuration
+    :return: custom mirror pool and mirrors for mirror list generation
     """
-    custom_pool = []
+    # return lists
+    custom_mirror_pool = []
     mirror_list = []
-    custom_urls = set()
-    custom_protocols = set()
-    for custom in interactive_pool:
+
+    for mirror in mirror_pool:
         try:
-            """
-            url without protocol
-            """
-            custom_url = util.get_server_location_from_url(custom["url"])
-            custom_protocol = util.get_protocol_from_url(custom["url"])
-            """
-            locate mirror in the full mirror pool
-            """
-            for mirror in mirror_pool:
+            _ = mirror_pool[0]
+            mirror_url = util.get_server_location_from_url(mirror["url"])
+            for current in custom_selection:
                 try:
-                    _ = mirror_pool[0]
-                    mirror_url = util.get_server_location_from_url(mirror["url"])
-                    if custom_url == mirror_url:
-                        if custom_url not in custom_urls:
-                            custom_urls.add(custom_url)
-                            custom_pool.append({
-                                "country": mirror["country"],
-                                "protocols": mirror["protocols"],
-                                "url": mirror["url"]
-                            })
+                    """
+                    url without protocol
+                    """
+                    url = util.get_server_location_from_url(current["url"])
+                    """
+                    protocol without url
+                    """
+                    protocol = util.get_protocol_from_url(current["url"])
+                    if url == mirror_url:
+                        """
+                        Create working copy
+                        """
+                        work_mirror = {
+                            "country": mirror["country"],
+                            "branches": mirror["branches"],
+                            "protocols": [],
+                            "resp_time": mirror["resp_time"],
+                            "last_sync": mirror["last_sync"],
+                            "url": mirror["url"]
+                        }
+                        """
+                        Append to custom mirror pool
+                        """
+                        custom_mirror_pool.append({
+                            "country": mirror["country"],
+                            "protocols": mirror["protocols"],
+                            "url": mirror["url"]
+                        })
                         try:
                             """
-                            Try to replace protocols with user selection
-                            if selection exist
+                            If a user selection of protocols exist in configuration
+                            Replace the mirrors protocols with selection
                             """
                             _ = config["protocols"][0]
-                            mirror["protocols"] = config["protocols"]
+                            work_mirror["protocols"] = config["protocols"]
                         except IndexError:
                             pass
 
-                        if custom_protocol not in custom_protocols:
-                            custom_protocols.add(custom_protocol)
-                            mirror_list.append({
-                                "country": mirror["country"],
-                                "branches": mirror["branches"],
-                                "protocols": mirror["protocols"],
-                                "resp_time": mirror["resp_time"],
-                                "last_sync": mirror["last_sync"],
-                                "url": "{}{}".format(custom_protocol, mirror_url)
-                            })
+                        for idx, proto in enumerate(mirror["protocols"]):
+                            """
+                            Generate a mirror by adding selected protocol to the server
+                            Avoid duplicating the protocols by keepin an internal set of protocols
+                            The custom_protocols set is used for that purpose
+                            """
+                            if proto == protocol:
+                                work_mirror["protocols"].append(proto)
 
-                except (KeyError, IndexError):
-                    print(".: {} {}! {}!".format(txt.WRN_CLR, txt.HOUSTON, txt.DEFAULT_POOL_EMPTY))
+                        """
+                        Add to the mirrorlist
+                        """
+                        mirror_list.append(work_mirror)
+
+                except KeyError:
+                    print(".: {} {}! {}!".format(txt.WRN_CLR, txt.HOUSTON, txt.CUSTOM_POOL_EMPTY))
                     break
-                custom_protocols = set()
-        except KeyError:
-            print(".: {} {}! {}!".format(txt.WRN_CLR, txt.HOUSTON, txt.CUSTOM_POOL_EMPTY))
+
+        except (KeyError, IndexError):
+            print(".: {} {}! {}!".format(txt.WRN_CLR, txt.HOUSTON, txt.DEFAULT_POOL_EMPTY))
             break
 
-    return custom_pool, mirror_list
+    return custom_mirror_pool, mirror_list
 
 
 def translate_pool_to_interactive(mirror_pool):
