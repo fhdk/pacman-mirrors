@@ -1,10 +1,6 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [4.11.3] 2018-07-23
-* Fix for [#139](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/139)
-* Fixed interactive mirrorlist still containing https on invalid certificate 
-
 ## [4.11.3] 2018-07-22
 * Fix for [#138](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/138)
 * Mirrors offering both https and http - with expired/invalid certifcate was written to mirrorlist with https protocol instead of http.
