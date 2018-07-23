@@ -123,7 +123,8 @@ def build_mirror_list(self):
             pass
 
         """
-        Try to write the mirrorfile and mirrorlist
+        Write custom mirror pool
+        Write mirrorlist
         """
         try:
             _ = custom_pool[0]
