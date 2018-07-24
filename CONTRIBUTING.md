@@ -108,11 +108,11 @@ As the mirrorlists can be generated in a variety of ways - a list of verificatio
 2. `sudo pacman-mirrors -f`
 3. `sudo pacman-mirrors -c Germany`
 4. `sudo pacman-mirrors -c Germany -i`
-5. `sudo pacman-mirrors -aPhttps -c Germany` 
-6. `sudo pacman-mirrors -aPhttps,http -c Germany -i`
-7. `sudo pacman-mirrors -aPhttp,https -c Germany`
-8. `sudo pacman-mirrors -aPhttps,ftp -c Germany`
-9. `sudo pacman-mirrors -aPhttps,ftp -c Germany`
+5. `sudo pacman-mirrors -aP https -c Germany` 
+6. `sudo pacman-mirrors -aP https http -c Germany -i`
+7. `sudo pacman-mirrors -aP http https -c Germany -i`
+8. `sudo pacman-mirrors -aP https http -c Germany`
+9. `sudo pacman-mirrors -aP http https -c Germany`
 
 All urls in the mirrorlist **must** end with **$repo/$arch**
 
