@@ -93,6 +93,29 @@ $ git push origin name-of-your-bugfix-or-feature
 
 * Submit a pull request through the GitHub website.
 
+## Test Guidelines
+
+```
+make test
+
+```
+### Generated Mirrorlist Verification
+From experience it is so easy to forget verification of the generated mirrorlists.
+
+As the mirrorlists can be generated in a variety of ways - a list of verifications is presented here.
+
+1. `sudo pacman-mirrors -c all`
+2. `sudo pacman-mirrors -f`
+3. `sudo pacman-mirrors -c Germany`
+4. `sudo pacman-mirrors -c Germany -i`
+5. `sudo pacman-mirrors -aPhttps -c Germany` 
+6. `sudo pacman-mirrors -aPhttps,http -c Germany -i`
+7. `sudo pacman-mirrors -aPhttp,https -c Germany`
+8. `sudo pacman-mirrors -aPhttps,ftp -c Germany`
+9. `sudo pacman-mirrors -aPhttps,ftp -c Germany`
+
+All urls in the mirrorlist **must** end with **$repo/$arch**
+
 ## Pull Request Guidelines
 
 Before you submit a pull request, check that it meets these guidelines:
