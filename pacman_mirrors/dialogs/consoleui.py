@@ -85,7 +85,7 @@ class ConsoleUI(npyscreen.NPSAppManaged):
             for mirror in selection:
                 server = mirror.split("|")
                 self.custom_list.append({"country": server[0].strip(),
-                                         "response_time": server[1].strip(),
+                                         "resp_time": server[1].strip(),
                                          "last_sync": server[2].strip(),
                                          "url": server[3].strip()})
         self.is_done = True
