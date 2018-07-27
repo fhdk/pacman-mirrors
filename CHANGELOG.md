@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [next]
+* refactor mirror probe to get more realistic response times.
+
 ## [4.11.5] 2018-07-24
 * Fix for [#140](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/140)
 * Fix issue for when user had configured protocol limitations - servers with invalid certificates was still written to the mirrorlist.

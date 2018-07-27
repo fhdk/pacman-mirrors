@@ -20,6 +20,7 @@
 """Pacman-Mirrors Configuration Module"""
 
 # http constants
+USER_AGENT = "Pacman-Mirrors/"
 URL_MIRROR_JSON = \
     "https://gitlab.manjaro.org/tools/maintenance-tools/manjaro-web-repo/raw/master/mirrors.json"
 URL_STATUS_JSON = "http://repo.manjaro.org/status.json"

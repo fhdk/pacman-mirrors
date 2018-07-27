@@ -64,9 +64,8 @@ def test_mirrors(self, worklist, limit=None):
             else:
                 self.max_wait_time = http_wait
             # let's see how responsive you are
-            mirror_proto["resp_time"] = httpFn.get_mirror_response(mirror_proto["url"],
-                                                                   maxwait=self.max_wait_time,
-                                                                   quiet=self.quiet,
+            mirror_proto["resp_time"] = httpFn.get_mirror_response(mirror_proto["url"], self.config,
+                                                                   maxwait=self.max_wait_time, quiet=self.quiet,
                                                                    ssl_verify=ssl_verify)
 
             if float(mirror_proto["resp_time"]) >= self.max_wait_time:

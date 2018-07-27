@@ -26,17 +26,19 @@ import os
 import ssl
 import time
 import urllib.request
+import urllib.parse
 from http.client import HTTPException
 from os import system as system_call
 from socket import timeout
 from urllib.error import URLError
-from urllib.request import urlopen
 
 from pacman_mirrors import __version__
 from pacman_mirrors.config import configuration as conf
 from pacman_mirrors.constants import txt
 from pacman_mirrors.functions import fileFn
 from pacman_mirrors.functions import jsonFn
+
+headers = {"User-Agent": "{}{}".format(conf.USER_AGENT, __version__)}
 
 
 def download_mirrors(config):
@@ -47,13 +49,15 @@ def download_mirrors(config):
     """
     fetchmirrors = False
     fetchstatus = False
-    # mirrors.json
     try:
-        with urlopen(config["url_mirrors_json"]) as response:
+        # mirrors.json
+        req = urllib.request.Request(url=config["url_mirrors_json"],
+                                     headers=headers)
+        with urllib.request.urlopen(req) as response:
             mirrorlist = json.loads(response.read().decode("utf8"),
                                     object_pairs_hook=collections.OrderedDict)
         fetchmirrors = True
-        tempfile = config["work_dir"] + "/temp.file"
+        tempfile = config["work_dir"] + "/.temp.file"
         jsonFn.json_dump_file(mirrorlist, tempfile)
         filecmp.clear_cache()
         if fileFn.check_existance_of(conf.USR_DIR, folder=True):
@@ -64,9 +68,11 @@ def download_mirrors(config):
         os.remove(tempfile)
     except (HTTPException, json.JSONDecodeError, URLError):
         pass
-    # status.json
     try:
-        with urlopen(config["url_status_json"]) as response:
+        # status.json
+        req = urllib.request.Request(url=config["url_status_json"],
+                                     headers=headers)
+        with urllib.request.urlopen(req) as response:
             statuslist = json.loads(
                 response.read().decode("utf8"),
                 object_pairs_hook=collections.OrderedDict)
@@ -84,7 +90,9 @@ def get_geoip_country():
     """
     country_name = None
     try:
-        res = urlopen("http://freegeoip.net/json/")
+        req = urllib.request.Request(url="http://freegeoip.net/json/",
+                                     headers=headers)
+        res = urllib.request.urlopen(req)
         json_obj = json.loads(res.read().decode("utf8"))
     except (URLError, HTTPException, json.JSONDecodeError):
         pass
@@ -104,8 +112,9 @@ def get_geoip_country():
     return country_name
 
 
-def get_mirror_response(url, maxwait=2, count=1, quiet=False, ssl_verify=True):
+def get_mirror_response(url, config, maxwait=2, count=1, quiet=False, ssl_verify=True):
     """Query mirrors availability
+    :param config:
     :param ssl_verify:
     :param url:
     :param maxwait:
@@ -119,18 +128,20 @@ def get_mirror_response(url, maxwait=2, count=1, quiet=False, ssl_verify=True):
     message = ""
     # context = None
     context = ssl.create_default_context()
-    headers = {"User-Agent": "pacman-mirrors {}".format(__version__)}
+    arch = "x86_64"
+    if config["x32"]:
+        arch = "i686"
+    probe_url = "{}{}/community/{}/.syncpackages".format(url, config["branch"], arch)
     if not ssl_verify:
         # context = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
         context.check_hostname = False
         context.verify_mode = ssl.CERT_NONE
-    req = urllib.request.Request(
-        url + "state", headers=headers
-    )
+    req = urllib.request.Request(url=probe_url, headers=headers)
     # noinspection PyBroadException
     try:
         for _ in range(count):
-            urlopen(req, timeout=maxwait, context=context)
+            response = urllib.request.urlopen(req, timeout=maxwait, context=context)
+            _ = response.read()
         probe_stop = time.time()
     except URLError as err:
         if hasattr(err, "reason"):
@@ -168,16 +179,16 @@ def get_mirror_response(url, maxwait=2, count=1, quiet=False, ssl_verify=True):
 
 def inet_conn_check(maxwait=2):
     """Check for internet connection"""
-    data = None
+    resp = None
     hosts = conf.INET_CONN_CHECK_URLS
     for host in hosts:
         # noinspection PyBroadException
         try:
-            data = urlopen(host, timeout=maxwait)
+            resp = urllib.request.urlopen(host, timeout=maxwait)
             break
         except Exception as e:
             print(".: {} {} '{}'".format(txt.WRN_CLR, host, e))
-    return bool(data)
+    return bool(resp)
 
 
 def ping_host(host, count=1):
