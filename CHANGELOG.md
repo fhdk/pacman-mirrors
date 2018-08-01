@@ -1,8 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [next]
+## [4.12.0] 2018-08-01
 * refactor mirror probe to get more realistic response times.
+* setting http User-Agent to Pacman-Mirrors/{version}
 
 ## [4.11.5] 2018-07-24
 * Fix for [#140](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/140)
