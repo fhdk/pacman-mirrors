@@ -131,7 +131,7 @@ def get_mirror_response(url, config, maxwait=2, count=1, quiet=False, ssl_verify
     arch = "x86_64"
     if config["x32"]:
         arch = "i686"
-    probe_url = "{}{}/community/{}/.syncpackages".format(url, config["branch"], arch)
+    probe_url = "{}{}/core/{}/{}".format(url, config["branch"], arch, conf.TEST_FILE)
     if not ssl_verify:
         # context = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
         context.check_hostname = False
