@@ -19,7 +19,6 @@
 
 """Pacman-Mirrors Interactive Fasttrack Mirror List Builder Module"""
 
-from operator import itemgetter
 from random import shuffle
 
 
@@ -27,6 +26,7 @@ from pacman_mirrors.constants import txt
 from pacman_mirrors.functions import filterFn
 from pacman_mirrors.functions import outputFn
 from pacman_mirrors.functions import testMirrorFn
+from pacman_mirrors.functions.sortMirrorFn import sort_mirrors
 
 
 def build_mirror_list(self, limit):
@@ -93,8 +93,11 @@ def build_mirror_list(self, limit):
     #     """
     #     if counter is not 0 and counter == number:
     #         break
-    worklist = sorted(worklist,
-                      key=itemgetter("resp_time"))
+    worklist = sort_mirrors(worklist)
+
+    for w in worklist:
+        print("resp_time: {}".format(w["resp_time"]))
+    exit(0)
     """
     Try to write mirrorlist
     """

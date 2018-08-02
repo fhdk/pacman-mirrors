@@ -68,7 +68,8 @@ def test_mirrors(self, worklist, limit=None):
                                                                    maxwait=self.max_wait_time, quiet=self.quiet,
                                                                    ssl_verify=ssl_verify)
 
-            if float(mirror_proto["resp_time"]) >= self.max_wait_time:
+            # if float(mirror_proto["resp_time"]) >= self.max_wait_time:
+            if mirror_proto["resp_time"] >= self.max_wait_time:
                 if not self.quiet:
                     print("\r")
             else:

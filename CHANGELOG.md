@@ -1,7 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [4.12.0] 2018-08-01
+## [4.12.2] 2018-08-02
+* fix sorting based on resp_time (lexicographically -> numbers)
+
+## [4.12.1] 2018-08-01
 * refactor mirror probe to get more realistic response times.
 * setting http User-Agent to Pacman-Mirrors/{version}
 

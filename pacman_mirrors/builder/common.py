@@ -25,6 +25,7 @@ from random import shuffle
 from pacman_mirrors.constants import txt
 from pacman_mirrors.functions import filterFn
 from pacman_mirrors.functions import outputFn
+from pacman_mirrors.functions import sortMirrorFn
 from pacman_mirrors.functions import testMirrorFn
 
 
@@ -75,8 +76,9 @@ def build_mirror_list(self):
     if self.config["method"] == "rank":
         mirror_selection = testMirrorFn.test_mirrors(self,
                                                      mirror_selection)
-        mirror_selection = sorted(mirror_selection,
-                                  key=itemgetter("resp_time"))
+        mirror_selection = sortMirrorFn.sort_mirrors(worklist=mirror_selection,
+                                                     field="resp_time",
+                                                     reverse=False)
     else:
         shuffle(mirror_selection)
 

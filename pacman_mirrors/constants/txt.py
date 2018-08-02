@@ -154,7 +154,7 @@ OPT_COUNTRY = " 'c/--country' "
 LASTSYNC_OK = "24:00"  # last syncronize in the past 24 hours
 LASTSYNC_NA = "9800:00"  # last syncronization not available
 SERVER_BAD = "9999:99"  # default last syncronization status
-SERVER_RES = "99.99"  # default response status
+SERVER_RES = 99.99  # default response status
 # MESSAGE WITH COLOR
 ERR_CLR = "\033[1;31m{}\033[1;m".format(ERROR)
 INF_CLR = "\033[1;37m{}\033[1;m".format(INFO)
