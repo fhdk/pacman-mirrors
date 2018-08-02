@@ -95,9 +95,6 @@ def build_mirror_list(self, limit):
     #         break
     worklist = sort_mirrors(worklist)
 
-    for w in worklist:
-        print("resp_time: {}".format(w["resp_time"]))
-    exit(0)
     """
     Try to write mirrorlist
     """
