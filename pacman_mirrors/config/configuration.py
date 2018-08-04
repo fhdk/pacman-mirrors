@@ -20,7 +20,7 @@
 """Pacman-Mirrors Configuration Module"""
 
 # http constants
-TEST_FILE = "core.files.tar.gz"
+TEST_FILE = "core.db.tar.gz"
 USER_AGENT = "Pacman-Mirrors/"
 URL_MIRROR_JSON = \
     "https://gitlab.manjaro.org/tools/maintenance-tools/manjaro-web-repo/raw/master/mirrors.json"
