@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.12.3] 2018-08-06
+* added test file to configuration - default `core.db.tar.gz`
+
 ## [4.12.2] 2018-08-02
 * fix sorting based on resp_time (lexicographic -> numbers)
 

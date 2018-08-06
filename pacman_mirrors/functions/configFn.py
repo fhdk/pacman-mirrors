@@ -47,6 +47,7 @@ def setup_config():
         "repo_arch": conf.REPO_ARCH,
         "ssl_verify": True,
         "status_file": conf.STATUS_FILE,
+        "test_file": conf.TEST_FILE,
         "url_mirrors_json": conf.URL_MIRROR_JSON,
         "url_status_json": conf.URL_STATUS_JSON,
         "x32": False
@@ -75,6 +76,10 @@ def setup_config():
                             config["protocols"] = value.split(" ")
                     if key == "SSLVerify":
                         config["ssl_verify"] = value.lower().capitalize()
+                    if key == "TestFile":
+                        config["test_file"] = value
+                        if not config["test_file"]:
+                            config["test_file"] = conf.TEST_FILE
 
     except (PermissionError, OSError) as err:
         print(".: {} {}: {}: {}".format(txt.ERR_CLR,
