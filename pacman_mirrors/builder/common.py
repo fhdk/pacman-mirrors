@@ -82,6 +82,8 @@ def build_mirror_list(self):
     else:
         shuffle(mirror_selection)
 
+    mirror_selection = filterFn.filter_error_mirrors(mirror_selection)
+
     """
     Try to write mirrorlist
     """
