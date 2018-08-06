@@ -35,45 +35,48 @@ class ConsoleUI(npyscreen.NPSAppManaged):
 
     def __init__(self, server_list, random, default):
         npyscreen.NPSAppManaged.__init__(self)
-        # Server lists
-        self.server_list = server_list
-        self.custom_list = []
-        self.is_done = False
-        self.random = random
-        self.default = default
         self.title = txt.I_TITLE_RANDOM if random else txt.I_TITLE
         if default:
             self.title = "Pacman-Mirrors"
 
+        # Server lists
+        self.custom_list = []
+
+        self.is_done = False
+        self.random = random
+        self.default = default
+
+        header_cols = {"country": txt.I_COUNTRY,
+                       "resp_time": txt.I_RESPONSE,
+                       "last_sync": txt.I_LAST_SYNC,
+                       "url": txt.I_URL}
+        template = namedtuple("Server", ["country",
+                                         "resp_time",
+                                         "last_sync",
+                                         "url"])
+
+        main_server_list = [header_cols]
+        main_server_list.extend(server_list)
+        servers = consoleFn.list_to_tuple(main_server_list, template)
+        self.list_title = txt.I_LIST_TITLE
+        self.server_rows = consoleFn.rows_from_tuple(servers)
+        self.header_row = ("{:<5}".format(txt.I_USE) +
+                           (self.server_rows[0].replace("|", " ").strip()))
+        del self.server_rows[0]
+
     def main(self):
         """Main"""
-        main_server_list = []
-        server = namedtuple("Server", ["country",
-                                       "resp_time",
-                                       "last_sync",
-                                       "url"])
-        header_cols = ({"country": txt.I_COUNTRY,
-                        "resp_time": txt.I_RESPONSE,
-                        "last_sync": txt.I_LAST_SYNC,
-                        "url": txt.I_URL})
-        main_server_list.append(header_cols)
-        main_server_list.extend(self.server_list)
-        servers = consoleFn.list_to_tuple(main_server_list, server)
-        server_rows = consoleFn.rows_from_tuple(servers)
-        header_row = ("{:<5}".format(txt.I_USE) +
-                      (server_rows[0].replace("|", " ").strip()))
-        del server_rows[0]
+
         # setup form
         mainform = npyscreen.Form(name=self.title)
-        mainform.add(npyscreen.TitleFixedText, name=txt.I_LIST_TITLE)
-        mainform.add(npyscreen.TitleFixedText, name=header_row)
+        mainform.add(npyscreen.TitleFixedText, name=self.list_title)
+        mainform.add(npyscreen.TitleFixedText, name=self.header_row)
         selected_servers = mainform.add(npyscreen.MultiSelect,
                                         max_height=0,
-                                        name=txt.I_LIST_TITLE,
+                                        name=self.list_title,
                                         value=[],
-                                        values=server_rows,
+                                        values=self.server_rows,
                                         scroll_exit=True)
-
         mainform.edit()  # activate form
         self.done(selected_servers.get_selected_objects())  # done
 

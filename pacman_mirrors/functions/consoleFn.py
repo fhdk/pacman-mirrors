@@ -33,18 +33,19 @@ def list_to_tuple(list_data, named_tuple):
     return data
 
 
-def rows_from_tuple(servers, joiner=" | "):
+def rows_from_tuple(servers, join_string=" | "):
     """Generates equal formatted lines
     :param servers: named tuples
-    :param joiner: string used to join tuple items
+    :param join_string: string used to join tuple items
     :return lines: list of nicely formatted lines
     """
     rows = []
     if servers:
+
         # calculate max col width
         col_width = [max(len(text) for text in col) for col in zip(*servers)]
         # generate linies
         for line in servers:
-            rows.append(joiner.join("{:{}}".format(text, col_width[i])
-                                    for i, text in enumerate(line)))
+            rows.append(join_string.join("{:{}}".format(text, col_width[i])
+                                         for i, text in enumerate(line)))
     return rows

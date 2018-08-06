@@ -39,6 +39,7 @@ def translate_interactive_to_pool(custom_mirrors, mirror_pool, config):
             _ = mirror_pool[0]
             mirror_url = util.get_server_location_from_url(mirror["url"])
             for custom_mirror in custom_mirrors:
+                custom_mirror["resp_time"] = float(custom_mirror["resp_time"])
                 try:
                     custom_url = util.get_server_location_from_url(custom_mirror["url"])
                     custom_protocol = util.get_protocol_from_url(custom_mirror["url"])
@@ -93,7 +94,7 @@ def translate_pool_to_interactive(mirror_pool):
             for idx, protocol in enumerate(mirror["protocols"]):
                 interactive_list.append({
                     "country": mirror["country"],
-                    "resp_time": mirror["resp_time"],
+                    "resp_time": str(mirror["resp_time"]),
                     "last_sync": "{}h {}m".format(last_sync[0], last_sync[1]),
                     "url": "{}{}".format(protocol, mirror_url)
                 })
