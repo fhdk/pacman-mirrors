@@ -172,6 +172,7 @@ def get_mirror_response(url, config, maxwait=2, count=1, quiet=False, ssl_verify
     if message and not quiet:
         print(message)
     if probe_stop:
+        print("probe stop is true")
         # calc = round((probe_stop - probe_start), 3)
         response_time = round((probe_stop - probe_start), 3)
     return response_time

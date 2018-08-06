@@ -37,6 +37,20 @@ def filter_bad_mirrors(mirror_pool):
     return result
 
 
+def filter_error_mirrors(mirror_pool):
+    """
+    Remove mirrors with resp_time of 99.99
+    branch is == -1
+    :param mirror_pool: the global mirror pool
+    :return: list with bad mirrors removed
+    """
+    result = []
+    for mirror in mirror_pool:
+        if mirror["resp_time"] != txt.SERVER_RES:
+            result.append(mirror)
+    return result
+
+
 def filter_mirror_country(mirror_pool, country_pool):
     """
     Return new mirror pool with selected countries
