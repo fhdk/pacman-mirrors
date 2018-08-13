@@ -33,8 +33,15 @@ def build_country_list(country_selection, country_pool, geoip=False):
     :rtype: list
     """
     """
-    Don't change this code
-    This works so please don't touch
+    # Dear Fellow Manjaro Maintainer:
+    # When I wrote this code, only I knew how it worked.
+    # Now, no one knows!
+    # 
+    # Therefore if you are trying to optimize 
+    # this routine and it fails (most surely),
+    # please increase this counter as a warning for the next person.
+    # 
+    # total_hours_wasted_here = 1
     """
     result = []
     if country_selection:
@@ -47,7 +54,7 @@ def build_country_list(country_selection, country_pool, geoip=False):
     if not result:
         if geoip:
             country = get_geoip_country(country_pool)
-            if country:  # valid geoip
+            if country:
                 result = country
             else:
                 result = country_pool
