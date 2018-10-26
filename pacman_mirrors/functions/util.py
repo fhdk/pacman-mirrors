@@ -83,11 +83,11 @@ def i686_check(self, write=False):
                 apifn.write_config_branch(self.config["branch"], self.config["config_file"], quiet=True)
 
 
-def internet_message():
+def internet_message(tty):
     """Message when internet connection is down"""
-    print(".: {} {}".format(txt.WRN_CLR, txt.INTERNET_DOWN))
-    print(".: {} {}".format(txt.INF_CLR, txt.MIRROR_RANKING_NA))
-    print(".: {} {}".format(txt.INF_CLR, txt.INTERNET_ALTERNATIVE))
+    msg(f"{txt.INTERNET_DOWN}", urgency=txt.INF_CLR, tty=tty)
+    msg(f"{txt.MIRROR_RANKING_NA}", urgency=txt.INF_CLR, tty=tty)
+    msg(f"{txt.INTERNET_ALTERNATIVE}", urgency=txt.INF_CLR, tty=tty)
 
 
 def is_tty():
@@ -103,23 +103,33 @@ def is_tty():
         return False
 
 
-def msg(message: str, urgency: str = "", tty: bool = False, color: str = ""):
+def msg(message: str, urgency: str = "", tty: bool = False, color: str = "", newline: bool = False):
     """Helper for printing messages
     :param message:
     :param urgency:
     :param tty:
     :param color:
+    :param newline:
     """
     reset = "\033[1;m"
     if urgency and color:
         color = ""
     if tty:
-        print(message)
+        if newline:
+            print(f"\n{message}")
+        else:
+            print(f"{message}")
     else:
         if urgency:
-            print(f"::{urgency} {message}")
+            if newline:
+                print(f"\n::{urgency} {message}")
+            else:
+                print(f"::{urgency} {message}")
         elif color:
-            print(f"::{color}{message}{reset}")
+            if newline:
+                print(f"\n::{color}{message}{reset}")
+            else:
+                print(f"::{color}{message}{reset}")
 
 
 def terminal_size():
