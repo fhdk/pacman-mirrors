@@ -145,6 +145,8 @@ def parse_command_line(self, gtk_available):
     misc.add_argument("-v", "--version",
                       action="store_true",
                       help=txt.HLP_ARG_VERSION)
+    misc.add_argument("--no-color",
+                      action="store_true")
 
     args = parser.parse_args()
 
@@ -172,6 +174,9 @@ def parse_command_line(self, gtk_available):
     if args.get_branch:
         print(self.config["branch"])
         sys.exit(0)
+
+    if args.no_color:
+        self.tty = args.no_color
 
     """
     #############################################################
