@@ -37,6 +37,7 @@ from pacman_mirrors.config import configuration as conf
 from pacman_mirrors.constants import txt
 from pacman_mirrors.functions import fileFn
 from pacman_mirrors.functions import jsonFn
+from pacman_mirrors.functions import util
 
 headers = {"User-Agent": "{}{}".format(conf.USER_AGENT, __version__)}
 
@@ -112,10 +113,11 @@ def get_geoip_country():
     return country_name
 
 
-def get_mirror_response(url, config, maxwait=2, count=1, quiet=False, ssl_verify=True):
+def get_mirror_response(url, config, tty, maxwait=2, count=1, quiet=False, ssl_verify=True):
     """Query mirrors availability
     :param config:
     :param ssl_verify:
+    :param tty:
     :param url:
     :param maxwait:
     :param count:
@@ -145,40 +147,31 @@ def get_mirror_response(url, config, maxwait=2, count=1, quiet=False, ssl_verify
         probe_stop = time.time()
     except URLError as err:
         if hasattr(err, "reason"):
-            message = "\n.: {} {} '{}'".format(txt.ERR_CLR,
-                                               err.reason,
-                                               url)
+            message = f"{err.reason} '{url}'"
         elif hasattr(err, "code"):
-            message = "\n.: {} {} '{}'".format(txt.ERR_CLR,
-                                               err.reason,
-                                               url)
+            message = f"{err.reason} '{url}'"
     except timeout:
-        message = "\n.: {} {} '{}'".format(txt.ERR_CLR,
-                                           txt.TIMEOUT,
-                                           url)
+        message = f"{txt.TIMEOUT} '{url}'"
     except HTTPException:
-        message = "\n.: {} {} '{}'".format(txt.ERR_CLR,
-                                           txt.HTTP_EXCEPTION,
-                                           url)
+        message = f"{txt.HTTP_EXCEPTION} '{url}'"
     except ssl.CertificateError:
-        message = "\n.: {} {} '{}'".format(txt.ERR_CLR,
-                                           ssl.CertificateError,
-                                           url)
+        message = f"{ssl.CertificateError} '{url}'"
     except Exception as e:
-        message = "\n.: {} {} '{}'".format(txt.ERR_CLR,
-                                           e,
-                                           url)
+        message = f"{e} '{url}'"
 
     if message and not quiet:
-        print(message)
+        util.msg(message=message, urgency=txt.ERR_CLR, tty=tty, newline=True)
     if probe_stop:
         # calc = round((probe_stop - probe_start), 3)
         response_time = round((probe_stop - probe_start), 3)
     return response_time
 
 
-def inet_conn_check(maxwait=2):
-    """Check for internet connection"""
+def inet_conn_check(tty, maxwait=2):
+    """Check for internet connection
+    :param maxwait:
+    :param tty:
+    """
     resp = None
     hosts = conf.INET_CONN_CHECK_URLS
     for host in hosts:
@@ -187,48 +180,53 @@ def inet_conn_check(maxwait=2):
             resp = urllib.request.urlopen(host, timeout=maxwait)
             break
         except Exception as e:
-            print(".: {} {} '{}'".format(txt.WRN_CLR, host, e))
+            util.msg(f"{host} '{e}'", urgency=txt.WRN_CLR, tty=tty)
     return bool(resp)
 
 
-def ping_host(host, count=1):
+def ping_host(host, tty, count=1):
     """Check a hosts availability
     :param host:
     :param count:
+    :param tty:
     :rtype: boolean
     """
-    print(".: {} ping {} x {}".format(txt.INF_CLR, host, count))
+    util.msg(f"ping {host} x {count}", urgency=txt.INF_CLR, tty=tty)
     return system_call("ping -c{} {} > /dev/null".format(count, host)) == 0
 
 
-def update_mirror_pool(config, quiet=False):
+def update_mirror_pool(config, tty, quiet=False):
     """Download updates from repo.manjaro.org
     :param config:
     :param quiet:
+    :param tty:
     :returns: tuple with result for mirrors.json and status.json
     :rtype: tuple
     """
     result = None
-    connected = inet_conn_check()
+    connected = inet_conn_check(tty=tty)
     if connected:
         if not quiet:
-            print(".: {} {} {}".format(txt.INF_CLR,
-                                       txt.DOWNLOADING_MIRROR_FILE,
-                                       txt.REPO_SERVER))
+            util.msg(message=f"{txt.DOWNLOADING_MIRROR_FILE} {txt.REPO_SERVER}",
+                     urgency=txt.INF_CLR,
+                     tty=tty)
         result = download_mirrors(config)
     else:
         if not fileFn.check_existance_of(config["status_file"]):
             if not quiet:
-                print(".: {} {} {} {}".format(txt.WRN_CLR,
-                                              txt.MIRROR_FILE,
-                                              config["status_file"],
-                                              txt.IS_MISSING))
-                print(".: {} {} {}".format(txt.WRN_CLR,
-                                           txt.FALLING_BACK,
-                                           conf.MIRROR_FILE))
+                util.msg(message="{} {} {)".format(txt.MIRROR_FILE,
+                                                   config["status_file"],
+                                                   txt.IS_MISSING),
+                         urgency=txt.WRN_CLR,
+                         tty=tty)
+                util.msg(message=f"{txt.FALLING_BACK} {conf.MIRROR_FILE}",
+                         urgency=txt.WRN_CLR,
+                         tty=tty)
             result = (True, False)
         if not fileFn.check_existance_of(config["mirror_file"]):
             if not quiet:
-                print(".: {} {}".format(txt.ERR_CLR, txt.HOUSTON))
+                util.msg(message=f"{txt.HOUSTON}",
+                         urgency=txt.HOUSTON,
+                         tty=tty)
             result = (False, False)
     return result
