@@ -22,6 +22,7 @@
 
 import platform
 import shutil
+from sys import stdout
 
 from pacman_mirrors.api import apifn
 from pacman_mirrors.constants import txt
@@ -87,6 +88,19 @@ def internet_message():
     print(".: {} {}".format(txt.WRN_CLR, txt.INTERNET_DOWN))
     print(".: {} {}".format(txt.INF_CLR, txt.MIRROR_RANKING_NA))
     print(".: {} {}".format(txt.INF_CLR, txt.INTERNET_ALTERNATIVE))
+
+
+def is_tty():
+    """
+    Check if stdout is a terminal
+    :return: True/False
+    """
+    if stdout.isatty():
+        print("The output device is a teletype. Or something like a teletype.")
+        return True
+    else:
+        print("The output device isn\'t like a teletype.")
+        return False
 
 
 def terminal_size():
