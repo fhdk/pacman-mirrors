@@ -29,21 +29,21 @@ def debug_msg(where, what, value):
 
 def blue_msg(message):
     """Helper for printing blue messages"""
-    print("{}{}{}".format(color.BLUE, message, color.ENDCOLOR))
+    print("{}{}{}".format(color.BLUE, message, color.RESET))
 
 
 def green_msg(message):
     """Helper for printing green messages"""
-    print("{}{}{}".format(color.GREEN, message, color.ENDCOLOR))
+    print("{}{}{}".format(color.GREEN, message, color.RESET))
 
 
 def red_msg(message):
     """Helper for printing yellow messages"""
-    print("{}{}{}".format(color.RED, message, color.ENDCOLOR))
+    print("{}{}{}".format(color.RED, message, color.RESET))
 
 
 def yellow_msg(message):
     """Helper for printing yellow messages"""
-    print("{}{}{}".format(color.YELLOW, message, color.ENDCOLOR))
+    print("{}{}{}".format(color.YELLOW, message, color.RESET))
 
 
