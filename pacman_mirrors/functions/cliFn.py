@@ -162,11 +162,11 @@ def parse_command_line(self, gtk_available):
         sys.exit(0)
 
     if args.list:
-        outputFn.console_default_country_pool(self)
+        outputFn.tty_default_country_pool(self)
         sys.exit(0)
 
     if args.country_config:
-        outputFn.console_custom_country_pool(self)
+        outputFn.tty_custom_country_pool(self)
         sys.exit(0)
 
     if args.get_branch:
