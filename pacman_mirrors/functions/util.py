@@ -103,6 +103,18 @@ def is_tty():
         return False
 
 
+def msg(message: str, urgency: str = "", istty: bool = False):
+    """Helper for printing messages
+    :param message:
+    :param urgency:
+    :param istty:
+    """
+    if istty:
+        print(message)
+    else:
+        print(f"{urgency}{message}")
+
+
 def terminal_size():
     """get terminal size"""
     # http://www.programcreek.com/python/example/85471/shutil.get_terminal_size
