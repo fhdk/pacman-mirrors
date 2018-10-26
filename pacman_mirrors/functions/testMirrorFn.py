@@ -42,7 +42,7 @@ def test_mirrors(self, worklist, limit=None):
                  tty=self.tty)
         # print(".: {} {}".format(txt.INF_CLR,
         #                         txt.USING_DEFAULT_FILE))
-    util.msg(message="{txt.QUERY_MIRRORS} - {txt.TAKES_TIME}",
+    util.msg(message=f"{txt.QUERY_MIRRORS} - {txt.TAKES_TIME}",
              urgency=f"{txt.INF_CLR}",
              tty=self.tty)
     # print(".: {} {} - {}".format(txt.INF_CLR,
@@ -65,8 +65,8 @@ def test_mirrors(self, worklist, limit=None):
             if not self.quiet:
                 message = "  ..... {:<15}: {}".format(mirror_proto["country"],
                                                       mirror_proto["url"])
-
-                print("{:.{}}".format(message, cols), end="")
+                # this line cannot use util.msg
+                print("{  {}}".format(message, cols), end="")
                 sys.stdout.flush()
             # https/ftps sometimes takes longer for handshake
             if proto.endswith("tps"):  # https or ftps
@@ -76,6 +76,7 @@ def test_mirrors(self, worklist, limit=None):
             # let's see how responsive you are
             mirror_proto["resp_time"] = httpFn.get_mirror_response(mirror_proto["url"],
                                                                    self.config,
+                                                                   self.tty,
                                                                    maxwait=self.max_wait_time,
                                                                    quiet=self.quiet,
                                                                    ssl_verify=ssl_verify)
@@ -86,7 +87,7 @@ def test_mirrors(self, worklist, limit=None):
                     util.msg("\r")
             else:
                 if not self.quiet:
-                    util.msg(message="\r  {:<5}{mirror_proto[\"resp_time\"]}",
+                    util.msg(message="\r  {:<5}".format(mirror_proto["resp_time"]),
                              tty=self.tty,
                              color=color.GREEN)
         probed_mirror = filter_bad_ssl(work_mirror)
