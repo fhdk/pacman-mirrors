@@ -31,14 +31,23 @@ def test_mirrors(self, worklist, limit=None):
     Query server for response time
     """
     if self.custom:
-        print(".: {} {}".format(txt.INF_CLR,
-                                txt.USING_CUSTOM_FILE))
+        util.msg(message=f"{txt.USING_CUSTOM_FILE}",
+                 urgency=f"{txt.INF_CLR}",
+                 tty=self.tty)
+        # print(".: {} {}".format(txt.INF_CLR,
+        #                         txt.USING_CUSTOM_FILE))
     else:
-        print(".: {} {}".format(txt.INF_CLR,
-                                txt.USING_DEFAULT_FILE))
-    print(".: {} {} - {}".format(txt.INF_CLR,
-                                 txt.QUERY_MIRRORS,
-                                 txt.TAKES_TIME))
+        util.msg(message=f"{txt.USING_DEFAULT_FILE}",
+                 urgency=f"{txt.INF_CLR}",
+                 tty=self.tty)
+        # print(".: {} {}".format(txt.INF_CLR,
+        #                         txt.USING_DEFAULT_FILE))
+    util.msg(message="{txt.QUERY_MIRRORS} - {txt.TAKES_TIME}",
+             urgency=f"{txt.INF_CLR}",
+             tty=self.tty)
+    # print(".: {} {} - {}".format(txt.INF_CLR,
+    #                              txt.QUERY_MIRRORS,
+    #                              txt.TAKES_TIME))
     counter = 0
     cols, lines = util.terminal_size()
     # set connection timeouts
@@ -54,8 +63,9 @@ def test_mirrors(self, worklist, limit=None):
             proto = mirror_proto["protocols"][0]
             mirror_proto["url"] = "{}{}".format(proto, url)
             if not self.quiet:
-                message = "   ..... {:<15}: {}".format(mirror_proto["country"],
-                                                       mirror_proto["url"])
+                message = "  ..... {:<15}: {}".format(mirror_proto["country"],
+                                                      mirror_proto["url"])
+
                 print("{:.{}}".format(message, cols), end="")
                 sys.stdout.flush()
             # https/ftps sometimes takes longer for handshake
@@ -64,19 +74,21 @@ def test_mirrors(self, worklist, limit=None):
             else:
                 self.max_wait_time = http_wait
             # let's see how responsive you are
-            mirror_proto["resp_time"] = httpFn.get_mirror_response(mirror_proto["url"], self.config,
-                                                                   maxwait=self.max_wait_time, quiet=self.quiet,
+            mirror_proto["resp_time"] = httpFn.get_mirror_response(mirror_proto["url"],
+                                                                   self.config,
+                                                                   maxwait=self.max_wait_time,
+                                                                   quiet=self.quiet,
                                                                    ssl_verify=ssl_verify)
 
             # if float(mirror_proto["resp_time"]) >= self.max_wait_time:
             if mirror_proto["resp_time"] >= self.max_wait_time:
                 if not self.quiet:
-                    print("\r")
+                    util.msg("\r")
             else:
                 if not self.quiet:
-                    print("\r   {:<5}{}{} ".format(color.GREEN,
-                                                   mirror_proto["resp_time"],
-                                                   color.ENDCOLOR))
+                    util.msg(message="\r  {:<5}{mirror_proto[\"resp_time\"]}",
+                             tty=self.tty,
+                             color=color.GREEN)
         probed_mirror = filter_bad_ssl(work_mirror)
         if limit is not None:
             if mirror["resp_time"] == txt.SERVER_RES:
