@@ -26,6 +26,7 @@ from pacman_mirrors.constants import txt
 from pacman_mirrors.functions import filterFn
 from pacman_mirrors.functions import outputFn
 from pacman_mirrors.functions import testMirrorFn
+from pacman_mirrors.functions import util
 from pacman_mirrors.functions.sortMirrorFn import sort_mirrors
 
 
