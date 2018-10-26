@@ -74,8 +74,7 @@ def tty_custom_country_pool(self):
     List available countries from custom pool
     """
     customFn.load_custom_mirror_pool(self)
-    util.msg(message="{}".format("\n".join(self.mirrors.country_pool)),
-             tty=self.tty)
+    print("{}".format("\n".join(self.mirrors.country_pool)))
 
 
 def tty_default_country_pool(self):
@@ -83,7 +82,6 @@ def tty_default_country_pool(self):
     List all available countries
     """
     defaultFn.load_default_mirror_pool(self)
-    util.msg(message="{}".format("\n".join(self.mirrors.country_pool)),
-             tty=self.tty)
+    print("{}".format("\n".join(self.mirrors.country_pool)))
 
 
