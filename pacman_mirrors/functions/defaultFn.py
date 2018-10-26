@@ -48,7 +48,8 @@ def load_default_mirror_pool(self):
     """
     Load all available mirrors
     """
-    (file, status) = fileFn.return_mirror_filename(self.config)
+    (file, status) = fileFn.return_mirror_filename(config=self.config,
+                                                   tty=self.tty)
     seed_mirrors(self, file, status)
 
 
