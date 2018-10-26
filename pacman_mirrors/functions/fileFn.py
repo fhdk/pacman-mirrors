@@ -114,8 +114,8 @@ def write_mirror_list(config, servers, tty, custom=False,
                     continue
                 if interactive:
                     if not quiet:
-                        message = "   {:<15} : {}".format(server["country"],
-                                                          server["url"])
+                        message = "{:<15} : {}".format(server["country"],
+                                                       server["url"])
                         util.msg(message="{:.{}}".format(message, cols),
                                  urgency=txt.INF_CLR,
                                  tty=tty)
@@ -125,8 +125,8 @@ def write_mirror_list(config, servers, tty, custom=False,
                                               url[pos:],
                                               config["branch"])
                     if not quiet:
-                        message = "   {:<15} : {}".format(server["country"],
-                                                          msg_url)
+                        message = "{:<15} : {}".format(server["country"],
+                                                       msg_url)
                         util.msg(message="{:.{}}".format(message, cols),
                                  urgency=txt.INF_CLR,
                                  tty=tty)
