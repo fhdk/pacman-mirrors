@@ -95,14 +95,14 @@ class PacmanMirrors:
         util.i686_check(self, write=True)
         if not configFn.sanitize_config(self.config):
             sys.exit(2)
-        self.network = httpFn.inet_conn_check()
+        self.network = httpFn.inet_conn_check(tty=self.tty)
         if self.network:
-            httpFn.update_mirror_pool(self.config, quiet=self.quiet)
+            httpFn.update_mirror_pool(self.config, tty=self.tty, quiet=self.quiet)
         if self.no_mirrorlist:
             sys.exit(0)
         if not self.network:
             if not self.quiet:
-                pacman_mirrors.functions.util.internet_message()
+                pacman_mirrors.functions.util.internet_message(tty=self.tty)
             self.config["method"] = "random"
             self.fasttrack = False
         """
