@@ -27,6 +27,7 @@ import pacman_mirrors.functions.util
 from pacman_mirrors.constants import colors as color
 from pacman_mirrors.constants import txt
 from pacman_mirrors.functions import jsonFn
+from pacman_mirrors.functions import util
 
 
 def check_existance_of(filename, folder=False):
@@ -59,10 +60,11 @@ def delete_file(filename):
         os.remove(filename)
 
 
-def return_mirror_filename(config):
+def return_mirror_filename(config, tty):
     """
     Find the mirror pool file
     :param config: config dictionary
+    :param tty:
     :returns tuple with file and status
     """
     filename = ""
@@ -74,19 +76,18 @@ def return_mirror_filename(config):
     elif check_existance_of(config["mirror_file"]):
         filename = config["mirror_file"]
     if not filename:
-        print("\n{}.:! {}{}\n".format(color.RED,
-                                      txt.HOUSTON,
-                                      color.ENDCOLOR))
+        util.msg(message=f"\n{txt.HOUSTON}\n", tty=tty, color=color.RED)
         sys.exit(3)
     return filename, status
 
 
-def write_mirror_list(config, servers, custom=False,
+def write_mirror_list(config, servers, tty, custom=False,
                       quiet=False, interactive=False):
     """
     Write servers to /etc/pacman.d/mirrorlist
     :param config: configuration dictionary
     :param servers: list of servers to write
+    :param tty:
     :param custom: flag
     :param quiet: flag
     :param interactive: flag
@@ -94,7 +95,9 @@ def write_mirror_list(config, servers, custom=False,
     try:
         with open(config["mirror_list"], "w") as outfile:
             if not quiet:
-                print(".: {} {}".format(txt.INF_CLR, txt.WRITING_MIRROR_LIST))
+                util.msg(message=f"{txt.WRITING_MIRROR_LIST}",
+                         urgency=txt.INF_CLR,
+                         tty=tty)
             # write list header
             write_mirrorlist_header(outfile, custom=custom)
             cols, lines = pacman_mirrors.functions.util.terminal_size()
@@ -113,7 +116,10 @@ def write_mirror_list(config, servers, custom=False,
                     if not quiet:
                         message = "   {:<15} : {}".format(server["country"],
                                                           server["url"])
-                        print("{:.{}}".format(message, cols))
+                        util.msg(message="{:.{}}".format(message, cols),
+                                 urgency=txt.INF_CLR,
+                                 tty=tty)
+                        print()
                 else:
                     msg_url = "{}{}{}".format(protocol,
                                               url[pos:],
@@ -121,19 +127,22 @@ def write_mirror_list(config, servers, custom=False,
                     if not quiet:
                         message = "   {:<15} : {}".format(server["country"],
                                                           msg_url)
-                        print("{:.{}}".format(message, cols))
+                        util.msg(message="{:.{}}".format(message, cols),
+                                 urgency=txt.INF_CLR,
+                                 tty=tty)
 
                 # write list entry
                 write_mirrorlist_entry(outfile, server)
             if not quiet:
-                print(".: {} {}: {}".format(txt.INF_CLR,
-                                            txt.MIRROR_LIST_SAVED,
-                                            config["mirror_list"]))
+                f = config["mirror_list"]
+                util.msg(message=f"{txt.MIRROR_LIST_SAVED}: {f}",
+                         urgency=txt.INF_CLR,
+                         tty=tty)
     except OSError as err:
-        print(".: {} {}: {}: {}".format(txt.ERR_CLR,
-                                        txt.CANNOT_WRITE_FILE,
-                                        err.filename,
-                                        err.strerror))
+        util.msg(message=f"{txt.CANNOT_WRITE_FILE}: {err.filename}: {err.strerror}",
+                 urgency=txt.ERR_CLR,
+                 tty=tty)
+
         sys.exit(2)
 
 
