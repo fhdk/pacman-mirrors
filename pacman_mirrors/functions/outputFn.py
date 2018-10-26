@@ -24,6 +24,7 @@ from pacman_mirrors.functions import customFn
 from pacman_mirrors.functions import defaultFn
 from pacman_mirrors.functions import fileFn
 from pacman_mirrors.functions import jsonFn
+from pacman_mirrors.functions import util
 
 
 def file_custom_mirror_pool(self, selected_mirrors):
@@ -33,15 +34,14 @@ def file_custom_mirror_pool(self, selected_mirrors):
     :param selected_mirrors:
     :return:
     """
-    print("\n.: {} {}".format(txt.INF_CLR,
-                              txt.CUSTOM_MIRROR_LIST))
-    print("--------------------------")
+
+    util.msg(f"{txt.CUSTOM_MIRROR_LIST}", urgency=txt.INF_CLR, tty=self.tty)
+    util.msg("--------------------------")
     # output mirror file
     jsonFn.write_json_file(selected_mirrors,
                            self.config["custom_file"])
-    print(".: {} {}: {}".format(txt.INF_CLR,
-                                txt.CUSTOM_MIRROR_FILE_SAVED,
-                                self.config["custom_file"]))
+    util.msg("{}: {}".format(txt.CUSTOM_MIRROR_FILE_SAVED,
+                             self.config["custom_file"]))
 
 
 def file_mirror_list(self, selected_servers):
@@ -67,7 +67,7 @@ def tty_custom_country_pool(self):
     List available countries from custom pool
     """
     customFn.load_custom_mirror_pool(self)
-    print("{}".format("\n".join(self.mirrors.country_pool)))
+    util.msg("{}".format("\n".join(self.mirrors.country_pool)), tty=self.tty)
 
 
 def tty_default_country_pool(self):
@@ -75,6 +75,6 @@ def tty_default_country_pool(self):
     List all available countries
     """
     defaultFn.load_default_mirror_pool(self)
-    print("{}".format("\n".join(self.mirrors.country_pool)))
+    util.msg("{}".format("\n".join(self.mirrors.country_pool)), tty=self.tty)
 
 
