@@ -90,19 +90,6 @@ def internet_message(tty):
     msg(f"{txt.INTERNET_ALTERNATIVE}", urgency=txt.INF_CLR, tty=tty)
 
 
-def is_tty():
-    """
-    Check if stdout is a terminal
-    :return: True/False
-    """
-    if stdout.isatty():
-        print("The output device is a teletype. Or something like a teletype.")
-        return True
-    else:
-        print("The output device isn\'t like a teletype.")
-        return False
-
-
 def msg(message: str, urgency: str = "", tty: bool = False, color: str = "", newline: bool = False):
     """Helper for printing messages
     :param message:
@@ -116,9 +103,9 @@ def msg(message: str, urgency: str = "", tty: bool = False, color: str = "", new
         color = ""
     if tty:
         if newline:
-            print(f"\n{message}")
+            print(f"\n::{message}")
         else:
-            print(f"{message}")
+            print(f"::{message}")
     else:
         if urgency:
             if newline:
