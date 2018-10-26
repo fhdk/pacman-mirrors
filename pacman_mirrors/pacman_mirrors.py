@@ -59,7 +59,6 @@ class PacmanMirrors:
         }
         self.custom = False
         self.default = False
-        self.debug = False
         self.fasttrack = None
         self.geoip = False
         self.interactive = False
@@ -87,8 +86,6 @@ class PacmanMirrors:
         # Load default mirror pool
         # Build mirror list
         """
-        self.debug = os.environ.get("PM_DEBUG")
-        self.tty = util.is_tty()
         (self.config, self.custom) = configFn.setup_config()
         fileFn.create_dir(self.config["work_dir"])
         cliFn.parse_command_line(self, GTK_AVAILABLE)
