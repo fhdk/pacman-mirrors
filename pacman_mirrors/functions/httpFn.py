@@ -89,10 +89,9 @@ def get_geoip_country():
     """Try to get the user country via GeoIP
     :return: country name or nothing
     """
-    country_name = None
+    country_name = ""
     try:
-        req = urllib.request.Request(url="http://freegeoip.net/json/",
-                                     headers=headers)
+        req = urllib.request.Request(url="http://api.ipstack.com/check?access_key=3694b757c436433985a553971cde6cd0")
         res = urllib.request.urlopen(req)
         json_obj = json.loads(res.read().decode("utf8"))
     except (URLError, HTTPException, json.JSONDecodeError):
