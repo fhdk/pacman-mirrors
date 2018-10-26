@@ -103,16 +103,23 @@ def is_tty():
         return False
 
 
-def msg(message: str, urgency: str = "", istty: bool = False):
+def msg(message: str, urgency: str = "", tty: bool = False, color: str = ""):
     """Helper for printing messages
     :param message:
     :param urgency:
-    :param istty:
+    :param tty:
+    :param color:
     """
-    if istty:
+    reset = "\033[1;m"
+    if urgency and color:
+        color = ""
+    if tty:
         print(message)
     else:
-        print(f"{urgency}{message}")
+        if urgency:
+            print(f"::{urgency} {message}")
+        elif color:
+            print(f"::{color}{message}{reset}")
 
 
 def terminal_size():
