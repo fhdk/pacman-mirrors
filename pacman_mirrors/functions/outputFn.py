@@ -35,13 +35,18 @@ def file_custom_mirror_pool(self, selected_mirrors):
     :return:
     """
 
-    util.msg(f"{txt.CUSTOM_MIRROR_LIST}", urgency=txt.INF_CLR, tty=self.tty)
-    util.msg("--------------------------")
+    util.msg(message=f"{txt.CUSTOM_MIRROR_LIST}",
+             urgency=txt.INF_CLR,
+             tty=self.tty)
+    util.msg(message="--------------------------",
+             tty=self.tty)
     # output mirror file
     jsonFn.write_json_file(selected_mirrors,
                            self.config["custom_file"])
-    util.msg("{}: {}".format(txt.CUSTOM_MIRROR_FILE_SAVED,
-                             self.config["custom_file"]))
+    util.msg(message="{}: {}".format(txt.CUSTOM_MIRROR_FILE_SAVED,
+                                     self.config["custom_file"]),
+             urgency=txt.INF_CLR,
+             tty=self.tty)
 
 
 def file_mirror_list(self, selected_servers):
@@ -53,12 +58,14 @@ def file_mirror_list(self, selected_servers):
     if self.custom:
         fileFn.write_mirror_list(self.config,
                                  selected_servers,
+                                 tty=self.tty,
                                  custom=self.custom,
                                  quiet=self.quiet,
                                  interactive=True)
     else:
         fileFn.write_mirror_list(self.config,
                                  selected_servers,
+                                 tty=self.tty,
                                  quiet=self.quiet)
 
 
@@ -67,7 +74,8 @@ def tty_custom_country_pool(self):
     List available countries from custom pool
     """
     customFn.load_custom_mirror_pool(self)
-    util.msg("{}".format("\n".join(self.mirrors.country_pool)), tty=self.tty)
+    util.msg(message="{}".format("\n".join(self.mirrors.country_pool)),
+             tty=self.tty)
 
 
 def tty_default_country_pool(self):
@@ -75,6 +83,7 @@ def tty_default_country_pool(self):
     List all available countries
     """
     defaultFn.load_default_mirror_pool(self)
-    util.msg("{}".format("\n".join(self.mirrors.country_pool)), tty=self.tty)
+    util.msg(message="{}".format("\n".join(self.mirrors.country_pool)),
+             tty=self.tty)
 
 
