@@ -4,13 +4,14 @@
 # project.
 # 
 # Translators:
+# Melroy van den Berg <webmaster1989@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pacman-mirrors\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-23 20:55+0200\n"
-"PO-Revision-Date: 2015-12-22 01:50+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2018-10-15 17:53+0000\n"
+"Last-Translator: Melroy van den Berg <webmaster1989@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/manjarolinux/manjaro-pacman-mirrors/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,27 +22,27 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:29
 msgid "ERROR"
-msgstr ""
+msgstr "FOUT"
 
 #: pacman_mirrors/constants/txt.py:30
 msgid "INFO"
-msgstr ""
+msgstr "INFO"
 
 #: pacman_mirrors/constants/txt.py:31
 msgid "WARNING"
-msgstr ""
+msgstr "WAARSCHUWING"
 
 #: pacman_mirrors/constants/txt.py:33
 msgid "HTTPException"
-msgstr ""
+msgstr "HTTPException"
 
 #: pacman_mirrors/constants/txt.py:34
 msgid "TIMEOUT"
-msgstr ""
+msgstr "TIMEOUT"
 
 #: pacman_mirrors/constants/txt.py:36
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: pacman_mirrors/constants/txt.py:37
 msgid "BRANCH"
@@ -53,15 +54,15 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:39
 msgid "FILE"
-msgstr ""
+msgstr "BESTAND"
 
 #: pacman_mirrors/constants/txt.py:40
 msgid "METHOD"
-msgstr ""
+msgstr "METHODE"
 
 #: pacman_mirrors/constants/txt.py:41
 msgid "METHODS"
-msgstr ""
+msgstr "METHODES"
 
 #: pacman_mirrors/constants/txt.py:42
 msgid "MISC"
@@ -69,7 +70,7 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:43
 msgid "NUMBER"
-msgstr ""
+msgstr "GETAL"
 
 #: pacman_mirrors/constants/txt.py:44
 msgid "PATH"
@@ -85,7 +86,7 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:47
 msgid "SECONDS"
-msgstr ""
+msgstr "SECONDEN"
 
 #: pacman_mirrors/constants/txt.py:48 pacman_mirrors/constants/txt.py:125
 msgid "URL"
@@ -93,7 +94,7 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:49
 msgid "USAGE"
-msgstr ""
+msgstr "GEBRUIK"
 
 #: pacman_mirrors/constants/txt.py:51
 msgid "Return branch from configuration"
@@ -221,7 +222,7 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:85
 msgid "User generated mirror list"
-msgstr ""
+msgstr "Gebruiker gegeneerde spiegelserver lijst."
 
 #: pacman_mirrors/constants/txt.py:86
 msgid "Deprecated argument"
@@ -233,15 +234,15 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:88
 msgid "Downloading mirrors from"
-msgstr ""
+msgstr "Download spiegelservers van"
 
 #: pacman_mirrors/constants/txt.py:89
 msgid "Falling back to"
-msgstr ""
+msgstr "Valt terug naar"
 
 #: pacman_mirrors/constants/txt.py:90
 msgid "Internet connection appears to be down"
-msgstr ""
+msgstr "Het lijkt erop dat er geen Internet connectie is"
 
 #: pacman_mirrors/constants/txt.py:91
 msgid "Mirror list is generated using random method"
@@ -249,7 +250,7 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:92
 msgid "is missing"
-msgstr ""
+msgstr "mist"
 
 #: pacman_mirrors/constants/txt.py:93
 msgid "The mirror file"
@@ -297,11 +298,11 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:104
 msgid "Option"
-msgstr ""
+msgstr "Optie"
 
 #: pacman_mirrors/constants/txt.py:105
 msgid "Please use"
-msgstr ""
+msgstr "Gebruik a.u.b. "
 
 #: pacman_mirrors/constants/txt.py:106
 msgid "Querying mirrors"
@@ -373,11 +374,11 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:126
 msgid "Cancel"
-msgstr ""
+msgstr "Annuleer"
 
 #: pacman_mirrors/constants/txt.py:127
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: pacman_mirrors/constants/txt.py:128
 msgid "Confirm selections"
@@ -385,4 +386,4 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:129
 msgid "I want to use these mirrors"
-msgstr ""
+msgstr "Ik wil deze mirrors gebruiken"
