@@ -65,8 +65,7 @@ def test_mirrors(self, worklist, limit=None):
             if not self.quiet:
                 message = "  ..... {:<15}: {}".format(mirror_proto["country"],
                                                       mirror_proto["url"])
-                # this line cannot use util.msg
-                print("{  {}}".format(message, cols), end="")
+                print("{:.{}}".format(message, cols), end="")
                 sys.stdout.flush()
             # https/ftps sometimes takes longer for handshake
             if proto.endswith("tps"):  # https or ftps
@@ -75,8 +74,8 @@ def test_mirrors(self, worklist, limit=None):
                 self.max_wait_time = http_wait
             # let's see how responsive you are
             mirror_proto["resp_time"] = httpFn.get_mirror_response(mirror_proto["url"],
-                                                                   self.config,
-                                                                   self.tty,
+                                                                   config=self.config,
+                                                                   tty=self.tty,
                                                                    maxwait=self.max_wait_time,
                                                                    quiet=self.quiet,
                                                                    ssl_verify=ssl_verify)
@@ -84,12 +83,10 @@ def test_mirrors(self, worklist, limit=None):
             # if float(mirror_proto["resp_time"]) >= self.max_wait_time:
             if mirror_proto["resp_time"] >= self.max_wait_time:
                 if not self.quiet:
-                    util.msg("\r")
+                    print("\r")
             else:
                 if not self.quiet:
-                    util.msg(message="\r  {:<5}".format(mirror_proto["resp_time"]),
-                             tty=self.tty,
-                             color=color.GREEN)
+                    print("\r  {:<5}".format(mirror_proto["resp_time"]))
         probed_mirror = filter_bad_ssl(work_mirror)
         if limit is not None:
             if mirror["resp_time"] == txt.SERVER_RES:
