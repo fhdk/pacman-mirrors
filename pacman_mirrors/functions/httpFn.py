@@ -42,7 +42,7 @@ from pacman_mirrors.functions import util
 headers = {"User-Agent": "{}{}".format(conf.USER_AGENT, __version__)}
 
 
-def download_mirrors(config):
+def download_mirrors(config: object):
     """Retrieve mirrors from manjaro.org
     :param config:
     :returns: tuple with bool for mirrors.json and status.json
@@ -112,7 +112,10 @@ def get_geoip_country():
     return country_name
 
 
-def get_mirror_response(url, config, tty, maxwait=2, count=1, quiet=False, ssl_verify=True):
+def get_mirror_response(url: str, config: object,
+                        tty: bool = False, maxwait: int = 2,
+                        count: int = 1, quiet: bool = False,
+                        ssl_verify: bool = True):
     """Query mirrors availability
     :param config:
     :param ssl_verify:
@@ -166,7 +169,7 @@ def get_mirror_response(url, config, tty, maxwait=2, count=1, quiet=False, ssl_v
     return response_time
 
 
-def inet_conn_check(tty, maxwait=2):
+def inet_conn_check(tty: bool = False, maxwait: int = 2):
     """Check for internet connection
     :param maxwait:
     :param tty:
@@ -183,7 +186,7 @@ def inet_conn_check(tty, maxwait=2):
     return bool(resp)
 
 
-def ping_host(host, tty, count=1):
+def ping_host(host: str, tty: bool=False, count=1):
     """Check a hosts availability
     :param host:
     :param count:
@@ -194,7 +197,7 @@ def ping_host(host, tty, count=1):
     return system_call("ping -c{} {} > /dev/null".format(count, host)) == 0
 
 
-def update_mirror_pool(config, tty, quiet=False):
+def update_mirror_pool(config: object, tty: bool = False, quiet: bool = False):
     """Download updates from repo.manjaro.org
     :param config:
     :param quiet:
