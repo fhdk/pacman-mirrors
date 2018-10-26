@@ -155,10 +155,18 @@ def build_mirror_list(self):
                 _ = mirror_list[0]
                 outputFn.file_mirror_list(self, mirror_list)
                 if self.no_status:
-                    print("{} {}\n{} {}".format(txt.WRN_CLR, txt.OVERRIDE_STATUS_CHOICE,
-                                                txt.WRN_CLR, txt.OVERRIDE_STATUS_MIRROR))
+                    util.msg(message=f"{txt.OVERRIDE_STATUS_CHOICE}",
+                             urgency=txt.WRN_CLR,
+                             tty=self.tty)
+                    util.msg(message=f"{txt.OVERRIDE_STATUS_MIRROR}",
+                             urgency=txt.WRN_CLR,
+                             tty=self.tty)
             except IndexError:
                 raise IndexError
         except IndexError:
-            print(".: {} {}".format(txt.WRN_CLR, txt.NO_SELECTION))
-            print(".: {} {}".format(txt.INF_CLR, txt.NO_CHANGE))
+            util.msg(message=f"{txt.NO_SELECTION}",
+                     urgency=txt.WRN_CLR,
+                     tty=self.tty)
+            util.msg(message=f"{txt.NO_CHANGE}",
+                     urgency=txt.INF_CLR,
+                     tty=self.tty)

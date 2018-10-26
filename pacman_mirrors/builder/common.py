@@ -27,6 +27,7 @@ from pacman_mirrors.functions import filterFn
 from pacman_mirrors.functions import outputFn
 from pacman_mirrors.functions import sortMirrorFn
 from pacman_mirrors.functions import testMirrorFn
+from pacman_mirrors.functions import util
 
 
 def build_mirror_list(self):
@@ -91,13 +92,23 @@ def build_mirror_list(self):
         _ = mirror_selection[0]
         outputFn.file_mirror_list(self, mirror_selection)
         if self.custom:
-            print(".: {} {} 'sudo {}'".format(txt.INF_CLR,
-                                              txt.REMOVE_CUSTOM_CONFIG,
-                                              txt.RESET_ALL))
+            util.msg(message=f"{txt.MIRROR_LIST_CUSTOM_RESET} 'sudo {txt.MODIFY_CUSTOM}'",
+                     urgency=txt.INF_CLR,
+                     tty=self.tty)
+            util.msg(message=f"{txt.REMOVE_CUSTOM_CONFIG} 'sudo {txt.RESET_ALL}'",
+                     urgency=txt.INF_CLR,
+                     tty=self.tty)
         if self.no_status:
-            print("{} {}\n{} {}".format(txt.WRN_CLR, txt.OVERRIDE_STATUS_CHOICE,
-                                        txt.WRN_CLR, txt.OVERRIDE_STATUS_MIRROR))
+            util.msg(message=f"{txt.OVERRIDE_STATUS_CHOICE}",
+                     urgency=txt.WRN_CLR,
+                     tty=self.tty)
+            util.msg(message=f"{txt.OVERRIDE_STATUS_MIRROR}",
+                     urgency=txt.WRN_CLR,
+                     tty=self.tty)
     except IndexError:
-        print(".: {} {}".format(txt.WRN_CLR, txt.NO_SELECTION))
-        print(".: {} {}".format(txt.INF_CLR, txt.NO_CHANGE))
-
+        util.msg(message=f"{txt.NO_SELECTION}",
+                 urgency=txt.WRN_CLR,
+                 tty=self.tty)
+        util.msg(message=f"{txt.NO_CHANGE}",
+                 urgency=txt.INF_CLR,
+                 tty=self.tty)

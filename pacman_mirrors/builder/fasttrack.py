@@ -58,9 +58,10 @@ def build_mirror_list(self, limit):
     Shuffle the list
     """
     shuffle(up_to_date_mirrors)
-    print(".: {}: {} - {}".format(txt.INF_CLR,
-                                  txt.QUERY_MIRRORS,
-                                  txt.TAKES_TIME))
+    util.msg(message=f"{txt.QUERY_MIRRORS} - {txt.TAKES_TIME}",
+             urgency=txt.INF_CLR,
+             tty=self.tty)
+
     # probe the mirrors
     worklist = testMirrorFn.test_mirrors(self, up_to_date_mirrors, limit)
     # sort the result
@@ -73,5 +74,9 @@ def build_mirror_list(self, limit):
         _ = worklist[0]
         outputFn.file_mirror_list(self, worklist)
     except IndexError:
-        print(".: {} {}".format(txt.WRN_CLR, txt.NO_SELECTION))
-        print(".: {} {}".format(txt.INF_CLR, txt.NO_CHANGE))
+        util.msg(message=f"{txt.NO_SELECTION}",
+                 urgency=txt.WRN_CLR,
+                 tty=self.tty)
+        util.msg(message=f"{txt.NO_CHANGE}",
+                 urgency=txt.INF_CLR,
+                 tty=self.tty)
