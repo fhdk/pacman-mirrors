@@ -26,22 +26,6 @@ from pacman_mirrors.functions import fileFn
 from pacman_mirrors.functions import jsonFn
 
 
-def console_custom_country_pool(self):
-    """
-    List available countries from custom pool
-    """
-    customFn.load_custom_mirror_pool(self)
-    print("{}".format("\n".join(self.mirrors.country_pool)))
-
-
-def console_default_country_pool(self):
-    """
-    List all available countries
-    """
-    defaultFn.load_default_mirror_pool(self)
-    print("{}".format("\n".join(self.mirrors.country_pool)))
-
-
 def file_custom_mirror_pool(self, selected_mirrors):
     """
     Output selected mirrors to custom mirror file
@@ -76,4 +60,21 @@ def file_mirror_list(self, selected_servers):
         fileFn.write_mirror_list(self.config,
                                  selected_servers,
                                  quiet=self.quiet)
+
+
+def tty_custom_country_pool(self):
+    """
+    List available countries from custom pool
+    """
+    customFn.load_custom_mirror_pool(self)
+    print("{}".format("\n".join(self.mirrors.country_pool)))
+
+
+def tty_default_country_pool(self):
+    """
+    List all available countries
+    """
+    defaultFn.load_default_mirror_pool(self)
+    print("{}".format("\n".join(self.mirrors.country_pool)))
+
 
