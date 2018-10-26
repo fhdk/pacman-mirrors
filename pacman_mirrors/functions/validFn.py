@@ -32,17 +32,6 @@ def custom_config_is_valid():
     :rtype: bool
     """
     return os.path.isfile(conf.CUSTOM_FILE)
-    # valid = os.path.isfile(conf.CUSTOM_FILE)
-    # if not valid:
-    #     # validation fail - inform user and exit
-    #     print(".: {} {} {} {}".format(txt.ERR_CLR,
-    #                                   txt.CUSTOM_MIRROR_FILE,
-    #                                   conf.CUSTOM_FILE,
-    #                                   txt.DOES_NOT_EXIST))
-    #     print(".: {} {}: {}".format(txt.INF_CLR,
-    #                                 txt.FALLING_BACK,
-    #                                 txt.USING_ALL_MIRRORS))
-    # return valid
 
 
 def country_list_is_valid(onlycountry, countrylist):
