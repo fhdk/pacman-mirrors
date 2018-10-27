@@ -32,7 +32,7 @@ def apply_status_to_custom_mirror_pool(config: object, custom_pool: list) -> lis
     :param custom_pool: the custom mirror pool
     :return: custom mirror pool with status applied
     """
-    status_list = tuple(jsonFn.read_json_file(config["status_file"], dictionary=False))
+    status_list = tuple(jsonFn.read_json_file(filename=config["status_file"], dictionary=False))
     custom_list = tuple(custom_pool)
     try:
         _ = status_list[0]
@@ -51,9 +51,8 @@ def check_custom_mirror_pool(self) -> bool:
     Custom mirror pool or countries from CLI
     :return: True/False
     """
-    if validFn.custom_config_is_valid():
-        self.custom = True
-    else:
+    self.custom = validFn.custom_config_is_valid()
+    if not self.custom:
         self.selected_countries = self.config["country_pool"]
     return self.custom
 
@@ -76,5 +75,6 @@ def load_custom_mirror_pool(self) -> None:
         defaultFn.load_default_mirror_pool(self)
     else:
         defaultFn.seed_mirrors(self, self.config["custom_file"])
-        self.mirrors.mirror_pool = apply_status_to_custom_mirror_pool(self.config, self.mirrors.mirror_pool)
+        self.mirrors.mirror_pool = apply_status_to_custom_mirror_pool(
+            config=self.config, custom_pool=self.mirrors.mirror_pool)
 
