@@ -28,6 +28,7 @@ from pacman_mirrors.functions import filterFn
 from pacman_mirrors.functions import outputFn
 from pacman_mirrors.functions import sortMirrorFn
 from pacman_mirrors.functions import testMirrorFn
+from pacman_mirrors.functions import util
 
 
 def build_mirror_list(self) -> None:
