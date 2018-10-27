@@ -64,9 +64,12 @@ def test_mirrors(self, worklist: list, limit=None) -> list:
             message = f'  ..... {mirror_proto["country"]:<15}: {mirror_proto["url"]}'
 
             # if self.tty do not print theis
-            if not self.quiet or not self.tty:
-                print("{:.{}}".format(message, cols), end="")
-                sys.stdout.flush()
+            if not self.quiet:
+                if self.tty:
+                    pass
+                else:
+                    print("{:.{}}".format(message, cols), end="")
+                    sys.stdout.flush()
 
             # https/ftps sometimes takes longer for handshake
             if proto.endswith("tps"):  # https or ftps
@@ -87,12 +90,18 @@ def test_mirrors(self, worklist: list, limit=None) -> list:
             # validate against the defined wait time
             if mirror_proto["resp_time"] >= self.max_wait_time:
                 # skip line - but not if tty
-                if not self.quiet and not self.tty:
-                    print("\r")
+                if not self.quiet:
+                    if self.tty:
+                        pass
+                    else:
+                        print("\r")
             else:
                 # only print if not tty
-                if not self.quiet and not self.tty:
-                    print(f"\r  {color.GREEN}{r_str}{color.RESET}")
+                if not self.quiet:
+                    if self.tty:
+                        pass
+                    else:
+                        print(f"\r  {color.GREEN}{r_str}{color.RESET}")
 
             # we have tty then we print with response time
             if self.tty:
