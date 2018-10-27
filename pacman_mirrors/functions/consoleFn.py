@@ -22,7 +22,7 @@
 import json
 
 
-def list_to_tuple(list_data, named_tuple):
+def list_to_tuple(list_data: list, named_tuple) -> list:
     """Comvert list to a list with named tuples
     :param list_data: the list to convert
     :param named_tuple: tuple list item converts to
@@ -33,7 +33,7 @@ def list_to_tuple(list_data, named_tuple):
     return data
 
 
-def rows_from_tuple(servers, join_string=" | "):
+def rows_from_tuple(servers: list, join_string: str = " | ") -> list:
     """Generates equal formatted lines
     :param servers: named tuples
     :param join_string: string used to join tuple items
