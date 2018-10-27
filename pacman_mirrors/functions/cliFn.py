@@ -32,7 +32,7 @@ from pacman_mirrors.translation.custom_help_formatter \
     import CustomHelpFormatter
 
 
-def parse_command_line(self, gtk_available):
+def parse_command_line(self, gtk_available: bool) -> None:
     """Read the arguments of the command line"""
 
     args_summary = "[-h] [-f [{}]] [-i [-d]] [-m {}]\n" \
