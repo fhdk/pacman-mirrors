@@ -25,7 +25,7 @@ from pacman_mirrors.functions import jsonFn
 from pacman_mirrors.functions import validFn
 
 
-def apply_status_to_custom_mirror_pool(config, custom_pool):
+def apply_status_to_custom_mirror_pool(config: object, custom_pool: list) -> list:
     """
     Apply the current mirror status to the custom mirror file
     :param config: config dictionary
@@ -46,7 +46,7 @@ def apply_status_to_custom_mirror_pool(config, custom_pool):
         return custom_pool
 
 
-def check_custom_mirror_pool(self):
+def check_custom_mirror_pool(self) -> bool:
     """
     Custom mirror pool or countries from CLI
     :return: True/False
@@ -58,7 +58,7 @@ def check_custom_mirror_pool(self):
     return self.custom
 
 
-def delete_custom_pool(self):
+def delete_custom_pool(self) -> None:
     """
     Delete custom mirror pool
     """
@@ -67,7 +67,7 @@ def delete_custom_pool(self):
     fileFn.delete_file(self.config["custom_file"])
 
 
-def load_custom_mirror_pool(self):
+def load_custom_mirror_pool(self) -> None:
     """
     Load available custom mirrors and update their status from status.json
     If user request reset (--default) load the default pool
