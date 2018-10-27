@@ -64,7 +64,7 @@ def test_mirrors(self, worklist: list, limit=None) -> list:
             message = f'  ..... {mirror_proto["country"]:<15}: {mirror_proto["url"]}'
 
             # if self.tty do not print theis
-            if not self.quiet or not self.tty:
+            if not self.quiet and not self.tty:
                 print("{:.{}}".format(message, cols), end="")
                 sys.stdout.flush()
 
@@ -89,14 +89,17 @@ def test_mirrors(self, worklist: list, limit=None) -> list:
                 # skip line - but not if tty
                 if not self.quiet and not self.tty:
                     print("\r")
+                    sys.stdout.flush()
             else:
                 # only print if not tty
                 if not self.quiet and not self.tty:
                     print(f"\r  {color.GREEN}{r_str}{color.RESET}")
+                    sys.stdout.flush()
 
             # we have tty then we print with response time
             if self.tty:
                 util.msg(message=message.replace(".....", r_str), tty=self.tty)
+                sys.stdout.flush()
 
         probed_mirror = filter_bad_http(work=work_mirror)
 
