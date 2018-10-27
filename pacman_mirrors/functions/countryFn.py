@@ -23,11 +23,12 @@ from pacman_mirrors.functions import httpFn
 from pacman_mirrors.functions import validFn
 
 
-def build_country_list(country_selection: list, country_pool: list, geoip: bool = False) -> list:
+def build_country_list(country_selection: list, country_pool: list, tty: bool, geoip: bool = False) -> list:
     """
     Do a check on the users country selection
     :param country_selection:
     :param country_pool:
+    :param tty:
     :param geoip:
     :return: list of valid countries
     :rtype: list
@@ -48,8 +49,9 @@ def build_country_list(country_selection: list, country_pool: list, geoip: bool 
         if country_selection == ["all"]:
             result = country_pool
         else:
-            if validFn.country_list_is_valid(country_selection,
-                                             country_pool):
+            if validFn.country_list_is_valid(onlycountry=country_selection,
+                                             countrylist=country_pool,
+                                             tty=tty):
                 result = country_selection
     if not result:
         if geoip:
