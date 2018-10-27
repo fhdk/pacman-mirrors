@@ -64,7 +64,7 @@ def test_mirrors(self, worklist: list, limit=None) -> list:
             message = f'  ..... {mirror_proto["country"]:<15}: {mirror_proto["url"]}'
 
             # if self.tty do not print theis
-            if not self.quiet and not self.tty:
+            if not self.quiet or not self.tty:
                 print("{:.{}}".format(message, cols), end="")
                 sys.stdout.flush()
 
