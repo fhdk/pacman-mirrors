@@ -53,36 +53,53 @@ def test_mirrors(self, worklist: list, limit=None) -> list:
         colon = work_mirror[0]["url"].find(":")
         url = work_mirror[0]["url"][colon:]
         for mirror_proto in work_mirror:
+
+            # get protocol
             proto = mirror_proto["protocols"][0]
-            mirror_proto["url"] = "{}{}".format(proto, url)
+
+            # generate url with protocol
+            mirror_proto["url"] = f"{proto}{url}"
+
+            # create message for later display
             message = f'  ..... {mirror_proto["country"]:<15}: {mirror_proto["url"]}'
-            if not self.quiet and not self.tty:
+
+            # if self.tty do not print theis
+            if not self.quiet or not self.tty:
                 print("{:.{}}".format(message, cols), end="")
                 sys.stdout.flush()
+
             # https/ftps sometimes takes longer for handshake
             if proto.endswith("tps"):  # https or ftps
                 self.max_wait_time = ssl_wait
             else:
                 self.max_wait_time = http_wait
+
             # let's see how responsive you are
             mirror_proto["resp_time"] = httpFn.get_mirror_response(
                 url=mirror_proto["url"], config=self.config, tty=self.tty,
                 maxwait=self.max_wait_time, quiet=self.quiet, ssl_verify=ssl_verify)
 
-            # create a printable string version with appended zeroes
+            # create a printable string version from the response with appended zeroes
             r_str = str(mirror_proto["resp_time"])
             while len(r_str) < 5:
                 r_str += "0"
-            # if float(mirror_proto["resp_time"]) >= self.max_wait_time:
+
+            # validate against the defined wait time
             if mirror_proto["resp_time"] >= self.max_wait_time:
+                # skip line - but not if tty
                 if not self.quiet and not self.tty:
                     print("\r")
             else:
+                # only print if not tty
                 if not self.quiet and not self.tty:
                     print(f"\r  {color.GREEN}{r_str}{color.RESET}")
+
+            # we have tty then we print with response time
             if self.tty:
                 util.msg(message=message.replace(".....", r_str), tty=self.tty)
+
         probed_mirror = filter_bad_http(work=work_mirror)
+
         if limit is not None:
             if mirror["resp_time"] == txt.SERVER_RES:
                 continue
