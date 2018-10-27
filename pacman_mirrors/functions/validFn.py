@@ -35,7 +35,7 @@ def custom_config_is_valid() -> bool:
     return os.path.isfile(conf.CUSTOM_FILE)
 
 
-def country_list_is_valid(onlycountry: list, countrylist: list, tty: bool) -> bool:
+def country_list_is_valid(onlycountry: list, countrylist: list, tty: bool = False) -> bool:
     """Check if the list of countries are valid.
     :param onlycountry: list of countries to check
     :param countrylist: list of available countries
