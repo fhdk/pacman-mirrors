@@ -30,7 +30,7 @@ from pacman_mirrors.functions import jsonFn
 from pacman_mirrors.functions import util
 
 
-def check_existance_of(filename, folder=False):
+def check_existance_of(filename: str, folder: bool = False) -> bool:
     """
     Check existence of named file
     :param filename:
@@ -42,7 +42,7 @@ def check_existance_of(filename, folder=False):
     return os.path.isfile(filename)
 
 
-def create_dir(foldername):
+def create_dir(foldername: str) -> None:
     """
     Create named folder if not exist
     :param foldername:
@@ -50,7 +50,7 @@ def create_dir(foldername):
     os.makedirs(foldername, mode=0o755, exist_ok=True)
 
 
-def delete_file(filename):
+def delete_file(filename: str) -> None:
     """
     Delete the named file if exist
     :param filename:
@@ -60,7 +60,7 @@ def delete_file(filename):
         os.remove(filename)
 
 
-def return_mirror_filename(config, tty):
+def return_mirror_filename(config: object, tty: bool = False) -> tuple:
     """
     Find the mirror pool file
     :param config: config dictionary
@@ -81,13 +81,13 @@ def return_mirror_filename(config, tty):
     return filename, status
 
 
-def write_mirror_list(config, servers, tty, custom=False,
-                      quiet=False, interactive=False):
+def write_mirror_list(config: object, servers: list, tty: bool = False, custom: bool = False,
+                      quiet: bool = False, interactive: bool = False) -> None:
     """
     Write servers to /etc/pacman.d/mirrorlist
     :param config: configuration dictionary
     :param servers: list of servers to write
-    :param tty:
+    :param tty: flag
     :param custom: flag
     :param quiet: flag
     :param interactive: flag
@@ -146,7 +146,7 @@ def write_mirror_list(config, servers, tty, custom=False,
         sys.exit(2)
 
 
-def read_mirror_file(filename):
+def read_mirror_file(filename: str) -> list:
     """
     Read content of named file - json data assumed
     :param filename:
@@ -155,7 +155,7 @@ def read_mirror_file(filename):
     return jsonFn.read_json_file(filename, dictionary=True)
 
 
-def write_mirrorlist_header(handle, custom=False):
+def write_mirrorlist_header(handle: object, custom: bool = False) -> None:
     """
     Write mirrorlist header
     :param handle: handle to a file opened for writing
@@ -188,7 +188,7 @@ def write_mirrorlist_header(handle, custom=False):
     handle.write("##\n\n")
 
 
-def write_mirrorlist_entry(handle, mirror):
+def write_mirrorlist_entry(handle: object, mirror: dict) -> None:
     """
     Write mirror to mirror list or file
     :param handle: handle to a file opened for writing
