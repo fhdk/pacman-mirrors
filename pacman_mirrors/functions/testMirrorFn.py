@@ -55,9 +55,8 @@ def test_mirrors(self, worklist: list, limit=None) -> list:
         for mirror_proto in work_mirror:
             proto = mirror_proto["protocols"][0]
             mirror_proto["url"] = "{}{}".format(proto, url)
-            if not self.quiet:
-                message = "  ..... {:<15}: {}".format(mirror_proto["country"],
-                                                      mirror_proto["url"])
+            message = f'  ..... {mirror_proto["country"]:<15}: {mirror_proto["url"]}'
+            if not self.quiet and not self.tty:
                 print("{:.{}}".format(message, cols), end="")
                 sys.stdout.flush()
             # https/ftps sometimes takes longer for handshake
@@ -66,21 +65,24 @@ def test_mirrors(self, worklist: list, limit=None) -> list:
             else:
                 self.max_wait_time = http_wait
             # let's see how responsive you are
-            mirror_proto["resp_time"] = httpFn.get_mirror_response(mirror_proto["url"],
-                                                                   config=self.config,
-                                                                   tty=self.tty,
-                                                                   maxwait=self.max_wait_time,
-                                                                   quiet=self.quiet,
-                                                                   ssl_verify=ssl_verify)
+            mirror_proto["resp_time"] = httpFn.get_mirror_response(
+                url=mirror_proto["url"], config=self.config, tty=self.tty,
+                maxwait=self.max_wait_time, quiet=self.quiet, ssl_verify=ssl_verify)
 
+            # create a printable string version with appended zeroes
+            r_str = str(mirror_proto["resp_time"])
+            while len(r_str) < 5:
+                r_str += "0"
             # if float(mirror_proto["resp_time"]) >= self.max_wait_time:
             if mirror_proto["resp_time"] >= self.max_wait_time:
-                if not self.quiet:
+                if not self.quiet and not self.tty:
                     print("\r")
             else:
-                if not self.quiet:
-                    print("\r  {:<5}".format(mirror_proto["resp_time"]))
-        probed_mirror = filter_bad_ssl(work_mirror)
+                if not self.quiet and not self.tty:
+                    print(f"\r  {color.GREEN}{r_str}{color.RESET}")
+            if self.tty:
+                util.msg(message=message.replace(".....", r_str), tty=self.tty)
+        probed_mirror = filter_bad_http(work=work_mirror)
         if limit is not None:
             if mirror["resp_time"] == txt.SERVER_RES:
                 continue
@@ -121,9 +123,9 @@ def mirror_protocols(mirror: dict) -> list:
     return result
 
 
-def filter_bad_ssl(work: list) -> dict:
+def filter_bad_http(work: list) -> dict:
     """
-    filter bad ssl if mirror has more than one protocol
+    filter bad http/ssl if mirror has more than one protocol
     :param work: list of mirror dictionaries with one protocol per dictionary
     :return: mirror dictionary with invalid ssl removed
     """
