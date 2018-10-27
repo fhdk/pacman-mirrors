@@ -42,7 +42,7 @@ from pacman_mirrors.functions import util
 headers = {"User-Agent": "{}{}".format(conf.USER_AGENT, __version__)}
 
 
-def download_mirrors(config: object):
+def download_mirrors(config: object) -> tuple:
     """Retrieve mirrors from manjaro.org
     :param config:
     :returns: tuple with bool for mirrors.json and status.json
@@ -85,7 +85,7 @@ def download_mirrors(config: object):
     return fetchmirrors, fetchstatus
 
 
-def get_geoip_country():
+def get_geoip_country() -> list:
     """Try to get the user country via GeoIP
     :return: country name or nothing
     """
@@ -112,10 +112,8 @@ def get_geoip_country():
     return country_name
 
 
-def get_mirror_response(url: str, config: object,
-                        tty: bool = False, maxwait: int = 2,
-                        count: int = 1, quiet: bool = False,
-                        ssl_verify: bool = True):
+def get_mirror_response(url: str, config: object, tty: bool = False, maxwait: int = 2,
+                        count: int = 1, quiet: bool = False, ssl_verify: bool = True) -> float:
     """Query mirrors availability
     :param config:
     :param ssl_verify:
@@ -169,7 +167,7 @@ def get_mirror_response(url: str, config: object,
     return response_time
 
 
-def inet_conn_check(tty: bool = False, maxwait: int = 2):
+def inet_conn_check(tty: bool = False, maxwait: int = 2) -> bool:
     """Check for internet connection
     :param maxwait:
     :param tty:
@@ -186,7 +184,7 @@ def inet_conn_check(tty: bool = False, maxwait: int = 2):
     return bool(resp)
 
 
-def ping_host(host: str, tty: bool=False, count=1):
+def ping_host(host: str, tty: bool=False, count=1) -> bool:
     """Check a hosts availability
     :param host:
     :param count:
@@ -197,12 +195,12 @@ def ping_host(host: str, tty: bool=False, count=1):
     return system_call("ping -c{} {} > /dev/null".format(count, host)) == 0
 
 
-def update_mirror_pool(config: object, tty: bool = False, quiet: bool = False):
+def update_mirror_pool(config: object, tty: bool = False, quiet: bool = False) -> tuple:
     """Download updates from repo.manjaro.org
     :param config:
     :param quiet:
     :param tty:
-    :returns: tuple with result for mirrors.json and status.json
+    :returns: tuple with True/False for mirrors.json and status.json
     :rtype: tuple
     """
     result = None
