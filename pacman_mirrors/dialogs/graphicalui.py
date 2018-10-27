@@ -36,7 +36,7 @@ _ = i18n.language.gettext
 class GraphicalUI(Gtk.Window):
     """Class GraphicalUI"""
 
-    def __init__(self, server_list, random, default):
+    def __init__(self, server_list: list, random: bool, default: bool):
         title = txt.I_TITLE_RANDOM if random else txt.I_TITLE
         if default:
             title = "Manjaro Mirrors"
@@ -165,7 +165,7 @@ class GraphicalUI(Gtk.Window):
             dialog.destroy()  # Go back to selection
 
 
-def run(server_list, random, default=False):
+def run(server_list: list, random: bool, default: bool = False) -> object:
     """Run"""
     window = GraphicalUI(server_list, random, default)
     window.connect("delete-event", Gtk.main_quit)
