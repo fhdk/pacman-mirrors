@@ -23,12 +23,12 @@ import collections
 import json
 
 
-def json_dump_file(data, filename):
+def json_dump_file(data: list, filename: str) -> None:
     with open(filename, "w") as outfile:
         json.dump(data, outfile)
 
 
-def read_json_file(filename, dictionary=True):
+def read_json_file(filename: str, dictionary: bool = True) -> list:
     """Read json data from file"""
     result = list()
     try:
@@ -45,7 +45,7 @@ def read_json_file(filename, dictionary=True):
     return result
 
 
-def write_json_file(data, filename, dictionary=False):
+def write_json_file(data: list, filename: str, dictionary: bool = False) -> bool:
     """Writes data to file as json
     :param data
     :param filename:
