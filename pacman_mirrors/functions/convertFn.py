@@ -63,17 +63,13 @@ def translate_interactive_to_pool(custom_mirrors: list, mirror_pool: list, tty: 
                             mirror_list.append(custom_mirror)
 
                 except KeyError:
-                    util.msg(message=f"{txt.HOUSTON}! {txt.CUSTOM_POOL_EMPTY}!",
-                             urgency=txt.WRN_CLR,
-                             tty=tty)
-                    # print(".: {} {}! {}!".format(txt.WRN_CLR, txt.HOUSTON, txt.CUSTOM_POOL_EMPTY))
+                    util.msg(
+                        message=f"{txt.HOUSTON}! {txt.CUSTOM_POOL_EMPTY}!", urgency=txt.WRN_CLR, tty=tty)
                     break
 
         except (KeyError, IndexError):
-            util.msg(message=f"{txt.HOUSTON}! {txt.DEFAULT_POOL_EMPTY}!",
-                     urgency=txt.WRN_CLR,
-                     tty=tty)
-            # print(".: {} {}! {}!".format(txt.WRN_CLR, txt.HOUSTON, txt.DEFAULT_POOL_EMPTY))
+            util.msg(
+                message=f"{txt.HOUSTON}! {txt.DEFAULT_POOL_EMPTY}!", urgency=txt.WRN_CLR, tty=tty)
             break
 
     return custom_mirror_pool, mirror_list
@@ -102,14 +98,12 @@ def translate_pool_to_interactive(mirror_pool: list, tty: bool = False) -> list:
                 interactive_list.append({
                     "country": mirror["country"],
                     "resp_time": str(mirror["resp_time"]),
-                    "last_sync": "{}h {}m".format(last_sync[0], last_sync[1]),
-                    "url": "{}{}".format(protocol, mirror_url)
+                    "last_sync": f"{last_sync[0]}h {last_sync[1]}m",
+                    "url": f"{protocol}{mirror_url}"
                 })
         except (KeyError, IndexError):
-            util.msg(message=f"{txt.HOUSTON}! {txt.MIRROR_POOL_EMPTY}!",
-                     urgency=txt.WRN_CLR,
-                     tty=tty)
-            # print(".: {} {}! {}!".format(txt.WRN_CLR, txt.HOUSTON, txt.MIRROR_POOL_EMPTY))
+            util.msg(
+                message=f"{txt.HOUSTON}! {txt.MIRROR_POOL_EMPTY}!", urgency=txt.WRN_CLR, tty=tty)
             break
     return interactive_list
 
