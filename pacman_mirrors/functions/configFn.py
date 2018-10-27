@@ -26,7 +26,7 @@ from pacman_mirrors.constants import txt
 from pacman_mirrors.functions import util
 
 
-def setup_config():
+def setup_config() -> tuple:
     """Get config informations
     :returns: config, custom
     :rtype: tuple
@@ -83,14 +83,13 @@ def setup_config():
                             config["test_file"] = conf.TEST_FILE
 
     except (PermissionError, OSError) as err:
-        util.msg(message=f"{txt.CANNOT_READ_FILE}: {err.filename}: {err.strerror}",
-                 urgency=txt.ERR_CLR,
-                 tty=self.tty)
+        util.msg(
+            message=f"{txt.CANNOT_READ_FILE}: {err.filename}: {err.strerror}", urgency=txt.ERR_CLR, tty=self.tty)
         sys.exit(2)
     return config, custom
 
 
-def sanitize_config(config):
+def sanitize_config(config: object) -> bool:
     """
     Verify configuration
     :param config:
