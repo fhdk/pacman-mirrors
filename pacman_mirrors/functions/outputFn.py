@@ -34,19 +34,13 @@ def file_custom_mirror_pool(self, selected_mirrors: list) -> None:
     :param selected_mirrors:
     :return:
     """
-
-    util.msg(message=f"{txt.CUSTOM_MIRROR_LIST}",
-             urgency=txt.INF_CLR,
-             tty=self.tty)
-    util.msg(message="--------------------------",
-             tty=self.tty)
-    # output mirror file
-    jsonFn.write_json_file(selected_mirrors,
-                           self.config["custom_file"])
-    util.msg(message="{}: {}".format(txt.CUSTOM_MIRROR_FILE_SAVED,
-                                     self.config["custom_file"]),
-             urgency=txt.INF_CLR,
-             tty=self.tty)
+    util.msg(
+        message=f"{txt.CUSTOM_MIRROR_LIST}", urgency=txt.INF_CLR, tty=self.tty)
+    util.msg(
+        message="------------------------------------------------------------", tty=self.tty)
+    jsonFn.write_json_file(data=selected_mirrors, filename=self.config["custom_file"])
+    util.msg(
+        message=f'{txt.CUSTOM_MIRROR_FILE_SAVED}: {self.config["custom_file"]}', urgency=txt.INF_CLR, tty=self.tty)
 
 
 def file_mirror_list(self, selected_servers) -> None:
@@ -56,17 +50,10 @@ def file_mirror_list(self, selected_servers) -> None:
     :param selected_servers:
     """
     if self.custom:
-        fileFn.write_mirror_list(self.config,
-                                 selected_servers,
-                                 tty=self.tty,
-                                 custom=self.custom,
-                                 quiet=self.quiet,
-                                 interactive=True)
+        fileFn.write_mirror_list(config=self.config, servers=selected_servers, tty=self.tty,
+                                 custom=self.custom, quiet=self.quiet, interactive=True)
     else:
-        fileFn.write_mirror_list(self.config,
-                                 selected_servers,
-                                 tty=self.tty,
-                                 quiet=self.quiet)
+        fileFn.write_mirror_list(config=self.config, servers=selected_servers, tty=self.tty, quiet=self.quiet)
 
 
 def tty_custom_country_pool(self) -> None:
