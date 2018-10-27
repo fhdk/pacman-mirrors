@@ -85,7 +85,7 @@ def download_mirrors(config: object) -> tuple:
     return fetchmirrors, fetchstatus
 
 
-def get_geoip_country() -> list:
+def get_geoip_country() -> str:
     """Try to get the user country via GeoIP
     :return: country name or nothing
     """
@@ -108,7 +108,8 @@ def get_geoip_country() -> list:
                 "United States": "United_States",
             }
             if country_name in country_fix.keys():
-                country_name = [country_fix[country_name]]
+                country_name = country_fix[country_name]
+            print(country_name)
     return country_name
 
 

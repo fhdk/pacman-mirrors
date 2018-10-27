@@ -73,8 +73,8 @@ def get_geoip_country(country_pool: list) -> str:
     """
     try:
         g_country = httpFn.get_geoip_country()
-        if g_country[0] in country_pool:
-            return g_country[0]
+        if g_country in country_pool:
+            return g_country
     except IndexError:
         pass
     return ""
