@@ -26,7 +26,7 @@ from pacman_mirrors.functions import httpFn
 from pacman_mirrors.functions import util
 
 
-def test_mirrors(self, worklist, limit=None):
+def test_mirrors(self, worklist: list, limit=None) -> list:
     """
     Query server for response time
     """
@@ -108,7 +108,7 @@ def test_mirrors(self, worklist, limit=None):
     return result
 
 
-def mirror_protocols(mirror):
+def mirror_protocols(mirror: dict) -> list:
     """
     Return a number of copies of mirror - one copy per protocol
     :param: mirror dictionary with a number of protocols
@@ -128,7 +128,7 @@ def mirror_protocols(mirror):
     return result
 
 
-def filter_bad_ssl(work):
+def filter_bad_ssl(work: list) -> dict:
     """
     filter bad ssl if mirror has more than one protocol
     :param work: list of mirror dictionaries with one protocol per dictionary
