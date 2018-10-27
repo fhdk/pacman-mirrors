@@ -48,16 +48,9 @@ def country_list_is_valid(onlycountry: list, countrylist: list, tty: bool = Fals
             util.msg(message=f"{txt.OPTION}{txt.OPT_COUNTRY}: {txt.OPT_COUNTRY}: '{txt.UNKNOWN_COUNTRY}'",
                      urgency=txt.WRN_CLR,
                      tty=tty)
-            # print(".: {} {}{}: {}: '{}'".format(txt.WRN_CLR,
-            #                                     txt.OPTION,
-            #                                     txt.OPT_COUNTRY,
-            #                                     txt.UNKNOWN_COUNTRY,
-            #                                     country))
             util.msg(message=f"{txt.AVAILABLE_COUNTRIES}",
                      urgency=txt.INF_CLR,
                      tty=tty)
-            # print(".: {} {}:".format(txt.INF_CLR,
-            #                          txt.AVAILABLE_COUNTRIES))
             print("{}".format(", ".join(countrylist)))
             sys.exit(1)  # exit gracefully
     return True

@@ -34,20 +34,13 @@ def test_mirrors(self, worklist: list, limit=None) -> list:
         util.msg(message=f"{txt.USING_CUSTOM_FILE}",
                  urgency=f"{txt.INF_CLR}",
                  tty=self.tty)
-        # print(".: {} {}".format(txt.INF_CLR,
-        #                         txt.USING_CUSTOM_FILE))
     else:
         util.msg(message=f"{txt.USING_DEFAULT_FILE}",
                  urgency=f"{txt.INF_CLR}",
                  tty=self.tty)
-        # print(".: {} {}".format(txt.INF_CLR,
-        #                         txt.USING_DEFAULT_FILE))
     util.msg(message=f"{txt.QUERY_MIRRORS} - {txt.TAKES_TIME}",
              urgency=f"{txt.INF_CLR}",
              tty=self.tty)
-    # print(".: {} {} - {}".format(txt.INF_CLR,
-    #                              txt.QUERY_MIRRORS,
-    #                              txt.TAKES_TIME))
     counter = 0
     cols, lines = util.terminal_size()
     # set connection timeouts
