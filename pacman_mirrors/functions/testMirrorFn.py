@@ -89,12 +89,10 @@ def test_mirrors(self, worklist: list, limit=None) -> list:
                 # skip line - but not if tty
                 if not self.quiet and not self.tty:
                     print("\r")
-                    sys.stdout.flush()
             else:
                 # only print if not tty
                 if not self.quiet and not self.tty:
                     print(f"\r  {color.GREEN}{r_str}{color.RESET}")
-                    sys.stdout.flush()
 
             # we have tty then we print with response time
             if self.tty:
