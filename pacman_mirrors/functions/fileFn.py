@@ -167,24 +167,18 @@ def write_mirrorlist_header(handle: object, custom: bool = False) -> None:
     generated_timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
     handle.write("##\n")
     if custom:
-        handle.write("## Manjaro Linux {}\n".format(
-            txt.MIRROR_LIST_CUSTOM_HEADER))
-        handle.write("## {} {}\n".format(
-            txt.MIRROR_LIST_GENERATED_ON, generated_timestamp))
+        handle.write(f"## Manjaro Linux {txt.MIRROR_LIST_CUSTOM_HEADER}\n")
+        handle.write(f"## {txt.MIRROR_LIST_GENERATED_ON} {generated_timestamp}\n")
         handle.write("##\n")
-        handle.write("## {} '{}' {}\n## {} '{}' {}\n## {} '{}'\n".format(
-            txt.PLEASE_USE, txt.MODIFY_CUSTOM, txt.MIRROR_LIST_CUSTOM_RESET,
-            txt.PLEASE_USE, txt.RESET_ALL, txt.MIRROR_LIST_CUSTOM_RESET,
-            txt.REMOVE_CUSTOM_CONFIG, txt.RESET_ALL))
+        handle.write(f"## {txt.PLEASE_USE} '{txt.MODIFY_CUSTOM}' {txt.MIRROR_LIST_CUSTOM_RESET}\n"
+                     f"## {txt.PLEASE_USE} '{txt.RESET_ALL}' {txt.MIRROR_LIST_CUSTOM_RESET}\n"
+                     f"## {txt.REMOVE_CUSTOM_CONFIG} '{txt.RESET_ALL}'\n")
     else:
-        handle.write("## Manjaro Linux {}\n".format(
-            txt.MIRROR_LIST_DEFAULT_HEADER))
-        handle.write("## {} {}\n".format(
-            txt.MIRROR_LIST_GENERATED_ON, generated_timestamp))
+        handle.write(f"## Manjaro Linux {txt.MIRROR_LIST_DEFAULT_HEADER}\n")
+        handle.write(f"## {txt.MIRROR_LIST_GENERATED_ON} {generated_timestamp}\n")
         handle.write("##\n")
-        handle.write("## {} '{} {}' {}\n## ({})\n".format(
-            txt.PLEASE_USE, txt.MODIFY_DEFAULT, txt.NUMBER,
-            txt.MIRROR_LIST_DEFAULT_MODIFY, txt.USE_ZERO_FOR_ALL))
+        handle.write(f"## {txt.PLEASE_USE} '{txt.MODIFY_DEFAULT} [{txt.NUMBER}]' {txt.MIRROR_LIST_DEFAULT_MODIFY}\n"
+                     f"## ({txt.USE_ZERO_FOR_ALL})\n")
     handle.write("##\n\n")
 
 
