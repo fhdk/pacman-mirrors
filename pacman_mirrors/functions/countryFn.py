@@ -71,10 +71,12 @@ def get_geoip_country(country_pool: list) -> str:
     :param country_pool:
     :return: country name if found
     """
-    g_country = httpFn.get_geoip_country()
-    if g_country in country_pool:
-        return g_country
-    else:
-        return ""
+    try:
+        g_country = httpFn.get_geoip_country()
+        if g_country[0] in country_pool:
+            return g_country[0]
+    except IndexError:
+        pass
+    return ""
 
 
