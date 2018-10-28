@@ -61,8 +61,6 @@ def build_mirror_list(self, limit: int) -> None:
     Shuffle the list
     """
     shuffle(up_to_date_mirrors)
-    util.msg(
-        message=f"{txt.QUERY_MIRRORS} - {txt.TAKES_TIME}", urgency=txt.INF_CLR, tty=self.tty)
 
     # probe the mirrors
     worklist = testMirrorFn.test_mirrors(
