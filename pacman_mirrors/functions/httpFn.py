@@ -95,9 +95,6 @@ def get_geoip_country() -> str:
         req = urllib.request.Request(url="https://geoip.kde.org/v1/calamares")
         res = urllib.request.urlopen(req)
         json_obj = json.loads(res.read().decode("utf8"))
-    except (URLError, HTTPException, json.JSONDecodeError):
-        pass
-    else:
         if "time_zone" in json_obj:
             tz = json_obj["time_zone"]
             for country in timezones.countries:
@@ -113,6 +110,8 @@ def get_geoip_country() -> str:
                     }
                     if country_name in country_fix.keys():
                         country_name = country_fix[country_name]
+    except (URLError, HTTPException, json.JSONDecodeError):
+        pass
     return country_name
 
 
