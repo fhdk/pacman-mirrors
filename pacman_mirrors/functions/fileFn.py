@@ -27,9 +27,10 @@ import pacman_mirrors.functions.util
 from pacman_mirrors.constants import colors as color
 from pacman_mirrors.constants import txt
 from pacman_mirrors.functions import jsonFn
+from pacman_mirrors.functions import util
 
 
-def check_existance_of(filename, folder=False):
+def check_existance_of(filename: str, folder: bool = False) -> bool:
     """
     Check existence of named file
     :param filename:
@@ -41,7 +42,7 @@ def check_existance_of(filename, folder=False):
     return os.path.isfile(filename)
 
 
-def create_dir(foldername):
+def create_dir(foldername: str) -> None:
     """
     Create named folder if not exist
     :param foldername:
@@ -49,7 +50,7 @@ def create_dir(foldername):
     os.makedirs(foldername, mode=0o755, exist_ok=True)
 
 
-def delete_file(filename):
+def delete_file(filename: str) -> None:
     """
     Delete the named file if exist
     :param filename:
@@ -59,10 +60,11 @@ def delete_file(filename):
         os.remove(filename)
 
 
-def return_mirror_filename(config):
+def return_mirror_filename(config: object, tty: bool = False) -> tuple:
     """
     Find the mirror pool file
     :param config: config dictionary
+    :param tty:
     :returns tuple with file and status
     """
     filename = ""
@@ -71,22 +73,21 @@ def return_mirror_filename(config):
     if check_existance_of(config["status_file"]):
         status = True
         filename = config["status_file"]
-    elif check_existance_of(config["mirror_file"]):
+    elif check_existance_of(filename=config["mirror_file"]):
         filename = config["mirror_file"]
     if not filename:
-        print("\n{}.:! {}{}\n".format(color.RED,
-                                      txt.HOUSTON,
-                                      color.ENDCOLOR))
+        util.msg(message=f"\n{txt.HOUSTON}\n", tty=tty, color=color.RED)
         sys.exit(3)
     return filename, status
 
 
-def write_mirror_list(config, servers, custom=False,
-                      quiet=False, interactive=False):
+def write_mirror_list(config: object, servers: list, tty: bool = False, custom: bool = False,
+                      quiet: bool = False, interactive: bool = False) -> None:
     """
     Write servers to /etc/pacman.d/mirrorlist
     :param config: configuration dictionary
     :param servers: list of servers to write
+    :param tty: flag
     :param custom: flag
     :param quiet: flag
     :param interactive: flag
@@ -94,7 +95,7 @@ def write_mirror_list(config, servers, custom=False,
     try:
         with open(config["mirror_list"], "w") as outfile:
             if not quiet:
-                print(".: {} {}".format(txt.INF_CLR, txt.WRITING_MIRROR_LIST))
+                util.msg(message=f"{txt.WRITING_MIRROR_LIST}", urgency=txt.INF_CLR, tty=tty)
             # write list header
             write_mirrorlist_header(outfile, custom=custom)
             cols, lines = pacman_mirrors.functions.util.terminal_size()
@@ -102,42 +103,33 @@ def write_mirror_list(config, servers, custom=False,
                 url = server["url"]
                 protocol = server["protocols"][0]
                 pos = url.find(":")
-                server["url"] = "{}{}{}{}".format(protocol,
-                                                  url[pos:],
-                                                  config["branch"],
-                                                  config["repo_arch"])
+                server["url"] = f'{protocol}{url[pos:]}{config["branch"]}{config["repo_arch"]}'
                 if server["resp_time"] == "99.99":
                     # do not write bad servers to mirrorlist
                     continue
                 if interactive:
                     if not quiet:
-                        message = "   {:<15} : {}".format(server["country"],
-                                                          server["url"])
-                        print("{:.{}}".format(message, cols))
+                        message = f'{server["country"]:<15} : {server["url"]}'
+                        util.msg(message=f"{message:.{cols}}", tty=tty)
+                        # print()
                 else:
-                    msg_url = "{}{}{}".format(protocol,
-                                              url[pos:],
-                                              config["branch"])
+                    msg_url = f'{protocol}{url[pos:]}{config["branch"]}'
                     if not quiet:
-                        message = "   {:<15} : {}".format(server["country"],
-                                                          msg_url)
-                        print("{:.{}}".format(message, cols))
+                        message = f'{server["country"]:<15} : {msg_url}'
+                        util.msg(message=f"{message:.{cols}}", tty=tty)
 
                 # write list entry
                 write_mirrorlist_entry(outfile, server)
             if not quiet:
-                print(".: {} {}: {}".format(txt.INF_CLR,
-                                            txt.MIRROR_LIST_SAVED,
-                                            config["mirror_list"]))
+                util.msg(
+                    message=f'{txt.MIRROR_LIST_SAVED}: {config["mirror_list"]}', urgency=txt.INF_CLR, tty=tty)
     except OSError as err:
-        print(".: {} {}: {}: {}".format(txt.ERR_CLR,
-                                        txt.CANNOT_WRITE_FILE,
-                                        err.filename,
-                                        err.strerror))
+        util.msg(message=f"{txt.CANNOT_WRITE_FILE}: {err.filename}: {err.strerror}", urgency=txt.ERR_CLR, tty=tty)
+
         sys.exit(2)
 
 
-def read_mirror_file(filename):
+def read_mirror_file(filename: str) -> list:
     """
     Read content of named file - json data assumed
     :param filename:
@@ -146,7 +138,7 @@ def read_mirror_file(filename):
     return jsonFn.read_json_file(filename, dictionary=True)
 
 
-def write_mirrorlist_header(handle, custom=False):
+def write_mirrorlist_header(handle: object, custom: bool = False) -> None:
     """
     Write mirrorlist header
     :param handle: handle to a file opened for writing
@@ -158,33 +150,27 @@ def write_mirrorlist_header(handle, custom=False):
     generated_timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
     handle.write("##\n")
     if custom:
-        handle.write("## Manjaro Linux {}\n".format(
-            txt.MIRROR_LIST_CUSTOM_HEADER))
-        handle.write("## {} {}\n".format(
-            txt.MIRROR_LIST_GENERATED_ON, generated_timestamp))
-        handle.write("##\n")
-        handle.write("## {} '{}' {}\n## {} '{}' {}\n## {} '{}'\n".format(
-            txt.PLEASE_USE, txt.MODIFY_CUSTOM, txt.MIRROR_LIST_CUSTOM_RESET,
-            txt.PLEASE_USE, txt.RESET_ALL, txt.MIRROR_LIST_CUSTOM_RESET,
-            txt.REMOVE_CUSTOM_CONFIG, txt.RESET_ALL))
+        handle.write(f"## Manjaro Linux {txt.MIRROR_LIST_CUSTOM_HEADER}\n"
+                     f"## {txt.MIRROR_LIST_GENERATED_ON} {generated_timestamp}\n"
+                     "##\n"
+                     f"## {txt.PLEASE_USE} '{txt.MODIFY_CUSTOM}' {txt.MIRROR_LIST_CUSTOM_RESET}\n"
+                     f"## {txt.PLEASE_USE} '{txt.RESET_ALL}' {txt.MIRROR_LIST_CUSTOM_RESET}\n"
+                     f"## {txt.REMOVE_CUSTOM_CONFIG} '{txt.RESET_ALL}'\n")
     else:
-        handle.write("## Manjaro Linux {}\n".format(
-            txt.MIRROR_LIST_DEFAULT_HEADER))
-        handle.write("## {} {}\n".format(
-            txt.MIRROR_LIST_GENERATED_ON, generated_timestamp))
-        handle.write("##\n")
-        handle.write("## {} '{} {}' {}\n## ({})\n".format(
-            txt.PLEASE_USE, txt.MODIFY_DEFAULT, txt.NUMBER,
-            txt.MIRROR_LIST_DEFAULT_MODIFY, txt.USE_ZERO_FOR_ALL))
+        handle.write(f"## Manjaro Linux {txt.MIRROR_LIST_DEFAULT_HEADER}\n"
+                     f"## {txt.MIRROR_LIST_GENERATED_ON} {generated_timestamp}\n"
+                     "##\n"
+                     f"## {txt.PLEASE_USE} '{txt.MODIFY_DEFAULT} [{txt.NUMBER}]' {txt.MIRROR_LIST_DEFAULT_MODIFY}\n"
+                     f"## ({txt.USE_ZERO_FOR_ALL})\n")
     handle.write("##\n\n")
 
 
-def write_mirrorlist_entry(handle, mirror):
+def write_mirrorlist_entry(handle: object, mirror: dict) -> None:
     """
     Write mirror to mirror list or file
     :param handle: handle to a file opened for writing
     :param mirror: mirror object
     """
     workitem = mirror
-    handle.write("## Country : {}\n".format(workitem["country"]))
-    handle.write("Server = {}\n\n".format(workitem["url"]))
+    handle.write(f'## Country : {workitem["country"]}\n')
+    handle.write(f'Server = {workitem["url"]}\n\n')

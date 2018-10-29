@@ -13,25 +13,26 @@ from pacman_mirrors.builder import common, fasttrack
 from pacman_mirrors.functions import fileFn, configFn, cliFn, defaultFn
 from pacman_mirrors.functions import httpFn
 from pacman_mirrors.pacman_mirrors import PacmanMirrors
-from . import mock_configuration as conf
+from . import mock_configuration as mock
 
 test_conf = {
     "branch": "stable",
-    "branches": conf.BRANCHES,
-    "config_file": conf.CONFIG_FILE,
-    "custom_file": conf.CUSTOM_FILE,
+    "branches": mock.BRANCHES,
+    "config_file": mock.CONFIG_FILE,
+    "custom_file": mock.CUSTOM_FILE,
     "method": "rank",
-    "work_dir": conf.WORK_DIR,
-    "mirror_file": conf.MIRROR_FILE,
-    "mirror_list": conf.MIRROR_LIST,
+    "work_dir": mock.WORK_DIR,
+    "mirror_file": mock.MIRROR_FILE,
+    "mirror_list": mock.MIRROR_LIST,
     "no_update": False,
     "country_pool": [],
     "protocols": [],
-    "repo_arch": conf.REPO_ARCH,
-    "status_file": conf.STATUS_FILE,
+    "repo_arch": mock.REPO_ARCH,
+    "status_file": mock.STATUS_FILE,
     "ssl_verify": True,
-    "url_mirrors_json": conf.URL_MIRROR_JSON,
-    "url_status_json": conf.URL_STATUS_JSON,
+    "test_file": mock.TEST_FILE,
+    "url_mirrors_json": mock.URL_MIRROR_JSON,
+    "url_status_json": mock.URL_STATUS_JSON,
     "x32": False
 }
 

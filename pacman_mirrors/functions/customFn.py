@@ -25,14 +25,14 @@ from pacman_mirrors.functions import jsonFn
 from pacman_mirrors.functions import validFn
 
 
-def apply_status_to_custom_mirror_pool(config, custom_pool):
+def apply_status_to_custom_mirror_pool(config: object, custom_pool: list) -> list:
     """
     Apply the current mirror status to the custom mirror file
     :param config: config dictionary
     :param custom_pool: the custom mirror pool
     :return: custom mirror pool with status applied
     """
-    status_list = tuple(jsonFn.read_json_file(config["status_file"], dictionary=False))
+    status_list = tuple(jsonFn.read_json_file(filename=config["status_file"], dictionary=False))
     custom_list = tuple(custom_pool)
     try:
         _ = status_list[0]
@@ -46,19 +46,18 @@ def apply_status_to_custom_mirror_pool(config, custom_pool):
         return custom_pool
 
 
-def check_custom_mirror_pool(self):
+def check_custom_mirror_pool(self) -> bool:
     """
     Custom mirror pool or countries from CLI
     :return: True/False
     """
-    if validFn.custom_config_is_valid():
-        self.custom = True
-    else:
+    self.custom = validFn.custom_config_is_valid()
+    if not self.custom:
         self.selected_countries = self.config["country_pool"]
     return self.custom
 
 
-def delete_custom_pool(self):
+def delete_custom_pool(self) -> None:
     """
     Delete custom mirror pool
     """
@@ -67,7 +66,7 @@ def delete_custom_pool(self):
     fileFn.delete_file(self.config["custom_file"])
 
 
-def load_custom_mirror_pool(self):
+def load_custom_mirror_pool(self) -> None:
     """
     Load available custom mirrors and update their status from status.json
     If user request reset (--default) load the default pool
@@ -76,5 +75,6 @@ def load_custom_mirror_pool(self):
         defaultFn.load_default_mirror_pool(self)
     else:
         defaultFn.seed_mirrors(self, self.config["custom_file"])
-        self.mirrors.mirror_pool = apply_status_to_custom_mirror_pool(self.config, self.mirrors.mirror_pool)
+        self.mirrors.mirror_pool = apply_status_to_custom_mirror_pool(
+            config=self.config, custom_pool=self.mirrors.mirror_pool)
 

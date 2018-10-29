@@ -24,6 +24,7 @@
 """Pacman-Mirrors Main Module"""
 
 import importlib.util
+import os
 import sys
 
 import pacman_mirrors.functions.util
@@ -69,6 +70,7 @@ class PacmanMirrors:
         self.no_status = False
         self.quiet = False
         self.selected_countries = []
+        self.tty = False
 
     def run(self):
         """
@@ -86,18 +88,18 @@ class PacmanMirrors:
         """
         (self.config, self.custom) = configFn.setup_config()
         fileFn.create_dir(self.config["work_dir"])
-        cliFn.parse_command_line(self, GTK_AVAILABLE)
+        cliFn.parse_command_line(self, gtk_available=GTK_AVAILABLE)
         util.i686_check(self, write=True)
-        if not configFn.sanitize_config(self.config):
+        if not configFn.sanitize_config(config=self.config):
             sys.exit(2)
-        self.network = httpFn.inet_conn_check()
+        self.network = httpFn.inet_conn_check(tty=self.tty)
         if self.network:
-            httpFn.update_mirror_pool(self.config, quiet=self.quiet)
+            httpFn.update_mirror_pool(config=self.config, tty=self.tty, quiet=self.quiet)
         if self.no_mirrorlist:
             sys.exit(0)
         if not self.network:
             if not self.quiet:
-                pacman_mirrors.functions.util.internet_message()
+                pacman_mirrors.functions.util.internet_message(tty=self.tty)
             self.config["method"] = "random"
             self.fasttrack = False
         """
@@ -111,7 +113,7 @@ class PacmanMirrors:
         * Default
         """
         if self.fasttrack:
-            fasttrack.build_mirror_list(self, self.fasttrack)
+            fasttrack.build_mirror_list(self, limit=self.fasttrack)
         elif self.interactive:
             interactive.build_mirror_list(self)
         else:

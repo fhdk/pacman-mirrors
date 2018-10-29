@@ -28,6 +28,7 @@ test_conf = {
     "repo_arch": mock.REPO_ARCH,
     "status_file": mock.STATUS_FILE,
     "ssl_verify": True,
+    "test_file": mock.TEST_FILE,
     "url_mirrors_json": mock.URL_MIRROR_JSON,
     "url_status_json": mock.URL_STATUS_JSON,
     "work_dir": mock.WORK_DIR,

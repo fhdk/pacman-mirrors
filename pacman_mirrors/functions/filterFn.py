@@ -23,7 +23,7 @@ from pacman_mirrors.constants import txt
 from pacman_mirrors.config import configuration as conf
 
 
-def filter_bad_mirrors(mirror_pool):
+def filter_bad_mirrors(mirror_pool: list) -> list:
     """
     Remove known bad mirrors
     branch is == -1
@@ -37,7 +37,7 @@ def filter_bad_mirrors(mirror_pool):
     return result
 
 
-def filter_error_mirrors(mirror_pool):
+def filter_error_mirrors(mirror_pool: list) -> list:
     """
     Remove mirrors with resp_time of 99.99
     branch is == -1
@@ -51,7 +51,7 @@ def filter_error_mirrors(mirror_pool):
     return result
 
 
-def filter_mirror_country(mirror_pool, country_pool):
+def filter_mirror_country(mirror_pool: list, country_pool: list) -> list:
     """
     Return new mirror pool with selected countries
     :param mirror_pool:
@@ -65,7 +65,7 @@ def filter_mirror_country(mirror_pool, country_pool):
     return result
 
 
-def filter_mirror_protocols(mirror_pool, protocols=None):
+def filter_mirror_protocols(mirror_pool: list, protocols: list = None):
     """
     Return a new mirrorlist with protocols
     :type mirror_pool: list
@@ -86,7 +86,7 @@ def filter_mirror_protocols(mirror_pool, protocols=None):
     return result
 
 
-def filter_poor_mirrors(mirror_pool, interval=720):
+def filter_poor_mirrors(mirror_pool: list, interval: int = 720) -> list:
     """
     Remove poorly updated mirrors last_sync is more than interval hours
     :param mirror_pool: object
@@ -101,9 +101,12 @@ def filter_poor_mirrors(mirror_pool, interval=720):
     return result
 
 
-def filter_user_branch(mirror_pool, config):
+def filter_user_branch(mirror_pool: list, config: object) -> list:
     """
     Filter mirrorlist on users branch and branch sync state
+    :param mirror_pool:
+    :param config:
+    :return: list
     """
     for idx, branch in enumerate(conf.BRANCHES):
         if config["x32"]:

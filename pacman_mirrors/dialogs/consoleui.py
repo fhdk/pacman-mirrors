@@ -33,7 +33,7 @@ _ = i18n.language.gettext
 class ConsoleUI(npyscreen.NPSAppManaged):
     """App"""
 
-    def __init__(self, server_list, random, default):
+    def __init__(self, server_list: list, random: bool, default: bool):
         npyscreen.NPSAppManaged.__init__(self)
         self.title = txt.I_TITLE_RANDOM if random else txt.I_TITLE
         if default:
@@ -57,9 +57,9 @@ class ConsoleUI(npyscreen.NPSAppManaged):
 
         main_server_list = [header_cols]
         main_server_list.extend(server_list)
-        servers = consoleFn.list_to_tuple(main_server_list, template)
+        servers = consoleFn.list_to_tuple(list_data=main_server_list, named_tuple=template)
         self.list_title = txt.I_LIST_TITLE
-        self.server_rows = consoleFn.rows_from_tuple(servers)
+        self.server_rows = consoleFn.rows_from_tuple(servers=servers)
         self.header_row = ("{:<5}".format(txt.I_USE) +
                            (self.server_rows[0].replace("|", " ").strip()))
         del self.server_rows[0]
@@ -78,9 +78,9 @@ class ConsoleUI(npyscreen.NPSAppManaged):
                                         values=self.server_rows,
                                         scroll_exit=True)
         mainform.edit()  # activate form
-        self.done(selected_servers.get_selected_objects())  # done
+        self.done(selection=selected_servers.get_selected_objects())  # done
 
-    def done(self, selection):
+    def done(self, selection: list) -> None:
         """After editing
         :param selection:
         """
@@ -95,8 +95,8 @@ class ConsoleUI(npyscreen.NPSAppManaged):
         self.setNextForm(None)
 
 
-def run(server_list, random, default):
+def run(server_list: list, random: bool, default: bool) -> object:
     """Run"""
-    app = ConsoleUI(server_list, random, default)
+    app = ConsoleUI(server_list=server_list, random=random, default=default)
     app.run()
     return app

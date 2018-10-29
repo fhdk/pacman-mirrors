@@ -23,13 +23,13 @@ from pacman_mirrors.constants import txt
 from pacman_mirrors.functions import util
 
 
-def translate_interactive_to_pool(custom_mirrors, mirror_pool, config):
+def translate_interactive_to_pool(custom_mirrors: list, mirror_pool: list, tty: bool = False) -> tuple:
     """
     Translate the interactive selection back to mirror pool
+    :param tty:
     :param custom_mirrors: the custom mirror selection
     :param mirror_pool: the default mirror pool
-    :param config: the active pacman-mirrors configuration
-    :return: custom mirror pool and mirrors for mirror list generation
+    :return: tuple with custom mirror pool and mirrors for mirror list generation
     """
     custom_mirror_pool = []
     mirror_list = []
@@ -63,19 +63,22 @@ def translate_interactive_to_pool(custom_mirrors, mirror_pool, config):
                             mirror_list.append(custom_mirror)
 
                 except KeyError:
-                    print(".: {} {}! {}!".format(txt.WRN_CLR, txt.HOUSTON, txt.CUSTOM_POOL_EMPTY))
+                    util.msg(
+                        message=f"{txt.HOUSTON}! {txt.CUSTOM_POOL_EMPTY}!", urgency=txt.WRN_CLR, tty=tty)
                     break
 
         except (KeyError, IndexError):
-            print(".: {} {}! {}!".format(txt.WRN_CLR, txt.HOUSTON, txt.DEFAULT_POOL_EMPTY))
+            util.msg(
+                message=f"{txt.HOUSTON}! {txt.DEFAULT_POOL_EMPTY}!", urgency=txt.WRN_CLR, tty=tty)
             break
 
     return custom_mirror_pool, mirror_list
 
 
-def translate_pool_to_interactive(mirror_pool):
+def translate_pool_to_interactive(mirror_pool: list, tty: bool = False) -> list:
     """
     Translate mirror pool for interactive display
+    :param tty:
     :param mirror_pool:
     :return: list of dictionaries
             {
@@ -95,11 +98,12 @@ def translate_pool_to_interactive(mirror_pool):
                 interactive_list.append({
                     "country": mirror["country"],
                     "resp_time": str(mirror["resp_time"]),
-                    "last_sync": "{}h {}m".format(last_sync[0], last_sync[1]),
-                    "url": "{}{}".format(protocol, mirror_url)
+                    "last_sync": f"{last_sync[0]}h {last_sync[1]}m",
+                    "url": f"{protocol}{mirror_url}"
                 })
         except (KeyError, IndexError):
-            print(".: {} {}! {}!".format(txt.WRN_CLR, txt.HOUSTON, txt.MIRROR_POOL_EMPTY))
+            util.msg(
+                message=f"{txt.HOUSTON}! {txt.MIRROR_POOL_EMPTY}!", urgency=txt.WRN_CLR, tty=tty)
             break
     return interactive_list
 

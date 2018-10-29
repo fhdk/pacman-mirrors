@@ -22,19 +22,20 @@
 
 import platform
 import shutil
+from sys import stdout
 
 from pacman_mirrors.api import apifn
 from pacman_mirrors.constants import txt
 
 
-def extract_mirror_url(data):
+def extract_mirror_url(data: str) -> str:
     """Extract mirror url from data"""
     line = data.strip()
     if line.startswith("Server"):
         return line[9:].replace("$branch/$repo/$arch", "")
 
 
-def get_country(data):
+def get_country(data: str) -> str:
     """Extract mirror country from data"""
     line = data.strip()
     if line.startswith("[") and line.endswith("]"):
@@ -43,13 +44,13 @@ def get_country(data):
         return line[19:]
 
 
-def get_protocol(data):
+def get_protocol(url: str) -> str:
     """Extract protocol from url"""
-    pos = data.find(":")
-    return data[:pos]
+    pos = url.find(":")
+    return url[:pos]
 
 
-def get_protocol_from_url(url):
+def get_protocol_from_url(url: str) -> str:
     """
     Splits an url
     :param url:
@@ -61,7 +62,7 @@ def get_protocol_from_url(url):
     return url
 
 
-def get_server_location_from_url(url):
+def get_server_location_from_url(url: str) -> str:
     """
     Splits an url
     :param url:
@@ -73,7 +74,7 @@ def get_server_location_from_url(url):
     return url
 
 
-def i686_check(self, write=False):
+def i686_check(self, write: bool = False) -> None:
     if platform.machine() == "i686":
         self.config["x32"] = True
         if "x32" not in self.config["branch"]:
@@ -82,14 +83,40 @@ def i686_check(self, write=False):
                 apifn.write_config_branch(self.config["branch"], self.config["config_file"], quiet=True)
 
 
-def internet_message():
+def internet_message(tty: bool = False) -> None:
     """Message when internet connection is down"""
-    print(".: {} {}".format(txt.WRN_CLR, txt.INTERNET_DOWN))
-    print(".: {} {}".format(txt.INF_CLR, txt.MIRROR_RANKING_NA))
-    print(".: {} {}".format(txt.INF_CLR, txt.INTERNET_ALTERNATIVE))
+    msg(f"{txt.INTERNET_DOWN}", urgency=txt.INF_CLR, tty=tty)
+    msg(f"{txt.MIRROR_RANKING_NA}", urgency=txt.INF_CLR, tty=tty)
+    msg(f"{txt.INTERNET_ALTERNATIVE}", urgency=txt.INF_CLR, tty=tty)
 
 
-def terminal_size():
+def msg(message: str, urgency: str = "", tty: bool = False, color: str = "", newline: bool = False) -> None:
+    """Helper for printing messages
+    :param message:
+    :param urgency:
+    :param tty:
+    :param color:
+    :param newline:
+    """
+    reset = "\033[1;m"
+    if urgency and color:
+        color = ""
+    if tty:
+        if newline:
+            print("\n")
+        print(f"::{message}")
+    else:
+        if urgency:
+            if newline:
+                print("\n")
+            print(f"::{urgency} {message}")
+        else:
+            if newline:
+                print("\n")
+            print(f"::{color}{message}{reset}")
+
+
+def terminal_size() -> tuple:
     """get terminal size"""
     # http://www.programcreek.com/python/example/85471/shutil.get_terminal_size
     cols = shutil.get_terminal_size().columns

@@ -21,6 +21,6 @@
 from operator import itemgetter
 
 
-def sort_mirrors(worklist, field="resp_time", reverse=False):
+def sort_mirrors(worklist: list, field: str = "resp_time", reverse: bool = False) -> list:
     result = sorted(worklist, key=itemgetter(field), reverse=reverse)
     return result

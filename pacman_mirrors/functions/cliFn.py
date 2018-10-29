@@ -32,7 +32,7 @@ from pacman_mirrors.translation.custom_help_formatter \
     import CustomHelpFormatter
 
 
-def parse_command_line(self, gtk_available):
+def parse_command_line(self, gtk_available: bool) -> None:
     """Read the arguments of the command line"""
 
     args_summary = "[-h] [-f [{}]] [-i [-d]] [-m {}]\n" \
@@ -145,6 +145,8 @@ def parse_command_line(self, gtk_available):
     misc.add_argument("-v", "--version",
                       action="store_true",
                       help=txt.HLP_ARG_VERSION)
+    misc.add_argument("--no-color",
+                      action="store_true")
 
     args = parser.parse_args()
 
@@ -162,16 +164,19 @@ def parse_command_line(self, gtk_available):
         sys.exit(0)
 
     if args.list:
-        outputFn.console_default_country_pool(self)
+        outputFn.tty_default_country_pool(self)
         sys.exit(0)
 
     if args.country_config:
-        outputFn.console_custom_country_pool(self)
+        outputFn.tty_custom_country_pool(self)
         sys.exit(0)
 
     if args.get_branch:
         print(self.config["branch"])
         sys.exit(0)
+
+    if args.no_color:
+        self.tty = args.no_color
 
     """
     #############################################################

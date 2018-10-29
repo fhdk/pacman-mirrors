@@ -28,9 +28,10 @@ from pacman_mirrors.functions import filterFn
 from pacman_mirrors.functions import outputFn
 from pacman_mirrors.functions import sortMirrorFn
 from pacman_mirrors.functions import testMirrorFn
+from pacman_mirrors.functions import util
 
 
-def build_mirror_list(self):
+def build_mirror_list(self) -> None:
     """
     Prompt the user to select the mirrors with a gui.
     Outputs a "custom" mirror file
@@ -41,7 +42,7 @@ def build_mirror_list(self):
     Remove known bad mirrors from the list
     mirrors where status.json has -1 for last_sync or branches is -1,-1,-1
     """
-    worklist = filterFn.filter_bad_mirrors(self.mirrors.mirror_pool)
+    worklist = filterFn.filter_bad_mirrors(mirror_pool=self.mirrors.mirror_pool)
     """
     It would seem reasonable to implement a filter
     based on the users branch and the mirrors update status
@@ -52,7 +53,8 @@ def build_mirror_list(self):
     The final mirrorfile will include all mirrors selected by the user
     The final mirrorlist will exclude (if possible) mirrors not up-to-date
     """
-    worklist = filterFn.filter_mirror_country(worklist, self.selected_countries)
+    worklist = filterFn.filter_mirror_country(
+        mirror_pool=worklist, country_pool=self.selected_countries)
     """
     If config.protols has content, that is a user decision and as such
     it has nothing to do with the reasoning regarding mirrors
@@ -61,17 +63,17 @@ def build_mirror_list(self):
     try:
         _ = self.config["protocols"][0]
         worklist = filterFn.filter_mirror_protocols(
-            worklist, self.config["protocols"])
+             mirror_pool=worklist, protocols=self.config["protocols"])
     except IndexError:
         pass
 
     # rank or shuffle the mirrorlist before showing the ui
     if not self.default:
         if self.config["method"] == "rank":
-            worklist = testMirrorFn.test_mirrors(self, worklist)
-            worklist = sortMirrorFn.sort_mirrors(worklist=worklist,
-                                                 field="resp_time",
-                                                 reverse=False)
+            worklist = testMirrorFn.test_mirrors(
+                self=self, worklist=worklist)
+            worklist = sortMirrorFn.sort_mirrors(
+                worklist=worklist, field="resp_time", reverse=False)
         else:
             shuffle(worklist)
     """
@@ -92,7 +94,8 @@ def build_mirror_list(self):
     As of version 4.8.x the last sync field contents is a string
     with the hours and minutes more human readable eg. 03h 33m
     """
-    interactive_list = convertFn.translate_pool_to_interactive(worklist)
+    interactive_list = convertFn.translate_pool_to_interactive(
+        mirror_pool=worklist, tty=self.tty)
     # import the right ui
     if self.no_display:
         # in console mode
@@ -100,17 +103,15 @@ def build_mirror_list(self):
     else:
         # gobject introspection is present and accounted for
         from pacman_mirrors.dialogs import graphicalui as ui
-    interactive = ui.run(interactive_list,
-                         self.config["method"] == "random",
-                         self.default)
+    interactive = ui.run(
+        server_list=interactive_list, random=self.config["method"] == "random", default=self.default)
     # process user choices
     if interactive.is_done:
         """
         translate interactive list back to our json format
         """
-        custom_pool, mirror_list = convertFn.translate_interactive_to_pool(interactive.custom_list,
-                                                                           self.mirrors.mirror_pool,
-                                                                           self.config)
+        custom_pool, mirror_list = convertFn.translate_interactive_to_pool(
+            custom_mirrors=interactive.custom_list, mirror_pool=self.mirrors.mirror_pool, tty=self.tty)
         """
         Try selected method on the mirrorlist
         """
@@ -118,7 +119,8 @@ def build_mirror_list(self):
             _ = mirror_list[0]
             if self.default:
                 if self.config["method"] == "rank":
-                    mirror_list = testMirrorFn.test_mirrors(self, mirror_list)
+                    mirror_list = testMirrorFn.test_mirrors(
+                        self=self, worklist=mirror_list)
                     mirror_list = sorted(mirror_list, key=itemgetter("resp_time"))
                 else:
                     shuffle(mirror_list)
@@ -136,7 +138,8 @@ def build_mirror_list(self):
             """
             Writing the custom mirror pool file
             """
-            outputFn.file_custom_mirror_pool(self, custom_pool)
+            outputFn.file_custom_mirror_pool(
+                self=self, selected_mirrors=custom_pool)
             """
             Unless the user has provided the --no-status argument we only 
             write mirrors which are up-to-date for users selected branch
@@ -144,7 +147,8 @@ def build_mirror_list(self):
             if self.no_status:
                 pass
             else:
-                mirror_list = filterFn.filter_user_branch(mirror_list, self.config)
+                mirror_list = filterFn.filter_user_branch(
+                    mirror_pool=mirror_list, config=self.config)
             """
             Writing mirrorlist
             If the mirror list is empty because 
@@ -155,10 +159,14 @@ def build_mirror_list(self):
                 _ = mirror_list[0]
                 outputFn.file_mirror_list(self, mirror_list)
                 if self.no_status:
-                    print("{} {}\n{} {}".format(txt.WRN_CLR, txt.OVERRIDE_STATUS_CHOICE,
-                                                txt.WRN_CLR, txt.OVERRIDE_STATUS_MIRROR))
+                    util.msg(
+                        message=f"{txt.OVERRIDE_STATUS_CHOICE}", urgency=txt.WRN_CLR, tty=self.tty)
+                    util.msg(
+                        message=f"{txt.OVERRIDE_STATUS_MIRROR}", urgency=txt.WRN_CLR, tty=self.tty)
             except IndexError:
                 raise IndexError
         except IndexError:
-            print(".: {} {}".format(txt.WRN_CLR, txt.NO_SELECTION))
-            print(".: {} {}".format(txt.INF_CLR, txt.NO_CHANGE))
+            util.msg(
+                message=f"{txt.NO_SELECTION}", urgency=txt.WRN_CLR, tty=self.tty)
+            util.msg(
+                message=f"{txt.NO_CHANGE}", urgency=txt.INF_CLR, tty=self.tty)

@@ -7,12 +7,13 @@
 # acutbal <acutbal@gmail.com>, 2017-2018
 # Davidmp <medipas@gmail.com>, 2018
 # Ramon Buldó <rbuldo@gmail.com>, 2015-2017
+# Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pacman-mirrors\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-23 20:55+0200\n"
-"PO-Revision-Date: 2018-03-13 16:09+0000\n"
+"PO-Revision-Date: 2018-08-21 18:56+0000\n"
 "Last-Translator: Davidmp <medipas@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/manjarolinux/manjaro-pacman-mirrors/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +73,7 @@ msgstr "MISCEL·LÀNIA"
 
 #: pacman_mirrors/constants/txt.py:43
 msgid "NUMBER"
-msgstr "NÚMEROS"
+msgstr "NÚMERO"
 
 #: pacman_mirrors/constants/txt.py:44
 msgid "PATH"
@@ -108,19 +109,19 @@ msgstr "Estableix el prefix a"
 
 #: pacman_mirrors/constants/txt.py:53
 msgid "Replace protocols in configuration"
-msgstr "Reemplaça els protocols a la configuració"
+msgstr "Substitueix els protocols a la configuració"
 
 #: pacman_mirrors/constants/txt.py:54
 msgid "Replace branch in mirrorlist"
-msgstr "Reemplaça la branca a la llista de rèpliques"
+msgstr "Substitueix la branca a la llista de rèpliques"
 
 #: pacman_mirrors/constants/txt.py:55
 msgid "Replace branch in configuration"
-msgstr "Reemplaça la branca a la configuració"
+msgstr "Substitueix la branca a la configuració"
 
 #: pacman_mirrors/constants/txt.py:56
 msgid "Replace mirror url in mirrorlist"
-msgstr "Reemplaça l'URL de la rèplica a la llista de rèpliques"
+msgstr "Substitueix l'URL de la rèplica a la llista de rèpliques"
 
 #: pacman_mirrors/constants/txt.py:57
 msgid "Branch name"
@@ -128,7 +129,7 @@ msgstr "Nom de la branca"
 
 #: pacman_mirrors/constants/txt.py:58
 msgid "Comma separated list of countries, from which mirrors will be used"
-msgstr "Llista de països separats per comes, des d'on s'usaran les rèpliques"
+msgstr "Llista de països separats per comes, dels quals s'usaran les rèpliques"
 
 #: pacman_mirrors/constants/txt.py:60
 msgid "Load default mirror file"
@@ -168,11 +169,11 @@ msgstr "Mode silenciós: sortida menys detallada"
 
 #: pacman_mirrors/constants/txt.py:70
 msgid "Syncronize pacman databases"
-msgstr "Sincronitza les bases de dades del pacman"
+msgstr "Sincronitza les bases de dades del Pacman"
 
 #: pacman_mirrors/constants/txt.py:71
 msgid "Maximum waiting time for server response"
-msgstr "Temps màxim d'espera de la resposta del servidor"
+msgstr "Temps màxim d'espera per a la resposta del servidor"
 
 #: pacman_mirrors/constants/txt.py:72
 msgid "Print the pacman-mirrors version"
@@ -188,7 +189,7 @@ msgstr "S'han canviat els protocols a la configuració."
 
 #: pacman_mirrors/constants/txt.py:76
 msgid "Re-branch requires a branch to work with"
-msgstr "Restablir les branques requereix una branca per treballar-hi."
+msgstr "Canviar les branques requereix una branca per treballar-hi."
 
 #: pacman_mirrors/constants/txt.py:77
 msgid "Branch in mirror list is changed"
@@ -200,7 +201,7 @@ msgstr "Els països disponibles són els següents:"
 
 #: pacman_mirrors/constants/txt.py:79
 msgid "Could not download from"
-msgstr "No s'ha pogut baixar des de"
+msgstr "No s'ha pogut baixar de"
 
 #: pacman_mirrors/constants/txt.py:80
 msgid "Cannot read file"
@@ -236,7 +237,7 @@ msgstr "no existeix."
 
 #: pacman_mirrors/constants/txt.py:88
 msgid "Downloading mirrors from"
-msgstr "Baixant rèpliques des de"
+msgstr "Baixant les rèpliques de"
 
 #: pacman_mirrors/constants/txt.py:89
 msgid "Falling back to"
@@ -288,7 +289,7 @@ msgstr "El rànquing de rèpliques no està disponible."
 
 #: pacman_mirrors/constants/txt.py:101
 msgid "Must have root privileges"
-msgstr "Cal tenir privilegis d'administrador."
+msgstr "Cal tenir privilegis d'arrel."
 
 #: pacman_mirrors/constants/txt.py:102
 msgid "The mirrors has not changed"
@@ -320,7 +321,7 @@ msgstr "Per eliminar la configuració personalitzada executeu"
 
 #: pacman_mirrors/constants/txt.py:109
 msgid "This may take some time"
-msgstr "Això pot trigar una mica."
+msgstr "Això pot trigar una estona."
 
 #: pacman_mirrors/constants/txt.py:110
 msgid "unknown country"
@@ -388,4 +389,4 @@ msgstr "Confirmeu les seleccions"
 
 #: pacman_mirrors/constants/txt.py:129
 msgid "I want to use these mirrors"
-msgstr "Vull fer servir aquestes rèpliques"
+msgstr "Vull usar aquestes rèpliques"

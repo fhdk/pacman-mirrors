@@ -22,28 +22,28 @@
 from pacman_mirrors.constants import colors as color
 
 
-def debug_msg(where, what, value):
+def debug_msg(where: str, what: str, value: str) -> None:
     """Helper for printing debug messages"""
     print("{} {} >>>> '{} = {}'".format(color.DBG_CLR, where, what, value))
 
 
-def blue_msg(message):
+def blue_msg(message: str) -> None:
     """Helper for printing blue messages"""
-    print("{}{}{}".format(color.BLUE, message, color.ENDCOLOR))
+    print("{}{}{}".format(color.BLUE, message, color.RESET))
 
 
-def green_msg(message):
+def green_msg(message: str) -> None:
     """Helper for printing green messages"""
-    print("{}{}{}".format(color.GREEN, message, color.ENDCOLOR))
+    print("{}{}{}".format(color.GREEN, message, color.RESET))
 
 
-def red_msg(message):
+def red_msg(message: str) -> None:
     """Helper for printing yellow messages"""
-    print("{}{}{}".format(color.RED, message, color.ENDCOLOR))
+    print("{}{}{}".format(color.RED, message, color.RESET))
 
 
-def yellow_msg(message):
+def yellow_msg(message: str) -> None:
     """Helper for printing yellow messages"""
-    print("{}{}{}".format(color.YELLOW, message, color.ENDCOLOR))
+    print("{}{}{}".format(color.YELLOW, message, color.RESET))
 
 
