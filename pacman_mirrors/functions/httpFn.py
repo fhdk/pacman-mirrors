@@ -34,6 +34,7 @@ from urllib.error import URLError
 
 from pacman_mirrors import __version__
 from pacman_mirrors.config import configuration as conf
+from pacman_mirrors.constants import timezones
 from pacman_mirrors.constants import txt
 from pacman_mirrors.functions import fileFn
 from pacman_mirrors.functions import jsonFn
@@ -91,25 +92,27 @@ def get_geoip_country() -> str:
     """
     country_name = ""
     try:
-        req = urllib.request.Request(url="http://api.ipstack.com/check?access_key=3694b757c436433985a553971cde6cd0")
+        req = urllib.request.Request(url="https://geoip.kde.org/v1/calamares")
         res = urllib.request.urlopen(req)
         json_obj = json.loads(res.read().decode("utf8"))
     except (URLError, HTTPException, json.JSONDecodeError):
         pass
     else:
-        if "country_name" in json_obj:
-            country_name = json_obj["country_name"]
-            country_fix = {
-                "Brazil": "Brasil",
-                "Costa Rica": "Costa_Rica",
-                "Czech Republic": "Czech",
-                "South Africa": "Africa",
-                "United Kingdom": "United_Kingdom",
-                "United States": "United_States",
-            }
-            if country_name in country_fix.keys():
-                country_name = country_fix[country_name]
-            print(country_name)
+        if "time_zone" in json_obj:
+            tz = json_obj["time_zone"]
+            for country in timezones.countries:
+                if tz in country["timezones"]:
+                    country_name = country["name"]
+                    country_fix = {
+                        "Brazil": "Brasil",
+                        "Costa Rica": "Costa_Rica",
+                        "Czech Republic": "Czech",
+                        "South Africa": "Africa",
+                        "United Kingdom": "United_Kingdom",
+                        "United States": "United_States",
+                    }
+                    if country_name in country_fix.keys():
+                        country_name = country_fix[country_name]
     return country_name
 
 

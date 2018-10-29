@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.14.0] 2018-10-29
+* refactor geo location query to use geoip.kde.org
+
 ## [4.13.0] 2018-10-28
 * Implemented [#143](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/143)
   - Added `--no-color` argument for Pamac v7.2 logging.
