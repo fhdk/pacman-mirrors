@@ -13,25 +13,26 @@ from unittest.mock import patch
 from pacman_mirrors.functions import cliFn
 from pacman_mirrors.functions import configFn
 from pacman_mirrors.pacman_mirrors import PacmanMirrors
-from . import mock_configuration as conf
+from . import mock_configuration as mock
 
 test_conf = {
     "branch": "stable",
-    "branches": conf.BRANCHES,
-    "config_file": conf.CONFIG_FILE,
-    "custom_file": conf.CUSTOM_FILE,
+    "branches": mock.BRANCHES,
+    "config_file": mock.CONFIG_FILE,
+    "custom_file": mock.CUSTOM_FILE,
     "method": "rank",
-    "work_dir": conf.WORK_DIR,
-    "mirror_file": conf.MIRROR_FILE,
-    "mirror_list": conf.MIRROR_LIST,
+    "work_dir": mock.WORK_DIR,
+    "mirror_file": mock.MIRROR_FILE,
+    "mirror_list": mock.MIRROR_LIST,
     "no_update": False,
     "country_pool": [],
     "protocols": [],
-    "repo_arch": conf.REPO_ARCH,
-    "status_file": conf.STATUS_FILE,
+    "repo_arch": mock.REPO_ARCH,
+    "status_file": mock.STATUS_FILE,
     "ssl_verify": True,
-    "url_mirrors_json": conf.URL_MIRROR_JSON,
-    "url_status_json": conf.URL_STATUS_JSON,
+    "test_file": mock.TEST_FILE,
+    "url_mirrors_json": mock.URL_MIRROR_JSON,
+    "url_status_json": mock.URL_STATUS_JSON,
     "x32": False
 }
 
@@ -52,7 +53,7 @@ class TestCommandLineParse(unittest.TestCase):
     #                              ["pacman-mirrors",
     #                               "-b", "unstable"]):
     #         app = PacmanMirrors()
-    #         app.config["config_file"] = conf.CONFIG_FILE
+    #         app.config["config_file"] = mock.CONFIG_FILE
     #         app.config = configFn.setup_config()
     #         cli.parse_command_line(app, True)
     #         assert app.config["branch"] == "unstable"
@@ -67,7 +68,7 @@ class TestCommandLineParse(unittest.TestCase):
     #                              ["pacman-mirrors",
     #                               "-b", "testing"]):
     #         app = PacmanMirrors()
-    #         app.config["config_file"] = conf.CONFIG_FILE
+    #         app.config["config_file"] = mock.CONFIG_FILE
     #         app.config = configFn.setup_config()
     #         cli.parse_command_line(app, True)
     #         assert app.config["branch"] == "testing"
@@ -82,7 +83,7 @@ class TestCommandLineParse(unittest.TestCase):
                                  ["pacman-mirrors",
                                   "-m", "random"]):
             app = PacmanMirrors()
-            app.config["config_file"] = conf.CONFIG_FILE
+            app.config["config_file"] = mock.CONFIG_FILE
             app.config = configFn.setup_config()
             cliFn.parse_command_line(app, True)
             assert app.config["method"] == "random"
@@ -97,7 +98,7 @@ class TestCommandLineParse(unittest.TestCase):
                                  ["pacman-mirrors",
                                   "-c", "France,Germany"]):
             app = PacmanMirrors()
-            app.config["config_file"] = conf.CONFIG_FILE
+            app.config["config_file"] = mock.CONFIG_FILE
             app.config = configFn.setup_config()
             cliFn.parse_command_line(app, True)
             assert app.config["country_pool"] == ["France", "Germany"]
@@ -112,7 +113,7 @@ class TestCommandLineParse(unittest.TestCase):
                                  ["pacman-mirrors",
                                   "--geoip"]):
             app = PacmanMirrors()
-            app.config["config_file"] = conf.CONFIG_FILE
+            app.config["config_file"] = mock.CONFIG_FILE
             app.config = configFn.setup_config()
             cliFn.parse_command_line(app, True)
             assert app.geoip is True
@@ -127,7 +128,7 @@ class TestCommandLineParse(unittest.TestCase):
                                  ["pacman-mirrors",
                                   "-f5"]):
             app = PacmanMirrors()
-            app.config["config_file"] = conf.CONFIG_FILE
+            app.config["config_file"] = mock.CONFIG_FILE
             app.config = configFn.setup_config()
             cliFn.parse_command_line(app, True)
             assert app.fasttrack == 5
@@ -142,7 +143,7 @@ class TestCommandLineParse(unittest.TestCase):
                                  ["pacman-mirrors",
                                   "-i"]):
             app = PacmanMirrors()
-            app.config["config_file"] = conf.CONFIG_FILE
+            app.config["config_file"] = mock.CONFIG_FILE
             app.config = configFn.setup_config()
             cliFn.parse_command_line(app, True)
             assert app.interactive is True
@@ -157,7 +158,7 @@ class TestCommandLineParse(unittest.TestCase):
                                  ["pacman-mirrors",
                                   "-t5"]):
             app = PacmanMirrors()
-            app.config["config_file"] = conf.CONFIG_FILE
+            app.config["config_file"] = mock.CONFIG_FILE
             app.config = configFn.setup_config()
             cliFn.parse_command_line(app, True)
             assert app.max_wait_time == 5
@@ -172,7 +173,7 @@ class TestCommandLineParse(unittest.TestCase):
                                  ["pacman-mirrors",
                                   "-q"]):
             app = PacmanMirrors()
-            app.config["config_file"] = conf.CONFIG_FILE
+            app.config["config_file"] = mock.CONFIG_FILE
             app.config = configFn.setup_config()
             cliFn.parse_command_line(app, True)
             assert app.quiet is True

@@ -7,13 +7,14 @@
 # Fábio Caramelo <fabiocaramelo18@gmail.com>, 2017
 # Hugo Carvalho <hugokarvalho@hotmail.com>, 2018
 # My Name <sleep.code.eat.repeat@gmail.com>, 2018
+# Rui <xymarior@yandex.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pacman-mirrors\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-23 20:55+0200\n"
-"PO-Revision-Date: 2018-07-07 13:49+0000\n"
-"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
+"PO-Revision-Date: 2018-10-28 12:34+0000\n"
+"Last-Translator: Rui <xymarior@yandex.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/manjarolinux/manjaro-pacman-mirrors/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -112,7 +113,7 @@ msgstr "Substituir protocolos na configuração"
 
 #: pacman_mirrors/constants/txt.py:54
 msgid "Replace branch in mirrorlist"
-msgstr "Substituir ramo na lista de mirrors"
+msgstr "Substituir ramo na lista de espelhos"
 
 #: pacman_mirrors/constants/txt.py:55
 msgid "Replace branch in configuration"
@@ -128,15 +129,15 @@ msgstr "Nome do ramo"
 
 #: pacman_mirrors/constants/txt.py:58
 msgid "Comma separated list of countries, from which mirrors will be used"
-msgstr "Lista de países, separados por vírgula, de onde serão usados mirrors"
+msgstr "Lista de países, separados por vírgula, de onde serão usados espelhos"
 
 #: pacman_mirrors/constants/txt.py:60
 msgid "Load default mirror file"
-msgstr "Carregar lista de mirrors por defeito"
+msgstr "Carregar lista de espelhos por defeito"
 
 #: pacman_mirrors/constants/txt.py:61
 msgid "Generate mirrorlist with a number of up-to-date mirrors. Ignores:"
-msgstr "Gerar lista de mirrors atualizados. Ignora:"
+msgstr "Gerar lista de espelhos atualizados. Ignora:"
 
 #: pacman_mirrors/constants/txt.py:63
 msgid "Generate mirrorlist with defaults"
@@ -152,7 +153,7 @@ msgstr "Listar todos os países disponíveis"
 
 #: pacman_mirrors/constants/txt.py:66
 msgid "Generate custom mirrorlist"
-msgstr "Gerar lista de mirrors personalizada"
+msgstr "Gerar lista de espelhos personalizada"
 
 #: pacman_mirrors/constants/txt.py:67
 msgid "Generation method"
@@ -160,7 +161,7 @@ msgstr "Método de geração"
 
 #: pacman_mirrors/constants/txt.py:68
 msgid "Use to skip generation of mirrorlist"
-msgstr "Usar para avançar sem gerar lista de mirrors"
+msgstr "Usar para avançar sem gerar lista de espelhos"
 
 #: pacman_mirrors/constants/txt.py:69
 msgid "Quiet mode - less verbose output"
@@ -180,11 +181,11 @@ msgstr "Apresentar a versão do pacman-mirrors"
 
 #: pacman_mirrors/constants/txt.py:74
 msgid "Branch in config is changed"
-msgstr "Branch foi alterado na configuração"
+msgstr "O ramo foi alterado na configuração"
 
 #: pacman_mirrors/constants/txt.py:75
 msgid "Protocols in config is changed"
-msgstr "Protocols foi alterado na configuração"
+msgstr "Os protocolos foram alterados na configuração"
 
 #: pacman_mirrors/constants/txt.py:76
 msgid "Re-branch requires a branch to work with"
@@ -212,19 +213,19 @@ msgstr "Impossível escrever ficheiro"
 
 #: pacman_mirrors/constants/txt.py:82
 msgid "Converting custom mirror file to new format"
-msgstr "A converter ficheiro de mirrors customizado para novo formato"
+msgstr "A converter ficheiro de espelhos personalizado para novo formato"
 
 #: pacman_mirrors/constants/txt.py:83
 msgid "Custom mirror file"
-msgstr "Ficheiro de mirrors personalizado"
+msgstr "Ficheiro de espelhos personalizado"
 
 #: pacman_mirrors/constants/txt.py:84
 msgid "Custom mirror file saved"
-msgstr "Ficheiro de mirrors personalizado gravado"
+msgstr "Ficheiro de espelhos personalizado gravado"
 
 #: pacman_mirrors/constants/txt.py:85
 msgid "User generated mirror list"
-msgstr "Lista de mirrors gerada pelo utilizador"
+msgstr "Lista de espelhos gerada pelo utilizador"
 
 #: pacman_mirrors/constants/txt.py:86
 msgid "Deprecated argument"
@@ -232,15 +233,15 @@ msgstr "Argumento descontinuado"
 
 #: pacman_mirrors/constants/txt.py:87
 msgid "doesn't exist."
-msgstr "não existe"
+msgstr "não existe."
 
 #: pacman_mirrors/constants/txt.py:88
 msgid "Downloading mirrors from"
-msgstr "A fazer download dos mirrors de"
+msgstr "A descarregar os espelhos de"
 
 #: pacman_mirrors/constants/txt.py:89
 msgid "Falling back to"
-msgstr "Revertendo para"
+msgstr "A reverter para"
 
 #: pacman_mirrors/constants/txt.py:90
 msgid "Internet connection appears to be down"
@@ -248,7 +249,7 @@ msgstr "A ligação à internet parece estar com problemas"
 
 #: pacman_mirrors/constants/txt.py:91
 msgid "Mirror list is generated using random method"
-msgstr "Lista de mirrors populada de forma aleatória"
+msgstr "Lista de espelhos populada de forma aleatória"
 
 #: pacman_mirrors/constants/txt.py:92
 msgid "is missing"
@@ -256,11 +257,11 @@ msgstr "está em falta"
 
 #: pacman_mirrors/constants/txt.py:93
 msgid "The mirror file"
-msgstr "O ficheiro de mirror"
+msgstr "O ficheiro de espelho"
 
 #: pacman_mirrors/constants/txt.py:94
 msgid "Mirror list generated and saved to"
-msgstr "Lista de mirrors gerada e guardada em"
+msgstr "Lista de espelhos gerada e guardada em"
 
 #: pacman_mirrors/constants/txt.py:95
 msgid "Generated on"
@@ -268,23 +269,23 @@ msgstr "Gerado em"
 
 #: pacman_mirrors/constants/txt.py:96
 msgid "custom mirrorlist"
-msgstr "lista de mirrors personalizada"
+msgstr "lista de espelhos personalizada"
 
 #: pacman_mirrors/constants/txt.py:97
 msgid "to reset custom mirrorlist"
-msgstr "para reverter conteúdo da lista customizada de mirrors"
+msgstr "para reverter conteúdo da lista personalizada de espelhos"
 
 #: pacman_mirrors/constants/txt.py:98
 msgid "default mirrorlist"
-msgstr "lista de mirrors por defeito"
+msgstr "lista de espelhos por defeito"
 
 #: pacman_mirrors/constants/txt.py:99
 msgid "to modify mirrorlist"
-msgstr "para modificar a lista de mirrors"
+msgstr "para alterar a lista de espelhos"
 
 #: pacman_mirrors/constants/txt.py:100
 msgid "Mirror ranking is not available"
-msgstr "Ranking do mirror não está disponível"
+msgstr "Não está disponível a classificação do espelho"
 
 #: pacman_mirrors/constants/txt.py:101
 msgid "Must have root privileges"
@@ -292,11 +293,11 @@ msgstr "Deve ter privilégios de root"
 
 #: pacman_mirrors/constants/txt.py:102
 msgid "The mirrors has not changed"
-msgstr "O mirrors não foi alterado"
+msgstr "Os espelhos não foram alterados"
 
 #: pacman_mirrors/constants/txt.py:103
 msgid "No mirrors in selection"
-msgstr "Sem mirrors seleccionados"
+msgstr "Sem espelhos selecionados"
 
 #: pacman_mirrors/constants/txt.py:104
 msgid "Option"
@@ -308,11 +309,11 @@ msgstr "Por favor use"
 
 #: pacman_mirrors/constants/txt.py:106
 msgid "Querying mirrors"
-msgstr "A obter informação dos mirrors"
+msgstr "A obter informação dos espelhos"
 
 #: pacman_mirrors/constants/txt.py:107
 msgid "Randomizing mirror list"
-msgstr "A reordernar de forma aleatória a lista de mirrors"
+msgstr "A reordenar de forma aleatória a lista de espelhos"
 
 #: pacman_mirrors/constants/txt.py:108
 msgid "To remove custom config run "
@@ -328,35 +329,35 @@ msgstr "país desconhecido"
 
 #: pacman_mirrors/constants/txt.py:111
 msgid "Use 0 for all mirrors"
-msgstr "Usar 0 para todos os mirrors"
+msgstr "Usar 0 para todos os espelhos"
 
 #: pacman_mirrors/constants/txt.py:112
 msgid "Using all mirrors"
-msgstr "A usar todos os mirrors"
+msgstr "A usar todos os espelhos"
 
 #: pacman_mirrors/constants/txt.py:113
 msgid "Using custom mirror file"
-msgstr "A usar ficheiro de mirrors personalizado"
+msgstr "A usar ficheiro de espelho personalizado"
 
 #: pacman_mirrors/constants/txt.py:114
 msgid "Using default mirror file"
-msgstr "A user ficheiro de mirrors por defeito"
+msgstr "A usar ficheiro de espelho padrão"
 
 #: pacman_mirrors/constants/txt.py:115
 msgid "Writing mirror list"
-msgstr "A escrever lista de mirrors"
+msgstr "A escrever lista de espelhos"
 
 #: pacman_mirrors/constants/txt.py:118
 msgid "Manjaro mirrors by response time"
-msgstr "Mirrors Manjaro por tempo de resposta"
+msgstr "Espelhos Manjaro por tempo de resposta"
 
 #: pacman_mirrors/constants/txt.py:119
 msgid "Manjaro mirrors in random order"
-msgstr "Mirrors Manjaro por ordem aleatória"
+msgstr "Espelhos Manjaro por ordem aleatória"
 
 #: pacman_mirrors/constants/txt.py:120
 msgid "Check mirrors for your personal list"
-msgstr "Selecione mirrors para a sua lista pessoal"
+msgstr "Selecione os espelhos para a sua lista pessoal"
 
 #: pacman_mirrors/constants/txt.py:121
 msgid "Use"
@@ -388,4 +389,4 @@ msgstr "Confirmar escolhas"
 
 #: pacman_mirrors/constants/txt.py:129
 msgid "I want to use these mirrors"
-msgstr "Quero usar estes mirrors"
+msgstr "Quero usar estes espelhos"

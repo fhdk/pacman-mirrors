@@ -24,43 +24,33 @@ import sys
 
 from pacman_mirrors.config import configuration as conf
 from pacman_mirrors.constants import txt
+from pacman_mirrors.functions import util
 
 
-def custom_config_is_valid():
+def custom_config_is_valid() -> bool:
     """Check validity of custom selection
     :return: True or False
     :rtype: bool
     """
     return os.path.isfile(conf.CUSTOM_FILE)
-    # valid = os.path.isfile(conf.CUSTOM_FILE)
-    # if not valid:
-    #     # validation fail - inform user and exit
-    #     print(".: {} {} {} {}".format(txt.ERR_CLR,
-    #                                   txt.CUSTOM_MIRROR_FILE,
-    #                                   conf.CUSTOM_FILE,
-    #                                   txt.DOES_NOT_EXIST))
-    #     print(".: {} {}: {}".format(txt.INF_CLR,
-    #                                 txt.FALLING_BACK,
-    #                                 txt.USING_ALL_MIRRORS))
-    # return valid
 
 
-def country_list_is_valid(onlycountry, countrylist):
+def country_list_is_valid(onlycountry: list, countrylist: list, tty: bool = False) -> bool:
     """Check if the list of countries are valid.
     :param onlycountry: list of countries to check
     :param countrylist: list of available countries
+    :param tty:
     :return: True
     :rtype: bool
     """
     for country in onlycountry:
         if country not in countrylist:
-            print(".: {} {}{}: {}: '{}'".format(txt.WRN_CLR,
-                                                txt.OPTION,
-                                                txt.OPT_COUNTRY,
-                                                txt.UNKNOWN_COUNTRY,
-                                                country))
-            print(".: {} {}:".format(txt.INF_CLR,
-                                     txt.AVAILABLE_COUNTRIES))
+            util.msg(message=f"{txt.OPTION}{txt.OPT_COUNTRY}: {txt.OPT_COUNTRY}: '{txt.UNKNOWN_COUNTRY}'",
+                     urgency=txt.WRN_CLR,
+                     tty=tty)
+            util.msg(message=f"{txt.AVAILABLE_COUNTRIES}",
+                     urgency=txt.INF_CLR,
+                     tty=tty)
             print("{}".format(", ".join(countrylist)))
             sys.exit(1)  # exit gracefully
     return True

@@ -27,9 +27,10 @@ from pacman_mirrors.functions import filterFn
 from pacman_mirrors.functions import outputFn
 from pacman_mirrors.functions import sortMirrorFn
 from pacman_mirrors.functions import testMirrorFn
+from pacman_mirrors.functions import util
 
 
-def build_mirror_list(self):
+def build_mirror_list(self) -> None:
     """
     Generate common mirrorlist
     """
@@ -37,12 +38,13 @@ def build_mirror_list(self):
     Remove known bad mirrors from the list
     mirrors where status.json has -1 for last_sync
     """
-    mirror_selection = filterFn.filter_bad_mirrors(self.mirrors.mirror_pool)
+    mirror_selection = filterFn.filter_bad_mirrors(
+        mirror_pool=self.mirrors.mirror_pool)
     """
     Create a list based on the content of selected_countries
     """
-    mirror_selection = filterFn.filter_mirror_country(mirror_selection,
-                                                      self.selected_countries)
+    mirror_selection = filterFn.filter_mirror_country(
+        mirror_pool=mirror_selection, country_pool=self.selected_countries)
     """
     Check the length of selected_countries against the full countrylist
     If selected_countries is the lesser then we build a custom pool file
@@ -50,7 +52,8 @@ def build_mirror_list(self):
     if len(self.selected_countries) < len(self.mirrors.country_pool):
         try:
             _ = self.selected_countries[0]
-            outputFn.file_custom_mirror_pool(self, mirror_selection)
+            outputFn.file_custom_mirror_pool(
+                self=self, selected_mirrors=mirror_selection)
         except IndexError:
             pass
     """
@@ -58,8 +61,8 @@ def build_mirror_list(self):
     """
     try:
         _ = self.config["protocols"][0]
-        mirror_selection = filterFn.filter_mirror_protocols(mirror_selection,
-                                                            self.config["protocols"])
+        mirror_selection = filterFn.filter_mirror_protocols(
+            mirror_pool=mirror_selection, protocols=self.config["protocols"])
     except IndexError:
         pass
 
@@ -70,34 +73,39 @@ def build_mirror_list(self):
     if self.no_status:
         pass
     else:
-        mirror_selection = filterFn.filter_user_branch(mirror_selection,
-                                                       self.config)
+        mirror_selection = filterFn.filter_user_branch(
+            mirror_pool=mirror_selection, config=self.config)
 
     if self.config["method"] == "rank":
-        mirror_selection = testMirrorFn.test_mirrors(self,
-                                                     mirror_selection)
-        mirror_selection = sortMirrorFn.sort_mirrors(worklist=mirror_selection,
-                                                     field="resp_time",
-                                                     reverse=False)
+        mirror_selection = testMirrorFn.test_mirrors(
+            self=self, worklist=mirror_selection)
+        mirror_selection = sortMirrorFn.sort_mirrors(
+            worklist=mirror_selection, field="resp_time", reverse=False)
     else:
         shuffle(mirror_selection)
 
-    mirror_selection = filterFn.filter_error_mirrors(mirror_selection)
+    mirror_selection = filterFn.filter_error_mirrors(
+        mirror_pool=mirror_selection)
 
     """
     Try to write mirrorlist
     """
     try:
         _ = mirror_selection[0]
-        outputFn.file_mirror_list(self, mirror_selection)
+        outputFn.file_mirror_list(
+            self=self, selected_servers=mirror_selection)
         if self.custom:
-            print(".: {} {} 'sudo {}'".format(txt.INF_CLR,
-                                              txt.REMOVE_CUSTOM_CONFIG,
-                                              txt.RESET_ALL))
+            util.msg(
+                message=f"{txt.MIRROR_LIST_CUSTOM_RESET} 'sudo {txt.MODIFY_CUSTOM}'",urgency=txt.INF_CLR, tty=self.tty)
+            util.msg(
+                message=f"{txt.REMOVE_CUSTOM_CONFIG} 'sudo {txt.RESET_ALL}'", urgency=txt.INF_CLR, tty=self.tty)
         if self.no_status:
-            print("{} {}\n{} {}".format(txt.WRN_CLR, txt.OVERRIDE_STATUS_CHOICE,
-                                        txt.WRN_CLR, txt.OVERRIDE_STATUS_MIRROR))
+            util.msg(
+                message=f"{txt.OVERRIDE_STATUS_CHOICE}", urgency=txt.WRN_CLR, tty=self.tty)
+            util.msg(
+                message=f"{txt.OVERRIDE_STATUS_MIRROR}", urgency=txt.WRN_CLR, tty=self.tty)
     except IndexError:
-        print(".: {} {}".format(txt.WRN_CLR, txt.NO_SELECTION))
-        print(".: {} {}".format(txt.INF_CLR, txt.NO_CHANGE))
-
+        util.msg(
+            message=f"{txt.NO_SELECTION}", urgency=txt.WRN_CLR, tty=self.tty)
+        util.msg(
+            message=f"{txt.NO_CHANGE}", urgency=txt.INF_CLR, tty=self.tty)

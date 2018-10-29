@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.13.0] 2018-10-28
+* Implemented [#143](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/143)
+  - Added `--no-color` argument for Pamac v7.2 logging.
+  - Pulled translations
+  - Fixed doubled messages when using `-f` argument 
+
 ## [4.12.5] 2018-08-06
 * fix issue with console ui
 

@@ -1,3 +1,4 @@
+TEST_FILE = "core.db.tar.gz"
 # http constants
 URL_MIRROR_JSON = "http://repo.manjaro.org/mirrors.json"
 URL_STATUS_JSON = "http://repo.manjaro.org/status.json"
