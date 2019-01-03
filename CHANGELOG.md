@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.14.1] 2019-01-03
+* new geo location service
+
 ## [4.14.0] 2018-10-29
 * refactor geo location query to use geoip.kde.org
 
