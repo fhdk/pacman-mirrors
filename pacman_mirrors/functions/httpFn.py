@@ -95,7 +95,7 @@ def get_geoip_country() -> str:
         req = urllib.request.Request(url="https://get.geojs.io/v1/ip/geo.json")
         res = urllib.request.urlopen(req)
         json_obj = json.loads(res.read().decode("utf8"))
-        if "time_zone" in json_obj:
+        if "timezone" in json_obj:
             tz = json_obj["timezone"]
             for country in timezones.countries:
                 if tz in country["timezones"]:
