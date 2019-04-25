@@ -71,8 +71,7 @@ def build_mirror_list(self) -> None:
     write mirrors which are up-to-date for users selected branch
     """
     if self.no_status:
-        if self.interval:
-            filterFn.filter_poor_mirrors(self.interval)
+        pass
     else:
         mirror_selection = filterFn.filter_user_branch(
             mirror_pool=mirror_selection, config=self.config)

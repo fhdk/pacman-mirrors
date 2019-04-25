@@ -207,9 +207,9 @@ def parse_command_line(self, gtk_available: bool) -> None:
     """
     If --interval and not --no-status reject
     """
-    if args.interval and not arg.no_status:
+    if args.interval and not args.no_status or args.interactive:
         print("Version {}\nUSAGE:\n {} {}".format(__version__, "pacman-mirrors", args_summary))
-        print("Invalid argument: --interval argument only valid with -s/--no-status")
+        print("Invalid arguments: `--interval` argument only valid with `-s` and not `-i`")
         sys.exit(1)
 
     """
