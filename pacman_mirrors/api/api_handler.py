@@ -68,7 +68,7 @@ def set_config(self, set_pfx: str = None, set_branch: str = None,
         """
         # pacman-mirrors.conf could absent so check for it
         """
-        if not fileFn.check_existance_of(filename=self.config["config_file"]):
+        if not fileFn.check_file(filename=self.config["config_file"]):
             """
             # Copy from host system
             """
