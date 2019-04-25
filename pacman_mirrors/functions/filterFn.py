@@ -65,7 +65,7 @@ def filter_mirror_country(mirror_pool: list, country_pool: list) -> list:
     return result
 
 
-def filter_mirror_protocols(mirror_pool: list, protocols: list = None):
+def filter_mirror_protocols(mirror_pool: list, protocols: list = None) -> list:
     """
     Return a new mirrorlist with protocols
     :type mirror_pool: list
@@ -124,5 +124,3 @@ def filter_user_branch(mirror_pool: list, config: object) -> list:
             if len(filtered) > 0:
                 return filtered
     return mirror_pool
-
-
