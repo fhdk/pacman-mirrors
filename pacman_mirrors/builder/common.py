@@ -22,8 +22,9 @@
 from operator import itemgetter
 from random import shuffle
 
+import pacman_mirrors.functions.filter_mirror_status_functions
 from pacman_mirrors.constants import txt
-from pacman_mirrors.functions import filterFn
+from pacman_mirrors.functions import filter_mirror_pool_functions
 from pacman_mirrors.functions import outputFn
 from pacman_mirrors.functions import sortMirrorFn
 from pacman_mirrors.functions import testMirrorFn
@@ -38,12 +39,12 @@ def build_mirror_list(self) -> None:
     Remove known bad mirrors from the list
     mirrors where status.json has -1 for last_sync
     """
-    mirror_selection = filterFn.filter_bad_mirrors(
+    mirror_selection = pacman_mirrors.functions.filter_mirror_status_functions.filter_bad_mirrors(
         mirror_pool=self.mirrors.mirror_pool)
     """
     Create a list based on the content of selected_countries
     """
-    mirror_selection = filterFn.filter_mirror_country(
+    mirror_selection = filter_mirror_pool_functions.filter_mirror_country(
         mirror_pool=mirror_selection, country_pool=self.selected_countries)
     """
     Check the length of selected_countries against the full countrylist
@@ -61,7 +62,7 @@ def build_mirror_list(self) -> None:
     """
     try:
         _ = self.config["protocols"][0]
-        mirror_selection = filterFn.filter_mirror_protocols(
+        mirror_selection = filter_mirror_pool_functions.filter_mirror_protocols(
             mirror_pool=mirror_selection, protocols=self.config["protocols"])
     except IndexError:
         pass
@@ -73,7 +74,7 @@ def build_mirror_list(self) -> None:
     if self.no_status:
         pass
     else:
-        mirror_selection = filterFn.filter_user_branch(
+        mirror_selection = filter_mirror_pool_functions.filter_user_branch(
             mirror_pool=mirror_selection, config=self.config)
 
     if self.config["method"] == "rank":
@@ -84,7 +85,7 @@ def build_mirror_list(self) -> None:
     else:
         shuffle(mirror_selection)
 
-    mirror_selection = filterFn.filter_error_mirrors(
+    mirror_selection = pacman_mirrors.functions.filter_mirror_status_functions.filter_error_mirrors(
         mirror_pool=mirror_selection)
 
     """

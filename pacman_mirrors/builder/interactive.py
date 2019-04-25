@@ -22,9 +22,10 @@
 from operator import itemgetter
 from random import shuffle
 
+import pacman_mirrors.functions.filter_mirror_status_functions
 from pacman_mirrors.constants import txt
 from pacman_mirrors.functions import convertFn
-from pacman_mirrors.functions import filterFn
+from pacman_mirrors.functions import filter_mirror_pool_functions
 from pacman_mirrors.functions import outputFn
 from pacman_mirrors.functions import sortMirrorFn
 from pacman_mirrors.functions import testMirrorFn
@@ -35,14 +36,13 @@ def build_mirror_list(self) -> None:
     """
     Prompt the user to select the mirrors with a gui.
     Outputs a "custom" mirror file
-    Modify the configuration file to use the "custom" file.
     Outputs a pacman mirrorlist,
     """
     """
     Remove known bad mirrors from the list
     mirrors where status.json has -1 for last_sync or branches is -1,-1,-1
     """
-    worklist = filterFn.filter_bad_mirrors(mirror_pool=self.mirrors.mirror_pool)
+    worklist = pacman_mirrors.functions.filter_mirror_status_functions.filter_bad_mirrors(mirror_pool=self.mirrors.mirror_pool)
     """
     It would seem reasonable to implement a filter
     based on the users branch and the mirrors update status
@@ -53,7 +53,7 @@ def build_mirror_list(self) -> None:
     The final mirrorfile will include all mirrors selected by the user
     The final mirrorlist will exclude (if possible) mirrors not up-to-date
     """
-    worklist = filterFn.filter_mirror_country(
+    worklist = filter_mirror_pool_functions.filter_mirror_country(
         mirror_pool=worklist, country_pool=self.selected_countries)
     """
     If config.protols has content, that is a user decision and as such
@@ -62,7 +62,7 @@ def build_mirror_list(self) -> None:
     """
     try:
         _ = self.config["protocols"][0]
-        worklist = filterFn.filter_mirror_protocols(
+        worklist = filter_mirror_pool_functions.filter_mirror_protocols(
              mirror_pool=worklist, protocols=self.config["protocols"])
     except IndexError:
         pass
@@ -147,7 +147,7 @@ def build_mirror_list(self) -> None:
             if self.no_status:
                 pass
             else:
-                mirror_list = filterFn.filter_user_branch(
+                mirror_list = filter_mirror_pool_functions.filter_user_branch(
                     mirror_pool=mirror_list, config=self.config)
             """
             Writing mirrorlist

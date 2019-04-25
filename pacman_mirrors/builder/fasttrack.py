@@ -21,9 +21,9 @@
 
 from random import shuffle
 
-
+import pacman_mirrors.functions.filter_mirror_status_functions
 from pacman_mirrors.constants import txt
-from pacman_mirrors.functions import filterFn
+from pacman_mirrors.functions import filter_mirror_pool_functions
 from pacman_mirrors.functions import outputFn
 from pacman_mirrors.functions import testMirrorFn
 from pacman_mirrors.functions import util
@@ -42,20 +42,20 @@ def build_mirror_list(self, limit: int) -> None:
     """
     remove known bad mirrors (status.json last_sync = -1)
     """
-    worklist = filterFn.filter_bad_mirrors(
+    worklist = pacman_mirrors.functions.filter_mirror_status_functions.filter_bad_mirrors(
         mirror_pool=self.mirrors.mirror_pool)
     """
     filter protocols if user has a selection
     """
     if self.config["protocols"]:
-        worklist = filterFn.filter_mirror_protocols(
+        worklist = filter_mirror_pool_functions.filter_mirror_protocols(
             mirror_pool=worklist, protocols=self.config["protocols"])
 
     """
     Only pick mirrors which are up-to-date for the system branch
     by removing not up-to-date mirrors from the list
     """
-    up_to_date_mirrors = filterFn.filter_user_branch(
+    up_to_date_mirrors = filter_mirror_pool_functions.filter_user_branch(
         mirror_pool=worklist, config=self.config)
     """
     Shuffle the list
