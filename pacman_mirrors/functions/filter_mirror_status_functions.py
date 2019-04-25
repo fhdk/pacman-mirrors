@@ -31,7 +31,7 @@ from pacman_mirrors.constants import txt
 
 def filter_bad_mirrors(mirror_pool: list) -> list:
     """
-    Remove known bad mirrors with last_sync = "9999:99"
+    Remove known bad mirrors with last_sync == "9999:99"
     :param mirror_pool: the global mirror pool
     :return: list with bad mirrors removed
     """
@@ -44,9 +44,9 @@ def filter_bad_mirrors(mirror_pool: list) -> list:
 
 def filter_error_mirrors(mirror_pool: list) -> list:
     """
-    Remove mirrors with resp_time = 99.99
+    Remove mirrors with resp_time == 99.99
     :param mirror_pool: the global mirror pool
-    :return: list with bad mirrors removed
+    :return: list with error mirrors removed
     """
     result = []
     for mirror in mirror_pool:
@@ -65,8 +65,6 @@ def filter_poor_mirrors(mirror_pool: list, interval: int = 720) -> list:
     result = []
     for mirror in mirror_pool:
         last_sync = str(mirror["last_sync"]).split(":")
-        print(f"last_sync={last_sync}")
-        exit()
         if int(last_sync[0]) < interval:
             result.append(mirror)
     return result

@@ -30,7 +30,7 @@ from pacman_mirrors.functions import jsonFn
 from pacman_mirrors.functions import util
 
 
-def check_existance_of(filename: str, folder: bool = False) -> bool:
+def check_file(filename: str, folder: bool = False) -> bool:
     """
     Check existence of named file
     :param filename:
@@ -70,10 +70,10 @@ def return_mirror_filename(config: object, tty: bool = False) -> tuple:
     filename = ""
     status = False  # status.json or mirrors.json
     # decision on file availablity
-    if check_existance_of(config["status_file"]):
+    if check_file(config["status_file"]):
         status = True
         filename = config["status_file"]
-    elif check_existance_of(filename=config["mirror_file"]):
+    elif check_file(filename=config["mirror_file"]):
         filename = config["mirror_file"]
     if not filename:
         util.msg(message=f"\n{txt.HOUSTON}\n", tty=tty, color=color.RED)

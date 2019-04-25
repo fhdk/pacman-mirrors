@@ -22,11 +22,11 @@
 import sys
 
 from pacman_mirrors.constants import txt, colors as color
-from pacman_mirrors.functions import httpFn
+from pacman_mirrors.functions.httpFn import get_mirror_response
 from pacman_mirrors.functions import util
 
 
-def test_mirrors(self, worklist: list, limit=None) -> list:
+def test_mirror_pool(self, worklist: list, limit=None) -> list:
     """
     Query server for response time
     """
@@ -49,19 +49,23 @@ def test_mirrors(self, worklist: list, limit=None) -> list:
     ssl_verify = self.config["ssl_verify"]
     result = []
     for mirror in worklist:
-        work_mirror = mirror_protocols(mirror)
-        colon = work_mirror[0]["url"].find(":")
-        url = work_mirror[0]["url"][colon:]
-        for mirror_proto in work_mirror:
+        # create a list for the mirrors available protocols
+        probe_items = list_with_protocols(mirror)
+        # locate position of protocols separator
+        colon = probe_items[0]["url"].find(":")
+        # create an url for the mirror without protocol
+        url = probe_items[0]["url"][colon:]
+        # loop protocols available
+        for probe_item in probe_items:
 
             # get protocol
-            proto = mirror_proto["protocols"][0]
+            probe_proto = probe_item["protocols"][0]
 
             # generate url with protocol
-            mirror_proto["url"] = f"{proto}{url}"
+            probe_item["url"] = f"{probe_proto}{url}"
 
             # create message for later display
-            message = f'  ..... {mirror_proto["country"]:<15}: {mirror_proto["url"]}'
+            message = f'  ..... {probe_item["country"]:<15}: {probe_item["url"]}'
 
             # if self.tty do not print theis
             if not self.quiet:
@@ -72,23 +76,26 @@ def test_mirrors(self, worklist: list, limit=None) -> list:
                     sys.stdout.flush()
 
             # https/ftps sometimes takes longer for handshake
-            if proto.endswith("tps"):  # https or ftps
+            if probe_proto.endswith("tps"):  # https or ftps
                 self.max_wait_time = ssl_wait
             else:
                 self.max_wait_time = http_wait
 
-            # let's see how responsive you are
-            mirror_proto["resp_time"] = httpFn.get_mirror_response(
-                url=mirror_proto["url"], config=self.config, tty=self.tty,
-                maxwait=self.max_wait_time, quiet=self.quiet, ssl_verify=ssl_verify)
+            # let's see see time spent
+            probe_item["resp_time"] = get_mirror_response(url=probe_item["url"],
+                                                          config=self.config,
+                                                          tty=self.tty,
+                                                          maxwait=self.max_wait_time,
+                                                          quiet=self.quiet,
+                                                          ssl_verify=ssl_verify)
 
             # create a printable string version from the response with appended zeroes
-            r_str = str(mirror_proto["resp_time"])
+            r_str = str(probe_item["resp_time"])
             while len(r_str) < 5:
                 r_str += "0"
 
             # validate against the defined wait time
-            if mirror_proto["resp_time"] >= self.max_wait_time:
+            if probe_item["resp_time"] >= self.max_wait_time:
                 # skip line - but not if tty
                 if not self.quiet:
                     if self.tty:
@@ -108,7 +115,8 @@ def test_mirrors(self, worklist: list, limit=None) -> list:
                 util.msg(message=message.replace(".....", r_str), tty=self.tty)
                 sys.stdout.flush()
 
-        probed_mirror = filter_bad_http(work=work_mirror)
+        # check the protocols
+        probed_mirror = filter_bad_response(work=probe_items)
 
         if limit is not None:
             if mirror["resp_time"] == txt.SERVER_RES:
@@ -130,7 +138,7 @@ def test_mirrors(self, worklist: list, limit=None) -> list:
     return result
 
 
-def mirror_protocols(mirror: dict) -> list:
+def list_with_protocols(mirror: dict) -> list:
     """
     Return a number of copies of mirror - one copy per protocol
     :param: mirror dictionary with a number of protocols
@@ -150,7 +158,7 @@ def mirror_protocols(mirror: dict) -> list:
     return result
 
 
-def filter_bad_http(work: list) -> dict:
+def filter_bad_response(work: list) -> dict:
     """
     filter bad http/ssl if mirror has more than one protocol
     :param work: list of mirror dictionaries with one protocol per dictionary
@@ -164,11 +172,9 @@ def filter_bad_http(work: list) -> dict:
         "resp_time": "",
         "url": work[0]["url"]
     }
-    if len(work) > 1:
-        for item in work:
-            if item["protocols"][0].endswith("tps") and item["resp_time"] == txt.SERVER_RES:
-                continue
-            result["protocols"].append(item["protocols"][0])
-            result["resp_time"] = item["resp_time"]
-        return result
-    return work[0]
+    for item in work:
+        if item["protocols"][0].endswith("tps") and item["resp_time"] == txt.SERVER_RES:
+            continue
+        result["protocols"].append(item["protocols"][0])
+        result["resp_time"] = item["resp_time"]
+    return result

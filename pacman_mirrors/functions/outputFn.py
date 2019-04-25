@@ -27,7 +27,7 @@ from pacman_mirrors.functions import jsonFn
 from pacman_mirrors.functions import util
 
 
-def file_custom_mirror_pool(self, selected_mirrors: list) -> None:
+def write_custom_mirrors_json(self, selected_mirrors: list) -> None:
     """
     Output selected mirrors to custom mirror file
     :param self:
@@ -43,7 +43,7 @@ def file_custom_mirror_pool(self, selected_mirrors: list) -> None:
         message=f'{txt.CUSTOM_MIRROR_FILE_SAVED}: {self.config["custom_file"]}', urgency=txt.INF_CLR, tty=self.tty)
 
 
-def file_mirror_list(self, selected_servers) -> None:
+def write_pacman_mirror_list(self, selected_servers) -> None:
     """
     Outputs selected servers to mirrorlist
     :param self:

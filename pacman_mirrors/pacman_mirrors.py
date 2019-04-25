@@ -92,9 +92,9 @@ class PacmanMirrors:
         util.i686_check(self, write=True)
         if not configFn.sanitize_config(config=self.config):
             sys.exit(2)
-        self.network = httpFn.inet_conn_check(tty=self.tty)
+        self.network = httpFn.check_internet_connection(tty=self.tty)
         if self.network:
-            httpFn.update_mirror_pool(config=self.config, tty=self.tty, quiet=self.quiet)
+            httpFn.download_mirror_pool(config=self.config, tty=self.tty, quiet=self.quiet)
         if self.no_mirrorlist:
             sys.exit(0)
         if not self.network:

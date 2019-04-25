@@ -62,8 +62,8 @@ def download_mirrors(config: object) -> tuple:
         tempfile = config["work_dir"] + "/.temp.file"
         jsonFn.json_dump_file(mirrorlist, tempfile)
         filecmp.clear_cache()
-        if fileFn.check_existance_of(conf.USR_DIR, folder=True):
-            if not fileFn.check_existance_of(config["mirror_file"]):
+        if fileFn.check_file(conf.USR_DIR, folder=True):
+            if not fileFn.check_file(config["mirror_file"]):
                 jsonFn.json_dump_file(mirrorlist, config["mirror_file"])
             elif not filecmp.cmp(tempfile, config["mirror_file"]):
                 jsonFn.json_dump_file(mirrorlist, config["mirror_file"])
@@ -117,7 +117,7 @@ def get_geoip_country() -> str:
 
 def get_mirror_response(url: str, config: object, tty: bool = False, maxwait: int = 2,
                         count: int = 1, quiet: bool = False, ssl_verify: bool = True) -> float:
-    """Query mirrors availability
+    """Query mirror by downloading a file and measuring the time taken
     :param config:
     :param ssl_verify:
     :param tty:
@@ -127,21 +127,19 @@ def get_mirror_response(url: str, config: object, tty: bool = False, maxwait: in
     :param quiet:
     :returns string with response time
     """
-    probe_start = time.time()
-    response_time = txt.SERVER_RES
+    response_time = txt.SERVER_RES  # prepare default return value
     probe_stop = None
     message = ""
-    # context = None
     context = ssl.create_default_context()
     arch = "x86_64"
     if config["x32"]:
         arch = "i686"
-    probe_url = "{}{}/core/{}/{}".format(url, config["branch"], arch, config["test_file"])
+    probe_url = f"{url}{config['branch']}/core/{arch}/{config['test_file']}"
     if not ssl_verify:
-        # context = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
         context.check_hostname = False
         context.verify_mode = ssl.CERT_NONE
     req = urllib.request.Request(url=probe_url, headers=headers)
+    probe_start = time.time()
     # noinspection PyBroadException
     try:
         for _ in range(count):
@@ -165,12 +163,11 @@ def get_mirror_response(url: str, config: object, tty: bool = False, maxwait: in
     if message and not quiet:
         util.msg(message=message, urgency=txt.ERR_CLR, tty=tty, newline=True)
     if probe_stop:
-        # calc = round((probe_stop - probe_start), 3)
         response_time = round((probe_stop - probe_start), 3)
     return response_time
 
 
-def inet_conn_check(tty: bool = False, maxwait: int = 2) -> bool:
+def check_internet_connection(tty: bool = False, maxwait: int = 2) -> bool:
     """Check for internet connection
     :param maxwait:
     :param tty:
@@ -187,7 +184,7 @@ def inet_conn_check(tty: bool = False, maxwait: int = 2) -> bool:
     return bool(resp)
 
 
-def ping_host(host: str, tty: bool=False, count=1) -> bool:
+def ping_host(host: str, tty: bool = False, count: int = 1) -> bool:
     """Check a hosts availability
     :param host:
     :param count:
@@ -198,7 +195,7 @@ def ping_host(host: str, tty: bool=False, count=1) -> bool:
     return system_call("ping -c{} {} > /dev/null".format(count, host)) == 0
 
 
-def update_mirror_pool(config: object, tty: bool = False, quiet: bool = False) -> tuple:
+def download_mirror_pool(config: object, tty: bool = False, quiet: bool = False) -> tuple:
     """Download updates from repo.manjaro.org
     :param config:
     :param quiet:
@@ -207,7 +204,7 @@ def update_mirror_pool(config: object, tty: bool = False, quiet: bool = False) -
     :rtype: tuple
     """
     result = None
-    connected = inet_conn_check(tty=tty)
+    connected = check_internet_connection(tty=tty)
     if connected:
         if not quiet:
             util.msg(message=f"{txt.DOWNLOADING_MIRROR_FILE} {txt.REPO_SERVER}",
@@ -215,18 +212,16 @@ def update_mirror_pool(config: object, tty: bool = False, quiet: bool = False) -
                      tty=tty)
         result = download_mirrors(config)
     else:
-        if not fileFn.check_existance_of(config["status_file"]):
+        if not fileFn.check_file(config["status_file"]):
             if not quiet:
-                util.msg(message="{} {} {)".format(txt.MIRROR_FILE,
-                                                   config["status_file"],
-                                                   txt.IS_MISSING),
+                util.msg(message=f"{txt.MIRROR_FILE} {config['status_file']} {txt.IS_MISSING}",
                          urgency=txt.WRN_CLR,
                          tty=tty)
                 util.msg(message=f"{txt.FALLING_BACK} {conf.MIRROR_FILE}",
                          urgency=txt.WRN_CLR,
                          tty=tty)
             result = (True, False)
-        if not fileFn.check_existance_of(config["mirror_file"]):
+        if not fileFn.check_file(config["mirror_file"]):
             if not quiet:
                 util.msg(message=f"{txt.HOUSTON}",
                          urgency=txt.HOUSTON,

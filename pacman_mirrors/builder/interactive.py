@@ -22,14 +22,59 @@
 from operator import itemgetter
 from random import shuffle
 
-import pacman_mirrors.functions.filter_mirror_status_functions
+from pacman_mirrors.functions.filter_mirror_status_functions import \
+    filter_bad_mirrors, filter_error_mirrors, filter_poor_mirrors
+
 from pacman_mirrors.constants import txt
-from pacman_mirrors.functions import convertFn
-from pacman_mirrors.functions import filter_mirror_pool_functions
-from pacman_mirrors.functions import outputFn
-from pacman_mirrors.functions import sortMirrorFn
-from pacman_mirrors.functions import testMirrorFn
+
+from pacman_mirrors.functions.convertFn import \
+    translate_interactive_to_pool, translate_pool_to_interactive
+
+from pacman_mirrors.functions.filter_mirror_pool_functions import \
+    filter_mirror_country, filter_mirror_protocols, filter_user_branch
+
+from pacman_mirrors.functions.outputFn import \
+    write_custom_mirrors_json, write_pacman_mirror_list
+
+from pacman_mirrors.functions.sortMirrorFn import sort_mirrors
+from pacman_mirrors.functions.testMirrorFn import test_mirror_pool
 from pacman_mirrors.functions import util
+
+
+def build_working_pool(self) -> list:
+    """
+    Apply bad mirrors filter
+    """
+    result_pool = filter_bad_mirrors(mirror_pool=self.mirrors.mirror_pool)
+    """
+    Apply error mirrors filter
+    """
+    result_pool = filter_error_mirrors(mirror_pool=result_pool)
+    """
+    Apply country filter
+    The final mirrorfile will include all mirrors selected by the user
+    The final mirrorlist will exclude (if possible) mirrors not up-to-date
+    """
+    result_pool = filter_mirror_country(mirror_pool=result_pool, country_pool=self.selected_countries)
+    """
+    Apply protocol filter
+    If config.protols has content, that is a user decision and as such
+    it has nothing to do with the reasoning regarding mirrors
+    which might or might not be up-to-date
+    """
+    try:
+        _ = self.config["protocols"][0]
+        result_pool = filter_mirror_protocols(mirror_pool=result_pool, protocols=self.config["protocols"])
+    except IndexError:
+        pass
+
+    """
+    Apply interval filter
+    """
+    if self.no_status and self.interval:
+        result_pool = filter_poor_mirrors(mirror_pool=result_pool, interval=self.interval)
+
+    return result_pool
 
 
 def build_mirror_list(self) -> None:
@@ -38,42 +83,14 @@ def build_mirror_list(self) -> None:
     Outputs a "custom" mirror file
     Outputs a pacman mirrorlist,
     """
-    """
-    Remove known bad mirrors from the list
-    mirrors where status.json has -1 for last_sync or branches is -1,-1,-1
-    """
-    worklist = pacman_mirrors.functions.filter_mirror_status_functions.filter_bad_mirrors(mirror_pool=self.mirrors.mirror_pool)
-    """
-    It would seem reasonable to implement a filter
-    based on the users branch and the mirrors update status
-    On the other hand, the interactive mode is for the user
-    to have total control over the mirror file.
-    So though it might seem prudent to only include updated mirrors,
-    we will not do it when user has selected interactive mode.
-    The final mirrorfile will include all mirrors selected by the user
-    The final mirrorlist will exclude (if possible) mirrors not up-to-date
-    """
-    worklist = filter_mirror_pool_functions.filter_mirror_country(
-        mirror_pool=worklist, country_pool=self.selected_countries)
-    """
-    If config.protols has content, that is a user decision and as such
-    it has nothing to do with the reasoning regarding mirrors
-    which might or might not be up-to-date
-    """
-    try:
-        _ = self.config["protocols"][0]
-        worklist = filter_mirror_pool_functions.filter_mirror_protocols(
-             mirror_pool=worklist, protocols=self.config["protocols"])
-    except IndexError:
-        pass
+
+    worklist = build_working_pool(self)
 
     # rank or shuffle the mirrorlist before showing the ui
     if not self.default:
         if self.config["method"] == "rank":
-            worklist = testMirrorFn.test_mirrors(
-                self=self, worklist=worklist)
-            worklist = sortMirrorFn.sort_mirrors(
-                worklist=worklist, field="resp_time", reverse=False)
+            worklist = test_mirror_pool(self=self, worklist=worklist)
+            worklist = sort_mirrors(worklist=worklist, field="resp_time", reverse=False)
         else:
             shuffle(worklist)
     """
@@ -94,8 +111,8 @@ def build_mirror_list(self) -> None:
     As of version 4.8.x the last sync field contents is a string
     with the hours and minutes more human readable eg. 03h 33m
     """
-    interactive_list = convertFn.translate_pool_to_interactive(
-        mirror_pool=worklist, tty=self.tty)
+    interactive_list = translate_pool_to_interactive(mirror_pool=worklist, tty=self.tty)
+
     # import the right ui
     if self.no_display:
         # in console mode
@@ -103,27 +120,29 @@ def build_mirror_list(self) -> None:
     else:
         # gobject introspection is present and accounted for
         from pacman_mirrors.dialogs import graphicalui as ui
-    interactive = ui.run(
-        server_list=interactive_list, random=self.config["method"] == "random", default=self.default)
+    interactive = ui.run(server_list=interactive_list,
+                         random=self.config["method"] == "random",
+                         default=self.default)
+
     # process user choices
     if interactive.is_done:
         """
         translate interactive list back to our json format
         """
-        custom_pool, mirror_list = convertFn.translate_interactive_to_pool(
-            custom_mirrors=interactive.custom_list, mirror_pool=self.mirrors.mirror_pool, tty=self.tty)
+        custom_pool, test_pool = translate_interactive_to_pool(custom_mirrors=interactive.custom_list,
+                                                                 mirror_pool=self.mirrors.mirror_pool,
+                                                                 tty=self.tty)
         """
         Try selected method on the mirrorlist
         """
         try:
-            _ = mirror_list[0]
+            _ = test_pool[0]
             if self.default:
                 if self.config["method"] == "rank":
-                    mirror_list = testMirrorFn.test_mirrors(
-                        self=self, worklist=mirror_list)
-                    mirror_list = sorted(mirror_list, key=itemgetter("resp_time"))
+                    test_pool = test_mirror_pool(self=self, worklist=test_pool)
+                    test_pool = sorted(test_pool, key=itemgetter("resp_time"))
                 else:
-                    shuffle(mirror_list)
+                    shuffle(test_pool)
         except IndexError:
             pass
 
@@ -138,8 +157,7 @@ def build_mirror_list(self) -> None:
             """
             Writing the custom mirror pool file
             """
-            outputFn.file_custom_mirror_pool(
-                self=self, selected_mirrors=custom_pool)
+            write_custom_mirrors_json(self=self, selected_mirrors=custom_pool)
             """
             Unless the user has provided the --no-status argument we only 
             write mirrors which are up-to-date for users selected branch
@@ -147,8 +165,7 @@ def build_mirror_list(self) -> None:
             if self.no_status:
                 pass
             else:
-                mirror_list = filter_mirror_pool_functions.filter_user_branch(
-                    mirror_pool=mirror_list, config=self.config)
+                test_pool = filter_user_branch(mirror_pool=test_pool, config=self.config)
             """
             Writing mirrorlist
             If the mirror list is empty because 
@@ -156,8 +173,8 @@ def build_mirror_list(self) -> None:
             raise IndexError to the outer try-catch
             """
             try:
-                _ = mirror_list[0]
-                outputFn.file_mirror_list(self, mirror_list)
+                _ = test_pool[0]
+                write_pacman_mirror_list(self, test_pool)
                 if self.no_status:
                     util.msg(
                         message=f"{txt.OVERRIDE_STATUS_CHOICE}", urgency=txt.WRN_CLR, tty=self.tty)

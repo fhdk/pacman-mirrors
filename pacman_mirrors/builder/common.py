@@ -22,12 +22,19 @@
 from operator import itemgetter
 from random import shuffle
 
-import pacman_mirrors.functions.filter_mirror_status_functions
+from pacman_mirrors.functions.filter_mirror_status_functions import \
+    filter_error_mirrors, filter_poor_mirrors, filter_bad_mirrors
+
 from pacman_mirrors.constants import txt
-from pacman_mirrors.functions import filter_mirror_pool_functions
-from pacman_mirrors.functions import outputFn
-from pacman_mirrors.functions import sortMirrorFn
-from pacman_mirrors.functions import testMirrorFn
+
+from pacman_mirrors.functions.filter_mirror_pool_functions import \
+    filter_user_branch, filter_mirror_protocols, filter_mirror_country
+
+from pacman_mirrors.functions.outputFn import \
+    write_pacman_mirror_list, write_custom_mirrors_json
+
+from pacman_mirrors.functions.sortMirrorFn import sort_mirrors
+from pacman_mirrors.functions.testMirrorFn import test_mirror_pool
 from pacman_mirrors.functions import util
 
 
@@ -36,16 +43,22 @@ def build_mirror_list(self) -> None:
     Generate common mirrorlist
     """
     """
+    Apply bad mirror filter
     Remove known bad mirrors from the list
     mirrors where status.json has -1 for last_sync
     """
-    mirror_selection = pacman_mirrors.functions.filter_mirror_status_functions.filter_bad_mirrors(
-        mirror_pool=self.mirrors.mirror_pool)
+    mirror_selection = filter_bad_mirrors(mirror_pool=self.mirrors.mirror_pool)
     """
-    Create a list based on the content of selected_countries
+    Apply bad mirror filter
+    Remove known bad mirrors from the list
+    mirrors where status.json has -1 for last_sync
     """
-    mirror_selection = filter_mirror_pool_functions.filter_mirror_country(
-        mirror_pool=mirror_selection, country_pool=self.selected_countries)
+    mirror_selection = filter_error_mirrors(mirror_pool=mirror_selection)
+    """
+    Apply country filter
+    """
+    mirror_selection = filter_mirror_country(mirror_pool=mirror_selection, 
+                                             country_pool=self.selected_countries)
     """
     Check the length of selected_countries against the full countrylist
     If selected_countries is the lesser then we build a custom pool file
@@ -53,8 +66,7 @@ def build_mirror_list(self) -> None:
     if len(self.selected_countries) < len(self.mirrors.country_pool):
         try:
             _ = self.selected_countries[0]
-            outputFn.file_custom_mirror_pool(
-                self=self, selected_mirrors=mirror_selection)
+            write_custom_mirrors_json(self=self, selected_mirrors=mirror_selection)
         except IndexError:
             pass
     """
@@ -62,8 +74,8 @@ def build_mirror_list(self) -> None:
     """
     try:
         _ = self.config["protocols"][0]
-        mirror_selection = filter_mirror_pool_functions.filter_mirror_protocols(
-            mirror_pool=mirror_selection, protocols=self.config["protocols"])
+        mirror_selection = filter_mirror_protocols(mirror_pool=mirror_selection, 
+                                                   protocols=self.config["protocols"])
     except IndexError:
         pass
 
@@ -72,39 +84,38 @@ def build_mirror_list(self) -> None:
     write mirrors which are up-to-date for users selected branch
     """
     if self.no_status:
-        pass
+        """
+        Apply interval filter
+        """
+        if self.interval:
+            mirror_selection = filter_poor_mirrors(mirror_pool=mirror_selection, 
+                                                   interval=self.interval)
     else:
-        mirror_selection = filter_mirror_pool_functions.filter_user_branch(
-            mirror_pool=mirror_selection, config=self.config)
+        mirror_selection = filter_user_branch(mirror_pool=mirror_selection, 
+                                              config=self.config)
 
     if self.config["method"] == "rank":
-        mirror_selection = testMirrorFn.test_mirrors(
-            self=self, worklist=mirror_selection)
-        mirror_selection = sortMirrorFn.sort_mirrors(
-            worklist=mirror_selection, field="resp_time", reverse=False)
+        mirror_selection = test_mirror_pool(self=self, worklist=mirror_selection)
+        mirror_selection = sort_mirrors(worklist=mirror_selection, field="resp_time", reverse=False)
     else:
         shuffle(mirror_selection)
 
-    mirror_selection = pacman_mirrors.functions.filter_mirror_status_functions.filter_error_mirrors(
-        mirror_pool=mirror_selection)
+    mirror_selection = filter_error_mirrors(mirror_pool=mirror_selection)
 
     """
     Try to write mirrorlist
     """
     try:
         _ = mirror_selection[0]
-        outputFn.file_mirror_list(
-            self=self, selected_servers=mirror_selection)
+        write_pacman_mirror_list(self=self, selected_servers=mirror_selection)
         if self.custom:
-            util.msg(
-                message=f"{txt.MIRROR_LIST_CUSTOM_RESET} 'sudo {txt.MODIFY_CUSTOM}'",urgency=txt.INF_CLR, tty=self.tty)
-            util.msg(
-                message=f"{txt.REMOVE_CUSTOM_CONFIG} 'sudo {txt.RESET_ALL}'", urgency=txt.INF_CLR, tty=self.tty)
+            util.msg(message=f"{txt.MIRROR_LIST_CUSTOM_RESET} 'sudo {txt.MODIFY_CUSTOM}'",
+                     urgency=txt.INF_CLR, tty=self.tty)
+            util.msg(message=f"{txt.REMOVE_CUSTOM_CONFIG} 'sudo {txt.RESET_ALL}'",
+                     urgency=txt.INF_CLR, tty=self.tty)
         if self.no_status:
-            util.msg(
-                message=f"{txt.OVERRIDE_STATUS_CHOICE}", urgency=txt.WRN_CLR, tty=self.tty)
-            util.msg(
-                message=f"{txt.OVERRIDE_STATUS_MIRROR}", urgency=txt.WRN_CLR, tty=self.tty)
+            util.msg(message=f"{txt.OVERRIDE_STATUS_CHOICE}", urgency=txt.WRN_CLR, tty=self.tty)
+            util.msg(message=f"{txt.OVERRIDE_STATUS_MIRROR}", urgency=txt.WRN_CLR, tty=self.tty)
     except IndexError:
         util.msg(
             message=f"{txt.NO_SELECTION}", urgency=txt.WRN_CLR, tty=self.tty)

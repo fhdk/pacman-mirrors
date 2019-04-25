@@ -21,11 +21,14 @@
 
 from random import shuffle
 
-import pacman_mirrors.functions.filter_mirror_status_functions
+from pacman_mirrors.functions.filter_mirror_status_functions import filter_error_mirrors, filter_bad_mirrors
 from pacman_mirrors.constants import txt
-from pacman_mirrors.functions import filter_mirror_pool_functions
-from pacman_mirrors.functions import outputFn
-from pacman_mirrors.functions import testMirrorFn
+
+from pacman_mirrors.functions.filter_mirror_pool_functions import \
+    filter_mirror_country, filter_mirror_protocols, filter_user_branch
+
+from pacman_mirrors.functions.outputFn import write_pacman_mirror_list
+from pacman_mirrors.functions.testMirrorFn import test_mirror_pool
 from pacman_mirrors.functions import util
 from pacman_mirrors.functions.sortMirrorFn import sort_mirrors
 
@@ -42,42 +45,34 @@ def build_mirror_list(self, limit: int) -> None:
     """
     remove known bad mirrors (status.json last_sync = -1)
     """
-    worklist = pacman_mirrors.functions.filter_mirror_status_functions.filter_bad_mirrors(
-        mirror_pool=self.mirrors.mirror_pool)
+    work_pool = filter_bad_mirrors(mirror_pool=self.mirrors.mirror_pool)
     """
     filter protocols if user has a selection
     """
     if self.config["protocols"]:
-        worklist = filter_mirror_pool_functions.filter_mirror_protocols(
-            mirror_pool=worklist, protocols=self.config["protocols"])
+        work_pool = filter_mirror_protocols(mirror_pool=work_pool, protocols=self.config["protocols"])
 
     """
     Only pick mirrors which are up-to-date for the system branch
     by removing not up-to-date mirrors from the list
     """
-    up_to_date_mirrors = filter_mirror_pool_functions.filter_user_branch(
-        mirror_pool=worklist, config=self.config)
+    up_to_date_mirrors = filter_user_branch(mirror_pool=work_pool, config=self.config)
     """
     Shuffle the list
     """
     shuffle(up_to_date_mirrors)
 
     # probe the mirrors
-    worklist = testMirrorFn.test_mirrors(
-        self=self, worklist=up_to_date_mirrors, limit=limit)
+    work_pool = test_mirror_pool(self=self, worklist=up_to_date_mirrors, limit=limit)
     # sort the result
-    worklist = sort_mirrors(
-        worklist=worklist, field="resp_time", reverse=False)
+    work_pool = sort_mirrors(worklist=work_pool, field="resp_time", reverse=False)
 
     """
     Write mirrorlist
     """
     try:
-        _ = worklist[0]
-        outputFn.file_mirror_list(
-            self=self, selected_servers=worklist)
+        _ = work_pool[0]
+        write_pacman_mirror_list(self=self, selected_servers=work_pool)
     except IndexError:
-        util.msg(
-            message=f"{txt.NO_SELECTION}", urgency=txt.WRN_CLR, tty=self.tty)
-        util.msg(
-            message=f"{txt.NO_CHANGE}", urgency=txt.INF_CLR, tty=self.tty)
+        util.msg(message=f"{txt.NO_SELECTION}", urgency=txt.WRN_CLR, tty=self.tty)
+        util.msg(message=f"{txt.NO_CHANGE}", urgency=txt.INF_CLR, tty=self.tty)

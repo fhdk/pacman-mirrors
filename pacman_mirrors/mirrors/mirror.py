@@ -31,7 +31,7 @@ class Mirror:
         self.mirror_pool = []
 
     def add(self, country: str, url: str, protocols: list,
-            branches: list=None, last_sync: str = None, resp_time: str = None) -> None:
+            branches: list = None, last_sync: str = None, resp_time: str = None) -> None:
         """Append mirror
         :param country:
         :param url:
@@ -45,24 +45,26 @@ class Mirror:
         if last_sync is None:
             last_sync = "00:00"
         if resp_time is None:
-            resp_time = "00.00"
+            resp_time = 0
+        else:
+            resp_time = dec(resp_time)
         if country not in self.country_pool:
             self.country_pool.append(country)
         # translate negative integer in status.json
         if last_sync == -1:
-            last_sync = txt.SERVER_BAD
-            resp_time = txt.SERVER_RES
+            last_sync = txt.SERVER_BAD  # "9999:99"
+            resp_time = txt.SERVER_RES  # 99.99
         # sort protocols in reversed order https,http,ftps,ftp
         protocols = sorted(protocols, reverse=True)
-        mirror = {
+        # add to pool
+        self.mirror_pool.append({
             "branches": branches,
             "country": country,
             "last_sync": last_sync,
             "protocols": protocols,
             "resp_time": resp_time,
             "url": url
-        }
-        self.mirror_pool.append(mirror)
+        })
 
     def seed(self, servers: list, status: bool = False, custom: bool = False) -> None:
         """

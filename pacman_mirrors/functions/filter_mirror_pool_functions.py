@@ -52,6 +52,7 @@ def filter_mirror_protocols(mirror_pool: list, protocols: list) -> list:
         if accepted:
             mirror["protocols"] = accepted
             result.append(mirror)
+        print(f"filter_mirror_protocols mirror loop -> mirror={mirror}")
     return result
 
 
@@ -60,7 +61,7 @@ def filter_user_branch(mirror_pool: list, config: object) -> list:
     Filter mirrorlist on users branch and branch sync state
     :param mirror_pool:
     :param config:
-    :return: list
+    :return: list of up-to-date mirrors
     """
     for idx, branch in enumerate(conf.BRANCHES):
         if config["x32"]:
