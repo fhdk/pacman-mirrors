@@ -36,7 +36,7 @@ def filter_mirror_country(mirror_pool: list, country_pool: list) -> list:
     return result
 
 
-def filter_mirror_protocols(mirror_pool: list, protocols: list = None) -> list:
+def filter_mirror_protocols(mirror_pool: list, protocols: list) -> list:
     """
     Return a new mirrorlist with protocols
     :type mirror_pool: list
@@ -44,8 +44,6 @@ def filter_mirror_protocols(mirror_pool: list, protocols: list = None) -> list:
     :rtype: list
     """
     result = []
-    if not protocols:
-        return mirror_pool
     for mirror in mirror_pool:
         accepted = []
         for idx, protocol in enumerate(protocols):
