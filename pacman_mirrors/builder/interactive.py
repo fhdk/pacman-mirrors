@@ -45,17 +45,17 @@ def build_working_pool(self) -> list:
     """
     Apply bad mirrors filter
     """
-    result_pool = filter_bad_mirrors(mirror_pool=self.mirrors.mirror_pool)
+    pool_result = filter_bad_mirrors(mirror_pool=self.mirrors.mirror_pool)
     """
     Apply error mirrors filter
     """
-    result_pool = filter_error_mirrors(mirror_pool=result_pool)
+    pool_result = filter_error_mirrors(mirror_pool=pool_result)
     """
     Apply country filter
     The final mirrorfile will include all mirrors selected by the user
     The final mirrorlist will exclude (if possible) mirrors not up-to-date
     """
-    result_pool = filter_mirror_country(mirror_pool=result_pool, country_pool=self.selected_countries)
+    pool_result = filter_mirror_country(mirror_pool=pool_result, country_pool=self.selected_countries)
     """
     Apply protocol filter
     If config.protols has content, that is a user decision and as such
@@ -64,7 +64,7 @@ def build_working_pool(self) -> list:
     """
     try:
         _ = self.config["protocols"][0]
-        result_pool = filter_mirror_protocols(mirror_pool=result_pool, protocols=self.config["protocols"])
+        pool_result = filter_mirror_protocols(mirror_pool=pool_result, protocols=self.config["protocols"])
     except IndexError:
         pass
 
@@ -72,9 +72,9 @@ def build_working_pool(self) -> list:
     Apply interval filter
     """
     if self.no_status and self.interval:
-        result_pool = filter_poor_mirrors(mirror_pool=result_pool, interval=self.interval)
+        pool_result = filter_poor_mirrors(mirror_pool=pool_result, interval=self.interval)
 
-    return result_pool
+    return pool_result
 
 
 def build_mirror_list(self) -> None:
@@ -120,6 +120,7 @@ def build_mirror_list(self) -> None:
     else:
         # gobject introspection is present and accounted for
         from pacman_mirrors.dialogs import graphicalui as ui
+
     interactive = ui.run(server_list=interactive_list,
                          random=self.config["method"] == "random",
                          default=self.default)
@@ -129,20 +130,19 @@ def build_mirror_list(self) -> None:
         """
         translate interactive list back to our json format
         """
-        custom_pool, test_pool = translate_interactive_to_pool(custom_mirrors=interactive.custom_list,
-                                                                 mirror_pool=self.mirrors.mirror_pool,
-                                                                 tty=self.tty)
+        custom_pool, mirror_list = translate_interactive_to_pool(selection=interactive.custom_list,
+                                                                 mirror_pool=self.mirrors.mirror_pool, tty=self.tty)
         """
         Try selected method on the mirrorlist
         """
         try:
-            _ = test_pool[0]
+            _ = mirror_list[0]
             if self.default:
                 if self.config["method"] == "rank":
-                    test_pool = test_mirror_pool(self=self, worklist=test_pool)
-                    test_pool = sorted(test_pool, key=itemgetter("resp_time"))
+                    mirror_list = test_mirror_pool(self=self, worklist=mirror_list)
+                    mirror_list = sorted(mirror_list, key=itemgetter("resp_time"))
                 else:
-                    shuffle(test_pool)
+                    shuffle(mirror_list)
         except IndexError:
             pass
 
@@ -165,7 +165,7 @@ def build_mirror_list(self) -> None:
             if self.no_status:
                 pass
             else:
-                test_pool = filter_user_branch(mirror_pool=test_pool, config=self.config)
+                mirror_list = filter_user_branch(mirror_pool=mirror_list, config=self.config)
             """
             Writing mirrorlist
             If the mirror list is empty because 
@@ -173,8 +173,8 @@ def build_mirror_list(self) -> None:
             raise IndexError to the outer try-catch
             """
             try:
-                _ = test_pool[0]
-                write_pacman_mirror_list(self, test_pool)
+                _ = mirror_list[0]
+                write_pacman_mirror_list(self, mirror_list)
                 if self.no_status:
                     util.msg(
                         message=f"{txt.OVERRIDE_STATUS_CHOICE}", urgency=txt.WRN_CLR, tty=self.tty)
