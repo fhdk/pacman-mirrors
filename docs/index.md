@@ -185,6 +185,9 @@ which is up-to-date for your systems branch.
 -s, \--no-status
 :   Ignore up-to-date status for system branch.
 
+\--interval
+:   Apply a filter based on elapsed hours since last sync.
+
 -t, \--timeout *SECONDS*
 :   Change the number of seconds waiting for a server response, SSL enabled mirrors has this value doubled to compensate for the time spent on exchanging encryption keys.
 
