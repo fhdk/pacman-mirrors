@@ -148,9 +148,8 @@ def parse_command_line(self, gtk_available: bool) -> None:
     misc.add_argument("--no-color",
                       action="store_true")
     misc.add_argument("--interval",
-                      nargs="?",
-                      const=0,
-                      type=int)
+                      type=int,
+                      help="Max. number of hours since last sync")
 
     args = parser.parse_args()
 
@@ -241,7 +240,7 @@ def parse_command_line(self, gtk_available: bool) -> None:
     if args.no_status:
         self.no_status = True
 
-    if args.interval != 0:
+    if args.interval:
         self.interval = args.interval
 
     """
