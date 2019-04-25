@@ -62,7 +62,7 @@ def get_protocol_from_url(url: str) -> str:
     return url
 
 
-def get_server_location_from_url(url: str) -> str:
+def location_from_url(url: str) -> str:
     """
     Splits an url
     :param url:

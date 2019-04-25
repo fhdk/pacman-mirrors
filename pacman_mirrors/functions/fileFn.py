@@ -104,7 +104,7 @@ def write_mirror_list(config: object, servers: list, tty: bool = False, custom: 
                 protocol = server["protocols"][0]
                 pos = url.find(":")
                 server["url"] = f'{protocol}{url[pos:]}{config["branch"]}{config["repo_arch"]}'
-                if server["resp_time"] == "99.99":
+                if server["resp_time"] == 99.99:
                     # do not write bad servers to mirrorlist
                     continue
                 if interactive:

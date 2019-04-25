@@ -134,7 +134,6 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
         """
         if limit is not None and counter is not 0 and counter == limit:
             break
-
     return result
 
 
@@ -162,19 +161,20 @@ def filter_bad_response(work: list) -> dict:
     """
     filter bad http/ssl if mirror has more than one protocol
     :param work: list of mirror dictionaries with one protocol per dictionary
-    :return: mirror dictionary with invalid ssl removed
+    :return: mirror dictionary with invalid protocols removed
     """
     result = {
         "branches": work[0]["branches"],
         "country": work[0]["country"],
         "last_sync": work[0]["last_sync"],
         "protocols": [],
-        "resp_time": "",
+        "resp_time": 99.99,
         "url": work[0]["url"]
     }
     for item in work:
-        if item["protocols"][0].endswith("tps") and item["resp_time"] == txt.SERVER_RES:
+        if item["resp_time"] == txt.SERVER_RES:
             continue
         result["protocols"].append(item["protocols"][0])
-        result["resp_time"] = item["resp_time"]
+        if item["resp_time"] < result["resp_time"]:
+            result["resp_time"] = item["resp_time"]
     return result
