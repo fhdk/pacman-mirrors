@@ -95,9 +95,7 @@ def sanitize_config(config: object) -> bool:
     :param config:
     """
     errors = []
-    header = ".: {}: {} `{}`".format(txt.ERR_CLR,
-                                     txt.INVALID_SETTING_IN,
-                                     conf.CONFIG_FILE)
+    header = f".: {txt.ERR_CLR}: {txt.INVALID_SETTING_IN} `{conf.CONFIG_FILE}`"
     # Check Method
     if config["method"] not in conf.METHODS:
         errors.append("     'Method = {}'; {} {}".format(

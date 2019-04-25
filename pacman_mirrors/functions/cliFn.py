@@ -147,6 +147,10 @@ def parse_command_line(self, gtk_available: bool) -> None:
                       help=txt.HLP_ARG_VERSION)
     misc.add_argument("--no-color",
                       action="store_true")
+    misc.add_argument("--interval",
+                      nargs="?",
+                      const=0,
+                      type=int)
 
     args = parser.parse_args()
 
@@ -202,6 +206,14 @@ def parse_command_line(self, gtk_available: bool) -> None:
             sys.exit(1)
 
     """
+    If --interval and not --no-status reject
+    """
+    if args.interval > 0 and not arg.no_status:
+        print("Version {}\nUSAGE:\n {} {}".format(__version__, "pacman-mirrors", args_summary))
+        print("Invalid argument: --interval argument only valid with -s/--no-status")
+        sys.exit(1)
+
+    """
     #############################################################
     Root required
     #############################################################
@@ -220,14 +232,17 @@ def parse_command_line(self, gtk_available: bool) -> None:
     if args.no_mirrorlist:
         self.no_mirrorlist = True
 
-    if args.no_status:
-        self.no_status = True
-
     if args.quiet:
         self.quiet = True
 
     if args.timeout:
         self.max_wait_time = args.timeout
+
+    if args.no_status:
+        self.no_status = True
+
+    if args.interval != 0:
+        self.interval = args.interval
 
     """
     Generation methods
