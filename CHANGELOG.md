@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.14.99.dev] 2019-04-25
+* Implemented [#146](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/146)
+  - Added `--interval`. Works only with `--no-status` filtering mirrors based on last sync time.
+* Fixed [#145](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/145)
+
 ## [4.14.2] 2019-04-22
 * pulled transifex translation
 * updated documentation (man page)
