@@ -20,7 +20,7 @@
 """Pacman-Mirrors Country Functions"""
 
 from pacman_mirrors.functions import httpFn
-from pacman_mirrors.functions import validFn
+from pacman_mirrors.functions.validFn import country_list_is_valid, custom_config_is_valid
 
 
 def build_country_list(country_selection: list, country_pool: list, tty: bool = False, geoip: bool = False) -> list:
@@ -49,9 +49,9 @@ def build_country_list(country_selection: list, country_pool: list, tty: bool = 
         if country_selection == ["all"]:
             result = country_pool
         else:
-            if validFn.country_list_is_valid(onlycountry=country_selection,
-                                             countrylist=country_pool,
-                                             tty=tty):
+            if country_list_is_valid(onlycountry=country_selection,
+                                     countrylist=country_pool,
+                                     tty=tty):
                 result = country_selection
     if not result:
         if geoip:
@@ -71,12 +71,10 @@ def get_geoip_country(country_pool: list) -> str:
     :param country_pool:
     :return: country name if found
     """
-    try:
-        g_country = httpFn.get_geoip_country()
-        if g_country in country_pool:
-            return g_country
-    except IndexError:
-        pass
+    country_name = httpFn.get_ip_country().replace(" ", "_")
+
+    selection = (x for x in country_pool if country_name in x["country"])
+
+    for select in selection:
+        return select["country"]
     return ""
-
-
