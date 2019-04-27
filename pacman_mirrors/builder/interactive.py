@@ -41,39 +41,6 @@ from pacman_mirrors.functions.testMirrorFn import test_mirror_pool
 from pacman_mirrors.functions import util
 
 
-def build_working_pool(self) -> list:
-    """
-    Apply country filter
-    """
-    pool_result = filter_mirror_country(mirror_pool=self.mirrors.mirror_pool, country_pool=self.selected_countries)
-    """
-    Apply bad mirrors filter
-    """
-    pool_result = filter_bad_mirrors(mirror_pool=pool_result)
-    """
-    Apply error mirrors filter
-    """
-    pool_result = filter_error_mirrors(mirror_pool=pool_result)
-    """
-    Apply protocol filter
-    If config.protols has content, that is a user decision and as such
-    it has nothing to do with the reasoning regarding mirrors
-    which might or might not be up-to-date
-    """
-    try:
-        _ = self.config["protocols"][0]
-        pool_result = filter_mirror_protocols(mirror_pool=pool_result, protocols=self.config["protocols"])
-    except IndexError:
-        pass
-    """
-    Apply interval filter
-    """
-    if self.no_status and self.interval:
-        pool_result = filter_poor_mirrors(mirror_pool=pool_result, interval=self.interval)
-
-    return pool_result
-
-
 def build_mirror_list(self) -> None:
     """
     Prompt the user to select the mirrors with a gui.
@@ -90,6 +57,7 @@ def build_mirror_list(self) -> None:
             worklist = sort_mirror_pool(worklist=worklist, field="resp_time", reverse=False)
         else:
             shuffle(worklist)
+
     """
     Create a list for display in ui.
     The gui and the console ui expect the supplied list
@@ -128,6 +96,7 @@ def build_mirror_list(self) -> None:
         """
         custom_pool, mirror_list = translate_interactive_to_pool(selection=interactive.custom_list,
                                                                  mirror_pool=self.mirrors.mirror_pool, tty=self.tty)
+
         """
         Try selected method on the mirrorlist
         """
@@ -150,10 +119,12 @@ def build_mirror_list(self) -> None:
             _ = custom_pool[0]
             self.custom = True
             self.config["country_pool"] = ["Custom"]
+
             """
             Writing the custom mirror pool file
             """
             write_custom_mirrors_json(self=self, selected_mirrors=custom_pool)
+
             """
             Unless the user has provided the --no-status argument we only 
             write mirrors which are up-to-date for users selected branch
@@ -162,6 +133,7 @@ def build_mirror_list(self) -> None:
                 pass
             else:
                 mirror_list = filter_user_branch(mirror_pool=mirror_list, config=self.config)
+
             """
             Writing mirrorlist
             If the mirror list is empty because 
@@ -179,3 +151,40 @@ def build_mirror_list(self) -> None:
         except IndexError:
             util.msg(message=f"{txt.NO_SELECTION}", urgency=txt.WRN_CLR, tty=self.tty)
             util.msg(message=f"{txt.NO_CHANGE}", urgency=txt.INF_CLR, tty=self.tty)
+
+
+def build_working_pool(self) -> list:
+    """
+    Apply country filter
+    """
+    pool_result = filter_mirror_country(mirror_pool=self.mirrors.mirror_pool, country_pool=self.selected_countries)
+
+    """
+    Apply bad mirrors filter
+    """
+    pool_result = filter_bad_mirrors(mirror_pool=pool_result)
+
+    """
+    Apply error mirrors filter
+    """
+    pool_result = filter_error_mirrors(mirror_pool=pool_result)
+
+    """
+    Apply protocol filter
+    If config.protols has content, that is a user decision and as such
+    it has nothing to do with the reasoning regarding mirrors
+    which might or might not be up-to-date
+    """
+    try:
+        _ = self.config["protocols"][0]
+        pool_result = filter_mirror_protocols(mirror_pool=pool_result, protocols=self.config["protocols"])
+    except IndexError:
+        pass
+
+    """
+    Apply interval filter
+    """
+    if self.no_status and self.interval:
+        pool_result = filter_poor_mirrors(mirror_pool=pool_result, interval=self.interval)
+
+    return pool_result

@@ -42,24 +42,15 @@ def build_mirror_list(self, limit: int) -> None:
     Only mirrors from the active mirror file is used
       either mirrors.json or custom-mirrors.json
     """
-    """
-    remove known bad mirrors - last sync 9999:99
-    """
-    work_pool = filter_bad_mirrors(mirror_pool=self.mirrors.mirror_pool)
-    """
-    remove known error mirrors - response time 99.99 
-    """
-    work_pool = filter_error_mirrors(mirror_pool=work_pool)
-    """
-    filter protocols if user has a selection
-    """
-    if self.config["protocols"]:
-        work_pool = filter_mirror_protocols(mirror_pool=work_pool, protocols=self.config["protocols"])
+
+    work_pool = build_working_pool(self)
+
     """
     Only pick mirrors which are up-to-date for the system branch
     by removing not up-to-date mirrors from the list
     """
     up_to_date_mirrors = filter_user_branch(mirror_pool=work_pool, config=self.config)
+
     """
     Shuffle the list
     """
@@ -78,3 +69,24 @@ def build_mirror_list(self, limit: int) -> None:
     except IndexError:
         util.msg(message=f"{txt.NO_SELECTION}", urgency=txt.WRN_CLR, tty=self.tty)
         util.msg(message=f"{txt.NO_CHANGE}", urgency=txt.INF_CLR, tty=self.tty)
+
+
+def build_working_pool(self) -> list:
+
+    """
+    remove known bad mirrors - last sync 9999:99
+    """
+    work_pool = filter_bad_mirrors(mirror_pool=self.mirrors.mirror_pool)
+
+    """
+    remove known error mirrors - response time 99.99 
+    """
+    work_pool = filter_error_mirrors(mirror_pool=work_pool)
+
+    """
+    apply protocol filter
+    """
+    if self.config["protocols"]:
+        work_pool = filter_mirror_protocols(mirror_pool=work_pool, protocols=self.config["protocols"])
+
+    return work_pool
