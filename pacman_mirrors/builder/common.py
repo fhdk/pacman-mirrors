@@ -60,7 +60,7 @@ def build_mirror_list(self) -> None:
         shuffle(mirror_selection)
 
     """
-    Try to write mirrorlist
+    Write mirrorlist
     """
     try:
         _ = mirror_selection[0]
