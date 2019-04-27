@@ -43,22 +43,17 @@ def build_mirror_list(self) -> None:
     Generate common mirrorlist
     """
     """
-    Apply bad mirror filter
-    Remove known bad mirrors from the list
-    mirrors where status.json has -1 for last_sync
-    """
-    mirror_selection = filter_bad_mirrors(mirror_pool=self.mirrors.mirror_pool)
-    """
-    Apply bad mirror filter
-    Remove known bad mirrors from the list
-    mirrors where status.json has -1 for last_sync
-    """
-    mirror_selection = filter_error_mirrors(mirror_pool=mirror_selection)
-    """
     Apply country filter
     """
-    mirror_selection = filter_mirror_country(mirror_pool=mirror_selection, 
-                                             country_pool=self.selected_countries)
+    mirror_selection = filter_mirror_country(mirror_pool=self.mirrors.mirror_pool,country_pool=self.selected_countries)
+    """
+    Apply bad mirror filter - mirrors where status.json has -1 for last_sync 9999:99
+    """
+    mirror_selection = filter_bad_mirrors(mirror_pool=mirror_selection)
+    """
+    Apply bad error filter- mirrors having a response time of 99.99 
+    """
+    mirror_selection = filter_error_mirrors(mirror_pool=mirror_selection)
     """
     Check the length of selected_countries against the full countrylist
     If selected_countries is the lesser then we build a custom pool file
@@ -74,11 +69,9 @@ def build_mirror_list(self) -> None:
     """
     try:
         _ = self.config["protocols"][0]
-        mirror_selection = filter_mirror_protocols(mirror_pool=mirror_selection, 
-                                                   protocols=self.config["protocols"])
+        mirror_selection = filter_mirror_protocols(mirror_pool=mirror_selection, protocols=self.config["protocols"])
     except IndexError:
         pass
-
     """
     Unless the user has provided the --no-status argument we only 
     write mirrors which are up-to-date for users selected branch
@@ -88,11 +81,9 @@ def build_mirror_list(self) -> None:
         Apply interval filter
         """
         if self.interval:
-            mirror_selection = filter_poor_mirrors(mirror_pool=mirror_selection, 
-                                                   interval=self.interval)
+            mirror_selection = filter_poor_mirrors(mirror_pool=mirror_selection, interval=self.interval)
     else:
-        mirror_selection = filter_user_branch(mirror_pool=mirror_selection, 
-                                              config=self.config)
+        mirror_selection = filter_user_branch(mirror_pool=mirror_selection, config=self.config)
 
     if self.config["method"] == "rank":
         mirror_selection = test_mirror_pool(self=self, worklist=mirror_selection)
@@ -111,13 +102,10 @@ def build_mirror_list(self) -> None:
         if self.custom:
             util.msg(message=f"{txt.MIRROR_LIST_CUSTOM_RESET} 'sudo {txt.MODIFY_CUSTOM}'",
                      urgency=txt.INF_CLR, tty=self.tty)
-            util.msg(message=f"{txt.REMOVE_CUSTOM_CONFIG} 'sudo {txt.RESET_ALL}'",
-                     urgency=txt.INF_CLR, tty=self.tty)
+            util.msg(message=f"{txt.REMOVE_CUSTOM_CONFIG} 'sudo {txt.RESET_ALL}'", urgency=txt.INF_CLR, tty=self.tty)
         if self.no_status:
             util.msg(message=f"{txt.OVERRIDE_STATUS_CHOICE}", urgency=txt.WRN_CLR, tty=self.tty)
             util.msg(message=f"{txt.OVERRIDE_STATUS_MIRROR}", urgency=txt.WRN_CLR, tty=self.tty)
     except IndexError:
-        util.msg(
-            message=f"{txt.NO_SELECTION}", urgency=txt.WRN_CLR, tty=self.tty)
-        util.msg(
-            message=f"{txt.NO_CHANGE}", urgency=txt.INF_CLR, tty=self.tty)
+        util.msg(message=f"{txt.NO_SELECTION}", urgency=txt.WRN_CLR, tty=self.tty)
+        util.msg(message=f"{txt.NO_CHANGE}", urgency=txt.INF_CLR, tty=self.tty)
