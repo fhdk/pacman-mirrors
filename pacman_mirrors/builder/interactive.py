@@ -22,7 +22,7 @@
 from operator import itemgetter
 from random import shuffle
 
-from pacman_mirrors.builder.pool_builder import build_pool
+from pacman_mirrors.builder.builder import build_pool
 from pacman_mirrors.constants import txt
 
 from pacman_mirrors.functions.convertFn import \
