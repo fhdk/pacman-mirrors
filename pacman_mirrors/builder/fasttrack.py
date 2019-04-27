@@ -21,11 +21,11 @@
 
 from random import shuffle
 
-from pacman_mirrors.functions.filter_mirror_status_functions import filter_error_mirrors, filter_bad_mirrors
+from pacman_mirrors.builder.pool_builder import build_pool
 from pacman_mirrors.constants import txt
 
 from pacman_mirrors.functions.filter_mirror_pool_functions import \
-    filter_mirror_country, filter_mirror_protocols, filter_user_branch
+    filter_user_branch
 
 from pacman_mirrors.functions.outputFn import write_pacman_mirror_list
 from pacman_mirrors.functions.testMirrorFn import test_mirror_pool
@@ -43,7 +43,7 @@ def build_mirror_list(self, limit: int) -> None:
       either mirrors.json or custom-mirrors.json
     """
 
-    work_pool = build_working_pool(self)
+    work_pool = build_pool(self)
 
     """
     Only pick mirrors which are up-to-date for the system branch
@@ -55,9 +55,15 @@ def build_mirror_list(self, limit: int) -> None:
     Shuffle the list
     """
     shuffle(up_to_date_mirrors)
+
+    """
     # probe the mirrors
+    """
     work_pool = test_mirror_pool(self=self, worklist=up_to_date_mirrors, limit=limit)
+
+    """
     # sort the result
+    """
     work_pool = sort_mirror_pool(worklist=work_pool, field="resp_time", reverse=False)
 
     """
@@ -71,22 +77,3 @@ def build_mirror_list(self, limit: int) -> None:
         util.msg(message=f"{txt.NO_CHANGE}", urgency=txt.INF_CLR, tty=self.tty)
 
 
-def build_working_pool(self) -> list:
-
-    """
-    remove known bad mirrors - last sync 9999:99
-    """
-    work_pool = filter_bad_mirrors(mirror_pool=self.mirrors.mirror_pool)
-
-    """
-    remove known error mirrors - response time 99.99 
-    """
-    work_pool = filter_error_mirrors(mirror_pool=work_pool)
-
-    """
-    apply protocol filter
-    """
-    if self.config["protocols"]:
-        work_pool = filter_mirror_protocols(mirror_pool=work_pool, protocols=self.config["protocols"])
-
-    return work_pool

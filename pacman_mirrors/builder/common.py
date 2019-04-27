@@ -19,19 +19,16 @@
 
 """Pacman-Mirrors Common Mirror List Builder Module"""
 
-from operator import itemgetter
 from random import shuffle
 
+from pacman_mirrors.builder.pool_builder import build_pool
 from pacman_mirrors.functions.filter_mirror_status_functions import \
-    filter_error_mirrors, filter_poor_mirrors, filter_bad_mirrors
+    filter_error_mirrors
 
 from pacman_mirrors.constants import txt
 
-from pacman_mirrors.functions.filter_mirror_pool_functions import \
-    filter_user_branch, filter_mirror_protocols, filter_mirror_country
-
 from pacman_mirrors.functions.outputFn import \
-    write_pacman_mirror_list, write_custom_mirrors_json
+    write_pacman_mirror_list
 
 from pacman_mirrors.functions.sortMirrorFn import sort_mirror_pool
 from pacman_mirrors.functions.testMirrorFn import test_mirror_pool
@@ -43,15 +40,24 @@ def build_mirror_list(self) -> None:
     Generate common mirrorlist
     """
 
-    mirror_selection = build_working_pool(self)
+    mirror_selection = build_pool(self)
+
+    """
+    Check the length of selected_countries against the full countrylist
+    If selected_countries is the lesser then we build a custom pool file
+    """
+    if len(self.selected_countries) < len(self.mirrors.country_pool):
+        try:
+            _ = self.selected_countries[0]
+            write_custom_mirrors_json(self=self, selected_mirrors=mirror_selection)
+        except IndexError:
+            pass
 
     if self.config["method"] == "rank":
         mirror_selection = test_mirror_pool(self=self, worklist=mirror_selection)
         mirror_selection = sort_mirror_pool(worklist=mirror_selection, field="resp_time", reverse=False)
     else:
         shuffle(mirror_selection)
-
-    mirror_selection = filter_error_mirrors(mirror_pool=mirror_selection)
 
     """
     Try to write mirrorlist
@@ -71,53 +77,3 @@ def build_mirror_list(self) -> None:
         util.msg(message=f"{txt.NO_CHANGE}", urgency=txt.INF_CLR, tty=self.tty)
 
 
-def build_working_pool(self) -> list:
-    """
-    Apply country filter
-    """
-    mirror_selection = filter_mirror_country(mirror_pool=self.mirrors.mirror_pool, country_pool=self.selected_countries)
-
-    """
-    Apply bad mirror filter - mirrors where status.json has -1 for last_sync 9999:99
-    """
-    mirror_selection = filter_bad_mirrors(mirror_pool=mirror_selection)
-
-    """
-    Apply bad error filter- mirrors having a response time of 99.99 
-    """
-    mirror_selection = filter_error_mirrors(mirror_pool=mirror_selection)
-
-    """
-    Prototol filtering if applicable
-    """
-    try:
-        _ = self.config["protocols"][0]
-        mirror_selection = filter_mirror_protocols(mirror_pool=mirror_selection, protocols=self.config["protocols"])
-    except IndexError:
-        pass
-
-    """
-    Check the length of selected_countries against the full countrylist
-    If selected_countries is the lesser then we build a custom pool file
-    """
-    if len(self.selected_countries) < len(self.mirrors.country_pool):
-        try:
-            _ = self.selected_countries[0]
-            write_custom_mirrors_json(self=self, selected_mirrors=mirror_selection)
-        except IndexError:
-            pass
-
-    """
-    Unless the user has provided the --no-status argument we only 
-    write mirrors which are up-to-date for users selected branch
-    """
-    if self.no_status:
-        """
-        Apply interval filter
-        """
-        if self.interval:
-            mirror_selection = filter_poor_mirrors(mirror_pool=mirror_selection, interval=self.interval)
-    else:
-        mirror_selection = filter_user_branch(mirror_pool=mirror_selection, config=self.config)
-
-    return mirror_selection
