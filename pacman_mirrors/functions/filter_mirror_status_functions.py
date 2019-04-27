@@ -31,8 +31,8 @@ from pacman_mirrors.constants import txt
 
 def filter_bad_mirrors(mirror_pool: list) -> list:
     """
-    Remove known bad mirrors with last_sync == "9999:99"
-    :param mirror_pool: the global mirror pool
+    Remove known bad mirrors with last_sync == "9999:99" (status.json -1)
+    :param mirror_pool:
     :return: list with bad mirrors removed
     """
     result = []
@@ -45,7 +45,7 @@ def filter_bad_mirrors(mirror_pool: list) -> list:
 def filter_error_mirrors(mirror_pool: list) -> list:
     """
     Remove mirrors with resp_time == 99.99
-    :param mirror_pool: the global mirror pool
+    :param mirror_pool:
     :return: list with error mirrors removed
     """
     result = []
@@ -58,7 +58,7 @@ def filter_error_mirrors(mirror_pool: list) -> list:
 def filter_poor_mirrors(mirror_pool: list, interval: int = 720) -> list:
     """
     Remove poorly updated mirrors last_sync is more than interval hours
-    :param mirror_pool: object
+    :param mirror_pool:
     :param interval: hours since last sync - defaults to 30 days
     :return: list with mirrors removed which has not synced since interval
     """
