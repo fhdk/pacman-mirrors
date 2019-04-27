@@ -18,8 +18,8 @@
 # Authors: Frede Hundewadt <echo ZmhAbWFuamFyby5vcmcK | base64 -d>
 
 """Pacman-Mirrors Country Functions"""
-
-from pacman_mirrors.functions import httpFn
+import pacman_mirrors.constants.timezones
+from pacman_mirrors.functions.httpFn import get_ip_country
 from pacman_mirrors.functions.validFn import country_list_is_valid, custom_config_is_valid
 
 
@@ -71,10 +71,27 @@ def get_geoip_country(country_pool: list) -> str:
     :param country_pool:
     :return: country name if found
     """
-    country_name = httpFn.get_ip_country().replace(" ", "_")
-
-    selection = (x for x in country_pool if country_name in x["country"])
-
-    for select in selection:
+    country_name = get_ip_country().replace(" ", "_")
+    countries = (x for x in country_pool if country_name in x["country"])
+    for select in countries:
         return select["country"]
     return ""
+
+
+def get_continent(country: str) -> str:
+    """
+    get continent for country
+    :param country:
+    :return:
+    """
+    continents = (x for x in timezones.countries if country in x["name"])
+    for continent in continents:
+        return continent["continent"]
+
+
+def get_country() -> str:
+    """
+    Check country
+    :return: country name
+    """
+    return get_ip_country().replace(" ", "_")
