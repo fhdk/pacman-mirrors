@@ -33,7 +33,7 @@ from pacman_mirrors.functions.filter_mirror_pool_functions import \
 from pacman_mirrors.functions.outputFn import \
     write_pacman_mirror_list, write_custom_mirrors_json
 
-from pacman_mirrors.functions.sortMirrorFn import sort_mirrors
+from pacman_mirrors.functions.sortMirrorFn import sort_mirror_pool
 from pacman_mirrors.functions.testMirrorFn import test_mirror_pool
 from pacman_mirrors.functions import util
 
@@ -87,7 +87,7 @@ def build_mirror_list(self) -> None:
 
     if self.config["method"] == "rank":
         mirror_selection = test_mirror_pool(self=self, worklist=mirror_selection)
-        mirror_selection = sort_mirrors(worklist=mirror_selection, field="resp_time", reverse=False)
+        mirror_selection = sort_mirror_pool(worklist=mirror_selection, field="resp_time", reverse=False)
     else:
         shuffle(mirror_selection)
 

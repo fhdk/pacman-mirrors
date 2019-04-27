@@ -36,26 +36,24 @@ from pacman_mirrors.functions.filter_mirror_pool_functions import \
 from pacman_mirrors.functions.outputFn import \
     write_custom_mirrors_json, write_pacman_mirror_list
 
-from pacman_mirrors.functions.sortMirrorFn import sort_mirrors
+from pacman_mirrors.functions.sortMirrorFn import sort_mirror_pool
 from pacman_mirrors.functions.testMirrorFn import test_mirror_pool
 from pacman_mirrors.functions import util
 
 
 def build_working_pool(self) -> list:
     """
+    Apply country filter
+    """
+    pool_result = filter_mirror_country(mirror_pool=self.mirrors.mirror_pool, country_pool=self.selected_countries)
+    """
     Apply bad mirrors filter
     """
-    pool_result = filter_bad_mirrors(mirror_pool=self.mirrors.mirror_pool)
+    pool_result = filter_bad_mirrors(mirror_pool=pool_result)
     """
     Apply error mirrors filter
     """
     pool_result = filter_error_mirrors(mirror_pool=pool_result)
-    """
-    Apply country filter
-    The final mirrorfile will include all mirrors selected by the user
-    The final mirrorlist will exclude (if possible) mirrors not up-to-date
-    """
-    pool_result = filter_mirror_country(mirror_pool=pool_result, country_pool=self.selected_countries)
     """
     Apply protocol filter
     If config.protols has content, that is a user decision and as such
@@ -67,7 +65,6 @@ def build_working_pool(self) -> list:
         pool_result = filter_mirror_protocols(mirror_pool=pool_result, protocols=self.config["protocols"])
     except IndexError:
         pass
-
     """
     Apply interval filter
     """
@@ -90,7 +87,7 @@ def build_mirror_list(self) -> None:
     if not self.default:
         if self.config["method"] == "rank":
             worklist = test_mirror_pool(self=self, worklist=worklist)
-            worklist = sort_mirrors(worklist=worklist, field="resp_time", reverse=False)
+            worklist = sort_mirror_pool(worklist=worklist, field="resp_time", reverse=False)
         else:
             shuffle(worklist)
     """
@@ -121,8 +118,7 @@ def build_mirror_list(self) -> None:
         # gobject introspection is present and accounted for
         from pacman_mirrors.dialogs import graphicalui as ui
 
-    interactive = ui.run(server_list=interactive_list,
-                         random=self.config["method"] == "random",
+    interactive = ui.run(server_list=interactive_list, random=self.config["method"] == "random",
                          default=self.default)
 
     # process user choices
@@ -176,14 +172,10 @@ def build_mirror_list(self) -> None:
                 _ = mirror_list[0]
                 write_pacman_mirror_list(self, mirror_list)
                 if self.no_status:
-                    util.msg(
-                        message=f"{txt.OVERRIDE_STATUS_CHOICE}", urgency=txt.WRN_CLR, tty=self.tty)
-                    util.msg(
-                        message=f"{txt.OVERRIDE_STATUS_MIRROR}", urgency=txt.WRN_CLR, tty=self.tty)
+                    util.msg(message=f"{txt.OVERRIDE_STATUS_CHOICE}", urgency=txt.WRN_CLR, tty=self.tty)
+                    util.msg(message=f"{txt.OVERRIDE_STATUS_MIRROR}", urgency=txt.WRN_CLR, tty=self.tty)
             except IndexError:
                 raise IndexError
         except IndexError:
-            util.msg(
-                message=f"{txt.NO_SELECTION}", urgency=txt.WRN_CLR, tty=self.tty)
-            util.msg(
-                message=f"{txt.NO_CHANGE}", urgency=txt.INF_CLR, tty=self.tty)
+            util.msg(message=f"{txt.NO_SELECTION}", urgency=txt.WRN_CLR, tty=self.tty)
+            util.msg(message=f"{txt.NO_CHANGE}", urgency=txt.INF_CLR, tty=self.tty)
