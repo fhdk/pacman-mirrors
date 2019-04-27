@@ -20,7 +20,7 @@
 
 """Pacman-Mirrors Mirror Class Module"""
 
-from pacman_mirrors.constants import txt
+from pacman_mirrors.constants import txt, timezones
 
 
 class Mirror:
@@ -59,6 +59,7 @@ class Mirror:
         protocols = sorted(protocols, reverse=True)
         # add to pool
         self.mirror_pool.append({
+            "continent": get_continent(country),
             "branches": branches,
             "country": country,
             "last_sync": last_sync,
@@ -89,3 +90,15 @@ class Mirror:
                 self.add(server["country"],
                          server["url"],
                          server["protocols"])
+
+
+def get_continent(country: str) -> str:
+    """
+    get continent for country
+    :param country:
+    :return:
+    """
+    continents = (x for x in timezones.countries if country in x["name"])
+    for continent in continents:
+        return continent["continent"]
+    return ""
