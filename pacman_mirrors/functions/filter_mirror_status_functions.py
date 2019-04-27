@@ -36,9 +36,9 @@ def filter_bad_mirrors(mirror_pool: list) -> list:
     :return: list with bad mirrors removed
     """
     result = []
-    for mirror in mirror_pool:
-        if mirror["last_sync"] != txt.SERVER_BAD:
-            result.append(mirror)
+    mirrors = (x for x in mirror_pool if x["resp_time"] != txt.SERVER_BAD)
+    for mirror in mirrors:
+        result.append(mirror)
     return result
 
 
@@ -49,9 +49,9 @@ def filter_error_mirrors(mirror_pool: list) -> list:
     :return: list with error mirrors removed
     """
     result = []
-    for mirror in mirror_pool:
-        if mirror["resp_time"] != txt.SERVER_RES:
-            result.append(mirror)
+    mirrors = (x for x in mirror_pool if x["resp_time"] != txt.SERVER_RES)
+    for mirror in mirrors:
+        result.append(mirror)
     return result
 
 
@@ -63,8 +63,7 @@ def filter_poor_mirrors(mirror_pool: list, interval: int = 720) -> list:
     :return: list with mirrors removed which has not synced since interval
     """
     result = []
-    for mirror in mirror_pool:
-        last_sync = str(mirror["last_sync"]).split(":")
-        if int(last_sync[0]) < interval:
-            result.append(mirror)
+    mirrors = (x for x in mirror_pool if int(str(x["last_sync"]).split(":")[0]) < interval)
+    for mirror in mirrors:
+        result.append(mirror)
     return result
