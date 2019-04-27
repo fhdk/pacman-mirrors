@@ -20,7 +20,8 @@
 
 """Pacman-Mirrors Mirror Class Module"""
 
-from pacman_mirrors.constants import txt, timezones
+from pacman_mirrors.constants import txt
+from pacman_mirrors.functions.countryFn import get_continent
 
 
 class Mirror:
@@ -88,15 +89,3 @@ class Mirror:
                 self.add(server["country"],
                          server["url"],
                          server["protocols"])
-
-
-def get_continent(country: str) -> str:
-    """
-    get continent for country
-    :param country:
-    :return:
-    """
-    continents = (x for x in timezones.countries if country in x["name"])
-    for continent in continents:
-        return continent["continent"]
-    return ""
