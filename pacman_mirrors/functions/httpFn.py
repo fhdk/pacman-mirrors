@@ -23,6 +23,7 @@ import collections
 import filecmp
 import json
 import os
+import requests
 import ssl
 import time
 import urllib.request
@@ -41,6 +42,11 @@ from pacman_mirrors.functions import jsonFn
 from pacman_mirrors.functions import util
 
 headers = {"User-Agent": "{}{}".format(conf.USER_AGENT, __version__)}
+
+
+def get_url_last_modifed(url: str) -> str:
+    x = requests.head(url)
+    return x.headers["last-modified"]
 
 
 def download_mirrors(config: object) -> tuple:
@@ -86,33 +92,15 @@ def download_mirrors(config: object) -> tuple:
     return fetchmirrors, fetchstatus
 
 
-def get_geoip_country() -> str:
-    """Try to get the user country via GeoIP
-    :return: country name or nothing
+def get_ip_country() -> str:
     """
-    country_name = ""
+    Get the user country from connection IP (might be VPN who knows)
+    :return: country name
+    """
     try:
-        req = urllib.request.Request(url="https://get.geojs.io/v1/ip/geo.json")
-        res = urllib.request.urlopen(req)
-        json_obj = json.loads(res.read().decode("utf8"))
-        if "timezone" in json_obj:
-            tz = json_obj["timezone"]
-            for country in timezones.countries:
-                if tz in country["timezones"]:
-                    country_name = country["name"]
-                    country_fix = {
-                        "Brazil": "Brasil",
-                        "Costa Rica": "Costa_Rica",
-                        "Czech Republic": "Czech",
-                        "South Africa": "Africa",
-                        "United Kingdom": "United_Kingdom",
-                        "United States": "United_States",
-                    }
-                    if country_name in country_fix.keys():
-                        country_name = country_fix[country_name]
-    except (URLError, HTTPException, json.JSONDecodeError):
-        pass
-    return country_name
+        return requests.get("https://get.geojs.io/v1/ip/country/full").text
+    except (URLError, HTTPException):
+        return ""
 
 
 def get_mirror_response(url: str, config: object, tty: bool = False, maxwait: int = 2,
