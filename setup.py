@@ -16,10 +16,9 @@ from setuptools import setup
 def update_mirror_file():
     """update mirrors.json from github"""
     countries = list()
+    url = "https://gitlab.manjaro.org/tools/maintenance-tools/manjaro-web-repo/blob/master/mirrors.json"
     try:
-        with urlopen(
-            "https://gitlab.manjaro.org/tools/maintenance-tools/manjaro-web-repo/blob/master/mirrors.json") as \
-             response:
+        with urlopen(url) as response:
             countries = json.loads(response.read().decode("utf8"), object_pairs_hook=collections.OrderedDict)
     except (HTTPException, json.JSONDecodeError, URLError, timeout):
         pass
@@ -81,7 +80,8 @@ setup(
               'pacman_mirrors.mirrors',
               'pacman_mirrors.translation'],
     package_dir={'pacman_mirrors': 'pacman_mirrors'},
-    data_files=[('/etc', ['conf/pacman-mirrors.conf']),
+    # data_files=[('/etc', ['conf/pacman-mirrors.conf']),
+    data_files=[('/etc', []),
                 ('/etc/pacman.d', []),
                 ('share/man/man8', ['man/pacman-mirrors.8.gz']),
                 ('share/pacman-mirrors', ['share/mirrors.json']),
