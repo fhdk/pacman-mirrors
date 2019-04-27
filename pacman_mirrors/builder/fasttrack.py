@@ -49,17 +49,17 @@ def build_mirror_list(self, limit: int) -> None:
     Only pick mirrors which are up-to-date for the system branch
     by removing not up-to-date mirrors from the list
     """
-    up_to_date_mirrors = filter_user_branch(mirror_pool=work_pool, config=self.config)
+    mirrors = filter_user_branch(mirror_pool=work_pool, config=self.config)
 
     """
     Shuffle the list
     """
-    shuffle(up_to_date_mirrors)
+    shuffle(mirrors)
 
     """
     # probe the mirrors
     """
-    work_pool = test_mirror_pool(self=self, worklist=up_to_date_mirrors, limit=limit)
+    work_pool = test_mirror_pool(self=self, worklist=mirrors, limit=limit)
 
     """
     # sort the result
