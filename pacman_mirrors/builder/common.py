@@ -45,7 +45,7 @@ def build_mirror_list(self) -> None:
     """
     Apply country filter
     """
-    mirror_selection = filter_mirror_country(mirror_pool=self.mirrors.mirror_pool,country_pool=self.selected_countries)
+    mirror_selection = filter_mirror_country(mirror_pool=self.mirrors.mirror_pool, country_pool=self.selected_countries)
     """
     Apply bad mirror filter - mirrors where status.json has -1 for last_sync 9999:99
     """
