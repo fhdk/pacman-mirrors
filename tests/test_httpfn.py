@@ -43,7 +43,7 @@ class TestHttpFn(unittest.TestCase):
         pass
 
     @patch("os.getuid")
-    @patch.object(httpFn, "get_geoip_country")
+    @patch.object(httpFn, "get_ip_country")
     @patch.object(configFn, "setup_config")
     def test_geoip_available(self,
                              mock_build_config,
@@ -60,11 +60,11 @@ class TestHttpFn(unittest.TestCase):
             app.config = configFn.setup_config()
             cliFn.parse_command_line(app, True)
             defaultFn.load_default_mirror_pool(app)
-            app.selected_countries = httpFn.get_geoip_country()
+            app.selected_countries = httpFn.get_ip_country()
             assert app.selected_countries == ["Denmark"]
 
     # @patch("os.getuid")
-    # @patch.object(httpFn, "get_geoip_country")
+    # @patch.object(httpFn, "get_ip_country")
     # @patch.object(configFn, "setup_config")
     # def test_geoip_not_available(self,
     #                              mock_build_config,
