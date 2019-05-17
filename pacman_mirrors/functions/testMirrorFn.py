@@ -148,7 +148,7 @@ def protocol_fn(self, executor, protocol, url, cols):
 
     # create a printable string version from the response with appended zeroes
     r_str = str(protocol["resp_time"])
-    while len(r_str) < 5:
+    while len(r_str) < 6:
         r_str += "0"
 
     # validate against the defined wait time
@@ -165,12 +165,12 @@ def protocol_fn(self, executor, protocol, url, cols):
             if self.tty:
                 pass
             else:
-                print(f"\r  {color.GREEN}{r_str}{color.RESET} - {protocol['url']}")
+                url = protocol["url"]
+                country = protocol["country"]
+                while len(str(country)) < len("United_Kingdom") + 1:
+                    country += ' '
 
-    # we have tty then we print with response time
-    if self.tty:
-        util.msg(message=message.replace(".....", r_str), tty=self.tty)
-        sys.stdout.flush()
+                print(f"\r  {color.GREEN}{r_str}{color.RESET} :: {country} - {url}")
 
 
 def list_with_protocols(mirror: dict) -> list:
