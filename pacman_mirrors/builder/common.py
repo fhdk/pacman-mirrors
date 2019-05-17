@@ -28,7 +28,7 @@ from pacman_mirrors.functions.filter_mirror_status_functions import \
 from pacman_mirrors.constants import txt
 
 from pacman_mirrors.functions.outputFn import \
-    write_pacman_mirror_list
+    write_pacman_mirror_list, write_custom_mirrors_json
 
 from pacman_mirrors.functions.sortMirrorFn import sort_mirror_pool
 from pacman_mirrors.functions.testMirrorFn import test_mirror_pool
@@ -39,8 +39,7 @@ def build_mirror_list(self) -> None:
     """
     Generate common mirrorlist
     """
-
-    mirror_selection = build_pool(self)
+    work_pool = build_pool(self)
 
     """
     Check the length of selected_countries against the full countrylist
@@ -49,26 +48,27 @@ def build_mirror_list(self) -> None:
     if len(self.selected_countries) < len(self.mirrors.country_pool):
         try:
             _ = self.selected_countries[0]
-            write_custom_mirrors_json(self=self, selected_mirrors=mirror_selection)
+            write_custom_mirrors_json(self=self, selected_mirrors=work_pool)
         except IndexError:
             pass
 
     if self.config["method"] == "rank":
-        mirror_selection = test_mirror_pool(self=self, worklist=mirror_selection)
-        mirror_selection = sort_mirror_pool(worklist=mirror_selection, field="resp_time", reverse=False)
+        work_pool = test_mirror_pool(self=self, worklist=work_pool)
+        work_pool = sort_mirror_pool(worklist=work_pool, field="resp_time", reverse=False)
     else:
-        shuffle(mirror_selection)
+        shuffle(work_pool)
 
     """
     Write mirrorlist
     """
     try:
-        _ = mirror_selection[0]
-        write_pacman_mirror_list(self=self, selected_servers=mirror_selection)
+        _ = work_pool[0]
+        write_pacman_mirror_list(self=self, selected_servers=work_pool)
         if self.custom:
             util.msg(message=f"{txt.MIRROR_LIST_CUSTOM_RESET} 'sudo {txt.MODIFY_CUSTOM}'",
                      urgency=txt.INF_CLR, tty=self.tty)
-            util.msg(message=f"{txt.REMOVE_CUSTOM_CONFIG} 'sudo {txt.RESET_ALL}'", urgency=txt.INF_CLR, tty=self.tty)
+            util.msg(message=f"{txt.REMOVE_CUSTOM_CONFIG} 'sudo {txt.RESET_ALL}'",
+                     urgency=txt.INF_CLR, tty=self.tty)
         if self.no_status:
             util.msg(message=f"{txt.OVERRIDE_STATUS_CHOICE}", urgency=txt.WRN_CLR, tty=self.tty)
             util.msg(message=f"{txt.OVERRIDE_STATUS_MIRROR}", urgency=txt.WRN_CLR, tty=self.tty)

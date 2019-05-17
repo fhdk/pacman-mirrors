@@ -72,8 +72,8 @@ def get_geoip_country(country_pool: list) -> str:
     :param country_pool:
     :return: country name if found
     """
-    country_name = get_ip_country().replace(" ", "_")
-    selection = (x for x in country_pool if country_name in x["country"])
+    country_name = get_country()
+    selection = (x for x in country_pool if country_name in x)
     for select in selection:
         return select["country"]
     return ""

@@ -31,7 +31,7 @@ import pacman_mirrors.functions.util
 from pacman_mirrors.builder import common, fasttrack, interactive
 from pacman_mirrors.config import configuration as conf
 from pacman_mirrors.functions import cliFn
-from pacman_mirrors.functions import configFn
+from pacman_mirrors.functions import config_setup
 from pacman_mirrors.functions import defaultFn
 from pacman_mirrors.functions import fileFn
 from pacman_mirrors.functions import httpFn
@@ -86,11 +86,11 @@ class PacmanMirrors:
         # Load default mirror pool
         # Build mirror list
         """
-        (self.config, self.custom) = configFn.setup_config()
+        (self.config, self.custom) = config_setup.setup_config()
         fileFn.create_dir(self.config["work_dir"])
         cliFn.parse_command_line(self, gtk_available=GTK_AVAILABLE)
         util.i686_check(self, write=True)
-        if not configFn.sanitize_config(config=self.config):
+        if not config_setup.sanitize_config(config=self.config):
             sys.exit(2)
         self.network = httpFn.check_internet_connection(tty=self.tty)
         if self.network:

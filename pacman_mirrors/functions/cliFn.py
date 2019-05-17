@@ -74,7 +74,7 @@ def parse_command_line(self, gtk_available: bool) -> None:
                                    nargs="+",
                                    metavar=txt.COUNTRY,
                                    help=txt.HLP_ARG_COUNTRY)
-    methods_exclusive.add_argument("-g", "--geoip",
+    methods_exclusive.add_argument("--geoip",
                                    action="store_true",
                                    help=txt.HLP_ARG_GEOIP)
     # Api arguments
@@ -150,6 +150,9 @@ def parse_command_line(self, gtk_available: bool) -> None:
     misc.add_argument("--interval",
                       type=int,
                       help="Max. number of hours since last sync")
+    misc.add_argument("-g",
+                      action="store_true",
+                      help="Create mirror list from active pool.")
 
     args = parser.parse_args()
 
@@ -167,11 +170,11 @@ def parse_command_line(self, gtk_available: bool) -> None:
         sys.exit(0)
 
     if args.list:
-        outputFn.tty_default_country_pool(self)
+        outputFn.tty_default_pool(self)
         sys.exit(0)
 
     if args.country_config:
-        outputFn.tty_custom_country_pool(self)
+        outputFn.tty_custom_pool(self)
         sys.exit(0)
 
     if args.get_branch:

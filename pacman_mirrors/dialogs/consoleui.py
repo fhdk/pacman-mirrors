@@ -23,6 +23,7 @@ from collections import namedtuple
 
 import npyscreen
 
+import pacman_mirrors.functions.conversion
 from pacman_mirrors.constants import txt
 from pacman_mirrors.functions import consoleFn
 from pacman_mirrors.translation import i18n
@@ -57,9 +58,9 @@ class ConsoleUI(npyscreen.NPSAppManaged):
 
         main_server_list = [header_cols]
         main_server_list.extend(server_list)
-        servers = consoleFn.list_to_tuple(list_data=main_server_list, named_tuple=template)
+        servers = pacman_mirrors.functions.conversion.list_to_tuple(list_data=main_server_list, named_tuple=template)
         self.list_title = txt.I_LIST_TITLE
-        self.server_rows = consoleFn.rows_from_tuple(servers=servers)
+        self.server_rows = pacman_mirrors.functions.conversion.rows_from_tuple(servers=servers)
         self.header_row = ("{:<5}".format(txt.I_USE) +
                            (self.server_rows[0].replace("|", " ").strip()))
         del self.server_rows[0]

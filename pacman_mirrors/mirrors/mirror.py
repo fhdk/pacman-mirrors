@@ -21,7 +21,7 @@
 """Pacman-Mirrors Mirror Class Module"""
 
 from pacman_mirrors.constants import txt
-from pacman_mirrors.functions.countryFn import get_continent
+from pacman_mirrors.functions.pools import get_continent
 
 
 class Mirror:

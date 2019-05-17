@@ -25,7 +25,7 @@ from random import shuffle
 from pacman_mirrors.builder.builder import build_pool
 from pacman_mirrors.constants import txt
 
-from pacman_mirrors.functions.convertFn import \
+from pacman_mirrors.functions.conversion import \
     translate_interactive_to_pool, translate_pool_to_interactive
 
 from pacman_mirrors.functions.filter_mirror_pool_functions import \
@@ -45,7 +45,6 @@ def build_mirror_list(self) -> None:
     Outputs a "custom" mirror file
     Outputs a pacman mirrorlist,
     """
-
     worklist = build_pool(self)
 
     # rank or shuffle the mirrorlist before showing the ui

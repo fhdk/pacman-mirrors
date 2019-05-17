@@ -42,24 +42,17 @@ def build_mirror_list(self, limit: int) -> None:
     Only mirrors from the active mirror file is used
       either mirrors.json or custom-mirrors.json
     """
-
     work_pool = build_pool(self)
-
-    """
-    Only pick mirrors which are up-to-date for the system branch
-    by removing not up-to-date mirrors from the list
-    """
-    mirrors = filter_user_branch(mirror_pool=work_pool, config=self.config)
 
     """
     Shuffle the list
     """
-    shuffle(mirrors)
+    shuffle(work_pool)
 
     """
     # probe the mirrors
     """
-    work_pool = test_mirror_pool(self=self, worklist=mirrors, limit=limit)
+    work_pool = test_mirror_pool(self=self, worklist=work_pool, limit=limit)
 
     """
     # sort the result
@@ -75,5 +68,3 @@ def build_mirror_list(self, limit: int) -> None:
     except IndexError:
         util.msg(message=f"{txt.NO_SELECTION}", urgency=txt.WRN_CLR, tty=self.tty)
         util.msg(message=f"{txt.NO_CHANGE}", urgency=txt.INF_CLR, tty=self.tty)
-
-
