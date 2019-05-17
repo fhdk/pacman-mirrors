@@ -50,6 +50,7 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
     # ssl_wait  = self.max_wait_time * 2
     # ssl_verify = self.config["ssl_verify"]
     result = []
+    # Create the threadpool and submit a tasks per mirror
     with ThreadPoolExecutor(max_workers=50) as executor:
         mirrors_future = {executor.submit(mirror_fn,
                                           self,
@@ -58,8 +59,11 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
                                           limit,
                                           cols):
                           mirror for mirror in worklist}
-        for mirror_result in as_completed(mirrors_future):
-            result.append(mirror_result.result())
+        # Get results as they resolve
+        for mirror in as_completed(mirrors_future):
+            mirror_result = mirror.result()
+            if mirror_result is not None:
+                result.append(mirror_result)
 
     return result
 
@@ -95,7 +99,7 @@ def mirror_fn(self, executor, mirror: dict, limit, cols) -> dict:
 
     if limit is not None:
         if mirror["resp_time"] == txt.SERVER_RES:
-            return
+            return None
         # counter += 1
         mirror["result"] = probed_mirror
     else:
@@ -123,17 +127,6 @@ def protocol_fn(self, executor, protocol, url, cols):
 
     # generate url with protocol
     protocol["url"] = f"{probe_proto}{url}"
-
-    # create message for later display
-    message = f'  ..... {protocol["country"]:<15}: {protocol["url"]}'
-
-    # if self.tty do not print theis
-    if not self.quiet:
-        if self.tty:
-            pass
-        else:
-            print("{:.{}}".format(message, cols), end="")
-            sys.stdout.flush()
 
     http_wait = self.max_wait_time
     ssl_wait = self.max_wait_time * 2
@@ -172,7 +165,7 @@ def protocol_fn(self, executor, protocol, url, cols):
             if self.tty:
                 pass
             else:
-                print(f"\r  {color.GREEN}{r_str}{color.RESET}")
+                print(f"\r  {color.GREEN}{r_str}{color.RESET} - {protocol['url']}")
 
     # we have tty then we print with response time
     if self.tty:
