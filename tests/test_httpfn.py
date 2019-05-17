@@ -10,7 +10,7 @@ Tests for `pacman-mirrors` module.
 import unittest
 from unittest.mock import patch
 
-from pacman_mirrors.functions import httpFn, configFn, cliFn, defaultFn
+from pacman_mirrors.functions import httpFn, config_setup, cliFn, defaultFn
 from pacman_mirrors.pacman_mirrors import PacmanMirrors
 from . import mock_configuration as mock
 
@@ -44,7 +44,7 @@ class TestHttpFn(unittest.TestCase):
 
     @patch("os.getuid")
     @patch.object(httpFn, "get_ip_country")
-    @patch.object(configFn, "setup_config")
+    @patch.object(config_setup, "setup_config")
     def test_geoip_available(self,
                              mock_build_config,
                              mock_get_geoip_country,
@@ -57,7 +57,7 @@ class TestHttpFn(unittest.TestCase):
                                  ["pacman-mirrors",
                                   "--geoip"]):
             app = PacmanMirrors()
-            app.config = configFn.setup_config()
+            app.config = config_setup.setup_config()
             cliFn.parse_command_line(app, True)
             defaultFn.load_default_mirror_pool(app)
             app.selected_countries = httpFn.get_ip_country()

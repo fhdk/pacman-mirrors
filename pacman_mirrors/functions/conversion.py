@@ -18,6 +18,7 @@
 # Authors: Frede Hundewadt <echo ZmhAbWFuamFyby5vcmcK | base64 -d>
 
 """Pacman-Mirrors Converter Functions"""
+import json
 
 from pacman_mirrors.constants import txt
 from pacman_mirrors.functions.util import \
@@ -80,3 +81,32 @@ def translate_pool_to_interactive(mirror_pool: list, tty: bool = False) -> list:
                 message=f"{txt.HOUSTON}! {txt.MIRROR_POOL_EMPTY}!", urgency=txt.WRN_CLR, tty=tty)
             break
     return interactive_list
+
+
+def list_to_tuple(list_data: list, named_tuple) -> list:
+    """Comvert list to a list with named tuples
+    :param list_data: the list to convert
+    :param named_tuple: tuple list item converts to
+    :return data: list of named tuples
+    """
+    tdata = json.dumps(list_data)
+    data = json.loads(tdata, object_hook=lambda x: named_tuple(**x))
+    return data
+
+
+def rows_from_tuple(servers: list, join_string: str = " | ") -> list:
+    """Generates equal formatted lines
+    :param servers: named tuples
+    :param join_string: string used to join tuple items
+    :return lines: list of nicely formatted lines
+    """
+    rows = []
+    if servers:
+
+        # calculate max col width
+        col_width = [max(len(text) for text in col) for col in zip(*servers)]
+        # generate linies
+        for line in servers:
+            rows.append(join_string.join("{:{}}".format(text, col_width[i])
+                                         for i, text in enumerate(line)))
+    return rows
