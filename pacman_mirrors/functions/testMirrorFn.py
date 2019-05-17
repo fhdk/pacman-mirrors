@@ -134,15 +134,15 @@ def protocol_fn(self, executor, protocol, url, cols):
 
     # https/ftps sometimes takes longer for handshake
     if probe_proto.endswith("tps"):  # https or ftps
-        self.max_wait_time = ssl_wait
+        max_wait_time = ssl_wait
     else:
-        self.max_wait_time = http_wait
+        max_wait_time = http_wait
 
     # let's see see time spent
     protocol["resp_time"] = get_mirror_response(url=protocol["url"],
                                                 config=self.config,
                                                 tty=self.tty,
-                                                maxwait=self.max_wait_time,
+                                                maxwait=max_wait_time,
                                                 quiet=self.quiet,
                                                 ssl_verify=ssl_verify)
 
@@ -170,7 +170,9 @@ def protocol_fn(self, executor, protocol, url, cols):
                 while len(str(country)) < len("United_Kingdom") + 1:
                     country += ' '
 
-                print(f"\r  {color.GREEN}{r_str}{color.RESET} :: {country} - {url}")
+                timestamp = f"\r  {color.GREEN}{r_str}{color.RESET}"
+                mirror_name = f" :: {country} - {url}"
+                print(timestamp + mirror_name)
 
 
 def list_with_protocols(mirror: dict) -> list:
