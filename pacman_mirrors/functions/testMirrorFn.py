@@ -216,14 +216,11 @@ def protocol_fn(self, executor, protocol, url, cols):
             else:
                 url = protocol["url"]
                 country = protocol["country"]
-                while len(str(country)) < len("United_Kingdom") + 1:
-                    country += ' '
-                mirror_name = f":: {country} - {url}"
                 if r_str[0] == '-':
-                    timestamp = f"\r  {r_str}{color.RESET}"
+                    timestamp = f"\r  {r_str:>9}{color.RESET}"
                 else:
-                    timestamp = f"\r  {color.YELLOW}{r_str}{color.RESET}"
-                mirror_name = f" :: {country} - {url}"
+                    timestamp = f"\r  {color.YELLOW}{r_str:>9}{color.RESET}"
+                mirror_name = f" :: {country:15} - {url}"
                 print(timestamp + mirror_name)
     else:
         # only print if not tty
@@ -236,8 +233,8 @@ def protocol_fn(self, executor, protocol, url, cols):
                 while len(str(country)) < len("United_Kingdom") + 1:
                     country += ' '
 
-                timestamp = f"\r  {color.GREEN}{r_str}{color.RESET}"
-                mirror_name = f" :: {country} - {url}"
+                timestamp = f"\r  {color.GREEN}{r_str:>9}{color.RESET}"
+                mirror_name = f" :: {country:15} - {url}"
                 print(timestamp + mirror_name)
 
 
