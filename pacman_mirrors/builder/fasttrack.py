@@ -52,18 +52,18 @@ def build_mirror_list(self, limit: int) -> None:
     """
     # probe the mirrors
     """
+    if limit <= 0 or limit > len(work_pool):
+        limit = len(work_pool)
     work_pool = test_mirror_pool(self=self, worklist=work_pool, limit=limit)
-
-    """
-    # sort the result
-    """
-    work_pool = sort_mirror_pool(worklist=work_pool, field="resp_time", reverse=False)
-
     """
     Write mirrorlist
     """
     try:
         _ = work_pool[0]
+        """
+        # sort the result
+        """
+        work_pool = sort_mirror_pool(worklist=work_pool, field="resp_time", reverse=False)
         write_pacman_mirror_list(self=self, selected_servers=work_pool)
     except IndexError:
         util.msg(message=f"{txt.NO_SELECTION}", urgency=txt.WRN_CLR, tty=self.tty)

@@ -19,13 +19,12 @@
 
 """Pacman-Mirrors Console UI Module"""
 
-from collections import namedtuple
-
 import npyscreen
+
+from collections import namedtuple
 
 import pacman_mirrors.functions.conversion
 from pacman_mirrors.constants import txt
-from pacman_mirrors.functions import consoleFn
 from pacman_mirrors.translation import i18n
 
 _ = i18n.language.gettext

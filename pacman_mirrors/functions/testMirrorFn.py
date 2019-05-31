@@ -58,15 +58,14 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
     # Since the operation is relatively IO intensive, 50
     # workers is a sane option
     workers_num = 50
-    if limit is not None and limit < 50 and limit > 0:
+    if limit is not None and 50 > limit > 0:
         if limit <= 14:
             workers_num = 14
         else:
             workers_num = limit
 
-   # Create the threadpool and submit a tasks per mirror
-    with ThreadPoolExecutor(max_workers=workers_num) as executor,\
-         ThreadPoolExecutor(max_workers=1) as canceler:
+    # Create the threadpool and submit a task per mirror
+    with ThreadPoolExecutor(max_workers=workers_num) as executor, ThreadPoolExecutor(max_workers=1) as canceler:
         mirrors_future = {executor.submit(mirror_fn,
                                           self,
                                           executor,
@@ -79,6 +78,7 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
             cancel_fut = canceler.submit(job_canceler, limit, mirrors_future)
         # Get results as they resolve
         for mirror in as_completed(mirrors_future):
+            # noinspection PyBroadException
             try:
                 mirror_result = mirror.result()
                 if mirror_result is not None:
@@ -86,8 +86,7 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
             except Exception as e:
                 # Silence task cancellation exceptions
                 pass
-
-        # If there is a limit, wait ultil
+        # If there is a limit, wait until
         if limit is not None:
             cancel_fut.result()
 
@@ -117,10 +116,14 @@ def mirror_fn(self, executor, mirror: dict, limit, cols):
     This function will be scheduled for every mirror to
     run asynchronously. Yielding the mirrors as all the petitions
     to its supported protocols resolve
+    :param self:
     :param executor: The executor to be used to resolve the IO petitions
     :param mirror: The mirror to be queried
+    :param limit:
+    :param cols:
     """
     global counter
+
     # Check the counter, if it is already satisfied, return None
     if limit is not None and counter is not 0 and counter >= limit:
         return None
@@ -171,6 +174,11 @@ def protocol_fn(self, executor, protocol, url, cols):
     """
     This function will be scheduled to run
     for every protocol in a mirror.
+    :param self:
+    :param executor:
+    :param protocol:
+    :param url:
+    :param cols:
     """
     # get protocol
     probe_proto = protocol["protocols"][0]
