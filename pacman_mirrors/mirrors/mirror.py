@@ -32,7 +32,8 @@ class Mirror:
         self.mirror_pool = []
 
     def add(self, country: str, url: str, protocols: list,
-            branches: list = None, last_sync: str = None, resp_time: str = None) -> None:
+            branches: list = None, last_sync: str = None,
+            resp_time: str = None) -> None:
         """Append mirror
         :param country:
         :param url:
@@ -68,7 +69,8 @@ class Mirror:
             "url": url
         })
 
-    def seed(self, servers: list, status: bool = False, custom: bool = False) -> None:
+    def seed(self, servers: list, status: bool = False,
+             custom: bool = False) -> None:
         """
         Seed mirrorlist
         :param servers:

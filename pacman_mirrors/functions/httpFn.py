@@ -129,6 +129,7 @@ def get_mirror_response(url: str, config: object, tty: bool = False, maxwait: in
     req = urllib.request.Request(url=probe_url, headers=headers)
     probe_start = time.time()
     # noinspection PyBroadException
+    is_error = False
     try:
         for _ in range(count):
             response = urllib.request.urlopen(req, timeout=maxwait, context=context)
@@ -139,19 +140,26 @@ def get_mirror_response(url: str, config: object, tty: bool = False, maxwait: in
             message = f"{err.reason} '{url}'"
         elif hasattr(err, "code"):
             message = f"{err.reason} '{url}'"
+        is_error = True
     except timeout:
         message = f"{txt.TIMEOUT} '{url}'"
+        is_error = True
     except HTTPException:
         message = f"{txt.HTTP_EXCEPTION} '{url}'"
+        is_error = True
     except ssl.CertificateError:
         message = f"{ssl.CertificateError} '{url}'"
+        is_error = True
     except Exception as e:
         message = f"{e} '{url}'"
+        is_error = True
 
     if message and not quiet:
         util.msg(message=message, urgency=txt.ERR_CLR, tty=tty, newline=True)
     if probe_stop:
         response_time = round((probe_stop - probe_start), 3)
+    if is_error:
+        return None
     return response_time
 
 
