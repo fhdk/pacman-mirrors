@@ -39,6 +39,7 @@ mock/var/lib/pacman-mirrors/status.json
 .pydevproject
 .idea
 .vscode
+.mypy_cache
 
 # Complexity
 output/*.html

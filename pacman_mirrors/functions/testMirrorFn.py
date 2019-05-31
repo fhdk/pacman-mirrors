@@ -19,11 +19,15 @@
 
 """Pacman-Mirrors Test Mirror Functions"""
 
-import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import time
 
 from pacman_mirrors.constants import txt, colors as color
 from pacman_mirrors.functions.httpFn import get_mirror_response
 from pacman_mirrors.functions import util
+
+# Should it be behind a mutex?
+counter = 0
 
 
 def test_mirror_pool(self, worklist: list, limit=None) -> list:
@@ -41,100 +45,197 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
     util.msg(message=f"{txt.QUERY_MIRRORS} - {txt.TAKES_TIME}",
              urgency=f"{txt.INF_CLR}",
              tty=self.tty)
-    counter = 0
+    # I don't know how to properly fix this yet
+    global counter
     cols, lines = util.terminal_size()
     # set connection timeouts
+    # http_wait = self.max_wait_time
+    # ssl_wait  = self.max_wait_time * 2
+    # ssl_verify = self.config["ssl_verify"]
+    result = []
+
+    # Set number of workers depending on the limit
+    # Since the operation is relatively IO intensive, 50
+    # workers is a sane option
+    workers_num = 50
+    if limit is not None and limit < 50 and limit > 0:
+        if limit <= 14:
+            workers_num = 14
+        else:
+            workers_num = limit
+
+   # Create the threadpool and submit a tasks per mirror
+    with ThreadPoolExecutor(max_workers=workers_num) as executor,\
+         ThreadPoolExecutor(max_workers=1) as canceler:
+        mirrors_future = {executor.submit(mirror_fn,
+                                          self,
+                                          executor,
+                                          mirror,
+                                          limit,
+                                          cols):
+                          mirror for mirror in worklist}
+        # Submit canceller job if there is a limit
+        if limit is not None:
+            cancel_fut = canceler.submit(job_canceler, limit, mirrors_future)
+        # Get results as they resolve
+        for mirror in as_completed(mirrors_future):
+            try:
+                mirror_result = mirror.result()
+                if mirror_result is not None:
+                    result.append(mirror_result)
+            except Exception as e:
+                # Silence task cancellation exceptions
+                pass
+
+        # If there is a limit, wait ultil
+        if limit is not None:
+            cancel_fut.result()
+
+    return result
+
+
+def job_canceler(limit: int, futures: list) -> None:
+    """
+    This function checks the counter and once it reaches
+    the limit it cancels all the remaining tasks
+    :param limit: The max number of mirrors to be added
+    :param futures: The list of futures
+    """
+    global counter
+    while True:
+        # print(f"::{color.BLUE}Check  {color.RESET} - Counter: {counter}")
+        if counter >= limit:
+            for future in futures:
+                future.cancel()
+            # print(f"::{color.BLUE}Killed {color.RESET} - Counter: {counter}")
+            break
+        time.sleep(0.2)
+
+
+def mirror_fn(self, executor, mirror: dict, limit, cols):
+    """
+    This function will be scheduled for every mirror to
+    run asynchronously. Yielding the mirrors as all the petitions
+    to its supported protocols resolve
+    :param executor: The executor to be used to resolve the IO petitions
+    :param mirror: The mirror to be queried
+    """
+    global counter
+    # Check the counter, if it is already satisfied, return None
+    if limit is not None and counter is not 0 and counter >= limit:
+        return None
+    # create a list for the mirrors available protocols
+    probe_items = list_with_protocols(mirror)
+    # locate position of protocols separator
+    colon = probe_items[0]["url"].find(":")
+    # create an url for the mirror without protocol
+    url = probe_items[0]["url"][colon:]
+    probed_items = []
+    # Loop protocols available and schedule function
+    protocols_future = {executor.submit(protocol_fn,
+                                        self,
+                                        executor,
+                                        protocol,
+                                        url,
+                                        cols):
+                        protocol for protocol in probe_items}
+    # Wait for completed probes to the different protocols
+    # and append them to the list once
+    for protocol_result in as_completed(protocols_future):
+        probed_items.append(protocol_result.result())
+
+    # check the protocols
+    probed_mirror = filter_bad_response(work=probe_items)
+
+    if limit is not None:
+        if mirror["resp_time"] >= txt.SERVER_RES:
+            return None
+        counter += 1
+        mirror["result"] = probed_mirror
+    else:
+        mirror["result"] = probed_mirror
+    """
+    Equality check will stop execution
+    when the desired number is reached.
+    In the possible event the first mirror's
+    response time exceeds the predefined response time,
+    the loop would stop execution if the check for zero is not present
+    """
+    if limit is not None and counter is not 0 and counter >= limit:
+        return None
+
+    return mirror
+
+
+def protocol_fn(self, executor, protocol, url, cols):
+    """
+    This function will be scheduled to run
+    for every protocol in a mirror.
+    """
+    # get protocol
+    probe_proto = protocol["protocols"][0]
+
+    # generate url with protocol
+    protocol["url"] = f"{probe_proto}{url}"
+
     http_wait = self.max_wait_time
     ssl_wait = self.max_wait_time * 2
     ssl_verify = self.config["ssl_verify"]
-    result = []
-    for mirror in worklist:
-        # create a list for the mirrors available protocols
-        probe_items = list_with_protocols(mirror)
-        # locate position of protocols separator
-        colon = probe_items[0]["url"].find(":")
-        # create an url for the mirror without protocol
-        url = probe_items[0]["url"][colon:]
-        # loop protocols available
-        for probe_item in probe_items:
 
-            # get protocol
-            probe_proto = probe_item["protocols"][0]
+    # https/ftps sometimes takes longer for handshake
+    if probe_proto.endswith("tps"):  # https or ftps
+        max_wait_time = ssl_wait
+    else:
+        max_wait_time = http_wait
 
-            # generate url with protocol
-            probe_item["url"] = f"{probe_proto}{url}"
+    # let's see see time spent
+    protocol["resp_time"] = get_mirror_response(url=protocol["url"],
+                                                config=self.config,
+                                                tty=self.tty,
+                                                maxwait=max_wait_time,
+                                                quiet=self.quiet,
+                                                ssl_verify=ssl_verify)
 
-            # create message for later display
-            message = f'  ..... {probe_item["country"]:<15}: {probe_item["url"]}'
+    # create a printable string version from the response with appended zeroes
+    resp_time = protocol["resp_time"]
+    if resp_time is not None:
+        r_str = str(resp_time)
+        while len(r_str) < 6:
+            r_str += "0"
+    else:
+        r_str = "------"
+        # A little hack
+        resp_time = self.max_wait_time + 1
 
-            # if self.tty do not print theis
-            if not self.quiet:
-                if self.tty:
-                    pass
-                else:
-                    print("{:.{}}".format(message, cols), end="")
-                    sys.stdout.flush()
-
-            # https/ftps sometimes takes longer for handshake
-            if probe_proto.endswith("tps"):  # https or ftps
-                self.max_wait_time = ssl_wait
-            else:
-                self.max_wait_time = http_wait
-
-            # let's see see time spent
-            probe_item["resp_time"] = get_mirror_response(url=probe_item["url"],
-                                                          config=self.config,
-                                                          tty=self.tty,
-                                                          maxwait=self.max_wait_time,
-                                                          quiet=self.quiet,
-                                                          ssl_verify=ssl_verify)
-
-            # create a printable string version from the response with appended zeroes
-            r_str = str(probe_item["resp_time"])
-            while len(r_str) < 5:
-                r_str += "0"
-
-            # validate against the defined wait time
-            if probe_item["resp_time"] >= self.max_wait_time:
-                # skip line - but not if tty
-                if not self.quiet:
-                    if self.tty:
-                        pass
-                    else:
-                        print("\r")
-            else:
-                # only print if not tty
-                if not self.quiet:
-                    if self.tty:
-                        pass
-                    else:
-                        print(f"\r  {color.GREEN}{r_str}{color.RESET}")
-
-            # we have tty then we print with response time
+    # validate against the defined wait time
+    if resp_time >= self.max_wait_time:
+        # skip line - but not if tty
+        if not self.quiet:
             if self.tty:
-                util.msg(message=message.replace(".....", r_str), tty=self.tty)
-                sys.stdout.flush()
+                pass
+            else:
+                url = protocol["url"]
+                country = protocol["country"]
+                if r_str[0] == '-':
+                    timestamp = f"\r  {r_str:>9}{color.RESET}"
+                else:
+                    timestamp = f"\r  {color.YELLOW}{r_str:>9}{color.RESET}"
+                mirror_name = f" :: {country:15} - {url}"
+                print(timestamp + mirror_name)
+    else:
+        # only print if not tty
+        if not self.quiet:
+            if self.tty:
+                pass
+            else:
+                url = protocol["url"]
+                country = protocol["country"]
+                while len(str(country)) < len("United_Kingdom") + 1:
+                    country += ' '
 
-        # check the protocols
-        probed_mirror = filter_bad_response(work=probe_items)
-
-        if limit is not None:
-            if mirror["resp_time"] == txt.SERVER_RES:
-                continue
-            counter += 1
-            result.append(probed_mirror)
-        else:
-            result.append(probed_mirror)
-        """
-        Equality check will stop execution
-        when the desired number is reached.
-        In the possible event the first mirror's
-        response time exceeds the predefined response time,
-        the loop would stop execution if the check for zero is not present
-        """
-        if limit is not None and counter is not 0 and counter == limit:
-            break
-    return result
+                timestamp = f"\r  {color.GREEN}{r_str:>9}{color.RESET}"
+                mirror_name = f" :: {country:15} - {url}"
+                print(timestamp + mirror_name)
 
 
 def list_with_protocols(mirror: dict) -> list:
@@ -172,7 +273,7 @@ def filter_bad_response(work: list) -> dict:
         "url": work[0]["url"]
     }
     for item in work:
-        if item["resp_time"] == txt.SERVER_RES:
+        if item["resp_time"] == txt.SERVER_RES or item["resp_time"] is None:
             continue
         result["protocols"].append(item["protocols"][0])
         if item["resp_time"] < result["resp_time"]:
