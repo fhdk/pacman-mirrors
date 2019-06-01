@@ -23,7 +23,7 @@ def build_pool(self) -> list:
     work_pool = filter_error_mirrors(mirror_pool=work_pool)
 
     """
-    Apply country filter if not fasttrack which is using all mirrors from the active pool
+    Apply country filter if not fasttrack 
     """
     if not self.fasttrack:
         work_pool = filter_mirror_country(mirror_pool=work_pool, country_pool=self.selected_countries)
@@ -38,7 +38,7 @@ def build_pool(self) -> list:
         pass
 
     """
-    Unless the user has provided the --no-status argument we only up-to-date for system branch
+    Apply --no-status argument if applicable
     """
     if self.no_status:
         """
