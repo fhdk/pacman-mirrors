@@ -71,6 +71,7 @@ class PacmanMirrors:
         self.quiet = False
         self.selected_countries = []
         self.tty = False
+        self.test_async = False
 
     def run(self):
         """

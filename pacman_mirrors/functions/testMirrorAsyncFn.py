@@ -30,7 +30,7 @@ from pacman_mirrors.functions import util
 counter = 0
 
 
-def test_mirror_pool(self, worklist: list, limit=None) -> list:
+def test_mirror_pool_async(self, worklist: list, limit=None) -> list:
     """
     Query server for response time
     """
@@ -58,11 +58,11 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
     # Since the operation is relatively IO intensive, 50
     # workers is a sane option
     workers_num = 50
-    # if limit is not None and 50 > limit > 0:
-    #     if limit <= 14:
-    #         workers_num = 14
-    #     else:
-    #         workers_num = limit
+    if limit is not None and 50 > limit > 0:
+        if limit <= 14:
+            workers_num = 14
+        else:
+            workers_num = limit
 
     # Create the threadpool and submit a task per mirror
     with ThreadPoolExecutor(max_workers=workers_num) as executor, ThreadPoolExecutor(max_workers=1) as canceler:
@@ -103,7 +103,7 @@ def job_canceler(limit: int, futures: list) -> None:
     global counter
     while True:
         # print(f"::{color.BLUE}Check  {color.RESET} - Counter: {counter}")
-        if counter >= limit:
+        if counter > limit:
             for future in futures:
                 future.cancel()
             # print(f"::{color.BLUE}Killed {color.RESET} - Counter: {counter}")

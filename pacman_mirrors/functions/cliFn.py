@@ -153,6 +153,9 @@ def parse_command_line(self, gtk_available: bool) -> None:
     misc.add_argument("-g",
                       action="store_true",
                       help="Create mirror list from active pool.")
+    misc.add_argument("--test-async",
+                      action="store_true",
+                      help="Experimental async mirror test.")
 
     args = parser.parse_args()
 
@@ -247,6 +250,9 @@ def parse_command_line(self, gtk_available: bool) -> None:
         self.interval = args.interval
     else:
         self.interval = None
+
+    if args.test_async:
+        self.test_async = True
 
     """
     Generation methods

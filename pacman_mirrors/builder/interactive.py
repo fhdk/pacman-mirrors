@@ -37,6 +37,7 @@ from pacman_mirrors.functions.outputFn import \
 from pacman_mirrors.functions.sortMirrorFn import sort_mirror_pool
 from pacman_mirrors.functions.testMirrorFn import test_mirror_pool
 from pacman_mirrors.functions import util
+from pacman_mirrors.functions.testMirrorAsyncFn import test_mirror_pool_async
 
 
 def build_mirror_list(self) -> None:
@@ -51,7 +52,10 @@ def build_mirror_list(self) -> None:
     if not self.default:
         # if not default run method before selection
         if self.config["method"] == "rank":
-            worklist = test_mirror_pool(self=self, worklist=worklist)
+            if self.test_async:
+                worklist = test_mirror_pool_async(self=self, worklist=worklist)
+            else:
+                worklist = test_mirror_pool(self=self, worklist=worklist)
             worklist = sort_mirror_pool(worklist=worklist, field="resp_time", reverse=False)
         else:
             shuffle(worklist)
@@ -96,7 +100,10 @@ def build_mirror_list(self) -> None:
             # using the default runs method after selection
             if self.default:
                 if self.config["method"] == "rank":
-                    mirror_list = test_mirror_pool(self=self, worklist=mirror_list)
+                    if self.test_async:
+                        mirror_list = test_mirror_pool_async(self=self, worklist=mirror_list)
+                    else:
+                        mirror_list = test_mirror_pool(self=self, worklist=mirror_list)
                     mirror_list = sorted(mirror_list, key=itemgetter("resp_time"))
                 else:
                     shuffle(mirror_list)
