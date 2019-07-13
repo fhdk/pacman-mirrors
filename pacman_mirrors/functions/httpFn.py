@@ -41,7 +41,7 @@ from pacman_mirrors.functions import fileFn
 from pacman_mirrors.functions import jsonFn
 from pacman_mirrors.functions import util
 
-headers = {"User-Agent": "{}{}".format(conf.USER_AGENT, __version__)}
+USER_AGENT = {"User-Agent": "{}{}".format(conf.USER_AGENT, __version__)}
 
 
 def get_url_last_modifed(url: str) -> str:
@@ -60,7 +60,7 @@ def download_mirrors(config: object) -> tuple:
     try:
         # mirrors.json
         req = urllib.request.Request(url=config["url_mirrors_json"],
-                                     headers=headers)
+                                     headers=USER_AGENT)
         with urllib.request.urlopen(req) as response:
             mirrorlist = json.loads(response.read().decode("utf8"),
                                     object_pairs_hook=collections.OrderedDict)
@@ -79,7 +79,7 @@ def download_mirrors(config: object) -> tuple:
     try:
         # status.json
         req = urllib.request.Request(url=config["url_status_json"],
-                                     headers=headers)
+                                     headers=USER_AGENT)
         with urllib.request.urlopen(req) as response:
             statuslist = json.loads(
                 response.read().decode("utf8"),
@@ -126,7 +126,7 @@ def get_mirror_response(url: str, config: object, tty: bool = False, maxwait: in
     if not ssl_verify:
         context.check_hostname = False
         context.verify_mode = ssl.CERT_NONE
-    req = urllib.request.Request(url=probe_url, headers=headers)
+    req = urllib.request.Request(url=probe_url, headers=USER_AGENT)
     probe_start = time.time()
     # noinspection PyBroadException
     try:
