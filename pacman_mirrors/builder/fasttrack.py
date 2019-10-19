@@ -55,7 +55,7 @@ def build_mirror_list(self, limit: int) -> None:
     """
     if limit <= 0 or limit > len(work_pool):
         limit = len(work_pool)
-    if self.test_async:
+    if self.use_async:
         work_pool = test_mirror_pool_async(self=self, worklist=work_pool, limit=limit)
     else:
         work_pool = test_mirror_pool(self=self, worklist=work_pool, limit=limit)

@@ -52,7 +52,7 @@ def build_mirror_list(self) -> None:
     if not self.default:
         # if not default run method before selection
         if self.config["method"] == "rank":
-            if self.test_async:
+            if self.use_async:
                 worklist = test_mirror_pool_async(self=self, worklist=worklist)
             else:
                 worklist = test_mirror_pool(self=self, worklist=worklist)
@@ -100,7 +100,7 @@ def build_mirror_list(self) -> None:
             # using the default runs method after selection
             if self.default:
                 if self.config["method"] == "rank":
-                    if self.test_async:
+                    if self.use_async:
                         mirror_list = test_mirror_pool_async(self=self, worklist=mirror_list)
                     else:
                         mirror_list = test_mirror_pool(self=self, worklist=mirror_list)

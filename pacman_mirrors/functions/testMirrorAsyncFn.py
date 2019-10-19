@@ -16,6 +16,7 @@
 # along with pacman-mirrors.  If not, see <http://www.gnu.org/licenses/>.
 #
 # Authors: Frede Hundewadt <echo ZmhAbWFuamFyby5vcmcK | base64 -d>
+#          ZenTauro https://gitlab.manjaro.org/ZenTauro
 
 """Pacman-Mirrors Test Mirror Functions"""
 

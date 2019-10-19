@@ -28,6 +28,10 @@ from pacman_mirrors.api import apifn
 from pacman_mirrors.constants import txt
 
 
+def async_disclaimer() -> None:
+    print(txt.ASYNC_DISCLAIMER)
+
+
 def extract_mirror_url(data: str) -> str:
     """Extract mirror url from data"""
     line = data.strip()
