@@ -23,7 +23,7 @@ import collections
 import filecmp
 import json
 import os
-import requests
+# import requests
 import ssl
 import time
 import urllib.request
