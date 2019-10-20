@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [4.15] 2019-10-19
 * Refactor internal mirrorpool building - excluding mirros which are unresponsive or not up-to-date
-* Experimental argument `--test-async`
+* Experimental argument `--use-async`
   @ZenTauro code added for [#144](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/144)
   Overall functionality works - needs field testing.
   Disclaimer before run.
