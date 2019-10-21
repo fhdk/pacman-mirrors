@@ -164,5 +164,9 @@ API_ARGUMENTS_ERROR = "{} {}.".format(ARGUMENT_API, MISSING_ARGUMENT)
 INTERACTIVE_ARGUMENTS_ERROR = "{} {}.".format(ARGUMENT_INTERACTIVE, MISSING_ARGUMENT)
 FASTTRACK_ARGUMENTS_ERROR = "pacman-mirrors: error: argument -s/--no-status: " \
                             "not allowed with argument -f/--fasttrack"
-ASYNC_DISCLAIMER = f"{WRN_CLR} ! THE ASYNC ARGUMENT IS EXPERIMENTAL\n" \
-                   "FILE REPORTS AT: https://gitlab.manjaro.org/applications/pacman-mirrors/issues/"
+ASYNC_DISCLAIM = [f"{WRN_CLR}",
+                  f"{WRN_CLR} THE ASYNC ARGUMENT IS EXPERIMENTAL",
+                  f"{WRN_CLR} PROCESS MAY HANG - USE CTRL+C OR CTRL+D",
+                  "REPORT URL: https://gitlab.manjaro.org/applications/pacman-mirrors/issues/",
+                  f"{WRN_CLR} Acknowledge and continue? (Y/n) \r"
+                  ]
