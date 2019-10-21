@@ -29,7 +29,8 @@ from pacman_mirrors.constants import txt
 
 
 def async_disclaimer() -> None:
-    print(txt.ASYNC_DISCLAIMER)
+    for l in txt.ASYNC_DISCLAIM:
+        print(l)
 
 
 def extract_mirror_url(data: str) -> str:
