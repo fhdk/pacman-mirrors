@@ -115,7 +115,7 @@ class PacmanMirrors:
         """
         if self.use_async:
             util.async_disclaimer()
-            resp = input("I acknowledge that use of async is experimental. Continue? (Y/n) ")
+            resp = input()
             if resp.lower() == "n":
                 exit(0)
         if self.fasttrack:
