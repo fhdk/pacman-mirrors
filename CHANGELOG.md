@@ -4,12 +4,12 @@ All notable changes to this project will be documented in this file.
 ## [4.15] 2019-10-19
 * Refactor internal mirrorpool building - excluding mirros which are unresponsive or not up-to-date
 * Experimental argument `--use-async`
-  @ZenTauro code added for [#144](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/144)
-  Overall functionality works - needs field testing.
-  Disclaimer before run.
+  - @ZenTauro code added for [#144](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/144)  
+  - Overall functionality works - needs field testing.  
+  - Disclaimer before run.  
 
 ## [4.14.99.dev] 2019-04-25
-* Implemented [#146](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/146)
+* Implemented [#146](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/146)  
   - Added `--interval`. Works only with `--no-status` filtering mirrors based on last sync time.
 * Fixed [#145](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/145)
 
