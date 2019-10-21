@@ -52,7 +52,7 @@ def filter_mirror_protocols(mirror_pool: list, protocols: list) -> list:
         if accepted:
             mirror["protocols"] = accepted
             result.append(mirror)
-        print(f"filter_mirror_protocols mirror loop -> mirror={mirror}")
+        # print(f"filter_mirror_protocols mirror loop -> mirror={mirror}")
     return result
 
 
