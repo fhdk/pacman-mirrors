@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.15.1] 2019-10-22
+* Fix bug in return value for `--geoip` argument
+* Removed debug messages
+
 ## [4.15] 2019-10-19
 * Refactor internal mirrorpool building - excluding mirros which are unresponsive or not up-to-date
 * Experimental argument `--use-async`
