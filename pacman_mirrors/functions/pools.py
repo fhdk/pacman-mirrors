@@ -58,7 +58,7 @@ def build_country_list(country_selection: list, country_pool: list, tty: bool = 
         if geoip:
             country = get_geoip_country(country_pool)
             if country:
-                result = country
+                result.append(country)
             else:
                 result = country_pool
         else:
@@ -72,10 +72,10 @@ def get_geoip_country(country_pool: list) -> str:
     :param country_pool:
     :return: country name if found
     """
-    country_name = get_country()
-    selection = (x for x in country_pool if country_name in x)
-    for select in selection:
-        return select["country"]
+    geo = get_country()
+    selection = (x for x in country_pool if geo in x)
+    for c in selection:
+        return c
     return ""
 
 
@@ -96,4 +96,4 @@ def get_country() -> str:
     Check country
     :return: country name
     """
-    return get_ip_country().replace(" ", "_")
+    return get_ip_country().strip().replace(" ", "_")
