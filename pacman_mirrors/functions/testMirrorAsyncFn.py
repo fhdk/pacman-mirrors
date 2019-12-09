@@ -59,9 +59,9 @@ def test_mirror_pool_async(self, worklist: list, limit=None) -> list:
     # Since the operation is relatively IO intensive, 50
     # workers is a sane option
     workers_num = 20
-    if limit is not None and 20 > limit > 0:
-        if limit <= 14:
-            workers_num = 14
+    if limit is not None and workers_num > limit > 0:
+        if limit <= 10:
+            workers_num = 10
         else:
             workers_num = limit
 
