@@ -58,9 +58,10 @@ class Mirror:
             resp_time = txt.SERVER_RES  # 99.99
         # sort protocols in reversed order https,http,ftps,ftp
         protocols = sorted(protocols, reverse=True)
+        continent = get_continent(country.replace("_", " "))
         # add to pool
         self.mirror_pool.append({
-            "continent": get_continent(country),
+            "continent": continent,
             "branches": branches,
             "country": country,
             "last_sync": last_sync,
@@ -69,8 +70,7 @@ class Mirror:
             "url": url
         })
 
-    def seed(self, servers: list, status: bool = False,
-             custom: bool = False) -> None:
+    def seed(self, servers: list, status: bool = False, custom: bool = False) -> None:
         """
         Seed mirrorlist
         :param servers:

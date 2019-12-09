@@ -24,13 +24,10 @@ from pacman_mirrors.functions.httpFn import get_ip_country
 from pacman_mirrors.functions.validFn import country_list_is_valid, custom_config_is_valid
 
 
-def build_country_list(country_selection: list, country_pool: list, tty: bool = False, geoip: bool = False) -> list:
+def build_country_list(self: list) -> list:
     """
     Do a check on the users country selection
-    :param country_selection:
-    :param country_pool:
-    :param tty:
-    :param geoip:
+    :param self:
     :return: list of valid countries
     :rtype: list
     """
@@ -38,62 +35,99 @@ def build_country_list(country_selection: list, country_pool: list, tty: bool = 
     # Dear Fellow Manjaro Maintainer:
     # When I wrote this code, only I knew how it worked.
     # Now, no one knows!
-    # 
-    # Therefore if you are trying to optimize 
+    #
+    # Therefore if you are trying to optimize
     # this routine and it fails (most surely),
-    # please increase this counter as a warning for the next person.
-    # 
+    # please increase this counter as a warning for the next maintainer.
+    #
     # total_hours_wasted_here = 1
     """
     result = []
-    if country_selection:
+    if self.selected_countries:
         if country_selection == ["all"]:
-            result = country_pool
+            result = self.mirrors.country_pool
         else:
-            if country_list_is_valid(onlycountry=country_selection,
-                                     countrylist=country_pool,
-                                     tty=tty):
-                result = country_selection
+            if country_list_is_valid(onlycountry=self.selected_countries,
+                                     countrylist=self.mirrors.country_pool,
+                                     tty=self.tty):
+                result = self.selected_countries
+    # this executes when geoip or continent is True
     if not result:
-        if geoip:
-            country = get_geoip_country(country_pool)
+        # get country
+        if self.geoip:
+            country = get_geo_country(self.mirrors.country_pool)
             if country:
                 result.append(country)
-            else:
-                result = country_pool
-        else:
-            result = country_pool
+        # get country list for continent
+        if self.continent:
+            continent_mirror_countries = get_continent_countries(get_geo_continent(), self.mirrors.mirror_pool)
+            if continent_mirror_countries:
+                result = continent_mirror_countries
+        # validate result
+        # do not return an empty list
+        if not result:
+            result = self
     return result
 
 
-def get_geoip_country(country_pool: list) -> str:
+def get_continent(country: str) -> str:
+
+    continent = (x for x in countries if country in x["name"])
+    for x in continent:
+        return x["continent"].strip().replace(" ", "_")
+    return ""
+
+
+def get_continent_countries(continent: str, mirror_pool: list) -> list:
     """
-    Check if geoip is possible
+    :param continent:
+    :param mirror_pool:
+    return list of mirror countries from continent
+    :return: list
+    """
+    result = []
+    mirror_countries = [c for c in mirror_pool if continent in c["continent"]]
+    for m in mirror_countries:
+        if m["country"] not in result:
+            result.append(m["country"])
+    return result
+
+
+def get_geo_continent() -> str:
+    """
+    Return geo continent from IP
+    """
+    return _get_ip_continent()
+
+
+def get_geo_country(country_pool: list) -> str:
+    """
+    Return geo country if possible
     :param country_pool:
     :return: country name if found
     """
-    geo = get_country()
-    selection = (x for x in country_pool if geo in x)
+    geo_country = _get_ip_country().replace(" ", "_")
+    selection = (x for x in country_pool if geo_country in x)
     for c in selection:
         return c
     return ""
 
 
-def get_continent(country: str) -> str:
+def _get_ip_country() -> str:
     """
-    get continent for country
-    :param country:
-    :return:
-    """
-    continents = (x for x in countries if country in x["name"])
-    for continent in continents:
-        return continent["continent"]
-    return ""
-
-
-def get_country() -> str:
-    """
-    Check country
+    Get country from ip address
     :return: country name
     """
-    return get_ip_country().strip().replace(" ", "_")
+    return get_ip_country().strip()
+
+
+def _get_ip_continent() -> str:
+    """
+    Get continent from ip address
+    :return:
+    """
+    country = _get_ip_country()
+    continents = (x for x in countries if country in x["name"])
+    for continent in continents:
+        return continent["continent"].strip()
+    return ""

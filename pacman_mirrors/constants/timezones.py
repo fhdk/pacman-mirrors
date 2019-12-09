@@ -1,4 +1,7 @@
 countries = [
+    {'timezones': ['Asia/Taipei'], 'code': 'TW', 'continent': 'Asia', 'name': 'Taiwan', 'capital': 'Taipei'},
+    {'timezones': ['Asia/Hong_Kong'], 'code': 'HKG', 'continent': 'Asia', 'name': 'Hong Kong', 'capital': 'Hong Kong'},
+    {'timezones': ['Asia/Kabul'], 'code': 'AF', 'continent': 'Asia', 'name': 'Afghanistan', 'capital': 'Kabul'},
     {'timezones': ['Europe/Andorra'], 'code': 'AD', 'continent': 'Europe', 'name': 'Andorra',
      'capital': 'Andorra la Vella'},
     {'timezones': ['Asia/Kabul'], 'code': 'AF', 'continent': 'Asia', 'name': 'Afghanistan', 'capital': 'Kabul'},

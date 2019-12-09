@@ -77,6 +77,9 @@ def parse_command_line(self, gtk_available: bool) -> None:
     methods_exclusive.add_argument("--geoip",
                                    action="store_true",
                                    help=txt.HLP_ARG_GEOIP)
+    methods_exclusive.add_argument("--continent",
+                                   action="store_true",
+                                   help=txt.HLP_ARG_CONTINENT)
     # Api arguments
     api = parser.add_argument_group(txt.API)
     api.add_argument("-a", "--api",
@@ -190,10 +193,10 @@ def parse_command_line(self, gtk_available: bool) -> None:
     """
     #############################################################
     Validate arg combinations
-    #############################################################        
+    #############################################################
     """
     """
-    If --set-branch, --protocols, --url, --prefix and not --api reject 
+    If --set-branch, --protocols, --url, --prefix and not --api reject
     """
     if args.set_branch or args.proto or args.url or args.prefix:
         if not args.api:
@@ -227,6 +230,9 @@ def parse_command_line(self, gtk_available: bool) -> None:
         print(".: {} {}".format(
             txt.ERR_CLR, txt.MUST_BE_ROOT))
         sys.exit(1)
+
+    if args.continent:
+        self.continent = True
 
     if args.geoip:
         self.geoip = True

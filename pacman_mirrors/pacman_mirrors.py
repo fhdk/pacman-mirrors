@@ -57,6 +57,7 @@ class PacmanMirrors:
         self.config = {
             "config_file": conf.CONFIG_FILE
         }
+        self.continent = False
         self.custom = False
         self.default = False
         self.fasttrack = None

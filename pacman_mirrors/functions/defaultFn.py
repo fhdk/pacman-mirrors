@@ -27,7 +27,7 @@ from pacman_mirrors.functions import fileFn
 
 def load_config_mirror_pool(self) -> None:
     """
-    Load mirrors from active mirror pool
+    Load mirrors from configured mirror pool
     """
     if customFn.check_custom_pool(self) and not self.config["country_pool"]:
         customFn.load_custom_pool(self)
@@ -37,11 +37,9 @@ def load_config_mirror_pool(self) -> None:
             self.selected_countries = self.config["country_pool"]
         load_default_mirror_pool(self)
     """
-    Validate the list of selected countries        
+    Validate the list of selected countries
     """
-    self.selected_countries = pools.build_country_list(
-        country_selection=self.selected_countries, country_pool=self.mirrors.country_pool,
-        tty=self.tty, geoip=self.geoip)
+    self.selected_countries = pools.build_country_list(self)
 
 
 def load_default_mirror_pool(self) -> None:
