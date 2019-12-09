@@ -58,8 +58,8 @@ def test_mirror_pool_async(self, worklist: list, limit=None) -> list:
     # Set number of workers depending on the limit
     # Since the operation is relatively IO intensive, 50
     # workers is a sane option
-    workers_num = 50
-    if limit is not None and 50 > limit > 0:
+    workers_num = 20
+    if limit is not None and 20 > limit > 0:
         if limit <= 14:
             workers_num = 14
         else:
@@ -126,7 +126,7 @@ def mirror_fn(self, executor, mirror: dict, limit, cols):
     global counter
 
     # Check the counter, if it is already satisfied, return None
-    if limit is not None and counter is not 0 and counter >= limit:
+    if limit is not None and counter != 0 and counter >= limit:
         return None
     # create a list for the mirrors available protocols
     probe_items = list_with_protocols(mirror)
@@ -165,7 +165,7 @@ def mirror_fn(self, executor, mirror: dict, limit, cols):
     response time exceeds the predefined response time,
     the loop would stop execution if the check for zero is not present
     """
-    if limit is not None and counter is not 0 and counter >= limit:
+    if limit is not None and counter != 0 and counter >= limit:
         return None
 
     return mirror
