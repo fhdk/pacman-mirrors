@@ -40,28 +40,29 @@ def get_state(states: list, branch: str) -> tuple:
     return ret_color, status_text
 
 
-system_branch, mirrors_pacman = get_local_mirrors()
-with request.urlopen('https://repo.manjaro.org/status.json') as f_url:
-    req = f_url.read()
+def print_status():
+    system_branch, mirrors_pacman = get_local_mirrors()
+    with request.urlopen('https://repo.manjaro.org/status.json') as f_url:
+        req = f_url.read()
 
-mirrors = json.loads(req)
-mirrors = [m for m in mirrors if m['url'] in mirrors_pacman]
+    mirrors = json.loads(req)
+    mirrors = [m for m in mirrors if m['url'] in mirrors_pacman]
 
-printFn.yellow_msg(f"Local mirror status for {system_branch} branch")
-exit_code = 0  # up-to-date
-for i, url in enumerate(mirrors_pacman):  # same order as pacman-conf
-    try:
-        mirror = [m for m in mirrors if m['url'] == url][0]
-        color, text = get_state(mirror["branches"], system_branch)
-        print(f"Mirror #{i + 1:2}", color, f"{text}", C_NONE, f"{mirror['last_sync']:7} {mirror['country']:26} {mirror['url']}")
-        if i == 0 and color == C_KO:
-            exit_code = 4  # first mirror not sync !
-    except IndexError:
-        print(C_KO, f"Mirror #{i + 1:2}", f"{url} do not exist{C_NONE}")
-        exit_code = 5  # not found
+    printFn.yellow_msg(f"Local mirror status for {system_branch} branch")
+    exit_code = 0  # up-to-date
+    for i, url in enumerate(mirrors_pacman):  # same order as pacman-conf
+        try:
+            mirror = [m for m in mirrors if m['url'] == url][0]
+            color, text = get_state(mirror["branches"], system_branch)
+            print(f"Mirror #{i + 1:2}", color, f"{text}", C_NONE, f"{mirror['last_sync']:7} {mirror['country']:26} {mirror['url']}")
+            if i == 0 and color == C_KO:
+                exit_code = 4  # first mirror not sync !
+        except IndexError:
+            print(C_KO, f"Mirror #{i + 1:2}", f"{url} do not exist{C_NONE}")
+            exit_code = 5  # not found
 
-# print("pacman config:")
-# for mirror in mirrors_pacman:
-#    print("  " + mirror)
+    # print("pacman config:")
+    # for mirror in mirrors_pacman:
+    #    print("  " + mirror)
 
-exit(exit_code)
+    return exit_code

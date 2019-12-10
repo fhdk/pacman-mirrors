@@ -28,6 +28,7 @@ from pacman_mirrors.api import api_handler
 from pacman_mirrors.functions import customFn
 from pacman_mirrors.constants import txt
 from pacman_mirrors.functions import outputFn
+from pacman_mirrors.functions import mirror_status
 from pacman_mirrors.translation.custom_help_formatter \
     import CustomHelpFormatter
 
@@ -194,10 +195,8 @@ def parse_command_line(self, gtk_available: bool) -> None:
         self.tty = args.no_color
 
     if args.status:
-        print("Returning status for current mirror list!")
-        # if not print_status:
-        #     sys.exit(4)
-        # sys.exit(0)
+        exit_code = mirror_status.print_status()
+        sys.exit(exit_code)
 
     """
     #############################################################
