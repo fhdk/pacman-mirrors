@@ -36,7 +36,7 @@ def parse_command_line(self, gtk_available: bool) -> None:
     """Read the arguments of the command line"""
 
     args_summary = "[-h] [-f [{}]] [-i [-d]] [-m {}]\n" \
-                   "\t\t[-c {} [{}...] | [--geoip]]\n" \
+                   "\t\t[-c {} [{}...] | [--geoip] | [--continent]]\n" \
                    "\t\t[-l] [-lc] [-q] [-t {}] [-v] [-n]\n" \
                    "\t\t[--api] [-S/-B {}] [-p {}]\n" \
                    "\t\t\t[-P {} [{}...]] [-R] [-U {}]".format(txt.NUMBER,
@@ -156,6 +156,9 @@ def parse_command_line(self, gtk_available: bool) -> None:
     misc.add_argument("-g",
                       action="store_true",
                       help="Create mirror list from active pool.")
+    misc.add_argument("--status",
+                      action="store_true",
+                      help="Your mirror's status")
     misc.add_argument("--use-async",
                       action="store_true",
                       help="Experimental async mirror test.")
@@ -189,6 +192,12 @@ def parse_command_line(self, gtk_available: bool) -> None:
 
     if args.no_color:
         self.tty = args.no_color
+
+    if args.status:
+        print("Returning status for current mirror list!")
+        # if not print_status:
+        #     sys.exit(4)
+        # sys.exit(0)
 
     """
     #############################################################
