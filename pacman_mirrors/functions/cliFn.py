@@ -196,6 +196,7 @@ def parse_command_line(self, gtk_available: bool) -> None:
 
     if args.status:
         exit_code = mirror_status.print_status()
+        print(exit_code)
         sys.exit(exit_code)
 
     """

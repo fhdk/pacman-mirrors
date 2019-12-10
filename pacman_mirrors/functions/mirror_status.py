@@ -40,7 +40,7 @@ def get_state(states: list, branch: str) -> tuple:
     return ret_color, status_text
 
 
-def print_status():
+def print_status() -> int:
     system_branch, mirrors_pacman = get_local_mirrors()
     with request.urlopen('https://repo.manjaro.org/status.json') as f_url:
         req = f_url.read()
@@ -60,9 +60,5 @@ def print_status():
         except IndexError:
             print(C_KO, f"Mirror #{i + 1:2}", f"{url} do not exist{C_NONE}")
             exit_code = 5  # not found
-
-    # print("pacman config:")
-    # for mirror in mirrors_pacman:
-    #    print("  " + mirror)
 
     return exit_code
