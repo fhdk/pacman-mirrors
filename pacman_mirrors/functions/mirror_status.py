@@ -64,10 +64,10 @@ def print_status() -> int:
             print(C_KO, f"Mirror #{i + 1:2}", f"{url} does not exist{C_NONE}")
             exit_code = 5  # not found
 
-    if exit_code == 0:
-        msg("All good", color=colors.GREEN)
-    if exit_code == 4:
-        msg("Primary mirror is not up-tp-date", color=colors.YELLOW)
-    if exit_code == 5:
-        msg("At least one mirror does not exist", color=colors.RED)
+    # if exit_code == 0:
+    #     msg("All good", color=colors.GREEN)
+    # if exit_code == 4:
+    #     msg("Primary mirror is not up-to-date", color=colors.YELLOW)
+    # if exit_code == 5:
+    #     msg("At least one mirror does not exist", color=colors.RED)
     return exit_code
