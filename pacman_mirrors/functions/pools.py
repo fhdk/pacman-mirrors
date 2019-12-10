@@ -44,7 +44,7 @@ def build_country_list(self: list) -> list:
     """
     result = []
     if self.selected_countries:
-        if country_selection == ["all"]:
+        if self.selected_countries == ["all"]:
             result = self.mirrors.country_pool
         else:
             if country_list_is_valid(onlycountry=self.selected_countries,
