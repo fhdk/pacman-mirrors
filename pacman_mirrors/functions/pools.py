@@ -66,7 +66,7 @@ def build_country_list(self: list) -> list:
         # validate result
         # do not return an empty list
         if not result:
-            result = self
+            result = self.mirrors.country_pool
     return result
 
 

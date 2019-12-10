@@ -35,7 +35,7 @@ from pacman_mirrors.translation.custom_help_formatter \
 def parse_command_line(self, gtk_available: bool) -> None:
     """Read the arguments of the command line"""
 
-    args_summary = "[-h] [-f [{}]] [-i [-d]] [-m {}]\n" \
+    args_summary = "[-h] [-f [{}]] [-i [-d]] [-m {}] [--status]\n" \
                    "\t\t[-c {} [{}...] | [--geoip] | [--continent]]\n" \
                    "\t\t[-l] [-lc] [-q] [-t {}] [-v] [-n]\n" \
                    "\t\t[--api] [-S/-B {}] [-p {}]\n" \
@@ -158,7 +158,7 @@ def parse_command_line(self, gtk_available: bool) -> None:
                       help="Create mirror list from active pool.")
     misc.add_argument("--status",
                       action="store_true",
-                      help="Your mirror's status")
+                      help="Status for the current mirror list.")
     misc.add_argument("--use-async",
                       action="store_true",
                       help="Experimental async mirror test.")
