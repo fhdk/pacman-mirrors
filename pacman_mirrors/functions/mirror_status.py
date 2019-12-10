@@ -25,8 +25,9 @@ def get_local_mirrors() -> tuple:
     return mirror_branch, urls
 
 
-def get_state(states: list, branch: str) -> str:
+def get_state(states: list, branch: str) -> tuple:
     ret_color = C_OK
+    status_text = "OK"
     x = states[0]
     if branch == "testing":
         x = states[1]
@@ -34,7 +35,8 @@ def get_state(states: list, branch: str) -> str:
         x = states[2]
     if x == 0:
         ret_color = C_KO
-    return ret_color
+        status_text = "  "
+    return ret_color, status_text
 
 
 system_branch, mirrors_pacman = get_local_mirrors()
@@ -49,8 +51,8 @@ exit_code = 0  # up-to-date
 for i, url in enumerate(mirrors_pacman):  # same order as pacman-conf
     try:
         mirror = [m for m in mirrors if m['url'] == url][0]
-        color = get_state(mirror["branches"], system_branch)
-        print(color, f"{i + 1:2}", C_NONE, f"{mirror['last_sync']:7} {mirror['country']:26} {mirror['url']}")
+        color, text = get_state(mirror["branches"], system_branch)
+        print(color, f"{i + 1:2}", text, C_NONE, f"{mirror['last_sync']:7} {mirror['country']:26} {mirror['url']}")
         if i == 0 and color == C_KO:
             exit_code = 4  # first mirror not sync !
     except IndexError:
