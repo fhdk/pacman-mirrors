@@ -29,8 +29,8 @@ from pacman_mirrors.constants import txt
 
 
 def async_disclaimer() -> None:
-    for l in txt.ASYNC_DISCLAIM:
-        print(l)
+    for line in txt.ASYNC_DISCLAIM:
+        print(line)
 
 
 def extract_mirror_url(data: str) -> str:
@@ -119,6 +119,10 @@ def msg(message: str, urgency: str = "", tty: bool = False, color: str = "", new
             if newline:
                 print("\n")
             print(f"::{color}{message}{reset}")
+
+
+def strip_protocol(url: str) -> str:
+    return url.split("//")[1]
 
 
 def terminal_size() -> tuple:
