@@ -3,6 +3,7 @@
 from urllib import request
 import json
 from pacman_mirrors.constants import colors
+from pacman_mirrors.functions import printFn
 
 C_KO = colors.RED
 C_OK = colors.GREEN
@@ -46,7 +47,7 @@ with request.urlopen('https://repo.manjaro.org/status.json') as f_url:
 mirrors = json.loads(req)
 mirrors = [m for m in mirrors if m['url'] in mirrors_pacman]
 
-print("Branch:", system_branch)
+printFn.yellow_msg(f"Local mirror status for {system_branch} branch")
 exit_code = 0  # up-to-date
 for i, url in enumerate(mirrors_pacman):  # same order as pacman-conf
     try:
