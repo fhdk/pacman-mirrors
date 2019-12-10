@@ -54,7 +54,8 @@ def print_status() -> int:
         try:
             mirror = [m for m in mirrors if m['url'] == url][0]
             color, text = get_state(mirror["branches"], system_branch)
-            print(f"Mirror #{i + 1:2}", color, f"{text}", C_NONE, f"{mirror['last_sync']:7} {mirror['country']:26} {mirror['url']}")
+            print(f"Mirror #{i + 1:2}", color, f"{text}", C_NONE,
+                  f"{mirror['last_sync']:7} {mirror['country']:16} {mirror['url']}")
             if i == 0 and color == C_KO:
                 exit_code = 4  # first mirror not sync !
         except IndexError:
