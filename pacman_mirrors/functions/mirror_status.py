@@ -52,14 +52,21 @@ def print_status() -> int:
         msg("Downloading status failed!", color=colors.BLUE)
         msg("Please check you network connection ...", color=colors.YELLOW)
         return 1  # return failure
-    mirrors = json.loads(req)
+    json_data = json.loads(req)
+    mirrors = []
+    for mirror in json_data:
+        for protocol in mirror["protocols"]:
+            temp = mirror.copy()
+            temp["url"] = f"{protocol}://{strip_protocol(temp['url'])}"
+            mirrors.append(temp)
+
     mirrors = [m for m in mirrors if m['url'] in mirrors_pacman]
 
     printFn.yellow_msg(f"Local mirror status for {system_branch} branch")
     exit_code = 0  # up-to-date
     for i, url in enumerate(mirrors_pacman):  # same order as pacman-conf
         try:
-            mirror = [m for m in mirrors if strip_protocol(m['url']) == strip_protocol(url)][0]
+            mirror = [m for m in mirrors if m['url'] == url][0]
             color, text = get_state(mirror["branches"], system_branch)
             print(f"Mirror #{i + 1:2}", color, f"{text}", C_NONE,
                   f"{mirror['last_sync']:7} {mirror['country']:16} {mirror['url']}")
