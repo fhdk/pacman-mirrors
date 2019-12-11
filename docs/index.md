@@ -7,11 +7,13 @@
 pacman-mirrors - generate pacman mirrorlist for Manjaro Linux
 
 # SYNOPSIS
- pacman-mirrors [-h] [-f [NUMBER]] [-i [-d]] [-m METHOD]
-                [-c COUNTRY [COUNTRY...] | [-g]] [--no-color]
-                [-l] [-lc] [-q] [-s] [-t SECONDS] [-v] [-n]
+```
+ pacman-mirrors [-h] [-f [NUMBER]] [-i [-d]] [-m METHOD] [--status]
+                [-c COUNTRY [COUNTRY...] | [--geoip] | [--continent]]
+                [-l] [-lc] [-q] [-t SECONDS] [-v] [-n]
                 [--api] [-S/-B BRANCH] [-p PREFIX]
                         [-P PROTO [PROTO...]] [-R] [-U URL]
+```
 
 # DESCRIPTION
 
@@ -55,9 +57,9 @@ three different websites. These sites are
 The sites are chosen due to their generic nature and general availability.
 
 # MIRROR RANKING
-The mirrors are ranked by means of downloading a file from the systems core repo. 
-The file defaults to *core.db.tar.gz* but can be customized using the corresponding 
-entry in the configuration file. 
+The mirrors are ranked by means of downloading a file from the systems core repo.
+The file defaults to *core.db.tar.gz* but can be customized using the corresponding
+entry in the configuration file.
 
 ## MODES
 
@@ -65,6 +67,7 @@ entry in the configuration file.
    * pacman-mirrors -f [number]
 2. More control (custom mirror pool)
    * -c COUNTRY[[,COUNTRY]...]
+   * --continent
 3. Full control (custom mirror pool)
    * -i [-d/--default]
 
@@ -102,8 +105,8 @@ The reason: You have limited your mirror pool too much and none of your selected
 ## GENERAL INFO ABOUT ARGUMENTS
 Some options are mutual exclusive and will throw an arguments error:
 
-* **--country**, **--fasttrack**, **--geoip**
-* **--fasttrack** and **--nostatus**
+* **--country**, **--fasttrack**, **--geoip**, **--continent**
+* **--fasttrack** and **--no-status**
 
 Some arguments requires another argument present to have effect.
 If such conditions rise pacman-mirrors will throw an arguments error.
@@ -127,8 +130,14 @@ which is up-to-date for your systems branch.
 -c, \--country *COUNTRY* [[*COUNTRY*]...]
 :   Creates a custom mirror pool with supplied countries.
 
+--continent
+:   Creates a custom mirror pool from geolocation
+
 -f, \--fasttrack [*NUMBER*]
 :   Generates a random mirrorlist for the users current selected branch, mirrors are randomly selected from the users current mirror pool, either a custom pool or the default pool, the randomly selected mirrors are ranked by their current access time. The higher number the higher possibility of a fast mirror. If a number is given the resulting mirrorlist contains that number of servers.
+
+-g\--geoip
+:   Use geolocation if possible, if geoip is not available all mirrors.
 
 -i, \--interactive [--default]
 :   This is a function designed to leave full control over countries, mirrors and protocols to the user. This function **DOES NOT** take into consideration up-to-date mirrors. The optional **--default** forces pacman-mirrors to load the default mirror file and ignore any preset custom pool, thus allowing for reselecting mirrors for a new custom pool.
@@ -158,9 +167,6 @@ which is up-to-date for your systems branch.
 -G, \--get-branch
 :   Return branch from configuration.
 
--g\--geoip
-:   Use geolocation if possible, if geoip is not available all mirrors.
-
 -h, \--help
 :   Show the help message.
 
@@ -185,6 +191,9 @@ which is up-to-date for your systems branch.
 -s, \--no-status
 :   Ignore up-to-date status for system branch.
 
+\--status
+:   Print status for mirrors in system mirror list
+
 \--interval
 :   Apply a filter based on elapsed hours since last sync.
 
@@ -200,6 +209,8 @@ which is up-to-date for your systems branch.
     1     : Problem with argument
     2     : Problem accessing systemfiles
     3     : Missing mirror file
+    4     : Primary mirror not up-to-date
+    5     : Invalid mirrors found
     BRANCH: Value from config
 
 ## Configuration flow of pacman-mirrors
@@ -311,15 +322,15 @@ editing your pacman-mirrors configuration.
     ##
     ## /etc/pacman-mirrors.conf
     ##
-    
+
     ## Branch Pacman should use (stable, testing, unstable)
     # Branch = stable
-    
+
     ## Generation method
     ## 1) rank   - rank mirrors depending on their access time
     ## 2) random - randomly generate the output mirrorlist
     # Method = rank
-    
+
     ## Filename to use when ranking mirrors
     ## The file must be present in core repo
     # TestFile = core.db.tar.gz
@@ -331,7 +342,7 @@ editing your pacman-mirrors configuration.
     ## If a mirror has more than one protocol defined only the first is written to the mirrorlist
     ## Empty means all in reversed alphabetic order
     # Protocols =
-    
+
     ## When set to False - all certificates are accepted.
     ## Use only if you fully trust all ssl-enabled mirrors.
     # SSLVerify = True

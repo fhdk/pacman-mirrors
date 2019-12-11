@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: manjaro-pacman-mirrors\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-23 20:55+0200\n"
-"PO-Revision-Date: 2019-01-21 08:39+0000\n"
-"Last-Translator: soenggam <senggemg@gmail.com>\n"
+"PO-Revision-Date: 2019-10-31 09:14+0000\n"
+"Last-Translator: taotieren <admin@taotieren.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/manjarolinux/manjaro-pacman-mirrors/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,7 +36,7 @@ msgstr "警告"
 
 #: pacman_mirrors/constants/txt.py:33
 msgid "HTTPException"
-msgstr "HTTP异常"
+msgstr "HTTP 异常"
 
 #: pacman_mirrors/constants/txt.py:34
 msgid "TIMEOUT"
@@ -60,7 +60,7 @@ msgstr "文件"
 
 #: pacman_mirrors/constants/txt.py:40
 msgid "METHOD"
-msgstr "方法"
+msgstr "方式"
 
 #: pacman_mirrors/constants/txt.py:41
 msgid "METHODS"
@@ -92,7 +92,7 @@ msgstr "秒"
 
 #: pacman_mirrors/constants/txt.py:48 pacman_mirrors/constants/txt.py:125
 msgid "URL"
-msgstr "链接"
+msgstr "URL"
 
 #: pacman_mirrors/constants/txt.py:49
 msgid "USAGE"
@@ -120,7 +120,7 @@ msgstr "替换配置中的分支"
 
 #: pacman_mirrors/constants/txt.py:56
 msgid "Replace mirror url in mirrorlist"
-msgstr "替换镜像列表中的镜像url"
+msgstr "替换镜像列表中的镜像 URL"
 
 #: pacman_mirrors/constants/txt.py:57
 msgid "Branch name"
@@ -168,7 +168,7 @@ msgstr "安静模式 - 更少的冗余输出"
 
 #: pacman_mirrors/constants/txt.py:70
 msgid "Syncronize pacman databases"
-msgstr "同步pacman数据库"
+msgstr "同步 pacman 数据库"
 
 #: pacman_mirrors/constants/txt.py:71
 msgid "Maximum waiting time for server response"
@@ -176,7 +176,7 @@ msgstr "服务器响应的最长等待时间"
 
 #: pacman_mirrors/constants/txt.py:72
 msgid "Print the pacman-mirrors version"
-msgstr "打印pacman-mirrors的版本信息"
+msgstr "打印 pacman-mirrors 版本"
 
 #: pacman_mirrors/constants/txt.py:74
 msgid "Branch in config is changed"
@@ -232,11 +232,11 @@ msgstr "陈旧过时的参数"
 
 #: pacman_mirrors/constants/txt.py:87
 msgid "doesn't exist."
-msgstr "不存在"
+msgstr "不存在。"
 
 #: pacman_mirrors/constants/txt.py:88
 msgid "Downloading mirrors from"
-msgstr "下载镜像从"
+msgstr "从下载镜像"
 
 #: pacman_mirrors/constants/txt.py:89
 msgid "Falling back to"
@@ -256,7 +256,7 @@ msgstr "缺失"
 
 #: pacman_mirrors/constants/txt.py:93
 msgid "The mirror file"
-msgstr "此镜像文件"
+msgstr "镜像文件"
 
 #: pacman_mirrors/constants/txt.py:94
 msgid "Mirror list generated and saved to"
@@ -288,7 +288,7 @@ msgstr "镜像排序不可用"
 
 #: pacman_mirrors/constants/txt.py:101
 msgid "Must have root privileges"
-msgstr "必须要有root用户权限"
+msgstr "必须要有 root 用户权限"
 
 #: pacman_mirrors/constants/txt.py:102
 msgid "The mirrors has not changed"
@@ -316,7 +316,7 @@ msgstr "随机排列镜像列表"
 
 #: pacman_mirrors/constants/txt.py:108
 msgid "To remove custom config run "
-msgstr "移除自定义的配置运行"
+msgstr "删除自定义配置运行  "
 
 #: pacman_mirrors/constants/txt.py:109
 msgid "This may take some time"
@@ -348,11 +348,11 @@ msgstr "写入镜像列表"
 
 #: pacman_mirrors/constants/txt.py:118
 msgid "Manjaro mirrors by response time"
-msgstr "根据响应时间排序的Manjaro镜像"
+msgstr "根据响应时间排序的 Manjaro 镜像"
 
 #: pacman_mirrors/constants/txt.py:119
 msgid "Manjaro mirrors in random order"
-msgstr "随机排序的Manjaro镜像"
+msgstr "随机排序的 Manjaro 镜像"
 
 #: pacman_mirrors/constants/txt.py:120
 msgid "Check mirrors for your personal list"

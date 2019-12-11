@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: manjaro-pacman-mirrors\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-23 20:55+0200\n"
-"PO-Revision-Date: 2019-02-08 15:23+0000\n"
+"PO-Revision-Date: 2019-12-04 10:17+0000\n"
 "Last-Translator: Andrei Stepanov <adem4ik@gmail.com>\n"
 "Language-Team: Russian (Russia) (http://www.transifex.com/manjarolinux/manjaro-pacman-mirrors/language/ru_RU/)\n"
 "MIME-Version: 1.0\n"
@@ -139,7 +139,7 @@ msgstr "Загрузить файл зеркал по-умолчанию"
 
 #: pacman_mirrors/constants/txt.py:61
 msgid "Generate mirrorlist with a number of up-to-date mirrors. Ignores:"
-msgstr "Сгенерировать список зеркал с числом обновленных зеркал. Игнорирует:"
+msgstr "Сгенерировать список зеркал с числом обновлённых зеркал. Игнорирует:"
 
 #: pacman_mirrors/constants/txt.py:63
 msgid "Generate mirrorlist with defaults"
@@ -171,7 +171,7 @@ msgstr "Тихий режим - меньший объем выводимой и�
 
 #: pacman_mirrors/constants/txt.py:70
 msgid "Syncronize pacman databases"
-msgstr "Синхронизировать  базы данных  pacman"
+msgstr "Синхронизировать базы данных pacman"
 
 #: pacman_mirrors/constants/txt.py:71
 msgid "Maximum waiting time for server response"
@@ -359,7 +359,7 @@ msgstr "Зеркала Manjaro в случайном порядке"
 
 #: pacman_mirrors/constants/txt.py:120
 msgid "Check mirrors for your personal list"
-msgstr "Проверьте зеркала в своем списке"
+msgstr "Проверьте зеркала в своём списке"
 
 #: pacman_mirrors/constants/txt.py:121
 msgid "Use"
@@ -375,7 +375,7 @@ msgstr "Ответ"
 
 #: pacman_mirrors/constants/txt.py:124
 msgid "Sync"
-msgstr "Сихронизация"
+msgstr "Синхронизация"
 
 #: pacman_mirrors/constants/txt.py:126
 msgid "Cancel"
@@ -383,7 +383,7 @@ msgstr "Отмена"
 
 #: pacman_mirrors/constants/txt.py:127
 msgid "OK"
-msgstr "OK"
+msgstr "ОК"
 
 #: pacman_mirrors/constants/txt.py:128
 msgid "Confirm selections"

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from urllib import request
+from urllib import error
 import json
 from pacman_mirrors.constants import colors
 from pacman_mirrors.functions import printFn
@@ -44,9 +45,13 @@ def get_state(states: list, branch: str) -> tuple:
 
 def print_status() -> int:
     system_branch, mirrors_pacman = get_local_mirrors()
-    with request.urlopen('https://repo.manjaro.org/status.json') as f_url:
-        req = f_url.read()
-
+    try:
+        with request.urlopen('https://repo.manjaro.org/status.json') as f_url:
+            req = f_url.read()
+    except error.URLError:
+        msg("Downloading status failed!", color=colors.BLUE)
+        msg("Please check you network connection ...", color=colors.YELLOW)
+        return 1  # return failure
     mirrors = json.loads(req)
     mirrors = [m for m in mirrors if m['url'] in mirrors_pacman]
 

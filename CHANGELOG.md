@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.16] 2019-12-10
+* Added `--continent` argument [#149](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/149)
+* Added `--status` argument [#151](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/151)
+
 ## [4.15.1] 2019-10-22
 * Fix bug in return value for `--geoip` argument
 * Removed debug messages
@@ -8,12 +12,12 @@ All notable changes to this project will be documented in this file.
 ## [4.15] 2019-10-19
 * Refactor internal mirrorpool building - excluding mirros which are unresponsive or not up-to-date
 * Experimental argument `--use-async`
-  - @ZenTauro code added for [#144](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/144)  
-  - Overall functionality works - needs field testing.  
-  - Disclaimer before run.  
+  - @ZenTauro code added for [#144](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/144)
+  - Overall functionality works - needs field testing.
+  - Disclaimer before run.
 
 ## [4.14.99.dev] 2019-04-25
-* Implemented [#146](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/146)  
+* Implemented [#146](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/146)
   - Added `--interval`. Works only with `--no-status` filtering mirrors based on last sync time.
 * Fixed [#145](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/145)
 
@@ -31,7 +35,7 @@ All notable changes to this project will be documented in this file.
 * Implemented [#143](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/143)
   - Added `--no-color` argument for Pamac v7.2 logging.
   - Pulled translations
-  - Fixed doubled messages when using `-f` argument 
+  - Fixed doubled messages when using `-f` argument
 
 ## [4.12.5] 2018-08-06
 * fix issue with console ui
@@ -55,7 +59,7 @@ All notable changes to this project will be documented in this file.
 
 ## [4.11.4] 2018-07-23
 * Fix for [#139](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/139)
-* Fixed interactive mirrorlist still containing https on invalid certificate 
+* Fixed interactive mirrorlist still containing https on invalid certificate
 
 ## [4.11.3] 2018-07-22
 * Fix for [#138](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/138)

@@ -25,7 +25,11 @@
 <h1 id="name">NAME</h1>
 <p>pacman-mirrors - generate pacman mirrorlist for Manjaro Linux</p>
 <h1 id="synopsis">SYNOPSIS</h1>
-<p>pacman-mirrors [-h] [-f [NUMBER]] [-i [-d]] [-m METHOD] [-c COUNTRY [COUNTRY…] | [-g]] [–no-color] [-l] [-lc] [-q] [-s] [-t SECONDS] [-v] [-n] [–api] [-S/-B BRANCH] [-p PREFIX] [-P PROTO [PROTO…]] [-R] [-U URL]</p>
+<pre><code> pacman-mirrors [-h] [-f [NUMBER]] [-i [-d]] [-m METHOD] [--status]
+                [-c COUNTRY [COUNTRY...] | [--geoip] | [--continent]]
+                [-l] [-lc] [-q] [-t SECONDS] [-v] [-n]
+                [--api] [-S/-B BRANCH] [-p PREFIX]
+                        [-P PROTO [PROTO...]] [-R] [-U URL]</code></pre>
 <h1 id="description">DESCRIPTION</h1>
 <p>Generates mirrorlist with up-to-date mirrors for Manjaro Linux. Default is to rank all mirrors by reponse time. If no arguments are given pacman-mirrors lists available options. Pacman-mirrors requires access to files which are read-only so it must be run with <em>su</em> or <em>sudo</em>.</p>
 <p>To create a mirrorlist using all default use</p>
@@ -56,6 +60,7 @@
 <li>More control (custom mirror pool)
 <ul>
 <li>-c COUNTRY[[,COUNTRY]…]</li>
+<li>–continent</li>
 </ul></li>
 <li>Full control (custom mirror pool)
 <ul>
@@ -102,8 +107,8 @@
 <h2 id="general-info-about-arguments">GENERAL INFO ABOUT ARGUMENTS</h2>
 <p>Some options are mutual exclusive and will throw an arguments error:</p>
 <ul>
-<li><strong>–country</strong>, <strong>–fasttrack</strong>, <strong>–geoip</strong></li>
-<li><strong>–fasttrack</strong> and <strong>–nostatus</strong></li>
+<li><strong>–country</strong>, <strong>–fasttrack</strong>, <strong>–geoip</strong>, <strong>–continent</strong></li>
+<li><strong>–fasttrack</strong> and <strong>–no-status</strong></li>
 </ul>
 <p>Some arguments requires another argument present to have effect. If such conditions rise pacman-mirrors will throw an arguments error.</p>
 <p>The arguments can appear in any order except for arguments which takes additional options in which case the options must follow immediately after the argument with or without space, for example</p>
@@ -117,8 +122,14 @@ pacman-mirrors -f5</code></pre>
 <dt>-c, --country <em>COUNTRY</em> [[<em>COUNTRY</em>]…]</dt>
 <dd>Creates a custom mirror pool with supplied countries.
 </dd>
+<dt>–continent</dt>
+<dd>Creates a custom mirror pool from geolocation
+</dd>
 <dt>-f, --fasttrack [<em>NUMBER</em>]</dt>
 <dd>Generates a random mirrorlist for the users current selected branch, mirrors are randomly selected from the users current mirror pool, either a custom pool or the default pool, the randomly selected mirrors are ranked by their current access time. The higher number the higher possibility of a fast mirror. If a number is given the resulting mirrorlist contains that number of servers.
+</dd>
+<dt>-g--geoip</dt>
+<dd>Use geolocation if possible, if geoip is not available all mirrors.
 </dd>
 <dt>-i, --interactive [–default]</dt>
 <dd>This is a function designed to leave full control over countries, mirrors and protocols to the user. This function <strong>DOES NOT</strong> take into consideration up-to-date mirrors. The optional <strong>–default</strong> forces pacman-mirrors to load the default mirror file and ignore any preset custom pool, thus allowing for reselecting mirrors for a new custom pool.
@@ -150,9 +161,6 @@ pacman-mirrors -f5</code></pre>
 <dt>-G, --get-branch</dt>
 <dd>Return branch from configuration.
 </dd>
-<dt>-g--geoip</dt>
-<dd>Use geolocation if possible, if geoip is not available all mirrors.
-</dd>
 <dt>-h, --help</dt>
 <dd>Show the help message.
 </dd>
@@ -177,6 +185,9 @@ pacman-mirrors -f5</code></pre>
 <dt>-s, --no-status</dt>
 <dd>Ignore up-to-date status for system branch.
 </dd>
+<dt>--status</dt>
+<dd>Print status for mirrors in system mirror list
+</dd>
 <dt>--interval</dt>
 <dd>Apply a filter based on elapsed hours since last sync.
 </dd>
@@ -192,6 +203,8 @@ pacman-mirrors -f5</code></pre>
 1     : Problem with argument
 2     : Problem accessing systemfiles
 3     : Missing mirror file
+4     : Primary mirror not up-to-date
+5     : Invalid mirrors found
 BRANCH: Value from config</code></pre>
 <h2 id="configuration-flow-of-pacman-mirrors">Configuration flow of pacman-mirrors</h2>
 <p>At launch an internal default configuration is setup, file configuration is applied then the commandline is parsed and applied.</p>

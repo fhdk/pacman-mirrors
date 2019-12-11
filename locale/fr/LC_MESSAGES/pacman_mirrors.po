@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: manjaro-pacman-mirrors\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-23 20:55+0200\n"
-"PO-Revision-Date: 2019-01-16 11:32+0000\n"
+"PO-Revision-Date: 2019-12-07 09:34+0000\n"
 "Last-Translator: Charles Monzat <c.monzat@laposte.net>\n"
 "Language-Team: French (http://www.transifex.com/manjarolinux/manjaro-pacman-mirrors/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -342,7 +342,7 @@ msgstr "Utilisation de la liste de miroirs personnalisée"
 
 #: pacman_mirrors/constants/txt.py:114
 msgid "Using default mirror file"
-msgstr "Utilisation de liste des miroirs par défaut"
+msgstr "Utilisation de la liste des miroirs par défaut"
 
 #: pacman_mirrors/constants/txt.py:115
 msgid "Writing mirror list"

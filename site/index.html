@@ -120,11 +120,13 @@
 <h1 id="name">NAME</h1>
 <p>pacman-mirrors - generate pacman mirrorlist for Manjaro Linux</p>
 <h1 id="synopsis">SYNOPSIS</h1>
-<p>pacman-mirrors [-h] [-f [NUMBER]] [-i [-d]] [-m METHOD]
-                [-c COUNTRY [COUNTRY...] | [-g]] [--no-color]
-                [-l] [-lc] [-q] [-s] [-t SECONDS] [-v] [-n]
+<pre><code> pacman-mirrors [-h] [-f [NUMBER]] [-i [-d]] [-m METHOD] [--status]
+                [-c COUNTRY [COUNTRY...] | [--geoip] | [--continent]]
+                [-l] [-lc] [-q] [-t SECONDS] [-v] [-n]
                 [--api] [-S/-B BRANCH] [-p PREFIX]
-                        [-P PROTO [PROTO...]] [-R] [-U URL]</p>
+                        [-P PROTO [PROTO...]] [-R] [-U URL]
+</code></pre>
+
 <h1 id="description">DESCRIPTION</h1>
 <p>Generates mirrorlist with up-to-date mirrors for Manjaro Linux.
 Default is to rank all mirrors by reponse time.
@@ -160,15 +162,16 @@ three different websites. These sites are</p>
 </ol>
 <p>The sites are chosen due to their generic nature and general availability.</p>
 <h1 id="mirror-ranking">MIRROR RANKING</h1>
-<p>The mirrors are ranked by means of downloading a file from the systems core repo. 
-The file defaults to <em>core.db.tar.gz</em> but can be customized using the corresponding 
-entry in the configuration file. </p>
+<p>The mirrors are ranked by means of downloading a file from the systems core repo.
+The file defaults to <em>core.db.tar.gz</em> but can be customized using the corresponding
+entry in the configuration file.</p>
 <h2 id="modes">MODES</h2>
 <ol>
 <li>The number of mirrors</li>
 <li>pacman-mirrors -f [number]</li>
 <li>More control (custom mirror pool)</li>
 <li>-c COUNTRY[[,COUNTRY]...]</li>
+<li>--continent</li>
 <li>Full control (custom mirror pool)</li>
 <li>-i [-d/--default]</li>
 </ol>
@@ -204,8 +207,8 @@ The reason: You have limited your mirror pool too much and none of your selected
 <h2 id="general-info-about-arguments">GENERAL INFO ABOUT ARGUMENTS</h2>
 <p>Some options are mutual exclusive and will throw an arguments error:</p>
 <ul>
-<li><strong>--country</strong>, <strong>--fasttrack</strong>, <strong>--geoip</strong></li>
-<li><strong>--fasttrack</strong> and <strong>--nostatus</strong></li>
+<li><strong>--country</strong>, <strong>--fasttrack</strong>, <strong>--geoip</strong>, <strong>--continent</strong></li>
+<li><strong>--fasttrack</strong> and <strong>--no-status</strong></li>
 </ul>
 <p>Some arguments requires another argument present to have effect.
 If such conditions rise pacman-mirrors will throw an arguments error.</p>
@@ -224,8 +227,12 @@ which is up-to-date for your systems branch.</p>
 <h2 id="methods">METHODS</h2>
 <p>-c, --country <em>COUNTRY</em> [[<em>COUNTRY</em>]...]
 :   Creates a custom mirror pool with supplied countries.</p>
+<p>--continent
+:   Creates a custom mirror pool from geolocation</p>
 <p>-f, --fasttrack [<em>NUMBER</em>]
 :   Generates a random mirrorlist for the users current selected branch, mirrors are randomly selected from the users current mirror pool, either a custom pool or the default pool, the randomly selected mirrors are ranked by their current access time. The higher number the higher possibility of a fast mirror. If a number is given the resulting mirrorlist contains that number of servers.</p>
+<p>-g--geoip
+:   Use geolocation if possible, if geoip is not available all mirrors.</p>
 <p>-i, --interactive [--default]
 :   This is a function designed to leave full control over countries, mirrors and protocols to the user. This function <strong>DOES NOT</strong> take into consideration up-to-date mirrors. The optional <strong>--default</strong> forces pacman-mirrors to load the default mirror file and ignore any preset custom pool, thus allowing for reselecting mirrors for a new custom pool.</p>
 <h2 id="api">API</h2>
@@ -244,8 +251,6 @@ which is up-to-date for your systems branch.</p>
 <h2 id="misc">MISC</h2>
 <p>-G, --get-branch
 :   Return branch from configuration.</p>
-<p>-g--geoip
-:   Use geolocation if possible, if geoip is not available all mirrors.</p>
 <p>-h, --help
 :   Show the help message.</p>
 <p>-l, --list, --country-list
@@ -262,6 +267,8 @@ which is up-to-date for your systems branch.</p>
 :   Make pacman-mirrors silent.</p>
 <p>-s, --no-status
 :   Ignore up-to-date status for system branch.</p>
+<p>--status
+:   Print status for mirrors in system mirror list</p>
 <p>--interval
 :   Apply a filter based on elapsed hours since last sync.</p>
 <p>-t, --timeout <em>SECONDS</em>
@@ -273,6 +280,8 @@ which is up-to-date for your systems branch.</p>
 1     : Problem with argument
 2     : Problem accessing systemfiles
 3     : Missing mirror file
+4     : Primary mirror not up-to-date
+5     : Invalid mirrors found
 BRANCH: Value from config
 </code></pre>
 <h2 id="configuration-flow-of-pacman-mirrors">Configuration flow of pacman-mirrors</h2>
@@ -502,5 +511,5 @@ Frede Hundewadt &lt;echo ZmhAbWFuamFyby5vcmcK | base64 -d&gt;
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2019-04-25 16:06:36
+Build Date UTC : 2019-12-11 09:35:39
 -->

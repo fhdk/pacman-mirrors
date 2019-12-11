@@ -7,14 +7,16 @@
 # Bernhard Landauer <bernhard@oberon.at>, 2017
 # Nico B. <forboards@outlook.de>, 2017
 # Nim Red <n1mred@protonmail.com>, 2017
+# philm <philm@manjaro.org>, 2017
+# Roman Volak <romanvolak@web.de>, 2019
 # Sebastian Lange <sl060270@googlemail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pacman-mirrors\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-23 20:55+0200\n"
-"PO-Revision-Date: 2017-10-25 10:56+0000\n"
-"Last-Translator: Nim Red <n1mred@protonmail.com>\n"
+"PO-Revision-Date: 2019-10-16 19:12+0000\n"
+"Last-Translator: Roman Volak <romanvolak@web.de>\n"
 "Language-Team: German (http://www.transifex.com/manjarolinux/manjaro-pacman-mirrors/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,11 +43,11 @@ msgstr "HTTP-Fehler"
 
 #: pacman_mirrors/constants/txt.py:34
 msgid "TIMEOUT"
-msgstr ""
+msgstr "TIMEOUT"
 
 #: pacman_mirrors/constants/txt.py:36
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: pacman_mirrors/constants/txt.py:37
 msgid "BRANCH"
@@ -81,11 +83,11 @@ msgstr "PFAD"
 
 #: pacman_mirrors/constants/txt.py:45
 msgid "PREFIX"
-msgstr ""
+msgstr "PREFIX"
 
 #: pacman_mirrors/constants/txt.py:46
 msgid "PROTO"
-msgstr ""
+msgstr "PROTO"
 
 #: pacman_mirrors/constants/txt.py:47
 msgid "SECONDS"
@@ -101,15 +103,15 @@ msgstr "VERWENDUNG"
 
 #: pacman_mirrors/constants/txt.py:51
 msgid "Return branch from configuration"
-msgstr ""
+msgstr "Konfigurierte Branch anzeigen"
 
 #: pacman_mirrors/constants/txt.py:52
 msgid "Set prefix to"
-msgstr ""
+msgstr "Setze Prefix auf"
 
 #: pacman_mirrors/constants/txt.py:53
 msgid "Replace protocols in configuration"
-msgstr ""
+msgstr "Protokolle in der Konfiguration ersetzen"
 
 #: pacman_mirrors/constants/txt.py:54
 msgid "Replace branch in mirrorlist"
@@ -137,7 +139,7 @@ msgstr "Lade Standard-Mirrordatei"
 
 #: pacman_mirrors/constants/txt.py:61
 msgid "Generate mirrorlist with a number of up-to-date mirrors. Ignores:"
-msgstr ""
+msgstr "Erstelle eine Mirror-Liste mit einer Anzahl von aktuellen Servern. Ignoriert:"
 
 #: pacman_mirrors/constants/txt.py:63
 msgid "Generate mirrorlist with defaults"
@@ -161,7 +163,7 @@ msgstr "Generierungsmethode"
 
 #: pacman_mirrors/constants/txt.py:68
 msgid "Use to skip generation of mirrorlist"
-msgstr ""
+msgstr "Verwendet um eine Mirror-List-Erstellung zu vermeiden"
 
 #: pacman_mirrors/constants/txt.py:69
 msgid "Quiet mode - less verbose output"
@@ -181,15 +183,15 @@ msgstr "Version der pacman-mirrors anzeigen"
 
 #: pacman_mirrors/constants/txt.py:74
 msgid "Branch in config is changed"
-msgstr ""
+msgstr "Zweig in der Konfiguration hat sich geändert"
 
 #: pacman_mirrors/constants/txt.py:75
 msgid "Protocols in config is changed"
-msgstr ""
+msgstr "Protokolle in der Konfiguration haben sich geändert"
 
 #: pacman_mirrors/constants/txt.py:76
 msgid "Re-branch requires a branch to work with"
-msgstr ""
+msgstr "Zweigänderung benötigt einen Zweig für die Durchführung"
 
 #: pacman_mirrors/constants/txt.py:77
 msgid "Branch in mirror list is changed"
@@ -273,7 +275,7 @@ msgstr "Benutzerdefinierte Mirrorliste"
 
 #: pacman_mirrors/constants/txt.py:97
 msgid "to reset custom mirrorlist"
-msgstr ""
+msgstr "um auf die benutzerspezifische Mirror-List zurückzusetzen"
 
 #: pacman_mirrors/constants/txt.py:98
 msgid "default mirrorlist"
@@ -281,19 +283,19 @@ msgstr "Voreingestellte Mirrorliste"
 
 #: pacman_mirrors/constants/txt.py:99
 msgid "to modify mirrorlist"
-msgstr ""
+msgstr "um die Mirror-Liste zu modifizieren"
 
 #: pacman_mirrors/constants/txt.py:100
 msgid "Mirror ranking is not available"
-msgstr ""
+msgstr "Mirror-Ranking ist nicht verfügbar"
 
 #: pacman_mirrors/constants/txt.py:101
 msgid "Must have root privileges"
-msgstr "Benötigt root-Rechte"
+msgstr "Benötigt ROOT-Rechte"
 
 #: pacman_mirrors/constants/txt.py:102
 msgid "The mirrors has not changed"
-msgstr ""
+msgstr "Die Servereinstellungen haben sich nicht verändert"
 
 #: pacman_mirrors/constants/txt.py:103
 msgid "No mirrors in selection"
@@ -329,7 +331,7 @@ msgstr "unbekanntes Land"
 
 #: pacman_mirrors/constants/txt.py:111
 msgid "Use 0 for all mirrors"
-msgstr ""
+msgstr "benutze 0 für alle verfügbaren Mirrors"
 
 #: pacman_mirrors/constants/txt.py:112
 msgid "Using all mirrors"

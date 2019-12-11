@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: manjaro-pacman-mirrors\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-23 20:55+0200\n"
-"PO-Revision-Date: 2019-07-06 08:45+0000\n"
+"PO-Revision-Date: 2019-11-02 14:33+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/manjarolinux/manjaro-pacman-mirrors/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:36
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: pacman_mirrors/constants/txt.py:37
 msgid "BRANCH"
@@ -74,7 +74,7 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:44
 msgid "PATH"
-msgstr ""
+msgstr "KELIAS"
 
 #: pacman_mirrors/constants/txt.py:45
 msgid "PREFIX"
@@ -90,11 +90,11 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:48 pacman_mirrors/constants/txt.py:125
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: pacman_mirrors/constants/txt.py:49
 msgid "USAGE"
-msgstr ""
+msgstr "NAUDOJIMAS"
 
 #: pacman_mirrors/constants/txt.py:51
 msgid "Return branch from configuration"
@@ -166,7 +166,7 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:70
 msgid "Syncronize pacman databases"
-msgstr ""
+msgstr "Sinchronizuoti pacman duomenų bazes"
 
 #: pacman_mirrors/constants/txt.py:71
 msgid "Maximum waiting time for server response"
@@ -194,19 +194,19 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:78
 msgid "Available countries are"
-msgstr ""
+msgstr "Prieinamos šalys yra"
 
 #: pacman_mirrors/constants/txt.py:79
 msgid "Could not download from"
-msgstr ""
+msgstr "Nepavyko atsisiųsti iš"
 
 #: pacman_mirrors/constants/txt.py:80
 msgid "Cannot read file"
-msgstr ""
+msgstr "Nepavyksta perskaityti failą"
 
 #: pacman_mirrors/constants/txt.py:81
 msgid "Cannot write file"
-msgstr ""
+msgstr "Nepavyksta įrašyti failą"
 
 #: pacman_mirrors/constants/txt.py:82
 msgid "Converting custom mirror file to new format"
@@ -254,7 +254,7 @@ msgstr "trūksta"
 
 #: pacman_mirrors/constants/txt.py:93
 msgid "The mirror file"
-msgstr ""
+msgstr "Tinklaviečių failas"
 
 #: pacman_mirrors/constants/txt.py:94
 msgid "Mirror list generated and saved to"
@@ -290,7 +290,7 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:102
 msgid "The mirrors has not changed"
-msgstr ""
+msgstr "Tinklavietės nepasikeitė"
 
 #: pacman_mirrors/constants/txt.py:103
 msgid "No mirrors in selection"
@@ -298,15 +298,15 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:104
 msgid "Option"
-msgstr ""
+msgstr "Parinktis"
 
 #: pacman_mirrors/constants/txt.py:105
 msgid "Please use"
-msgstr ""
+msgstr "Naudokite"
 
 #: pacman_mirrors/constants/txt.py:106
 msgid "Querying mirrors"
-msgstr ""
+msgstr "Užklausiamos tinklavietės"
 
 #: pacman_mirrors/constants/txt.py:107
 msgid "Randomizing mirror list"
@@ -318,11 +318,11 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:109
 msgid "This may take some time"
-msgstr ""
+msgstr "Tai gali šiek tiek užtrukti"
 
 #: pacman_mirrors/constants/txt.py:110
 msgid "unknown country"
-msgstr ""
+msgstr "nežinoma šalis"
 
 #: pacman_mirrors/constants/txt.py:111
 msgid "Use 0 for all mirrors"
@@ -330,27 +330,27 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:112
 msgid "Using all mirrors"
-msgstr ""
+msgstr "Naudojamos visos tinklavietės"
 
 #: pacman_mirrors/constants/txt.py:113
 msgid "Using custom mirror file"
-msgstr ""
+msgstr "Naudojamas tinkintų tinklaviečių failas"
 
 #: pacman_mirrors/constants/txt.py:114
 msgid "Using default mirror file"
-msgstr ""
+msgstr "Naudojamas numatytųjų tinklaviečių failas"
 
 #: pacman_mirrors/constants/txt.py:115
 msgid "Writing mirror list"
-msgstr ""
+msgstr "Rašomas tinklaviečių failas"
 
 #: pacman_mirrors/constants/txt.py:118
 msgid "Manjaro mirrors by response time"
-msgstr ""
+msgstr "Manjaro tinklavietės pagal atsako laiką"
 
 #: pacman_mirrors/constants/txt.py:119
 msgid "Manjaro mirrors in random order"
-msgstr ""
+msgstr "Manjaro tinklavietės atsitiktine tvarka"
 
 #: pacman_mirrors/constants/txt.py:120
 msgid "Check mirrors for your personal list"
@@ -362,7 +362,7 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:122
 msgid "Country"
-msgstr ""
+msgstr "Šalis"
 
 #: pacman_mirrors/constants/txt.py:123
 msgid "Resp"
@@ -374,11 +374,11 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:126
 msgid "Cancel"
-msgstr ""
+msgstr "Atsisakyti"
 
 #: pacman_mirrors/constants/txt.py:127
 msgid "OK"
-msgstr ""
+msgstr "Gerai"
 
 #: pacman_mirrors/constants/txt.py:128
 msgid "Confirm selections"
@@ -386,4 +386,4 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:129
 msgid "I want to use these mirrors"
-msgstr ""
+msgstr "Aš noriu naudoti šias tinklavietes"
