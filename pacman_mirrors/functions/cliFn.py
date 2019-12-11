@@ -29,6 +29,7 @@ from pacman_mirrors.functions import customFn
 from pacman_mirrors.constants import txt
 from pacman_mirrors.functions import outputFn
 from pacman_mirrors.functions import mirror_status
+from pacman_mirrors.functions import printFn
 from pacman_mirrors.translation.custom_help_formatter \
     import CustomHelpFormatter
 
@@ -171,7 +172,12 @@ def parse_command_line(self, gtk_available: bool) -> None:
     No root required
     #############################################################
     """
-    if len(sys.argv) == 1 or args.help:
+    if len(sys.argv) == 1:
+        printFn.blue_msg(f"Pacman-mirrors version {__version__}")
+        exit_code = mirror_status.print_status()
+        sys.exit(exit_code)
+
+    if args.help:
         parser.print_help()
         sys.exit(0)
 

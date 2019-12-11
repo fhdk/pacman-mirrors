@@ -125,7 +125,7 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
         response time exceeds the predefined response time,
         the loop would stop execution if the check for zero is not present
         """
-        if limit is not None and counter is not 0 and counter == limit:
+        if limit is not None and counter != 0 and counter == limit:
             break
 
     return result
