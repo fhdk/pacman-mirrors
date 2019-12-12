@@ -71,7 +71,10 @@ def build_country_list(self: list) -> list:
 
 
 def get_continent(country: str) -> str:
-
+    """
+    Database query for continent where country belongs
+    :param country:
+    """
     continent = (x for x in countries if country in x["name"])
     for x in continent:
         return x["continent"].strip().replace(" ", "_")
@@ -80,9 +83,9 @@ def get_continent(country: str) -> str:
 
 def get_continent_countries(continent: str, mirror_pool: list) -> list:
     """
+    Database query for countries on continent
     :param continent:
     :param mirror_pool:
-    return list of mirror countries from continent
     :return: list
     """
     result = []
@@ -96,15 +99,16 @@ def get_continent_countries(continent: str, mirror_pool: list) -> list:
 def get_geo_continent() -> str:
     """
     Return geo continent from IP
+    Spaces in name are replaced with underscores
     """
-    return _get_ip_continent()
+    return _get_ip_continent().replace(" ", "_")
 
 
 def get_geo_country(country_pool: list) -> str:
     """
     Return geo country if possible
     :param country_pool:
-    :return: country name if found
+    :return: country name if found - spaces are replaced with underscores
     """
     geo_country = _get_ip_country().replace(" ", "_")
     selection = (x for x in country_pool if geo_country in x)

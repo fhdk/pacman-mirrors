@@ -29,6 +29,8 @@ def load_config_mirror_pool(self) -> None:
     """
     Load mirrors from configured mirror pool
     """
+    if self.geoip or self.continent:
+        customFn.delete_custom_pool(self)
     if customFn.check_custom_pool(self) and not self.config["country_pool"]:
         customFn.load_custom_pool(self)
         self.selected_countries = self.mirrors.country_pool

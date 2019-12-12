@@ -43,7 +43,7 @@ def get_state(states: list, branch: str) -> tuple:
     return ret_color, status_text
 
 
-def print_status() -> int:
+def print_status(self) -> int:
     system_branch, mirrors_pacman = get_local_mirrors()
     try:
         with request.urlopen('https://repo.manjaro.org/status.json') as f_url:
@@ -69,7 +69,7 @@ def print_status() -> int:
             mirror = [m for m in mirrors if m['url'] == url][0]
             color, text = get_state(mirror["branches"], system_branch)
             len_country = max(len(m['country']) for m in mirrors) + 1
-            print(f"Mirror #{i + 1:2}", color, f"{text}", C_NONE,
+            print(f"Mirror #{str(i + 1):2}", color, f"{text}", C_NONE,
                   f"{mirror['last_sync']:7} {mirror['country']:{len_country}} {mirror['url']}")
             if i == 0 and color == C_KO:
                 exit_code = 4  # first mirror not sync !

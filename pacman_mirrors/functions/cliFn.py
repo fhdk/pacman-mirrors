@@ -174,7 +174,7 @@ def parse_command_line(self, gtk_available: bool) -> None:
     """
     if len(sys.argv) == 1:
         printFn.blue_msg(f"Pacman-mirrors version {__version__}")
-        exit_code = mirror_status.print_status()
+        exit_code = mirror_status.print_status(self)
         sys.exit(exit_code)
 
     if args.help:
@@ -201,7 +201,8 @@ def parse_command_line(self, gtk_available: bool) -> None:
         self.tty = args.no_color
 
     if args.status:
-        exit_code = mirror_status.print_status()
+        self.status = args.status
+        exit_code = mirror_status.print_status(self)
         sys.exit(exit_code)
 
     """
