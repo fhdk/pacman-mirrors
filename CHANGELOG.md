@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.16.2] 2019-12-12
+* Fixed missing reset of custom mirror pool when using `--continent` and `--geoip`
+
 ## [4.16] 2019-12-10
 * Added `--continent` argument [#149](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/149)
 * Added `--status` argument [#151](https://gitlab.manjaro.org/applications/pacman-mirrors/issues/151)
