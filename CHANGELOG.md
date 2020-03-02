@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.16.3] 2020-03-02
+* Added **stable-staging** to the end of the branch list.
+
 ## [4.16.2] 2019-12-12
 * Fixed missing reset of custom mirror pool when using `--continent` and `--geoip`
 
