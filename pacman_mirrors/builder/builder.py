@@ -70,6 +70,4 @@ def build_pool(self) -> list:
     else:
         work_pool = filter_user_branch(mirror_pool=work_pool, config=self.config)
 
-    print(work_pool)
-    exit()
     return work_pool
