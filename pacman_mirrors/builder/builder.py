@@ -39,12 +39,12 @@ def build_pool(self) -> list:
     work_pool = filter_bad_mirrors(mirror_pool=self.mirrors.mirror_pool)
 
     """
-    remove known error mirrors - response time 99.99 
+    remove known error mirrors - response time 99.99
     """
     work_pool = filter_error_mirrors(mirror_pool=work_pool)
 
     """
-    Apply country filter if not fasttrack 
+    Apply country filter if not fasttrack
     """
     if not self.fasttrack:
         work_pool = filter_mirror_country(mirror_pool=work_pool, country_pool=self.selected_countries)
@@ -70,4 +70,6 @@ def build_pool(self) -> list:
     else:
         work_pool = filter_user_branch(mirror_pool=work_pool, config=self.config)
 
+    print(work_pool)
+    exit()
     return work_pool

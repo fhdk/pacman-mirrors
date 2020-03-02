@@ -89,7 +89,7 @@ def parse_command_line(self, gtk_available: bool) -> None:
                      help="[-p {}][-R][-S/-B|-G {}][-P {} [{} ...]]".format(
                          txt.PREFIX, txt.BRANCH, txt.PROTO, txt.PROTO))
     api.add_argument("-S", "-B", "--set-branch",
-                     choices=["stable", "testing", "unstable"],
+                     choices=["stable", "stable-stating", "testing", "unstable"],
                      help="{}: {}".format(
                          txt.API, txt.HLP_ARG_API_SET_BRANCH))
     api.add_argument("-p", "--prefix",
