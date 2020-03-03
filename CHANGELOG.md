@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.16.3] 2020-03-03
+* Fix typo
+
 ## [4.16.3] 2020-03-02
 * Added **stable-staging** to the end of the branch list.
 
