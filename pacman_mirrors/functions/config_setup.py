@@ -51,7 +51,8 @@ def setup_config() -> tuple:
         "test_file": conf.TEST_FILE,
         "url_mirrors_json": conf.URL_MIRROR_JSON,
         "url_status_json": conf.URL_STATUS_JSON,
-        "x32": False
+        "x32": False,
+        "arm": False
     }
     # try to replace default entries by reading conf file
     try:
@@ -105,6 +106,10 @@ def sanitize_config(config: object) -> bool:
         if config["branch"] not in conf.X32_BRANCHES:
             errors.append("     'Branch = {}'; {} {}".format(
                 config["branch"], txt.EXP_CLR, "|".join(conf.X32_BRANCHES)))
+    elif config["arm"]:
+        if config["branch"] not in conf.ARM_BRANCHES:
+            errors.append("     'Branch = {}'; {} {}".format(
+                config["branch"], txt.EXP_CLR, "|".join(conf.ARM_BRANCHES)))
     else:
         if config["branch"] not in conf.BRANCHES:
             errors.append("     'Branch = {}'; {} {}".format(

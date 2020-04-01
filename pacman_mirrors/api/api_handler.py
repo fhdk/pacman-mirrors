@@ -65,6 +65,7 @@ def set_config(self, set_pfx: str = None, set_branch: str = None,
         # Apply branch to internal config
         self.config["branch"] = set_branch
         util.i686_check(self=self, write=False)
+        util.aarch64_check(self=self, write=False)
         """
         # pacman-mirrors.conf could absent so check for it
         """

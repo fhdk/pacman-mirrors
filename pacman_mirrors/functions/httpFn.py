@@ -122,6 +122,8 @@ def get_mirror_response(url: str, config: object, tty: bool = False, maxwait: in
     arch = "x86_64"
     if config["x32"]:
         arch = "i686"
+    if config["arm"]:
+        arch = "aarch64"
     probe_url = f"{url}{config['branch']}/core/{arch}/{config['test_file']}"
     if not ssl_verify:
         context.check_hostname = False

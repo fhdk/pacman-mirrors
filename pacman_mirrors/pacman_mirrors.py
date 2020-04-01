@@ -92,6 +92,7 @@ class PacmanMirrors:
         fileFn.create_dir(self.config["work_dir"])
         cliFn.parse_command_line(self, gtk_available=GTK_AVAILABLE)
         util.i686_check(self, write=True)
+        util.aarch64_check(self, write=True)
         if not config_setup.sanitize_config(config=self.config):
             sys.exit(2)
         self.network = httpFn.check_internet_connection(tty=self.tty)

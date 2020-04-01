@@ -66,6 +66,8 @@ def filter_user_branch(mirror_pool: list, config: object) -> list:
     for idx, branch in enumerate(conf.BRANCHES):
         if config["x32"]:
             config_branch = config["branch"][4:]
+        elif config["arm"]:
+            config_branch = config["branch"][4:]            
         else:
             config_branch = config["branch"]
         if branch == config_branch:
