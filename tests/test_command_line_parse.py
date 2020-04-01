@@ -33,7 +33,8 @@ test_conf = {
     "test_file": mock.TEST_FILE,
     "url_mirrors_json": mock.URL_MIRROR_JSON,
     "url_status_json": mock.URL_STATUS_JSON,
-    "x32": False
+    "x32": False,
+    "arm": False
 }
 
 
