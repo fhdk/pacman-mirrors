@@ -302,7 +302,9 @@ def parse_command_line(self, gtk_available: bool) -> None:
         self.interactive = True
         if args.default:
             self.default = True
-        if os.environ.get("XDG_SESSION_TYPE") == "wayland" or not os.environ.get("DISPLAY") or not gtk_available:
+            
+        # wayland - sway - console - gtk
+        if os.environ.get("XDG_SESSION_TYPE") == "wayland" or os.environ.get("XDG_SESSION_TYPE") == "tty" or not os.environ.get("DISPLAY") or not gtk_available:
             self.no_display = True
 
     """

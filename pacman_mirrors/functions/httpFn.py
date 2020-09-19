@@ -120,8 +120,8 @@ def get_mirror_response(url: str, config: object, tty: bool = False, maxwait: in
     message = ""
     context = ssl.create_default_context()
     arch = "x86_64"
-    if config["x32"]:
-        arch = "i686"
+    #if config["x32"]:
+    #    arch = "i686"
     if config["arm"]:
         arch = "aarch64"
     probe_url = f"{url}{config['branch']}/core/{arch}/{config['test_file']}"
@@ -218,3 +218,4 @@ def download_mirror_pool(config: object, tty: bool = False, quiet: bool = False)
                          tty=tty)
             result = (False, False)
     return result
+ 
