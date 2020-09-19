@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.17.1] 2020-09-19
+* fix sway on arm
+
 ## [4.16.3] 2020-03-03
 * Fix typo
 
