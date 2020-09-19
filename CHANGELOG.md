@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [4.16.6] 2020-09-29
+## [4.17.1] 2020-09-29
 * fix --interactive on arm - sway edition
 
 ## [4.16.3] 2020-03-03
