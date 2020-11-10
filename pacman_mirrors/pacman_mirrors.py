@@ -116,11 +116,6 @@ class PacmanMirrors:
         * Interactive
         * Default
         """
-        if self.use_async:
-            util.async_disclaimer()
-            resp = input()
-            if resp.lower() == "n":
-                exit(0)
         if self.fasttrack:
             fasttrack.build_mirror_list(self, limit=self.fasttrack)
         elif self.interactive:
