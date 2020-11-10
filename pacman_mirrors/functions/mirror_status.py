@@ -7,6 +7,8 @@ from pacman_mirrors.constants import colors
 from pacman_mirrors.functions import printFn
 from pacman_mirrors.functions.util import strip_protocol
 from pacman_mirrors.functions.util import msg
+from datetime import datetime
+from pacman_mirrors.functions.jsonFn import read_json_file
 
 C_KO = colors.RED
 C_OK = colors.GREEN
