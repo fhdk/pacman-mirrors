@@ -63,7 +63,7 @@ def download_mirrors(config: object) -> tuple:
                                      headers=USER_AGENT)
         with urllib.request.urlopen(req) as response:
             mirrorlist = json.loads(response.read().decode("utf8"),
-                                    object_pairs_hook=OrderedDict)
+                                    object_pairs_hook=collections.OrderedDict)
         fetchmirrors = True
         tempfile = config["work_dir"] + "/.temp.file"
         jsonFn.json_dump_file(mirrorlist, tempfile)
@@ -83,7 +83,7 @@ def download_mirrors(config: object) -> tuple:
         with urllib.request.urlopen(req) as response:
             statuslist = json.loads(
                 response.read().decode("utf8"),
-                object_pairs_hook=OrderedDict)
+                object_pairs_hook=collections.OrderedDict)
         fetchstatus = True
         jsonFn.write_json_file(statuslist, config["status_file"])
     except (HTTPException, json.JSONDecodeError, URLError):

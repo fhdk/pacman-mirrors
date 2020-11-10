@@ -36,7 +36,7 @@ def read_json_file(filename: str, dictionary: bool = True) -> list:
             with open(filename, "rb") as infile:
                 result = json.loads(
                     infile.read().decode("utf8"),
-                    object_pairs_hook=OrderedDict)
+                    object_pairs_hook=collections.OrderedDict)
         else:
             with open(filename, "r") as infile:
                 result = json.load(infile)
