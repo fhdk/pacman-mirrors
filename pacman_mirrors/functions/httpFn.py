@@ -63,7 +63,7 @@ def download_mirrors(config: object) -> tuple:
                                      headers=USER_AGENT)
         with urllib.request.urlopen(req) as response:
             mirrorlist = json.loads(response.read().decode("utf8"),
-                                    object_pairs_hook=collections.OrderedDict)
+                                    object_pairs_hook=OrderedDict)
         fetchmirrors = True
         tempfile = config["work_dir"] + "/.temp.file"
         jsonFn.json_dump_file(mirrorlist, tempfile)
@@ -83,7 +83,7 @@ def download_mirrors(config: object) -> tuple:
         with urllib.request.urlopen(req) as response:
             statuslist = json.loads(
                 response.read().decode("utf8"),
-                object_pairs_hook=collections.OrderedDict)
+                object_pairs_hook=OrderedDict)
         fetchstatus = True
         jsonFn.write_json_file(statuslist, config["status_file"])
     except (HTTPException, json.JSONDecodeError, URLError):
@@ -120,8 +120,6 @@ def get_mirror_response(url: str, config: object, tty: bool = False, maxwait: in
     message = ""
     context = ssl.create_default_context()
     arch = "x86_64"
-    #if config["x32"]:
-    #    arch = "i686"
     if config["arm"]:
         arch = "aarch64"
     probe_url = f"{url}{config['branch']}/core/{arch}/{config['test_file']}"
@@ -218,4 +216,3 @@ def download_mirror_pool(config: object, tty: bool = False, quiet: bool = False)
                          tty=tty)
             result = (False, False)
     return result
- 

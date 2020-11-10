@@ -100,10 +100,7 @@ def build_mirror_list(self) -> None:
             # using the default runs method after selection
             if self.default:
                 if self.config["method"] == "rank":
-                    if self.use_async:
-                        mirror_list = test_mirror_pool_async(self=self, worklist=mirror_list)
-                    else:
-                        mirror_list = test_mirror_pool(self=self, worklist=mirror_list)
+                    mirror_list = test_mirror_pool(self=self, worklist=mirror_list)
                     mirror_list = sorted(mirror_list, key=itemgetter("resp_time"))
                 else:
                     shuffle(mirror_list)
@@ -126,7 +123,7 @@ def build_mirror_list(self) -> None:
 
             """
             Writing mirrorlist
-            If the mirror list is empty because 
+            If the mirror list is empty because
             no up-to-date mirrors exist for users branch
             raise IndexError to the outer try-catch
             """

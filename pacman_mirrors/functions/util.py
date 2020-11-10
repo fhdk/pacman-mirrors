@@ -28,11 +28,6 @@ from pacman_mirrors.api import apifn
 from pacman_mirrors.constants import txt
 
 
-def async_disclaimer() -> None:
-    for line in txt.ASYNC_DISCLAIM:
-        print(line)
-
-
 def extract_mirror_url(data: str) -> str:
     """Extract mirror url from data"""
     line = data.strip()
@@ -79,22 +74,13 @@ def location_from_url(url: str) -> str:
     return url
 
 
-def i686_check(self, write: bool = False) -> None:
-    if platform.machine() == "i686":
-        self.config["x32"] = True
-        if "x32" not in self.config["branch"]:
-            self.config["branch"] = "x32-{}".format(self.config["branch"])
-            if write:
-                apifn.write_config_branch(self.config["branch"], self.config["config_file"], quiet=True)
-
-
 def aarch64_check(self, write: bool = False) -> None:
     if platform.machine() == "aarch64":
         self.config["arm"] = True
         if "arm" not in self.config["branch"]:
             self.config["branch"] = "arm-{}".format(self.config["branch"])
             if write:
-                apifn.write_config_branch(self.config["branch"], self.config["config_file"], quiet=True)                
+                apifn.write_config_branch(self.config["branch"], self.config["config_file"], quiet=True)
 
 
 def internet_message(tty: bool = False) -> None:

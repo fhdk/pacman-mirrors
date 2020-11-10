@@ -72,7 +72,7 @@ class PacmanMirrors:
         self.quiet = False
         self.selected_countries = []
         self.tty = False
-        self.use_async = False
+        self.arm = False
 
     def run(self):
         """
@@ -91,13 +91,14 @@ class PacmanMirrors:
         (self.config, self.custom) = config_setup.setup_config()
         fileFn.create_dir(self.config["work_dir"])
         cliFn.parse_command_line(self, gtk_available=GTK_AVAILABLE)
-        util.i686_check(self, write=True)
         util.aarch64_check(self, write=True)
         if not config_setup.sanitize_config(config=self.config):
             sys.exit(2)
         self.network = httpFn.check_internet_connection(tty=self.tty)
-        if self.network:
-            httpFn.download_mirror_pool(config=self.config, tty=self.tty, quiet=self.quiet)
+        if self.config["url_mirrors_json"] and self.config["url_status_json"]:
+            # only fetch data files if configuration url are valid
+            if self.network:
+                httpFn.download_mirror_pool(config=self.config, tty=self.tty, quiet=self.quiet)
         if self.no_mirrorlist:
             sys.exit(0)
         if not self.network:

@@ -161,9 +161,6 @@ def parse_command_line(self, gtk_available: bool) -> None:
     misc.add_argument("--status",
                       action="store_true",
                       help="Status for the current mirror list.")
-    misc.add_argument("--use-async",
-                      action="store_true",
-                      help="Experimental async mirror test.")
 
     args = parser.parse_args()
 
@@ -272,9 +269,6 @@ def parse_command_line(self, gtk_available: bool) -> None:
     else:
         self.interval = None
 
-    if args.use_async:
-        self.use_async = True
-
     """
     Generation methods
     """
@@ -302,7 +296,7 @@ def parse_command_line(self, gtk_available: bool) -> None:
         self.interactive = True
         if args.default:
             self.default = True
-            
+
         # wayland - sway - console - gtk
         if os.environ.get("XDG_SESSION_TYPE") == "wayland" or os.environ.get("XDG_SESSION_TYPE") == "tty" or not os.environ.get("DISPLAY") or not gtk_available:
             self.no_display = True

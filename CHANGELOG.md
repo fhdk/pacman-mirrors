@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.18] 2020-11-09
+* remove 32-bit
+* remove async
+* prevent attempt to download data files if url in config is missing
+
 ## [4.17.1] 2020-09-29
 * fix --interactive on arm - sway edition
 

@@ -44,6 +44,21 @@ def get_state(states: list, branch: str) -> tuple:
 
 
 def print_status(self) -> int:
+    """
+    Printe mirror status
+    :param self:
+    :return:
+    """
+    # If configuration urls are missing - show only first mirror from mirror pool
+    if not self.config["url_mirrors_json"] or not self.config["url_status_json"]:
+        color = C_OK
+        text = "OK"
+        now = datetime.now()
+        fake = now.strftime("00:%M")
+        mirror = get_static_mirror(self.config["mirror_file"])
+        print(f"Mirror #1", color, f"{text}", C_NONE, f"{fake} {mirror['country']} {mirror['url']}")
+        return 0
+
     system_branch, mirrors_pacman = get_local_mirrors()
     try:
         with request.urlopen('https://repo.manjaro.org/status.json') as f_url:
@@ -77,10 +92,14 @@ def print_status(self) -> int:
             print(C_KO, f"Mirror #{i + 1:2}", f"{url} does not exist{C_NONE}")
             exit_code = 5  # not found
 
-    # if exit_code == 0:
-    #     msg("All good", color=colors.GREEN)
-    # if exit_code == 4:
-    #     msg("Primary mirror is not up-to-date", color=colors.YELLOW)
-    # if exit_code == 5:
-    #     msg("At least one mirror does not exist", color=colors.RED)
     return exit_code
+
+
+def get_static_mirror(filename: str) -> dict:
+    """
+    Get first mirror from mirror pool
+    :param filename:
+    :return:
+    """
+    mirror = read_json_file(filename)
+    return mirror[0]
