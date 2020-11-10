@@ -32,7 +32,6 @@ from pacman_mirrors.functions.outputFn import \
 
 from pacman_mirrors.functions.sortMirrorFn import sort_mirror_pool
 from pacman_mirrors.functions.testMirrorFn import test_mirror_pool
-from pacman_mirrors.functions.testMirrorAsyncFn import test_mirror_pool_async
 from pacman_mirrors.functions import util
 
 

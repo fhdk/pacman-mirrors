@@ -31,7 +31,6 @@ from pacman_mirrors.functions.outputFn import write_pacman_mirror_list
 from pacman_mirrors.functions.testMirrorFn import test_mirror_pool
 from pacman_mirrors.functions import util
 from pacman_mirrors.functions.sortMirrorFn import sort_mirror_pool
-from pacman_mirrors.functions.testMirrorAsyncFn import test_mirror_pool_async
 
 
 def build_mirror_list(self, limit: int) -> None:
