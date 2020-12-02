@@ -1,10 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [4.19]
+## [4.19] 2011-12-02
 * enhanced `-c/--country` argument
   - countries can be specified using country code or country name
-  - further enhanced argument to accept lower case
+  - further enhanced argument to accept lower case (any casing is accepted)
   - country specifications can be a mix of country code and country name
   - duplicate countries are removed
 
