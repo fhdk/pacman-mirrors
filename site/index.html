@@ -9,72 +9,59 @@
         
         <link rel="shortcut icon" href="img/favicon.ico">
         <title>pacman-mirrors</title>
-        <link href="css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/font-awesome.min.css" rel="stylesheet">
         <link href="css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
 
         <script src="js/jquery-1.10.2.min.js" defer></script>
-        <script src="js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body class="homepage">
-
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-
-                <!-- Collapsed navigation -->
-                <div class="navbar-header">
-                    <!-- Expander button -->
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href=".">pacman-mirrors</a>
-                </div>
+                <a class="navbar-brand" href=".">pacman-mirrors</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
                 <!-- Expanded navigation -->
-                <div class="navbar-collapse collapse">
+                <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="active">
-                                <a href=".">Home</a>
+                            <li class="navitem active">
+                                <a href="." class="nav-link">Home</a>
                             </li>
-                            <li >
-                                <a href="installation/">Installation</a>
+                            <li class="navitem">
+                                <a href="installation/" class="nav-link">Installation</a>
                             </li>
-                            <li >
-                                <a href="usage/">Usage</a>
+                            <li class="navitem">
+                                <a href="usage/" class="nav-link">Usage</a>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="disabled">
-                                <a rel="next" >
+                            <li class="nav-item">
+                                <a rel="prev" class="nav-link disabled">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
-                            <li >
-                                <a rel="prev" href="installation/">
+                            <li class="nav-item">
+                                <a rel="next" href="installation/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
-                            <li>
-                                <a href="https://github.com/manjaro/pacman-mirrors/edit/master/docs/index.md"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            <li class="nav-item">
+                                <a href="https://github.com/manjaro/pacman-mirrors/edit/master/docs/index.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
                             </li>
                     </ul>
                 </div>
@@ -82,37 +69,139 @@
         </div>
 
         <div class="container">
-                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#name">NAME</a></li>
-        <li class="main "><a href="#synopsis">SYNOPSIS</a></li>
-        <li class="main "><a href="#description">DESCRIPTION</a></li>
-        <li class="main "><a href="#important">IMPORTANT</a></li>
-        <li class="main "><a href="#operation">OPERATION</a></li>
-        <li class="main "><a href="#network-connection">NETWORK CONNECTION</a></li>
-        <li class="main "><a href="#mirror-ranking">MIRROR RANKING</a></li>
-            <li><a href="#modes">MODES</a></li>
-            <li><a href="#files-overview">FILES OVERVIEW</a></li>
-            <li><a href="#general-info-about-arguments">GENERAL INFO ABOUT ARGUMENTS</a></li>
-        <li class="main "><a href="#arguments-methods-and-options">ARGUMENTS, METHODS AND OPTIONS</a></li>
-            <li><a href="#methods">METHODS</a></li>
-            <li><a href="#api">API</a></li>
-            <li><a href="#misc">MISC</a></li>
-            <li><a href="#exit-status">Exit status:</a></li>
-            <li><a href="#configuration-flow-of-pacman-mirrors">Configuration flow of pacman-mirrors</a></li>
-            <li><a href="#api-arguments">API arguments</a></li>
-        <li class="main "><a href="#examples">EXAMPLES</a></li>
-            <li><a href="#commands">Commands</a></li>
-            <li><a href="#commands-requiring-sudo">Commands requiring sudo</a></li>
-            <li><a href="#advanced-use-samples-beware-of-the-dragons">Advanced use samples - BEWARE OF THE DRAGONS</a></li>
-        <li class="main "><a href="#default-configuration">DEFAULT CONFIGURATION</a></li>
-        <li class="main "><a href="#more-info">MORE INFO</a></li>
-        <li class="main "><a href="#reporting-bugs">REPORTING BUGS</a></li>
-        <li class="main "><a href="#see-also">SEE ALSO</a></li>
-        <li class="main "><a href="#authors">AUTHORS</a></li>
-    </ul>
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#name" class="nav-link">NAME</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#synopsis" class="nav-link">SYNOPSIS</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#description" class="nav-link">DESCRIPTION</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#important" class="nav-link">IMPORTANT</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#operation" class="nav-link">OPERATION</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#network-connection" class="nav-link">NETWORK CONNECTION</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#mirror-ranking" class="nav-link">MIRROR RANKING</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#modes" class="nav-link">MODES</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#files-overview" class="nav-link">FILES OVERVIEW</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#general-info-about-arguments" class="nav-link">GENERAL INFO ABOUT ARGUMENTS</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#arguments-methods-and-options" class="nav-link">ARGUMENTS, METHODS AND OPTIONS</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#methods" class="nav-link">METHODS</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#api" class="nav-link">API</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#misc" class="nav-link">MISC</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#exit-status" class="nav-link">Exit status:</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#configuration-flow-of-pacman-mirrors" class="nav-link">Configuration flow of pacman-mirrors</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#api-arguments" class="nav-link">API arguments</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#examples" class="nav-link">EXAMPLES</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#commands" class="nav-link">Commands</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#commands-requiring-sudo" class="nav-link">Commands requiring sudo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#advanced-use-samples-beware-of-the-dragons" class="nav-link">Advanced use samples - BEWARE OF THE DRAGONS</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#default-configuration" class="nav-link">DEFAULT CONFIGURATION</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#more-info" class="nav-link">MORE INFO</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#reporting-bugs" class="nav-link">REPORTING BUGS</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#see-also" class="nav-link">SEE ALSO</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#authors" class="nav-link">AUTHORS</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
 </div></div>
-                <div class="col-md-9" role="main">
+                    <div class="col-md-9" role="main">
 
 <p>% pacman-mirrors(8) Pacman-Mirrors 4.x User Manual
 %
@@ -126,7 +215,6 @@
                 [--api] [-S/-B BRANCH] [-p PREFIX]
                         [-P PROTO [PROTO...]] [-R] [-U URL]
 </code></pre>
-
 <h1 id="description">DESCRIPTION</h1>
 <p>Generates mirrorlist with up-to-date mirrors for Manjaro Linux.
 Default is to rank all mirrors by reponse time.
@@ -429,6 +517,7 @@ Ramon Buldó &lt;rbuldo@gmail.com&gt;
 Hugo Posnic &lt;huluti@manjaro.org&gt;
 Frede Hundewadt &lt;echo ZmhAbWFuamFyby5vcmcK | base64 -d&gt;
 </code></pre></div>
+            </div>
         </div>
 
         <footer class="col-md-12">
@@ -442,21 +531,21 @@ Frede Hundewadt &lt;echo ZmhAbWFuamFyby5vcmcK | base64 -d&gt;
         <script src="js/base.js" defer></script>
         <script src="search/main.js" defer></script>
 
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
-    <div class="modal-dialog">
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
             </div>
             <div class="modal-body">
                 <p>
                     From here you can search these documents. Enter
                     your search terms below.
                 </p>
-                <form role="form">
+                <form>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
                     </div>
                 </form>
                 <div id="mkdocs-search-results"></div>
@@ -465,12 +554,12 @@ Frede Hundewadt &lt;echo ZmhAbWFuamFyby5vcmcK | base64 -d&gt;
             </div>
         </div>
     </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
             </div>
             <div class="modal-body">
               <table class="table">
@@ -510,6 +599,6 @@ Frede Hundewadt &lt;echo ZmhAbWFuamFyby5vcmcK | base64 -d&gt;
 </html>
 
 <!--
-MkDocs version : 1.0.4
-Build Date UTC : 2019-12-11 09:35:39
+MkDocs version : 1.1.2
+Build Date UTC : 2020-12-02 14:28:55.761019+00:00
 -->

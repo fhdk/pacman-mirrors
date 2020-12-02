@@ -39,6 +39,9 @@ clean-test:
 lint:
 	flake8 pacman_mirrors tests
 
+tests:
+	python setup.py test
+
 test:
 	python setup.py test
 
