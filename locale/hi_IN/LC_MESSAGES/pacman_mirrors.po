@@ -4,386 +4,386 @@
 # project.
 # 
 # Translators:
-# xxmn77 <xxmn77@gmail.com>, 2020
+# Panwar108 <caspian7pena@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pacman-mirrors\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-23 20:55+0200\n"
-"PO-Revision-Date: 2020-10-30 13:30+0000\n"
-"Last-Translator: xxmn77 <xxmn77@gmail.com>\n"
-"Language-Team: Azerbaijani (Azerbaijan) (http://www.transifex.com/manjarolinux/manjaro-pacman-mirrors/language/az_AZ/)\n"
+"PO-Revision-Date: 2020-10-08 15:07+0000\n"
+"Last-Translator: Panwar108 <caspian7pena@gmail.com>\n"
+"Language-Team: Hindi (India) (http://www.transifex.com/manjarolinux/manjaro-pacman-mirrors/language/hi_IN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.5.1\n"
-"Language: az_AZ\n"
+"Language: hi_IN\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: pacman_mirrors/constants/txt.py:29
 msgid "ERROR"
-msgstr "XƏTA"
+msgstr "त्रुटि"
 
 #: pacman_mirrors/constants/txt.py:30
 msgid "INFO"
-msgstr "MƏLUMAT"
+msgstr "सूचना"
 
 #: pacman_mirrors/constants/txt.py:31
 msgid "WARNING"
-msgstr "XƏBƏRDARLIQ"
+msgstr "चेतावनी"
 
 #: pacman_mirrors/constants/txt.py:33
 msgid "HTTPException"
-msgstr "HTTPxaric"
+msgstr "एचटीटीपी अपवाद"
 
 #: pacman_mirrors/constants/txt.py:34
 msgid "TIMEOUT"
-msgstr "FASİLƏ"
+msgstr "समय सीमा समाप्त"
 
 #: pacman_mirrors/constants/txt.py:36
 msgid "API"
-msgstr "Tətbiqlərin proqramlaşdırma interfeysi"
+msgstr "एपीआई"
 
 #: pacman_mirrors/constants/txt.py:37
 msgid "BRANCH"
-msgstr "BÖLMƏ"
+msgstr "उपखंड"
 
 #: pacman_mirrors/constants/txt.py:38
 msgid "COUNTRY"
-msgstr "ÖLKƏ"
+msgstr "देश"
 
 #: pacman_mirrors/constants/txt.py:39
 msgid "FILE"
-msgstr "FAYL"
+msgstr "फाइल"
 
 #: pacman_mirrors/constants/txt.py:40
 msgid "METHOD"
-msgstr "VASİTƏ"
+msgstr "विधि"
 
 #: pacman_mirrors/constants/txt.py:41
 msgid "METHODS"
-msgstr "VASİTƏLƏR"
+msgstr "विधियाँ"
 
 #: pacman_mirrors/constants/txt.py:42
 msgid "MISC"
-msgstr "QARIŞIQ"
+msgstr "मिश्रित"
 
 #: pacman_mirrors/constants/txt.py:43
 msgid "NUMBER"
-msgstr "SAY"
+msgstr "संख्या"
 
 #: pacman_mirrors/constants/txt.py:44
 msgid "PATH"
-msgstr "YOL"
+msgstr "फोल्डर पथ"
 
 #: pacman_mirrors/constants/txt.py:45
 msgid "PREFIX"
-msgstr "PREFİKS"
+msgstr "उपसर्ग"
 
 #: pacman_mirrors/constants/txt.py:46
 msgid "PROTO"
-msgstr "PROTOKOL"
+msgstr "मूल"
 
 #: pacman_mirrors/constants/txt.py:47
 msgid "SECONDS"
-msgstr "SANİYƏ"
+msgstr "सेकंड"
 
 #: pacman_mirrors/constants/txt.py:48 pacman_mirrors/constants/txt.py:125
 msgid "URL"
-msgstr "URL"
+msgstr "यूआरएल"
 
 #: pacman_mirrors/constants/txt.py:49
 msgid "USAGE"
-msgstr "İSTİFADƏ"
+msgstr "उपयोग"
 
 #: pacman_mirrors/constants/txt.py:51
 msgid "Return branch from configuration"
-msgstr "Bölməni konfiqurasiyadan qaytarmaq"
+msgstr "विन्यास से शाखा बदलें"
 
 #: pacman_mirrors/constants/txt.py:52
 msgid "Set prefix to"
-msgstr "Prefiksi qiymətləndir"
+msgstr "उपसर्ग सेट करें"
 
 #: pacman_mirrors/constants/txt.py:53
 msgid "Replace protocols in configuration"
-msgstr "Konfiqurasiyada protokolları dəyiş"
+msgstr "विन्यास में प्रोटोकॉल बदलें"
 
 #: pacman_mirrors/constants/txt.py:54
 msgid "Replace branch in mirrorlist"
-msgstr "Güzgü siyhısınıdakı bölməni dəyiş"
+msgstr "सर्वर-मिरर सूची में शाखा बदलें"
 
 #: pacman_mirrors/constants/txt.py:55
 msgid "Replace branch in configuration"
-msgstr "Konfiqurasiyada bölməni dəyiş"
+msgstr "विन्यास में शाखा बदलें"
 
 #: pacman_mirrors/constants/txt.py:56
 msgid "Replace mirror url in mirrorlist"
-msgstr "Güzgü siyahısında güzgü url-nu dəyiş"
+msgstr "सर्वर-मिरर सूची में सर्वर यूआरएल बदलें"
 
 #: pacman_mirrors/constants/txt.py:57
 msgid "Branch name"
-msgstr "Bölmənin adı"
+msgstr "शाखा नाम"
 
 #: pacman_mirrors/constants/txt.py:58
 msgid "Comma separated list of countries, from which mirrors will be used"
-msgstr "Güzgüdə istifadə olunacaq, vergüllə ayrılmış ölkələrin siyahısı"
+msgstr "सर्वर-मिरर हेतु अल्पविराम द्वारा पृथक देश सूची"
 
 #: pacman_mirrors/constants/txt.py:60
 msgid "Load default mirror file"
-msgstr "İlkin güzgü faylını yüklə"
+msgstr "डिफ़ॉल्ट सर्वर-मिरर फाइल लोड करें"
 
 #: pacman_mirrors/constants/txt.py:61
 msgid "Generate mirrorlist with a number of up-to-date mirrors. Ignores:"
-msgstr "Yenilənmiş güzgülərin sayına uygun güzgü siyahısı yaratmaq. Gözardı edildi:"
+msgstr "नवीनतम सर्वर संख्या युक्त सर्वर-मिरर सूची बनाएँ। इन्हें अनदेखा करें :"
 
 #: pacman_mirrors/constants/txt.py:63
 msgid "Generate mirrorlist with defaults"
-msgstr "İlkin vəziyyətdəki kimi güzgü siyahısı yaratmaq"
+msgstr "डिफ़ॉल्ट द्वारा सर्वर-मिरर सूची बनाएँ"
 
 #: pacman_mirrors/constants/txt.py:64
 msgid "Get current country using geolocation"
-msgstr "Coğrafi mövqeyinizə uyğun ölkəni seçin"
+msgstr "इंटरनेट आधारित भौगोलिक स्थिति द्वारा वर्तमान देश पता लगाएँ"
 
 #: pacman_mirrors/constants/txt.py:65
 msgid "List all available countries"
-msgstr "Bütün mövcud ölkələrin siyahısı"
+msgstr "उपलब्ध देशों की सूची"
 
 #: pacman_mirrors/constants/txt.py:66
 msgid "Generate custom mirrorlist"
-msgstr "Özəl güzgü siyahısı yarat"
+msgstr "अनुकूलित सर्वर-मिरर सूची बनाएँ"
 
 #: pacman_mirrors/constants/txt.py:67
 msgid "Generation method"
-msgstr "Yaratma vasitəsi - siralanmış, təsadüfi"
+msgstr "बनाने की विधि"
 
 #: pacman_mirrors/constants/txt.py:68
 msgid "Use to skip generation of mirrorlist"
-msgstr "Güzgü siyahısı yaratmağı ötürün"
+msgstr "सर्वर-मिरर सूची न बनाने हेतु उपयोग करें"
 
 #: pacman_mirrors/constants/txt.py:69
 msgid "Quiet mode - less verbose output"
-msgstr "Səssiz metod - kiçik həcmli alınan məlumatlar"
+msgstr "संक्षिप्त मोड - न्यूनतम आउटपुट"
 
 #: pacman_mirrors/constants/txt.py:70
 msgid "Syncronize pacman databases"
-msgstr "Pacman məlumat bazasını uyğunlaşdırmaq"
+msgstr "पैकमैन डेटाबेस समकालीन करें"
 
 #: pacman_mirrors/constants/txt.py:71
 msgid "Maximum waiting time for server response"
-msgstr "Serverin cavabının maksimum gözləmə vaxtı"
+msgstr "सर्वर प्रतिक्रिया हेतु अधिकतम प्रतीक्षा समय"
 
 #: pacman_mirrors/constants/txt.py:72
 msgid "Print the pacman-mirrors version"
-msgstr "Pacman-güzgü versiyasının mətni"
+msgstr "पैकमैन-मिरर संस्करण दिखाएँ"
 
 #: pacman_mirrors/constants/txt.py:74
 msgid "Branch in config is changed"
-msgstr "Konfiqurasiyada bölmə dəyişdi"
+msgstr "विन्यास में शाखा परिवर्तित"
 
 #: pacman_mirrors/constants/txt.py:75
 msgid "Protocols in config is changed"
-msgstr "Tənzimləmədə protokollar dəyişdirildi"
+msgstr "विन्यास में प्रोटोकॉल परिवर्तित"
 
 #: pacman_mirrors/constants/txt.py:76
 msgid "Re-branch requires a branch to work with"
-msgstr "Təkrar bolgü üçün bir bölmə tələb olunur"
+msgstr "शाखा विभाजन हेतु मूल शाखा आवश्यक है"
 
 #: pacman_mirrors/constants/txt.py:77
 msgid "Branch in mirror list is changed"
-msgstr "Güzgü siyahısındakı bölmə dəyişdi"
+msgstr "सर्वर-मिरर सूची में शाखा परिवर्तित"
 
 #: pacman_mirrors/constants/txt.py:78
 msgid "Available countries are"
-msgstr "Mövcud ölkələr"
+msgstr "उपलब्ध देश हैं"
 
 #: pacman_mirrors/constants/txt.py:79
 msgid "Could not download from"
-msgstr "Yüklənilməsi mümükün olmayan mənbə"
+msgstr "इनसे डाउनलोड विफल"
 
 #: pacman_mirrors/constants/txt.py:80
 msgid "Cannot read file"
-msgstr "Fayl oxunmur"
+msgstr "फाइल रीड करना विफल"
 
 #: pacman_mirrors/constants/txt.py:81
 msgid "Cannot write file"
-msgstr "Fayl yazılmır"
+msgstr "फाइल राइट करना विफल"
 
 #: pacman_mirrors/constants/txt.py:82
 msgid "Converting custom mirror file to new format"
-msgstr "Özəl güzgü faylının yeni formata çevirilməsi"
+msgstr "अनुकूलित सर्वर-मिरर फाइल का नए प्रारूप में परिवर्तन जारी"
 
 #: pacman_mirrors/constants/txt.py:83
 msgid "Custom mirror file"
-msgstr "Özəl güzgü faylı"
+msgstr "अनुकूलित सर्वर-मिरर फाइल"
 
 #: pacman_mirrors/constants/txt.py:84
 msgid "Custom mirror file saved"
-msgstr "Özəl güzgü faylı saxlanıldı"
+msgstr "अनुकूलित सर्वर-मिरर फाइल संचित"
 
 #: pacman_mirrors/constants/txt.py:85
 msgid "User generated mirror list"
-msgstr "İstifadəçinin yaratdığı güzgü faylı"
+msgstr "उपयोक्ता निर्मित सर्वर-मिरर सूची"
 
 #: pacman_mirrors/constants/txt.py:86
 msgid "Deprecated argument"
-msgstr "Ləğv edilmiş arqument"
+msgstr "निरस्त मानदंड"
 
 #: pacman_mirrors/constants/txt.py:87
 msgid "doesn't exist."
-msgstr "Var olmayan"
+msgstr "मौजूद नहीं है।"
 
 #: pacman_mirrors/constants/txt.py:88
 msgid "Downloading mirrors from"
-msgstr "Güzgülər yüklənən mənbələr"
+msgstr "इससे सर्वर-मिरर डाउनलोड जारी"
 
 #: pacman_mirrors/constants/txt.py:89
 msgid "Falling back to"
-msgstr "Geri qaytarılan"
+msgstr "बैकअप उपयोग होगा"
 
 #: pacman_mirrors/constants/txt.py:90
 msgid "Internet connection appears to be down"
-msgstr "Görünür internet bağlantısı zəifdir"
+msgstr "संभवतः इंटरनेट कनेक्शन बंद है"
 
 #: pacman_mirrors/constants/txt.py:91
 msgid "Mirror list is generated using random method"
-msgstr "Güzgü siyahısı təsadüfü şəkildə yükləndi"
+msgstr "क्रमरहित विधि द्वारा सर्वर-मिरर सूची बनाई गई"
 
 #: pacman_mirrors/constants/txt.py:92
 msgid "is missing"
-msgstr "itirilən"
+msgstr "अनुपलब्ध"
 
 #: pacman_mirrors/constants/txt.py:93
 msgid "The mirror file"
-msgstr "Güzgü faylı"
+msgstr "अनुकूलित सर्वर-मिरर फाइल"
 
 #: pacman_mirrors/constants/txt.py:94
 msgid "Mirror list generated and saved to"
-msgstr "Güzgü faylı yaradıldı və saxlanıldığı yer "
+msgstr "यहाँ निर्मित सर्वर-मिरर सूची संचित की गई"
 
 #: pacman_mirrors/constants/txt.py:95
 msgid "Generated on"
-msgstr "Yaradıldı"
+msgstr "इस समय निर्मित"
 
 #: pacman_mirrors/constants/txt.py:96
 msgid "custom mirrorlist"
-msgstr "özəl güzgü siyahısı"
+msgstr "सर्वर-मिरर सूची"
 
 #: pacman_mirrors/constants/txt.py:97
 msgid "to reset custom mirrorlist"
-msgstr "özəl güzgü siyahısını sıfırla"
+msgstr "अनुकूलित सर्वर-मिरर सूची पुनः सेट करने हेतु"
 
 #: pacman_mirrors/constants/txt.py:98
 msgid "default mirrorlist"
-msgstr "ilkin güzgü siyahısı"
+msgstr "डिफ़ॉल्ट सर्वर-मिरर सूची"
 
 #: pacman_mirrors/constants/txt.py:99
 msgid "to modify mirrorlist"
-msgstr "güzgü siyahısını dəyişmək üçün"
+msgstr "सर्वर-मिरर सूची परिवर्तन हेतु"
 
 #: pacman_mirrors/constants/txt.py:100
 msgid "Mirror ranking is not available"
-msgstr "Güzgü sıralanması mövcud deyil"
+msgstr "सर्वर-मिरर अनुक्रम अनुपलब्ध"
 
 #: pacman_mirrors/constants/txt.py:101
 msgid "Must have root privileges"
-msgstr "Root imtiyazları tələb olunur"
+msgstr "रुट विशेषाधिकार होना आवश्यक है"
 
 #: pacman_mirrors/constants/txt.py:102
 msgid "The mirrors has not changed"
-msgstr "Güzgülər dəyişilmədi"
+msgstr "सर्वर-मिरर में कोई परिवर्तन नहीं"
 
 #: pacman_mirrors/constants/txt.py:103
 msgid "No mirrors in selection"
-msgstr "Güzgülər seçilməyib"
+msgstr "कोई सर्वर-मिरर चयनित नहीं"
 
 #: pacman_mirrors/constants/txt.py:104
 msgid "Option"
-msgstr "Seçimlər"
+msgstr "विकल्प"
 
 #: pacman_mirrors/constants/txt.py:105
 msgid "Please use"
-msgstr "Buyurun istifadə edin"
+msgstr "कृपया उपयोग करें"
 
 #: pacman_mirrors/constants/txt.py:106
 msgid "Querying mirrors"
-msgstr "Güzgü siyahısının tələb olunması"
+msgstr "सर्वर-मिरर खोज जारी"
 
 #: pacman_mirrors/constants/txt.py:107
 msgid "Randomizing mirror list"
-msgstr "Güzgü siyahısının təsadüfi düzülüşü"
+msgstr "क्रमरहित सर्वर-मिरर सूची निर्माण जारी"
 
 #: pacman_mirrors/constants/txt.py:108
 msgid "To remove custom config run "
-msgstr "Özəl konfiqurasiyanı silmək üçün başlat"
+msgstr "अनुकूलित विन्यास हटाने हेतु निष्पादित करें"
 
 #: pacman_mirrors/constants/txt.py:109
 msgid "This may take some time"
-msgstr "Bu bir az zaman ala bilər"
+msgstr "इसमें कुछ समय लग सकता है"
 
 #: pacman_mirrors/constants/txt.py:110
 msgid "unknown country"
-msgstr "naməlum ölkə"
+msgstr "अज्ञात देश"
 
 #: pacman_mirrors/constants/txt.py:111
 msgid "Use 0 for all mirrors"
-msgstr "Bütün güzgülər üçün 0 istifadə et"
+msgstr "सभी सर्वर-मिरर हेतु 0 उपयोग करें"
 
 #: pacman_mirrors/constants/txt.py:112
 msgid "Using all mirrors"
-msgstr "Bütün güzgülərin istifadə olunması"
+msgstr "सभी सर्वर-मिरर प्रयुक्त"
 
 #: pacman_mirrors/constants/txt.py:113
 msgid "Using custom mirror file"
-msgstr "Özəl güzgü faylının istifadə olunması"
+msgstr "अनुकूलित सर्वर-मिरर फाइल प्रयुक्त"
 
 #: pacman_mirrors/constants/txt.py:114
 msgid "Using default mirror file"
-msgstr "İlkin güzgü faylının istifadə olunması"
+msgstr "डिफ़ॉल्ट सर्वर-मिरर फाइल प्रयुक्त"
 
 #: pacman_mirrors/constants/txt.py:115
 msgid "Writing mirror list"
-msgstr "Güzgü siyahısının yazilması"
+msgstr "सर्वर-मिरर सूची हेतु राइट जारी"
 
 #: pacman_mirrors/constants/txt.py:118
 msgid "Manjaro mirrors by response time"
-msgstr "Cavab vermə vaxtına görə Manjaro güzgüləri"
+msgstr "मंजारो सर्वर-मिरर, प्रतिक्रिया समय अनुसार"
 
 #: pacman_mirrors/constants/txt.py:119
 msgid "Manjaro mirrors in random order"
-msgstr "Manjaro güzgüləri təsadüfi düzülüşdə"
+msgstr "मंजारो सर्वर-मिरर, क्रमरहित"
 
 #: pacman_mirrors/constants/txt.py:120
 msgid "Check mirrors for your personal list"
-msgstr "Güzgüləri öz siyahınızla yoxlayın"
+msgstr "अपनी निजी सूची हेतु सर्वर-मिरर जाँचें"
 
 #: pacman_mirrors/constants/txt.py:121
 msgid "Use"
-msgstr "İstifadə et"
+msgstr "उपयोग"
 
 #: pacman_mirrors/constants/txt.py:122
 msgid "Country"
-msgstr "Ölkə"
+msgstr "देश"
 
 #: pacman_mirrors/constants/txt.py:123
 msgid "Resp"
-msgstr "Cavab"
+msgstr "प्रतिक्रिया"
 
 #: pacman_mirrors/constants/txt.py:124
 msgid "Sync"
-msgstr "Uyğunlaşdırma"
+msgstr "समकालीन"
 
 #: pacman_mirrors/constants/txt.py:126
 msgid "Cancel"
-msgstr "İmtina"
+msgstr "रद्द"
 
 #: pacman_mirrors/constants/txt.py:127
 msgid "OK"
-msgstr "Oldu"
+msgstr "ठीक है"
 
 #: pacman_mirrors/constants/txt.py:128
 msgid "Confirm selections"
-msgstr "Seçimləri təsdiqləyin"
+msgstr "चयन की पुष्टि करें"
 
 #: pacman_mirrors/constants/txt.py:129
 msgid "I want to use these mirrors"
-msgstr "Mən bu güzgüləri istifadə etmək istəyirəm"
+msgstr "मैं ये सर्वर-मिरर उपयोग करने के इच्छुक हूँ"

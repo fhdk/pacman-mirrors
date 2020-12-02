@@ -5,20 +5,21 @@
 # 
 # Translators:
 # Eli Shleifer <eligator@gmail.com>, 2017
+# Omeritzics Games <omeritzicschwartz@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pacman-mirrors\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-23 20:55+0200\n"
-"PO-Revision-Date: 2017-11-07 11:32+0000\n"
-"Last-Translator: Eli Shleifer <eligator@gmail.com>\n"
+"PO-Revision-Date: 2020-11-03 18:43+0000\n"
+"Last-Translator: Omeritzics Games <omeritzicschwartz@gmail.com>\n"
 "Language-Team: Hebrew (http://www.transifex.com/manjarolinux/manjaro-pacman-mirrors/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.5.1\n"
 "Language: he\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
 
 #: pacman_mirrors/constants/txt.py:29
 msgid "ERROR"
@@ -110,7 +111,7 @@ msgstr "החלף פרוטוקול תקשורת בהגדרות"
 
 #: pacman_mirrors/constants/txt.py:54
 msgid "Replace branch in mirrorlist"
-msgstr "החלף ענף ברשימת המראות"
+msgstr "החלפת ענף ברשימת אתרי־המראה"
 
 #: pacman_mirrors/constants/txt.py:55
 msgid "Replace branch in configuration"
@@ -118,7 +119,7 @@ msgstr "החלף ענף בהגדרות"
 
 #: pacman_mirrors/constants/txt.py:56
 msgid "Replace mirror url in mirrorlist"
-msgstr "החלף את נתיב המראה ברשימת המראות"
+msgstr "החלפת נתיב אתר־המראה ברשימת אתרי־המראה"
 
 #: pacman_mirrors/constants/txt.py:57
 msgid "Branch name"
@@ -126,19 +127,19 @@ msgstr "שם הענף"
 
 #: pacman_mirrors/constants/txt.py:58
 msgid "Comma separated list of countries, from which mirrors will be used"
-msgstr "רשימת ארצות מופרדת באמצעות פסיקים, אשר המראות מהללו יהיו בשימוש"
+msgstr "פסיקים מפרידים בין הארצות ברשימה, אשר אתרי־המראה הללו יהיו בשימוש"
 
 #: pacman_mirrors/constants/txt.py:60
 msgid "Load default mirror file"
-msgstr "טען קובץ מראות על פי ברירת מחדל"
+msgstr "טעינת קובץ אתרי־מראה לפי ברירת המחדל"
 
 #: pacman_mirrors/constants/txt.py:61
 msgid "Generate mirrorlist with a number of up-to-date mirrors. Ignores:"
-msgstr "חולל רשימת מראות עם מספר מראות עדכניות. מתעלם מ:"
+msgstr "חולל רשימת אתרי־מראה עם מספר מראות עדכניות. מתעלם מ:"
 
 #: pacman_mirrors/constants/txt.py:63
 msgid "Generate mirrorlist with defaults"
-msgstr "חולל רשימת מראות על פי ברירת מחדל"
+msgstr "צור רשימת אתרי־מראה לפי ברירת המחדל"
 
 #: pacman_mirrors/constants/txt.py:64
 msgid "Get current country using geolocation"
@@ -150,7 +151,7 @@ msgstr "הצג את כלל הארצות הזמינות"
 
 #: pacman_mirrors/constants/txt.py:66
 msgid "Generate custom mirrorlist"
-msgstr "חולל רשימת מראות מֻתְאֶמֶת"
+msgstr "חולל רשימת אתרי־מראה מותאמת"
 
 #: pacman_mirrors/constants/txt.py:67
 msgid "Generation method"
@@ -158,7 +159,7 @@ msgstr "שיטת יצירה"
 
 #: pacman_mirrors/constants/txt.py:68
 msgid "Use to skip generation of mirrorlist"
-msgstr "השתמש בארגומנט זה בכדי לדלג על יצירת רשימת מראות"
+msgstr "יש להתשמש על מנת לדלג על יצירת רשימת אתרי־המראה"
 
 #: pacman_mirrors/constants/txt.py:69
 msgid "Quiet mode - less verbose output"
@@ -190,7 +191,7 @@ msgstr "שינוי ענף דורש ענף קיים לעבוד איתו"
 
 #: pacman_mirrors/constants/txt.py:77
 msgid "Branch in mirror list is changed"
-msgstr "הענף ברשימת המראות השתנה"
+msgstr "נעשה שינוי בענף ברשימת אתרי־המראה"
 
 #: pacman_mirrors/constants/txt.py:78
 msgid "Available countries are"
@@ -210,19 +211,19 @@ msgstr "הקובץ לא ניתן לכתיבה"
 
 #: pacman_mirrors/constants/txt.py:82
 msgid "Converting custom mirror file to new format"
-msgstr "ממיר קובץ מראות מֻתְאָם לפורמט חדש"
+msgstr "ממיר קובץ אתרי־מראה שמותאם לפורמט החדש"
 
 #: pacman_mirrors/constants/txt.py:83
 msgid "Custom mirror file"
-msgstr "קובץ מראות מֻתְאָם"
+msgstr "קובץ אתרי־מראה מותאם"
 
 #: pacman_mirrors/constants/txt.py:84
 msgid "Custom mirror file saved"
-msgstr "קובץ מראות מֻתְאָם נשמר"
+msgstr "קובץ אתרי־המראה המותאם נשמר"
 
 #: pacman_mirrors/constants/txt.py:85
 msgid "User generated mirror list"
-msgstr "רשימת מראות שנוצרה על ידי המשתמש"
+msgstr "רשימת אתרי‏־מראה שנוצרה על ידי המשתמש"
 
 #: pacman_mirrors/constants/txt.py:86
 msgid "Deprecated argument"
@@ -234,7 +235,7 @@ msgstr "לא קיים."
 
 #: pacman_mirrors/constants/txt.py:88
 msgid "Downloading mirrors from"
-msgstr "מוריד מראות מ"
+msgstr "בהורדת אתרי־מראה מתוך"
 
 #: pacman_mirrors/constants/txt.py:89
 msgid "Falling back to"
@@ -246,7 +247,7 @@ msgstr "נראה כי חיבור האינטרנט מנותק"
 
 #: pacman_mirrors/constants/txt.py:91
 msgid "Mirror list is generated using random method"
-msgstr "רשימת המראות מיוצרת באופן אקראי"
+msgstr "רשימת אתרי־מראה שמיוצרת באופן אקראי"
 
 #: pacman_mirrors/constants/txt.py:92
 msgid "is missing"
@@ -254,11 +255,11 @@ msgstr "חסר"
 
 #: pacman_mirrors/constants/txt.py:93
 msgid "The mirror file"
-msgstr "קובץ המראות"
+msgstr "קובץ אתרי־המראה"
 
 #: pacman_mirrors/constants/txt.py:94
 msgid "Mirror list generated and saved to"
-msgstr "רשימת המראות נוצרה ונשמרה ב"
+msgstr "רשימת אתרי־המראה נוצרה ונשמרה ב־"
 
 #: pacman_mirrors/constants/txt.py:95
 msgid "Generated on"
@@ -266,23 +267,23 @@ msgstr "נוצרה ב"
 
 #: pacman_mirrors/constants/txt.py:96
 msgid "custom mirrorlist"
-msgstr "רשימת מראות מֻתְאֶמֶת"
+msgstr "רשימת אתרי־מראה מותאמת"
 
 #: pacman_mirrors/constants/txt.py:97
 msgid "to reset custom mirrorlist"
-msgstr "לאפס רשימת מראות מֻתְאֶמֶת"
+msgstr "לאיפוס רשימת אתרי־המראה המותאמת"
 
 #: pacman_mirrors/constants/txt.py:98
 msgid "default mirrorlist"
-msgstr "רשימת מראות על פי ברירת מחדל"
+msgstr "רשימת אתרי־מראה לפי ברירת המחדל"
 
 #: pacman_mirrors/constants/txt.py:99
 msgid "to modify mirrorlist"
-msgstr "לשנות רשימת מראות"
+msgstr "לשינוי רשימת אתרי־המראה"
 
 #: pacman_mirrors/constants/txt.py:100
 msgid "Mirror ranking is not available"
-msgstr "פעולת דירוג המראות אינה זמינה"
+msgstr "דירוג אתרי־המראה אינו זמין"
 
 #: pacman_mirrors/constants/txt.py:101
 msgid "Must have root privileges"
@@ -290,11 +291,11 @@ msgstr "על התוכנה לקבל הרשאות מנהלן"
 
 #: pacman_mirrors/constants/txt.py:102
 msgid "The mirrors has not changed"
-msgstr "רשימת המראות לא שונתה"
+msgstr "לא נעשה שינוי באתרי־המראה"
 
 #: pacman_mirrors/constants/txt.py:103
 msgid "No mirrors in selection"
-msgstr "לא נמצאו מראות על פי הבחירה"
+msgstr "לא נמצאו אתרי־מראה לפי הבחירה"
 
 #: pacman_mirrors/constants/txt.py:104
 msgid "Option"
@@ -306,11 +307,11 @@ msgstr "אנא השתמש ב"
 
 #: pacman_mirrors/constants/txt.py:106
 msgid "Querying mirrors"
-msgstr "מתשאל את המראות"
+msgstr "מתשאל את אתרי־המראה"
 
 #: pacman_mirrors/constants/txt.py:107
 msgid "Randomizing mirror list"
-msgstr "מסדר את המראות באופן אקראי"
+msgstr "מסדר את אתרי־המראה באקראי"
 
 #: pacman_mirrors/constants/txt.py:108
 msgid "To remove custom config run "
@@ -326,35 +327,35 @@ msgstr "ארץ לא מזוהה"
 
 #: pacman_mirrors/constants/txt.py:111
 msgid "Use 0 for all mirrors"
-msgstr "השתמש ב 0 עבור כלל המראות"
+msgstr "שימוש ב־0 עבור כל אתרי המראה"
 
 #: pacman_mirrors/constants/txt.py:112
 msgid "Using all mirrors"
-msgstr "משתמש בכלל המראות"
+msgstr "משתמש בכל אתרי־המראה"
 
 #: pacman_mirrors/constants/txt.py:113
 msgid "Using custom mirror file"
-msgstr "משתמש בקובץ מראות מֻתְאָם"
+msgstr "משתמש בקובץ אתרי־מראה מותאם"
 
 #: pacman_mirrors/constants/txt.py:114
 msgid "Using default mirror file"
-msgstr "משתמש בקובץ מראות על פי ברירת המחדל"
+msgstr "משתמש בקובץ אתרי־המראה לפי ברירת המחדל"
 
 #: pacman_mirrors/constants/txt.py:115
 msgid "Writing mirror list"
-msgstr "רושם את רשימת המראות"
+msgstr "ברשימת רשימת אתרי־המראה"
 
 #: pacman_mirrors/constants/txt.py:118
 msgid "Manjaro mirrors by response time"
-msgstr "מראות מנג'רו לפי זמן התגובה"
+msgstr "אתרי־המראה של Manjaro לפי זמן התגובה"
 
 #: pacman_mirrors/constants/txt.py:119
 msgid "Manjaro mirrors in random order"
-msgstr "מראות מנג'רו בסדר אקראי"
+msgstr "אתרי־המראה של Manjaro בסדר אקראי"
 
 #: pacman_mirrors/constants/txt.py:120
 msgid "Check mirrors for your personal list"
-msgstr "בדוק מראות עבור רשימת המראות האישית שלך"
+msgstr "בדיקת אתרי־מראה לרשימתך האישית"
 
 #: pacman_mirrors/constants/txt.py:121
 msgid "Use"
@@ -386,4 +387,4 @@ msgstr "אשר בחירות"
 
 #: pacman_mirrors/constants/txt.py:129
 msgid "I want to use these mirrors"
-msgstr "ברצוני להשתמש במראות הללו"
+msgstr "ברצוני להשתמש באתרי־מראה אלו"

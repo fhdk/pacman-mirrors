@@ -4,13 +4,14 @@
 # project.
 # 
 # Translators:
+# Augusto Fornitani <augusto.fornitani@outlook.com>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pacman-mirrors\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-23 20:55+0200\n"
-"PO-Revision-Date: 2015-12-22 01:50+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2019-12-14 20:47+0000\n"
+"Last-Translator: Augusto Fornitani <augusto.fornitani@outlook.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/manjarolinux/manjaro-pacman-mirrors/language/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,368 +22,368 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:29
 msgid "ERROR"
-msgstr ""
+msgstr "ERARO"
 
 #: pacman_mirrors/constants/txt.py:30
 msgid "INFO"
-msgstr ""
+msgstr "INFORMO"
 
 #: pacman_mirrors/constants/txt.py:31
 msgid "WARNING"
-msgstr ""
+msgstr "AVERTO"
 
 #: pacman_mirrors/constants/txt.py:33
 msgid "HTTPException"
-msgstr ""
+msgstr "HTTP Escepto"
 
 #: pacman_mirrors/constants/txt.py:34
 msgid "TIMEOUT"
-msgstr ""
+msgstr "TEMPOLIMO ATINGITA"
 
 #: pacman_mirrors/constants/txt.py:36
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: pacman_mirrors/constants/txt.py:37
 msgid "BRANCH"
-msgstr ""
+msgstr "BRANĈO"
 
 #: pacman_mirrors/constants/txt.py:38
 msgid "COUNTRY"
-msgstr ""
+msgstr "LANDO"
 
 #: pacman_mirrors/constants/txt.py:39
 msgid "FILE"
-msgstr ""
+msgstr "DOSIERO"
 
 #: pacman_mirrors/constants/txt.py:40
 msgid "METHOD"
-msgstr ""
+msgstr "METODO"
 
 #: pacman_mirrors/constants/txt.py:41
 msgid "METHODS"
-msgstr ""
+msgstr "METODOJ"
 
 #: pacman_mirrors/constants/txt.py:42
 msgid "MISC"
-msgstr ""
+msgstr "DIVERSAĴOJ"
 
 #: pacman_mirrors/constants/txt.py:43
 msgid "NUMBER"
-msgstr ""
+msgstr "NUMERO"
 
 #: pacman_mirrors/constants/txt.py:44
 msgid "PATH"
-msgstr ""
+msgstr "VOJO"
 
 #: pacman_mirrors/constants/txt.py:45
 msgid "PREFIX"
-msgstr ""
+msgstr "PREFIKSO"
 
 #: pacman_mirrors/constants/txt.py:46
 msgid "PROTO"
-msgstr ""
+msgstr "PROTO"
 
 #: pacman_mirrors/constants/txt.py:47
 msgid "SECONDS"
-msgstr ""
+msgstr "SEKUNDOJ"
 
 #: pacman_mirrors/constants/txt.py:48 pacman_mirrors/constants/txt.py:125
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: pacman_mirrors/constants/txt.py:49
 msgid "USAGE"
-msgstr ""
+msgstr "UZADO"
 
 #: pacman_mirrors/constants/txt.py:51
 msgid "Return branch from configuration"
-msgstr ""
+msgstr "Liveri branĉon de agordaro"
 
 #: pacman_mirrors/constants/txt.py:52
 msgid "Set prefix to"
-msgstr ""
+msgstr "Meti prefikson al"
 
 #: pacman_mirrors/constants/txt.py:53
 msgid "Replace protocols in configuration"
-msgstr ""
+msgstr "Anstataŭigi protokolojn en agordaro"
 
 #: pacman_mirrors/constants/txt.py:54
 msgid "Replace branch in mirrorlist"
-msgstr ""
+msgstr "Anstataŭigi branĉon en spegulolisto"
 
 #: pacman_mirrors/constants/txt.py:55
 msgid "Replace branch in configuration"
-msgstr ""
+msgstr "Anstataŭigi branĉon en agordaro"
 
 #: pacman_mirrors/constants/txt.py:56
 msgid "Replace mirror url in mirrorlist"
-msgstr ""
+msgstr "Anstataŭigi URL-n de spegulo en spegulolisto"
 
 #: pacman_mirrors/constants/txt.py:57
 msgid "Branch name"
-msgstr ""
+msgstr "Nomo de branĉo"
 
 #: pacman_mirrors/constants/txt.py:58
 msgid "Comma separated list of countries, from which mirrors will be used"
-msgstr ""
+msgstr "Perkome disigita listo de landoj, de kiuj speguloj estos akirataj"
 
 #: pacman_mirrors/constants/txt.py:60
 msgid "Load default mirror file"
-msgstr ""
+msgstr "Ŝuti defaŭltan dosieron de speguloj"
 
 #: pacman_mirrors/constants/txt.py:61
 msgid "Generate mirrorlist with a number of up-to-date mirrors. Ignores:"
-msgstr ""
+msgstr "Produkti spegulo-liston kun nombro de aktualigitaj speguloj. Ignoras:"
 
 #: pacman_mirrors/constants/txt.py:63
 msgid "Generate mirrorlist with defaults"
-msgstr ""
+msgstr "Produkti spegulo-liston kun defaŭltoj"
 
 #: pacman_mirrors/constants/txt.py:64
 msgid "Get current country using geolocation"
-msgstr ""
+msgstr "Akiri nunan landon per geolokigo"
 
 #: pacman_mirrors/constants/txt.py:65
 msgid "List all available countries"
-msgstr ""
+msgstr "Listigi ĉiujn disponeblajn landojn"
 
 #: pacman_mirrors/constants/txt.py:66
 msgid "Generate custom mirrorlist"
-msgstr ""
+msgstr "Produkti propran speguloliston"
 
 #: pacman_mirrors/constants/txt.py:67
 msgid "Generation method"
-msgstr ""
+msgstr "Metodo de produktado"
 
 #: pacman_mirrors/constants/txt.py:68
 msgid "Use to skip generation of mirrorlist"
-msgstr ""
+msgstr "Uzu por preterpasi produktadon de spegulo-listo"
 
 #: pacman_mirrors/constants/txt.py:69
 msgid "Quiet mode - less verbose output"
-msgstr ""
+msgstr "Kvieta reĝimo - malpli da vortoplena eligo"
 
 #: pacman_mirrors/constants/txt.py:70
 msgid "Syncronize pacman databases"
-msgstr ""
+msgstr "Sinkronigi datumbazojn de pacman"
 
 #: pacman_mirrors/constants/txt.py:71
 msgid "Maximum waiting time for server response"
-msgstr ""
+msgstr "Maksimuma atendo-periodo por respondo de servilo"
 
 #: pacman_mirrors/constants/txt.py:72
 msgid "Print the pacman-mirrors version"
-msgstr ""
+msgstr "Printi la version “pacman-mirrors”"
 
 #: pacman_mirrors/constants/txt.py:74
 msgid "Branch in config is changed"
-msgstr ""
+msgstr "Branĉo en agordaro estas ŝanĝita"
 
 #: pacman_mirrors/constants/txt.py:75
 msgid "Protocols in config is changed"
-msgstr ""
+msgstr "Protokoloj en agordaro estas ŝanĝitaj"
 
 #: pacman_mirrors/constants/txt.py:76
 msgid "Re-branch requires a branch to work with"
-msgstr ""
+msgstr "Re-branĉigo postulas branĉon por funkcii"
 
 #: pacman_mirrors/constants/txt.py:77
 msgid "Branch in mirror list is changed"
-msgstr ""
+msgstr "Branĉo en spegulo-listo estas ŝanĝita"
 
 #: pacman_mirrors/constants/txt.py:78
 msgid "Available countries are"
-msgstr ""
+msgstr "Disponeblaj landoj estas"
 
 #: pacman_mirrors/constants/txt.py:79
 msgid "Could not download from"
-msgstr ""
+msgstr "Ne eblis ŝuti el"
 
 #: pacman_mirrors/constants/txt.py:80
 msgid "Cannot read file"
-msgstr ""
+msgstr "Ne eblas legi dosieron"
 
 #: pacman_mirrors/constants/txt.py:81
 msgid "Cannot write file"
-msgstr ""
+msgstr "Ne eblas skribi dosieron"
 
 #: pacman_mirrors/constants/txt.py:82
 msgid "Converting custom mirror file to new format"
-msgstr ""
+msgstr "Laŭmenda spegulo-listo estas konvertata en novan formaton"
 
 #: pacman_mirrors/constants/txt.py:83
 msgid "Custom mirror file"
-msgstr ""
+msgstr "Laŭmenda spegulo-dosiero"
 
 #: pacman_mirrors/constants/txt.py:84
 msgid "Custom mirror file saved"
-msgstr ""
+msgstr "Laŭmenda spegulo-dosiero estas konservita"
 
 #: pacman_mirrors/constants/txt.py:85
 msgid "User generated mirror list"
-msgstr ""
+msgstr "Spegulo-listo kreita de uzanto"
 
 #: pacman_mirrors/constants/txt.py:86
 msgid "Deprecated argument"
-msgstr ""
+msgstr "Evitinda parametro"
 
 #: pacman_mirrors/constants/txt.py:87
 msgid "doesn't exist."
-msgstr ""
+msgstr "ne ekzistas"
 
 #: pacman_mirrors/constants/txt.py:88
 msgid "Downloading mirrors from"
-msgstr ""
+msgstr "Speguloj ŝutataj el"
 
 #: pacman_mirrors/constants/txt.py:89
 msgid "Falling back to"
-msgstr ""
+msgstr "Retrodefaŭltiĝas al"
 
 #: pacman_mirrors/constants/txt.py:90
 msgid "Internet connection appears to be down"
-msgstr ""
+msgstr "Interret-konekto ŝajne ne lfunkcias"
 
 #: pacman_mirrors/constants/txt.py:91
 msgid "Mirror list is generated using random method"
-msgstr ""
+msgstr "Spegulo-listo estas produktata per aleatora maniero"
 
 #: pacman_mirrors/constants/txt.py:92
 msgid "is missing"
-msgstr ""
+msgstr "mankas"
 
 #: pacman_mirrors/constants/txt.py:93
 msgid "The mirror file"
-msgstr ""
+msgstr "La spegulo-dosiero"
 
 #: pacman_mirrors/constants/txt.py:94
 msgid "Mirror list generated and saved to"
-msgstr ""
+msgstr "Spegulo-listo produktata kaj savata en"
 
 #: pacman_mirrors/constants/txt.py:95
 msgid "Generated on"
-msgstr ""
+msgstr "Produktata je"
 
 #: pacman_mirrors/constants/txt.py:96
 msgid "custom mirrorlist"
-msgstr ""
+msgstr "laŭmenda spegulo-listo"
 
 #: pacman_mirrors/constants/txt.py:97
 msgid "to reset custom mirrorlist"
-msgstr ""
+msgstr "por restarigi laŭmendan spegulo-liston"
 
 #: pacman_mirrors/constants/txt.py:98
 msgid "default mirrorlist"
-msgstr ""
+msgstr "defaŭlta spegulo-listo"
 
 #: pacman_mirrors/constants/txt.py:99
 msgid "to modify mirrorlist"
-msgstr ""
+msgstr "por modifi spegulo-liston"
 
 #: pacman_mirrors/constants/txt.py:100
 msgid "Mirror ranking is not available"
-msgstr ""
+msgstr "Spegulo-rango ne disponeblas"
 
 #: pacman_mirrors/constants/txt.py:101
 msgid "Must have root privileges"
-msgstr ""
+msgstr "Necesas havi administrajn privilegiojn"
 
 #: pacman_mirrors/constants/txt.py:102
 msgid "The mirrors has not changed"
-msgstr ""
+msgstr "La speguloj ne ŝanĝiĝis"
 
 #: pacman_mirrors/constants/txt.py:103
 msgid "No mirrors in selection"
-msgstr ""
+msgstr "Sen speguloj ĉe elekto"
 
 #: pacman_mirrors/constants/txt.py:104
 msgid "Option"
-msgstr ""
+msgstr "Opcio"
 
 #: pacman_mirrors/constants/txt.py:105
 msgid "Please use"
-msgstr ""
+msgstr "Bv. uzu"
 
 #: pacman_mirrors/constants/txt.py:106
 msgid "Querying mirrors"
-msgstr ""
+msgstr "Speguloj ricevas informpeton"
 
 #: pacman_mirrors/constants/txt.py:107
 msgid "Randomizing mirror list"
-msgstr ""
+msgstr "Spegulo-listo iĝas aleatora"
 
 #: pacman_mirrors/constants/txt.py:108
 msgid "To remove custom config run "
-msgstr ""
+msgstr "Por forigi laŭmendan agordaron rulu"
 
 #: pacman_mirrors/constants/txt.py:109
 msgid "This may take some time"
-msgstr ""
+msgstr "Tio eble daŭros longe"
 
 #: pacman_mirrors/constants/txt.py:110
 msgid "unknown country"
-msgstr ""
+msgstr "nekonata lando"
 
 #: pacman_mirrors/constants/txt.py:111
 msgid "Use 0 for all mirrors"
-msgstr ""
+msgstr "Uzu 0-n por ĉiuj speguloj"
 
 #: pacman_mirrors/constants/txt.py:112
 msgid "Using all mirrors"
-msgstr ""
+msgstr "Ĉiuj speguloj estas uzataj"
 
 #: pacman_mirrors/constants/txt.py:113
 msgid "Using custom mirror file"
-msgstr ""
+msgstr "Laŭmenda spegulo dosiero estas uzata"
 
 #: pacman_mirrors/constants/txt.py:114
 msgid "Using default mirror file"
-msgstr ""
+msgstr "Defaŭlta spegulo-listo estas uzata"
 
 #: pacman_mirrors/constants/txt.py:115
 msgid "Writing mirror list"
-msgstr ""
+msgstr "Spegulo-listo estas skribata"
 
 #: pacman_mirrors/constants/txt.py:118
 msgid "Manjaro mirrors by response time"
-msgstr ""
+msgstr "Speguloj de Manjaro laŭ respondotempo"
 
 #: pacman_mirrors/constants/txt.py:119
 msgid "Manjaro mirrors in random order"
-msgstr ""
+msgstr "Speguloj de Manjaro je aleatora ordo"
 
 #: pacman_mirrors/constants/txt.py:120
 msgid "Check mirrors for your personal list"
-msgstr ""
+msgstr "Kontroli spegulojn por via propra listo"
 
 #: pacman_mirrors/constants/txt.py:121
 msgid "Use"
-msgstr ""
+msgstr "Uzi"
 
 #: pacman_mirrors/constants/txt.py:122
 msgid "Country"
-msgstr ""
+msgstr "Lando"
 
 #: pacman_mirrors/constants/txt.py:123
 msgid "Resp"
-msgstr ""
+msgstr "Respondo"
 
 #: pacman_mirrors/constants/txt.py:124
 msgid "Sync"
-msgstr ""
+msgstr "Sinkronigi"
 
 #: pacman_mirrors/constants/txt.py:126
 msgid "Cancel"
-msgstr ""
+msgstr "Nuligi"
 
 #: pacman_mirrors/constants/txt.py:127
 msgid "OK"
-msgstr ""
+msgstr "Bone"
 
 #: pacman_mirrors/constants/txt.py:128
 msgid "Confirm selections"
-msgstr ""
+msgstr "Konfirmi elektojn"
 
 #: pacman_mirrors/constants/txt.py:129
 msgid "I want to use these mirrors"
-msgstr ""
+msgstr "Mi volas uzi ĉi tiujn spegulojn"

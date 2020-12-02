@@ -4,45 +4,42 @@
 # project.
 # 
 # Translators:
-# dull2wall, 2017-2018
-# 916b300d72c9f404e033ca28026e4c57_4fab4b5, 2017
-# 916b300d72c9f404e033ca28026e4c57_4fab4b5, 2018
-# soenggam <senggemg@gmail.com>, 2019
-# taotieren <admin@taotieren.com>, 2020
+# Miika Launiainen <miika.launiainen@gmail.com>, 2020
+# Oi Suomi On! <oisuomion@protonmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pacman-mirrors\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-23 20:55+0200\n"
-"PO-Revision-Date: 2020-04-22 02:44+0000\n"
-"Last-Translator: taotieren <admin@taotieren.com>\n"
-"Language-Team: Chinese (China) (http://www.transifex.com/manjarolinux/manjaro-pacman-mirrors/language/zh_CN/)\n"
+"PO-Revision-Date: 2020-07-09 21:19+0000\n"
+"Last-Translator: Oi Suomi On! <oisuomion@protonmail.com>\n"
+"Language-Team: Finnish (http://www.transifex.com/manjarolinux/manjaro-pacman-mirrors/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.5.1\n"
-"Language: zh_CN\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: pacman_mirrors/constants/txt.py:29
 msgid "ERROR"
-msgstr "错误"
+msgstr "VIRHE"
 
 #: pacman_mirrors/constants/txt.py:30
 msgid "INFO"
-msgstr "信息"
+msgstr "TIEDOT"
 
 #: pacman_mirrors/constants/txt.py:31
 msgid "WARNING"
-msgstr "警告"
+msgstr "VAROITUS"
 
 #: pacman_mirrors/constants/txt.py:33
 msgid "HTTPException"
-msgstr "HTTP 异常"
+msgstr "HTTPPoikkeus"
 
 #: pacman_mirrors/constants/txt.py:34
 msgid "TIMEOUT"
-msgstr "超时"
+msgstr "AIKAKATKAISU"
 
 #: pacman_mirrors/constants/txt.py:36
 msgid "API"
@@ -50,344 +47,344 @@ msgstr "API"
 
 #: pacman_mirrors/constants/txt.py:37
 msgid "BRANCH"
-msgstr "分支"
+msgstr "KEHITYSHAARA"
 
 #: pacman_mirrors/constants/txt.py:38
 msgid "COUNTRY"
-msgstr "国家"
+msgstr "MAA"
 
 #: pacman_mirrors/constants/txt.py:39
 msgid "FILE"
-msgstr "文件"
+msgstr "TIEDOSTO"
 
 #: pacman_mirrors/constants/txt.py:40
 msgid "METHOD"
-msgstr "方式"
+msgstr "MENETELMÄ"
 
 #: pacman_mirrors/constants/txt.py:41
 msgid "METHODS"
-msgstr "方法"
+msgstr "MENETELMÄT"
 
 #: pacman_mirrors/constants/txt.py:42
 msgid "MISC"
-msgstr "杂项"
+msgstr "SEKALAISIA"
 
 #: pacman_mirrors/constants/txt.py:43
 msgid "NUMBER"
-msgstr "数字"
+msgstr "NUMERO"
 
 #: pacman_mirrors/constants/txt.py:44
 msgid "PATH"
-msgstr "路径"
+msgstr "POLKU"
 
 #: pacman_mirrors/constants/txt.py:45
 msgid "PREFIX"
-msgstr "前缀"
+msgstr "ETULIITE"
 
 #: pacman_mirrors/constants/txt.py:46
 msgid "PROTO"
-msgstr "原始"
+msgstr "KOEKAPPALE"
 
 #: pacman_mirrors/constants/txt.py:47
 msgid "SECONDS"
-msgstr "秒"
+msgstr "SEKUNTIA"
 
 #: pacman_mirrors/constants/txt.py:48 pacman_mirrors/constants/txt.py:125
 msgid "URL"
-msgstr "URL"
+msgstr "URL-OSOITE"
 
 #: pacman_mirrors/constants/txt.py:49
 msgid "USAGE"
-msgstr "使用"
+msgstr "KÄYTTÖ"
 
 #: pacman_mirrors/constants/txt.py:51
 msgid "Return branch from configuration"
-msgstr "从配置中返回分支"
+msgstr "Palauta kehityshaara asetuksista"
 
 #: pacman_mirrors/constants/txt.py:52
 msgid "Set prefix to"
-msgstr "设置前缀为"
+msgstr "Laita etuliite"
 
 #: pacman_mirrors/constants/txt.py:53
 msgid "Replace protocols in configuration"
-msgstr "替换配置中的协议"
+msgstr "Korvaa protokolla asetuksissa"
 
 #: pacman_mirrors/constants/txt.py:54
 msgid "Replace branch in mirrorlist"
-msgstr "替换镜像列表中的分支"
+msgstr "Korvaa kehityshaara peilipalvelinluettelossa"
 
 #: pacman_mirrors/constants/txt.py:55
 msgid "Replace branch in configuration"
-msgstr "替换配置中的分支"
+msgstr "Korvaa kehityshaara asetuksissa"
 
 #: pacman_mirrors/constants/txt.py:56
 msgid "Replace mirror url in mirrorlist"
-msgstr "替换镜像列表中的镜像 URL"
+msgstr "Korvaa peilipalvelimen url-osoite peilipalvelinluettelossa"
 
 #: pacman_mirrors/constants/txt.py:57
 msgid "Branch name"
-msgstr "分支名称"
+msgstr "Kehityshaaran nimi"
 
 #: pacman_mirrors/constants/txt.py:58
 msgid "Comma separated list of countries, from which mirrors will be used"
-msgstr "用逗号隔开国家名，镜像将会使用此列表"
+msgstr "Pilkulla erotettu lista maista, joista haluat käyttää ikkunoita"
 
 #: pacman_mirrors/constants/txt.py:60
 msgid "Load default mirror file"
-msgstr "加载默认镜像文件"
+msgstr "Lataa oletus ikkuna tiedosto"
 
 #: pacman_mirrors/constants/txt.py:61
 msgid "Generate mirrorlist with a number of up-to-date mirrors. Ignores:"
-msgstr "使用一些更新到最新的镜像生成镜像列表. 忽略:"
+msgstr "Luo peilipalvelinluettelo ajan tasalla olevista peilipalvelimista. Sivuutukset:"
 
 #: pacman_mirrors/constants/txt.py:63
 msgid "Generate mirrorlist with defaults"
-msgstr "默认生成镜像列表"
+msgstr "Luo ikkunalista oletus asetuksilla"
 
 #: pacman_mirrors/constants/txt.py:64
 msgid "Get current country using geolocation"
-msgstr "通过定位确认当前所在国家"
+msgstr "Hae tämänhetkinen maa käyttäen geo-paikannusta"
 
 #: pacman_mirrors/constants/txt.py:65
 msgid "List all available countries"
-msgstr "列出所有可用国家"
+msgstr "Lista kaikista saatavilla olevista maista"
 
 #: pacman_mirrors/constants/txt.py:66
 msgid "Generate custom mirrorlist"
-msgstr "生成自定义的镜像列表"
+msgstr "Luo mukautettu peilipalvelinluettelo"
 
 #: pacman_mirrors/constants/txt.py:67
 msgid "Generation method"
-msgstr "生成方法"
+msgstr "Luontimenetelmä"
 
 #: pacman_mirrors/constants/txt.py:68
 msgid "Use to skip generation of mirrorlist"
-msgstr "用来跳过镜像列表的生成"
+msgstr "Käytä sivuuttaaksesi peilipalvelinluettelon luomisen"
 
 #: pacman_mirrors/constants/txt.py:69
 msgid "Quiet mode - less verbose output"
-msgstr "安静模式 - 更少的冗余输出"
+msgstr "Hiljaistila - vähemmän jaarittelevaa ulosantia"
 
 #: pacman_mirrors/constants/txt.py:70
 msgid "Syncronize pacman databases"
-msgstr "同步 pacman 数据库"
+msgstr "Synkronisoi pacman tietokannat"
 
 #: pacman_mirrors/constants/txt.py:71
 msgid "Maximum waiting time for server response"
-msgstr "服务器响应的最长等待时间"
+msgstr "Enimmäinen odotusaika palvelimen vastaukselle"
 
 #: pacman_mirrors/constants/txt.py:72
 msgid "Print the pacman-mirrors version"
-msgstr "打印 pacman-mirrors 版本"
+msgstr "Tulosta pacman-peilipalvelinversioinnit"
 
 #: pacman_mirrors/constants/txt.py:74
 msgid "Branch in config is changed"
-msgstr "配置中的分支已被改变"
+msgstr "Kehityshaara asetuksissa on muuttunut"
 
 #: pacman_mirrors/constants/txt.py:75
 msgid "Protocols in config is changed"
-msgstr "配置中的协议已被改变"
+msgstr "Protokollat asetuksissa ovat muuttuneet"
 
 #: pacman_mirrors/constants/txt.py:76
 msgid "Re-branch requires a branch to work with"
-msgstr "重新分支需要一个分支来使用"
+msgstr "Uudelleen-kehityshaarautus vaatii kehityshaaran josta lähdetään"
 
 #: pacman_mirrors/constants/txt.py:77
 msgid "Branch in mirror list is changed"
-msgstr "镜像列表的分支已被改变"
+msgstr "Kehityshaara peilipalvelinluettelossa on muuttunut"
 
 #: pacman_mirrors/constants/txt.py:78
 msgid "Available countries are"
-msgstr "可用的国家是"
+msgstr "Saatavilla olevat maat ovat"
 
 #: pacman_mirrors/constants/txt.py:79
 msgid "Could not download from"
-msgstr "无法下载从"
+msgstr "Ei voitu ladata kohteesta"
 
 #: pacman_mirrors/constants/txt.py:80
 msgid "Cannot read file"
-msgstr "无法读取文件"
+msgstr "Ei voitu lukea tiedostoa"
 
 #: pacman_mirrors/constants/txt.py:81
 msgid "Cannot write file"
-msgstr "无法写入文件"
+msgstr "Ei voitu kirjoittaa tiedostoon"
 
 #: pacman_mirrors/constants/txt.py:82
 msgid "Converting custom mirror file to new format"
-msgstr "转换自定义镜像文件成新格式"
+msgstr "Käännetään mukautettua ikkuna tiedostoa uuteen muotoon"
 
 #: pacman_mirrors/constants/txt.py:83
 msgid "Custom mirror file"
-msgstr "自定义的镜像文件"
+msgstr "Mukautettu ikkuna tiedosto"
 
 #: pacman_mirrors/constants/txt.py:84
 msgid "Custom mirror file saved"
-msgstr "已保存的自定义镜像文件"
+msgstr "Mukautettu ikkuna tiedosto tallennettu"
 
 #: pacman_mirrors/constants/txt.py:85
 msgid "User generated mirror list"
-msgstr "用户生成的镜像列表"
+msgstr "Käyttäjän koostama peilipalvelinluettelo"
 
 #: pacman_mirrors/constants/txt.py:86
 msgid "Deprecated argument"
-msgstr "陈旧过时的参数"
+msgstr "Epäkelpo argumentti"
 
 #: pacman_mirrors/constants/txt.py:87
 msgid "doesn't exist."
-msgstr "不存在。"
+msgstr "ei ole olemassa."
 
 #: pacman_mirrors/constants/txt.py:88
 msgid "Downloading mirrors from"
-msgstr "从下载镜像"
+msgstr "Ladataan peilipalvelimet kohteesta"
 
 #: pacman_mirrors/constants/txt.py:89
 msgid "Falling back to"
-msgstr "回退到"
+msgstr "Askelletaan takaisin kohteeseen"
 
 #: pacman_mirrors/constants/txt.py:90
 msgid "Internet connection appears to be down"
-msgstr "网络链接似乎中断"
+msgstr "Internet-yhteys näyttäisi katkenneen"
 
 #: pacman_mirrors/constants/txt.py:91
 msgid "Mirror list is generated using random method"
-msgstr "使用随机方法生成的镜像列表"
+msgstr "Peilipalvelinluettelo on muodostettu käyttäen satunnaista menetelmää"
 
 #: pacman_mirrors/constants/txt.py:92
 msgid "is missing"
-msgstr "缺失"
+msgstr "on kadoksissa"
 
 #: pacman_mirrors/constants/txt.py:93
 msgid "The mirror file"
-msgstr "镜像文件"
+msgstr "Peilipalvelintiedosto"
 
 #: pacman_mirrors/constants/txt.py:94
 msgid "Mirror list generated and saved to"
-msgstr "镜像列表已生成并保存至"
+msgstr "Peilipalvelinluettelo on muodostettu ja tallennettu kohteeseen"
 
 #: pacman_mirrors/constants/txt.py:95
 msgid "Generated on"
-msgstr "生成于"
+msgstr "Muodostettiin"
 
 #: pacman_mirrors/constants/txt.py:96
 msgid "custom mirrorlist"
-msgstr "自定义的镜像列表"
+msgstr "mukautettu peilipalvelinluettelo"
 
 #: pacman_mirrors/constants/txt.py:97
 msgid "to reset custom mirrorlist"
-msgstr "重置自定义的镜像列表"
+msgstr "mukautetun peilipalvelinluettelon nollaamiseen"
 
 #: pacman_mirrors/constants/txt.py:98
 msgid "default mirrorlist"
-msgstr "默认镜像列表"
+msgstr "vakiollinen peilipalvelinluettelo"
 
 #: pacman_mirrors/constants/txt.py:99
 msgid "to modify mirrorlist"
-msgstr "修改镜像列表"
+msgstr "muokataksesi ikkunalistaa"
 
 #: pacman_mirrors/constants/txt.py:100
 msgid "Mirror ranking is not available"
-msgstr "镜像排序不可用"
+msgstr "Peilipalvelinarvojärjestys ei ole käytettävissä"
 
 #: pacman_mirrors/constants/txt.py:101
 msgid "Must have root privileges"
-msgstr "必须要有 root 用户权限"
+msgstr "Sinulla on oltava pääkäyttäjän oikeudet"
 
 #: pacman_mirrors/constants/txt.py:102
 msgid "The mirrors has not changed"
-msgstr "镜像没有改变"
+msgstr "Ikkunoita ei ole muokattu"
 
 #: pacman_mirrors/constants/txt.py:103
 msgid "No mirrors in selection"
-msgstr "没有选中的镜像"
+msgstr "Ei ikkunoita valittuna"
 
 #: pacman_mirrors/constants/txt.py:104
 msgid "Option"
-msgstr "选项"
+msgstr "Valinta"
 
 #: pacman_mirrors/constants/txt.py:105
 msgid "Please use"
-msgstr "请使用"
+msgstr "Ole hyvä ja käytä"
 
 #: pacman_mirrors/constants/txt.py:106
 msgid "Querying mirrors"
-msgstr "查询镜像"
+msgstr "Peilipalvelimia kysellään"
 
 #: pacman_mirrors/constants/txt.py:107
 msgid "Randomizing mirror list"
-msgstr "随机排列镜像列表"
+msgstr "Satunnaistetaan peilipalvelinluettelo"
 
 #: pacman_mirrors/constants/txt.py:108
 msgid "To remove custom config run "
-msgstr "删除自定义配置运行  "
+msgstr "Poistaaksesi mukautetut asetukset aja"
 
 #: pacman_mirrors/constants/txt.py:109
 msgid "This may take some time"
-msgstr "这可能需要一些时间"
+msgstr "Tämä saattaa kestää hetken"
 
 #: pacman_mirrors/constants/txt.py:110
 msgid "unknown country"
-msgstr "未知国家"
+msgstr "tuntematon maa"
 
 #: pacman_mirrors/constants/txt.py:111
 msgid "Use 0 for all mirrors"
-msgstr "使用 0 代表所有镜像"
+msgstr "Käytä 0 kaikkia peilipalvelimia varten"
 
 #: pacman_mirrors/constants/txt.py:112
 msgid "Using all mirrors"
-msgstr "使用所有镜像"
+msgstr "Käytetään kaikkia ikkunoita"
 
 #: pacman_mirrors/constants/txt.py:113
 msgid "Using custom mirror file"
-msgstr "使用自定义镜像文件"
+msgstr "Käytetään mukautettua peilipalvelintiedostoa"
 
 #: pacman_mirrors/constants/txt.py:114
 msgid "Using default mirror file"
-msgstr "使用默认镜像文件"
+msgstr "Käytetään vakiollista peilipalvelintiedostoa"
 
 #: pacman_mirrors/constants/txt.py:115
 msgid "Writing mirror list"
-msgstr "写入镜像列表"
+msgstr "Kirjoitetaan peilipalvelinluetteloa"
 
 #: pacman_mirrors/constants/txt.py:118
 msgid "Manjaro mirrors by response time"
-msgstr "根据响应时间排序的 Manjaro 镜像"
+msgstr "Manjaro-peilipalvelimet vastausajan mukaan"
 
 #: pacman_mirrors/constants/txt.py:119
 msgid "Manjaro mirrors in random order"
-msgstr "随机排序的 Manjaro 镜像"
+msgstr "Manjaro-peilipalvelimet satunnaisessa järjestyksessä"
 
 #: pacman_mirrors/constants/txt.py:120
 msgid "Check mirrors for your personal list"
-msgstr "为你个人的列表核对镜像"
+msgstr "Läpikäy peilipalvelimet henkilökohtaista luetteloaasi etsien"
 
 #: pacman_mirrors/constants/txt.py:121
 msgid "Use"
-msgstr "使用"
+msgstr "Käytä"
 
 #: pacman_mirrors/constants/txt.py:122
 msgid "Country"
-msgstr "国家"
+msgstr "Maa"
 
 #: pacman_mirrors/constants/txt.py:123
 msgid "Resp"
-msgstr "响应时间"
+msgstr "Vast"
 
 #: pacman_mirrors/constants/txt.py:124
 msgid "Sync"
-msgstr "同步"
+msgstr "Synkronisoi"
 
 #: pacman_mirrors/constants/txt.py:126
 msgid "Cancel"
-msgstr "取消"
+msgstr "Peruuta"
 
 #: pacman_mirrors/constants/txt.py:127
 msgid "OK"
-msgstr "确认"
+msgstr "OK"
 
 #: pacman_mirrors/constants/txt.py:128
 msgid "Confirm selections"
-msgstr "确认选择"
+msgstr "Vahvista valinnat"
 
 #: pacman_mirrors/constants/txt.py:129
 msgid "I want to use these mirrors"
-msgstr "我想使用这些镜像"
+msgstr "Haluan käyttää näitä ikkunoita"

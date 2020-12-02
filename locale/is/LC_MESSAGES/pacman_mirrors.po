@@ -5,13 +5,14 @@
 # 
 # Translators:
 # Kristján Magnússon, 2016-2018
+# Ólafur Víðir Guðbjargarson <olividir@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pacman-mirrors\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-23 20:55+0200\n"
-"PO-Revision-Date: 2018-03-24 13:50+0000\n"
-"Last-Translator: Kristján Magnússon\n"
+"PO-Revision-Date: 2020-05-29 10:52+0000\n"
+"Last-Translator: Ólafur Víðir Guðbjargarson <olividir@gmail.com>\n"
 "Language-Team: Icelandic (http://www.transifex.com/manjarolinux/manjaro-pacman-mirrors/language/is/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,11 +47,11 @@ msgstr "API"
 
 #: pacman_mirrors/constants/txt.py:37
 msgid "BRANCH"
-msgstr ""
+msgstr "ÚTIBÚ"
 
 #: pacman_mirrors/constants/txt.py:38
 msgid "COUNTRY"
-msgstr "Þjóð"
+msgstr "LAND"
 
 #: pacman_mirrors/constants/txt.py:39
 msgid "FILE"
@@ -66,7 +67,7 @@ msgstr "Aðferðir"
 
 #: pacman_mirrors/constants/txt.py:42
 msgid "MISC"
-msgstr ""
+msgstr "FJÖLÞÆTTUR"
 
 #: pacman_mirrors/constants/txt.py:43
 msgid "NUMBER"
@@ -74,15 +75,15 @@ msgstr "NÚMER"
 
 #: pacman_mirrors/constants/txt.py:44
 msgid "PATH"
-msgstr ""
+msgstr "SLÓÐ"
 
 #: pacman_mirrors/constants/txt.py:45
 msgid "PREFIX"
-msgstr ""
+msgstr "FORSKEYTI"
 
 #: pacman_mirrors/constants/txt.py:46
 msgid "PROTO"
-msgstr ""
+msgstr "SAMSKIPTAREGLUR"
 
 #: pacman_mirrors/constants/txt.py:47
 msgid "SECONDS"
@@ -98,27 +99,27 @@ msgstr "NOTKUN"
 
 #: pacman_mirrors/constants/txt.py:51
 msgid "Return branch from configuration"
-msgstr ""
+msgstr "Skila útibúi úr stillingum"
 
 #: pacman_mirrors/constants/txt.py:52
 msgid "Set prefix to"
-msgstr ""
+msgstr "Set forskeyti sem"
 
 #: pacman_mirrors/constants/txt.py:53
 msgid "Replace protocols in configuration"
-msgstr ""
+msgstr "Skipti um samskiptareglur í stillingum"
 
 #: pacman_mirrors/constants/txt.py:54
 msgid "Replace branch in mirrorlist"
-msgstr ""
+msgstr "Skipti um útibú í speglalista"
 
 #: pacman_mirrors/constants/txt.py:55
 msgid "Replace branch in configuration"
-msgstr ""
+msgstr "Skipt um útibú í stillingum"
 
 #: pacman_mirrors/constants/txt.py:56
 msgid "Replace mirror url in mirrorlist"
-msgstr ""
+msgstr "Skipt um vefslóð spegils í speglalista"
 
 #: pacman_mirrors/constants/txt.py:57
 msgid "Branch name"
@@ -126,23 +127,23 @@ msgstr "Nafn útibús"
 
 #: pacman_mirrors/constants/txt.py:58
 msgid "Comma separated list of countries, from which mirrors will be used"
-msgstr ""
+msgstr "Kommuskiptur listi landa sem hver spegill verður notaður"
 
 #: pacman_mirrors/constants/txt.py:60
 msgid "Load default mirror file"
-msgstr ""
+msgstr "Hleð sjálfgefið spegla skjal"
 
 #: pacman_mirrors/constants/txt.py:61
 msgid "Generate mirrorlist with a number of up-to-date mirrors. Ignores:"
-msgstr ""
+msgstr "Mynda speglalista með fjölda uppfærðra spegla. Hunsa:"
 
 #: pacman_mirrors/constants/txt.py:63
 msgid "Generate mirrorlist with defaults"
-msgstr ""
+msgstr "Mynda speglalista með sjálfgefnum stillingum"
 
 #: pacman_mirrors/constants/txt.py:64
 msgid "Get current country using geolocation"
-msgstr ""
+msgstr "Ná í núverandi land með staðsetningu"
 
 #: pacman_mirrors/constants/txt.py:65
 msgid "List all available countries"
@@ -150,39 +151,39 @@ msgstr "Sýna öll fáanleg lönd"
 
 #: pacman_mirrors/constants/txt.py:66
 msgid "Generate custom mirrorlist"
-msgstr ""
+msgstr "Mynda sérsníðin speglalista"
 
 #: pacman_mirrors/constants/txt.py:67
 msgid "Generation method"
-msgstr ""
+msgstr "Framleiðslu aðferð"
 
 #: pacman_mirrors/constants/txt.py:68
 msgid "Use to skip generation of mirrorlist"
-msgstr ""
+msgstr "Nota til að sleppa framleiðslu speglalista"
 
 #: pacman_mirrors/constants/txt.py:69
 msgid "Quiet mode - less verbose output"
-msgstr ""
+msgstr "Þögull hamur - minni orðaflaums úttak"
 
 #: pacman_mirrors/constants/txt.py:70
 msgid "Syncronize pacman databases"
-msgstr ""
+msgstr "Samstilli pacman gagnagrunn"
 
 #: pacman_mirrors/constants/txt.py:71
 msgid "Maximum waiting time for server response"
-msgstr "Hámarks biðtími fyrir svari þjónsins"
+msgstr "Hámarks biðtími fyrir svari netþjóns"
 
 #: pacman_mirrors/constants/txt.py:72
 msgid "Print the pacman-mirrors version"
-msgstr ""
+msgstr "Prenta pacman-speglalista útgáfu"
 
 #: pacman_mirrors/constants/txt.py:74
 msgid "Branch in config is changed"
-msgstr ""
+msgstr "Útibú í stillingum er breytt"
 
 #: pacman_mirrors/constants/txt.py:75
 msgid "Protocols in config is changed"
-msgstr ""
+msgstr "Samskiptareglum í stillingum er breytt"
 
 #: pacman_mirrors/constants/txt.py:76
 msgid "Re-branch requires a branch to work with"
@@ -190,7 +191,7 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:77
 msgid "Branch in mirror list is changed"
-msgstr ""
+msgstr "Útibú í speglalista hefur verið breytt"
 
 #: pacman_mirrors/constants/txt.py:78
 msgid "Available countries are"
@@ -210,23 +211,23 @@ msgstr "Get ekki ritað skrá"
 
 #: pacman_mirrors/constants/txt.py:82
 msgid "Converting custom mirror file to new format"
-msgstr ""
+msgstr "Umbreyti sérsníðuðum spegl skrá í nýtt snið"
 
 #: pacman_mirrors/constants/txt.py:83
 msgid "Custom mirror file"
-msgstr ""
+msgstr "Sérsniðin spegla skrá"
 
 #: pacman_mirrors/constants/txt.py:84
 msgid "Custom mirror file saved"
-msgstr ""
+msgstr "Sérsniðin spegil skrá vistuð"
 
 #: pacman_mirrors/constants/txt.py:85
 msgid "User generated mirror list"
-msgstr ""
+msgstr "Notenda myndaður speglalisti"
 
 #: pacman_mirrors/constants/txt.py:86
 msgid "Deprecated argument"
-msgstr ""
+msgstr "Rýrnuð rök"
 
 #: pacman_mirrors/constants/txt.py:87
 msgid "doesn't exist."
@@ -234,19 +235,19 @@ msgstr "er ekki til."
 
 #: pacman_mirrors/constants/txt.py:88
 msgid "Downloading mirrors from"
-msgstr ""
+msgstr "Hleð niður speglum frá"
 
 #: pacman_mirrors/constants/txt.py:89
 msgid "Falling back to"
-msgstr ""
+msgstr "Fell aftur að"
 
 #: pacman_mirrors/constants/txt.py:90
 msgid "Internet connection appears to be down"
-msgstr ""
+msgstr "Nettenging virðist vera óvirk"
 
 #: pacman_mirrors/constants/txt.py:91
 msgid "Mirror list is generated using random method"
-msgstr ""
+msgstr "Speglalisti er búinn til af handahófi"
 
 #: pacman_mirrors/constants/txt.py:92
 msgid "is missing"
@@ -258,7 +259,7 @@ msgstr "Spegil skrá"
 
 #: pacman_mirrors/constants/txt.py:94
 msgid "Mirror list generated and saved to"
-msgstr ""
+msgstr "Speglalisti er búinn til og vistaður í"
 
 #: pacman_mirrors/constants/txt.py:95
 msgid "Generated on"
@@ -266,23 +267,23 @@ msgstr "Búið til á "
 
 #: pacman_mirrors/constants/txt.py:96
 msgid "custom mirrorlist"
-msgstr "sérsniðin spegla listi"
+msgstr "sérsniðin speglalisti"
 
 #: pacman_mirrors/constants/txt.py:97
 msgid "to reset custom mirrorlist"
-msgstr ""
+msgstr "Endursetja sérsniðin speglalista"
 
 #: pacman_mirrors/constants/txt.py:98
 msgid "default mirrorlist"
-msgstr "sjálfgefinn spegla listi"
+msgstr "sjálfgefinn speglalisti"
 
 #: pacman_mirrors/constants/txt.py:99
 msgid "to modify mirrorlist"
-msgstr ""
+msgstr "Breyta speglalista"
 
 #: pacman_mirrors/constants/txt.py:100
 msgid "Mirror ranking is not available"
-msgstr ""
+msgstr "Spegla röðun er ekki í boði"
 
 #: pacman_mirrors/constants/txt.py:101
 msgid "Must have root privileges"
@@ -290,11 +291,11 @@ msgstr "Verður að hafa kerfisstjóraaðgangs"
 
 #: pacman_mirrors/constants/txt.py:102
 msgid "The mirrors has not changed"
-msgstr ""
+msgstr "Speglalisti hefur ekki breyst"
 
 #: pacman_mirrors/constants/txt.py:103
 msgid "No mirrors in selection"
-msgstr ""
+msgstr "Engir speglar í vali"
 
 #: pacman_mirrors/constants/txt.py:104
 msgid "Option"
@@ -306,15 +307,15 @@ msgstr "Visamlegast notið"
 
 #: pacman_mirrors/constants/txt.py:106
 msgid "Querying mirrors"
-msgstr ""
+msgstr "Spyr um spegla"
 
 #: pacman_mirrors/constants/txt.py:107
 msgid "Randomizing mirror list"
-msgstr ""
+msgstr "Slembiraða speglalista"
 
 #: pacman_mirrors/constants/txt.py:108
 msgid "To remove custom config run "
-msgstr ""
+msgstr "Til að eyða sérsniðni stillingu keyrðu"
 
 #: pacman_mirrors/constants/txt.py:109
 msgid "This may take some time"
@@ -330,31 +331,31 @@ msgstr "Nota 0 fyrir alla spegla"
 
 #: pacman_mirrors/constants/txt.py:112
 msgid "Using all mirrors"
-msgstr ""
+msgstr "Nota alla spegla"
 
 #: pacman_mirrors/constants/txt.py:113
 msgid "Using custom mirror file"
-msgstr ""
+msgstr "Nota sérsniðna spegla skrá"
 
 #: pacman_mirrors/constants/txt.py:114
 msgid "Using default mirror file"
-msgstr ""
+msgstr "Nota sjálfgefna spegla skrá"
 
 #: pacman_mirrors/constants/txt.py:115
 msgid "Writing mirror list"
-msgstr ""
+msgstr "Rita speglalista"
 
 #: pacman_mirrors/constants/txt.py:118
 msgid "Manjaro mirrors by response time"
-msgstr ""
+msgstr "Manjaro speglar eftir svörutíma"
 
 #: pacman_mirrors/constants/txt.py:119
 msgid "Manjaro mirrors in random order"
-msgstr ""
+msgstr "Manjaro speglar í handahófskenndri röð"
 
 #: pacman_mirrors/constants/txt.py:120
 msgid "Check mirrors for your personal list"
-msgstr ""
+msgstr "Athuga spegla fyrir persónulega listann þinn"
 
 #: pacman_mirrors/constants/txt.py:121
 msgid "Use"
@@ -366,11 +367,11 @@ msgstr "Land"
 
 #: pacman_mirrors/constants/txt.py:123
 msgid "Resp"
-msgstr "Resp"
+msgstr "Viðbragðstími"
 
 #: pacman_mirrors/constants/txt.py:124
 msgid "Sync"
-msgstr "Sync"
+msgstr "Samstilling"
 
 #: pacman_mirrors/constants/txt.py:126
 msgid "Cancel"

@@ -4,14 +4,15 @@
 # project.
 # 
 # Translators:
+# Alireza Ivaz <info@alirezaivaz.ir>, 2020
 # Soroush Mirzaei <soroush.mirzaei@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: manjaro-pacman-mirrors\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2017-10-23 20:55+0200\n"
-"PO-Revision-Date: 2018-05-11 17:45+0000\n"
-"Last-Translator: Soroush Mirzaei <soroush.mirzaei@gmail.com>\n"
+"PO-Revision-Date: 2020-08-19 06:40+0000\n"
+"Last-Translator: Alireza Ivaz <info@alirezaivaz.ir>\n"
 "Language-Team: Persian (http://www.transifex.com/manjarolinux/manjaro-pacman-mirrors/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,15 +27,15 @@ msgstr "خطا"
 
 #: pacman_mirrors/constants/txt.py:30
 msgid "INFO"
-msgstr ""
+msgstr "اطلاعات"
 
 #: pacman_mirrors/constants/txt.py:31
 msgid "WARNING"
-msgstr "اخطار"
+msgstr "هشدار"
 
 #: pacman_mirrors/constants/txt.py:33
 msgid "HTTPException"
-msgstr ""
+msgstr "استثنا HTTP"
 
 #: pacman_mirrors/constants/txt.py:34
 msgid "TIMEOUT"
@@ -54,7 +55,7 @@ msgstr "کشور"
 
 #: pacman_mirrors/constants/txt.py:39
 msgid "FILE"
-msgstr "فابل"
+msgstr "پرونده"
 
 #: pacman_mirrors/constants/txt.py:40
 msgid "METHOD"
@@ -62,11 +63,11 @@ msgstr "روش"
 
 #: pacman_mirrors/constants/txt.py:41
 msgid "METHODS"
-msgstr "روشها"
+msgstr "روش‌ها"
 
 #: pacman_mirrors/constants/txt.py:42
 msgid "MISC"
-msgstr ""
+msgstr "متفرقه"
 
 #: pacman_mirrors/constants/txt.py:43
 msgid "NUMBER"
@@ -78,7 +79,7 @@ msgstr "مسیر"
 
 #: pacman_mirrors/constants/txt.py:45
 msgid "PREFIX"
-msgstr ""
+msgstr "پیشوند"
 
 #: pacman_mirrors/constants/txt.py:46
 msgid "PROTO"
@@ -86,19 +87,19 @@ msgstr ""
 
 #: pacman_mirrors/constants/txt.py:47
 msgid "SECONDS"
-msgstr "ثانیه ها"
+msgstr "ثانیه"
 
 #: pacman_mirrors/constants/txt.py:48 pacman_mirrors/constants/txt.py:125
 msgid "URL"
-msgstr ""
+msgstr "نشانی"
 
 #: pacman_mirrors/constants/txt.py:49
 msgid "USAGE"
-msgstr ""
+msgstr "استفاده"
 
 #: pacman_mirrors/constants/txt.py:51
 msgid "Return branch from configuration"
-msgstr ""
+msgstr "شاخه را از پیکربندی برگردانید"
 
 #: pacman_mirrors/constants/txt.py:52
 msgid "Set prefix to"
