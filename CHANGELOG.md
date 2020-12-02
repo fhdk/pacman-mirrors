@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.18.x]
+* fix missed reference to i686
+
 ## [4.18] 2020-11-09
 * remove 32-bit
 * remove async
