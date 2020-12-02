@@ -101,10 +101,6 @@ def sanitize_config(config: object) -> bool:
         errors.append("     'Method = {}'; {} {}".format(
             config["method"], txt.EXP_CLR, "|".join(conf.METHODS)))
     # Check Branch
-    # if config["x32"]:
-    #    if config["branch"] not in conf.X32_BRANCHES:
-    #        errors.append("     'Branch = {}'; {} {}".format(
-    #            config["branch"], txt.EXP_CLR, "|".join(conf.X32_BRANCHES)))
     if config["arm"]:
         if config["branch"] not in conf.ARM_BRANCHES:
             errors.append("     'Branch = {}'; {} {}".format(

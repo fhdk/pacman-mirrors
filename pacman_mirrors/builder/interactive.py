@@ -51,10 +51,7 @@ def build_mirror_list(self) -> None:
     if not self.default:
         # if not default run method before selection
         if self.config["method"] == "rank":
-            if self.use_async:
-                worklist = test_mirror_pool_async(self=self, worklist=worklist)
-            else:
-                worklist = test_mirror_pool(self=self, worklist=worklist)
+            worklist = test_mirror_pool(self=self, worklist=worklist)
             worklist = sort_mirror_pool(worklist=worklist, field="resp_time", reverse=False)
         else:
             shuffle(worklist)
