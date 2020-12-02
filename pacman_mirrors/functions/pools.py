@@ -24,6 +24,20 @@ from pacman_mirrors.functions.httpFn import get_ip_country
 from pacman_mirrors.functions.validFn import country_list_is_valid, custom_config_is_valid
 
 
+def wash_country_list(country_list: list):
+    washed = []
+    for p in country_list:
+        c = p.lower()
+        r = p
+        search = (r for r in countries if r["code"].lower() == c or r["name"].lower() == c)
+        for s in search:
+            if s is not None:
+                r = s["name"]
+        if r not in washed:
+            washed.append(r)
+    return washed
+
+
 def build_country_list(self: list) -> list:
     """
     Do a check on the users country selection
@@ -47,6 +61,7 @@ def build_country_list(self: list) -> list:
         if self.selected_countries == ["all"]:
             result = self.mirrors.country_pool
         else:
+            self.selected_countries = wash_country_list(self.selected_countries)
             if country_list_is_valid(onlycountry=self.selected_countries,
                                      countrylist=self.mirrors.country_pool,
                                      tty=self.tty):

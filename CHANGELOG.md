@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.19]
+* enhanced `-c/--country` argument
+  - countries can be specified using country code or country name
+  - further enhanced argument to accept lower case
+  - country specifications can be a mix of country code and country name
+  - duplicate countries are removed
+
 ## [4.18.x]
 * fix missed reference to i686
 

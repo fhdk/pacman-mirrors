@@ -78,7 +78,7 @@ entry in the configuration file.
 * **The mirrorlist**: *`/etc/pacman.d/mirrorlist`*
    * The file contains a number of servers which `pacman` uses to update your system.
 * **Manjaro mirror pool**: *`/usr/share/pacman-mirrors/mirrors.json`*
-   * The worldwide mirrorpool comes with installation.
+   * The worldwide mirrorpool.
    * At runtime the file is downloaded from Github and compared with the systems file.
    * If the files differs, your local file will be replaced.
 * **Manjaro mirror pool status**: *`/var/lib/pacman-mirrors/status.json`*
@@ -121,8 +121,8 @@ for example
 
 Pacman-mirrors always attempt to download the lastest available data
 from [http://repo.manjaro.org](http://repo.manjaro.org).
-These data is always used during mirrorlist generation to ensure that you connect to a mirror
-which is up-to-date for your systems branch.
+These data is always used during mirrorlist generation to ensure
+that you connect to a mirror which is up-to-date for your systems branch.
 
 # ARGUMENTS, METHODS AND OPTIONS
 
@@ -134,13 +134,23 @@ which is up-to-date for your systems branch.
 :   Creates a custom mirror pool from geolocation
 
 -f, \--fasttrack [*NUMBER*]
-:   Generates a random mirrorlist for the users current selected branch, mirrors are randomly selected from the users current mirror pool, either a custom pool or the default pool, the randomly selected mirrors are ranked by their current access time. The higher number the higher possibility of a fast mirror. If a number is given the resulting mirrorlist contains that number of servers.
+:   Generates a random mirrorlist for the users current selected branch,
+mirrors are randomly selected from the users current mirror pool,
+either a custom pool or the default pool,
+the randomly selected mirrors are ranked by their current access time.
+The higher number the higher possibility of a fast mirror.
+If a number is given the resulting mirrorlist contains that number of servers.
 
 -g\--geoip
 :   Use geolocation if possible, if geoip is not available all mirrors.
 
 -i, \--interactive [--default]
-:   This is a function designed to leave full control over countries, mirrors and protocols to the user. This function **DOES NOT** take into consideration up-to-date mirrors. The optional **--default** forces pacman-mirrors to load the default mirror file and ignore any preset custom pool, thus allowing for reselecting mirrors for a new custom pool.
+:   This is a function designed to leave full control over countries,
+mirrors and protocols to the user. This function **DOES NOT**
+take into consideration up-to-date mirrors.
+The optional **--default** forces pacman-mirrors to load the default
+mirror file and ignore any preset custom pool,
+thus allowing for reselecting mirrors for a new custom pool.
 
 ## API
 
@@ -198,7 +208,9 @@ which is up-to-date for your systems branch.
 :   Apply a filter based on elapsed hours since last sync.
 
 -t, \--timeout *SECONDS*
-:   Change the number of seconds waiting for a server response, SSL enabled mirrors has this value doubled to compensate for the time spent on exchanging encryption keys.
+:   Change the number of seconds waiting for a server response,
+SSL enabled mirrors has this value doubled to compensate for
+the time spent on exchanging encryption keys.
 
 -v, \--version
 :   Show the version of pacman-mirrors.
@@ -268,7 +280,9 @@ editing your pacman-mirrors configuration.
 
 ## Commands requiring sudo
 
-* I want to permanently change branch to unstable, use mirrors from Germany and France, use only https and http protocol in that order
+* I want to permanently change branch to unstable,
+* I want to use mirrors from Germany and France,
+* I want only https and http protocol in that order
 
     *sudo pacman-mirrors --country Germany,France --api --set-branch unstable --procotol https http*
 
