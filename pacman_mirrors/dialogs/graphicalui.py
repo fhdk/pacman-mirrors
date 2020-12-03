@@ -40,7 +40,7 @@ class GraphicalUI(Gtk.Window):
         title = txt.I_TITLE_RANDOM if random else txt.I_TITLE
         if default:
             title = "Manjaro Mirrors"
-        if not Gtk.Window.init_check(self, title=title):
+        if not Gtk.init_check(self, title=title):
             self.gtk_init = False
             return
 
