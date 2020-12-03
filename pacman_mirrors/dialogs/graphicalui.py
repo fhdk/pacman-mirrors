@@ -40,87 +40,86 @@ class GraphicalUI(Gtk.Window):
         title = txt.I_TITLE_RANDOM if random else txt.I_TITLE
         if default:
             title = "Manjaro Mirrors"
-        if not Gtk.init_check():
+        try:
+            Gtk.Window.__init__(self, title=title)
+            self.random = random
+            self.set_size_request(700, 350)
+            self.set_border_width(10)
+            self.set_position(Gtk.WindowPosition.CENTER)
+
+            custom_mirrors = []
+            for server in server_list:
+                try:
+                    _ = server_list[0]
+                    custom_mirrors.append(
+                        (False, server["country"], server["last_sync"], server["url"]))
+                except IndexError as i:
+                    print("{} IndexError -> {}".format(txt.ERR_CLR, i))
+                    pass
+                except KeyError as k:
+                    print("{} KeyError -> {}".format(txt.ERR_CLR, k))
+                    pass
+
+            self.store = Gtk.ListStore(bool, str, str, str)
+            for mirror_ref in custom_mirrors:
+                self.store.append(list(mirror_ref))
+
+            scrolled_tree = Gtk.ScrolledWindow()
+
+            self.tree = Gtk.TreeView(self.store, vexpand=True)
+
+            renderer = Gtk.CellRendererToggle()
+            renderer.connect("toggled", self.on_toggle)
+
+            column = Gtk.TreeViewColumn(txt.I_USE, renderer, active=0)
+
+            self.tree.append_column(column)
+
+            renderer = Gtk.CellRendererText()
+            column = Gtk.TreeViewColumn(txt.I_COUNTRY, renderer, text=1)
+            column.set_sort_column_id(1)
+            self.tree.append_column(column)
+
+            renderer = Gtk.CellRendererText()
+            column = Gtk.TreeViewColumn(txt.I_LAST_SYNC,
+                                        renderer,
+                                        text=2)
+            column.set_sort_column_id(2)
+            self.tree.append_column(column)
+
+            renderer = Gtk.CellRendererText()
+            column = Gtk.TreeViewColumn(txt.I_URL,
+                                        renderer,
+                                        text=3)
+            column.set_sort_column_id(3)
+            self.tree.append_column(column)
+
+            scrolled_tree.add(self.tree)
+
+            header = Gtk.Label(txt.I_LIST_TITLE)
+            button_cancel = Gtk.Button(txt.I_CANCEL)
+            button_cancel.connect("clicked", self.cancel)
+            self.button_done = Gtk.Button(txt.I_CONFIRM,
+                                          sensitive=False)
+            self.button_done.connect("clicked", self.done)
+
+            grid = Gtk.Grid(column_homogeneous=True,
+                            column_spacing=10,
+                            row_spacing=10)
+            grid.attach(header, 0, 0, 2, 1)
+            grid.attach(scrolled_tree, 0, 1, 2, 1)
+            grid.attach(button_cancel, 0, 2, 1, 1)
+            grid.attach(self.button_done, 1, 2, 1, 1)
+
+            self.add(grid)
+
+            # Server lists
+            self.server_list = server_list
+            self.custom_list = []
+
+            self.is_done = False
+        except RuntimeError:
             self.gtk_init = False
-            return
-        Gtk.Window.__init__(self, title=title)
-
-        self.random = random
-        self.set_size_request(700, 350)
-        self.set_border_width(10)
-        self.set_position(Gtk.WindowPosition.CENTER)
-
-        custom_mirrors = []
-        for server in server_list:
-            try:
-                _ = server_list[0]
-                custom_mirrors.append(
-                    (False, server["country"], server["last_sync"], server["url"]))
-            except IndexError as i:
-                print("{} IndexError -> {}".format(txt.ERR_CLR, i))
-                pass
-            except KeyError as k:
-                print("{} KeyError -> {}".format(txt.ERR_CLR, k))
-                pass
-
-        self.store = Gtk.ListStore(bool, str, str, str)
-        for mirror_ref in custom_mirrors:
-            self.store.append(list(mirror_ref))
-
-        scrolled_tree = Gtk.ScrolledWindow()
-
-        self.tree = Gtk.TreeView(self.store, vexpand=True)
-
-        renderer = Gtk.CellRendererToggle()
-        renderer.connect("toggled", self.on_toggle)
-
-        column = Gtk.TreeViewColumn(txt.I_USE, renderer, active=0)
-
-        self.tree.append_column(column)
-
-        renderer = Gtk.CellRendererText()
-        column = Gtk.TreeViewColumn(txt.I_COUNTRY, renderer, text=1)
-        column.set_sort_column_id(1)
-        self.tree.append_column(column)
-
-        renderer = Gtk.CellRendererText()
-        column = Gtk.TreeViewColumn(txt.I_LAST_SYNC,
-                                    renderer,
-                                    text=2)
-        column.set_sort_column_id(2)
-        self.tree.append_column(column)
-
-        renderer = Gtk.CellRendererText()
-        column = Gtk.TreeViewColumn(txt.I_URL,
-                                    renderer,
-                                    text=3)
-        column.set_sort_column_id(3)
-        self.tree.append_column(column)
-
-        scrolled_tree.add(self.tree)
-
-        header = Gtk.Label(txt.I_LIST_TITLE)
-        button_cancel = Gtk.Button(txt.I_CANCEL)
-        button_cancel.connect("clicked", self.cancel)
-        self.button_done = Gtk.Button(txt.I_CONFIRM,
-                                      sensitive=False)
-        self.button_done.connect("clicked", self.done)
-
-        grid = Gtk.Grid(column_homogeneous=True,
-                        column_spacing=10,
-                        row_spacing=10)
-        grid.attach(header, 0, 0, 2, 1)
-        grid.attach(scrolled_tree, 0, 1, 2, 1)
-        grid.attach(button_cancel, 0, 2, 1, 1)
-        grid.attach(self.button_done, 1, 2, 1, 1)
-
-        self.add(grid)
-
-        # Server lists
-        self.server_list = server_list
-        self.custom_list = []
-
-        self.is_done = False
 
     def on_toggle(self, widget, path):
         """Add or remove server from custom list"""
