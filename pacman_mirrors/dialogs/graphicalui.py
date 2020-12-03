@@ -41,6 +41,7 @@ class GraphicalUI(Gtk.Window):
         if default:
             title = "Manjaro Mirrors"
         try:
+            self.gtk_init = True
             Gtk.Window.__init__(self, title=title)
             self.random = random
             self.set_size_request(700, 350)
@@ -171,7 +172,9 @@ class GraphicalUI(Gtk.Window):
 def run(server_list: list, random: bool, default: bool = False) -> object:
     """Run"""
     window = GraphicalUI(server_list, random, default)
-    window.connect("delete-event", Gtk.main_quit)
-    window.show_all()
-    Gtk.main()
+    if window.gtk_init:
+        window.connect("delete-event", Gtk.main_quit)
+        window.show_all()
+        Gtk.main()
+        return window
     return window
