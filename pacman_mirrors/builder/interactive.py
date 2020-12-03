@@ -70,21 +70,15 @@ def build_mirror_list(self) -> None:
     interactive_list = translate_pool_to_interactive(mirror_pool=worklist, tty=self.tty)
 
     # import the correct ui
-    if self.no_display:
+    if self.no_display or self.config["arm"]:
         # in console mode
-        from pacman_mirrors.dialogs import consoleui as tui
-        interactive = tui.run(server_list=interactive_list, random=self.config["method"] == "random",
-                              default=self.default)
+        from pacman_mirrors.dialogs import consoleui as ui
     else:
         # gtk mode
-        from pacman_mirrors.dialogs import graphicalui as gui
-        interactive = gui.run(server_list=interactive_list, random=self.config["method"] == "random",
-                              default=self.default)
-        # gtk failed - switch to console
-        if interactive.gtk_init is False:
-            from pacman_mirrors.dialogs import consoleui as tui
-            interactive = tui.run(server_list=interactive_list, random=self.config["method"] == "random",
-                                  default=self.default)
+        from pacman_mirrors.dialogs import graphicalui as ui
+
+    interactive = ui.run(server_list=interactive_list, random=self.config["method"] == "random",
+                         default=self.default)
 
     # process user choices
     if interactive.is_done:
