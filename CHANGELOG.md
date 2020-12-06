@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.19.1]
+* workaround for gtk initialization error on pinephone
+
 ## [4.19] 2011-12-02
 * enhanced `-c/--country` argument
   - countries can be specified using country code or country name
