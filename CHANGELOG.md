@@ -1,8 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [4.19.2]
+## [4.19.2] 2021-03-14
 * Added check to validate the path supplied by argument `-a -p` e.g. -p mistaken for `-P https`
+
+## [4.19.1]
+* workaround for gtk initialization error on pinephone
 
 ## [4.19] 2020-12-02
 * enhanced `-c/--country` argument
