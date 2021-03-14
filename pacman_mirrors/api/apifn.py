@@ -27,6 +27,7 @@ import tempfile
 
 from pacman_mirrors.constants import txt
 from pacman_mirrors.functions import util
+from pacman_mirrors.functions import fileFn
 
 
 def find_mirrorlist_branch(filename: str, tty: bool = False) -> str:
@@ -183,6 +184,8 @@ def sanitize_prefix(prefix: str) -> str:
     """
     if prefix.endswith("/"):
         prefix = prefix[:-1]
+    if not fileFn.check_file(prefix, True):
+        exit(1)
     return prefix
 
 

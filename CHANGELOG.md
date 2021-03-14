@@ -1,7 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [4.19] 2011-12-02
+## [4.19.2]
+* Added check to validate the path supplied by argument `-a -p` e.g. -p mistaken for `-P https`
+
+## [4.19] 2020-12-02
 * enhanced `-c/--country` argument
   - countries can be specified using country code or country name
   - further enhanced argument to accept lower case (any casing is accepted)
