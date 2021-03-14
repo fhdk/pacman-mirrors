@@ -30,6 +30,7 @@ import urllib.request
 import urllib.parse
 from http.client import HTTPException
 from os import system as system_call
+import socket
 from socket import timeout
 from urllib.error import URLError
 
@@ -43,12 +44,6 @@ from pacman_mirrors.functions import util
 
 USER_AGENT = {"User-Agent": "{}{}".format(conf.USER_AGENT, __version__)}
 
-
-def get_url_last_modifed(url: str) -> str:
-    x = requests.head(url)
-    return x.headers["last-modified"]
-
-
 def download_mirrors(config: object) -> tuple:
     """Retrieve mirrors from manjaro.org
     :param config:
@@ -61,7 +56,7 @@ def download_mirrors(config: object) -> tuple:
         # mirrors.json
         req = urllib.request.Request(url=config["url_mirrors_json"],
                                      headers=USER_AGENT)
-        with urllib.request.urlopen(req) as response:
+        with urllib.request.urlopen(req, timeout=config["timeout"]) as response:
             mirrorlist = json.loads(response.read().decode("utf8"),
                                     object_pairs_hook=collections.OrderedDict)
         fetchmirrors = True
@@ -80,7 +75,7 @@ def download_mirrors(config: object) -> tuple:
         # status.json
         req = urllib.request.Request(url=config["url_status_json"],
                                      headers=USER_AGENT)
-        with urllib.request.urlopen(req) as response:
+        with urllib.request.urlopen(req, timeout=config["timeout"]) as response:
             statuslist = json.loads(
                 response.read().decode("utf8"),
                 object_pairs_hook=collections.OrderedDict)
