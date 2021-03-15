@@ -44,6 +44,7 @@ from pacman_mirrors.functions import util
 
 USER_AGENT = {"User-Agent": "{}{}".format(conf.USER_AGENT, __version__)}
 
+
 def download_mirrors(config: object) -> tuple:
     """Retrieve mirrors from manjaro.org
     :param config:
@@ -54,11 +55,9 @@ def download_mirrors(config: object) -> tuple:
     fetchstatus = False
     try:
         # mirrors.json
-        req = urllib.request.Request(url=config["url_mirrors_json"],
-                                     headers=USER_AGENT)
-        with urllib.request.urlopen(req, timeout=config["timeout"]) as response:
-            mirrorlist = json.loads(response.read().decode("utf8"),
-                                    object_pairs_hook=collections.OrderedDict)
+        req = urllib.request.Request(url=config["url_mirrors_json"], headers=USER_AGENT)
+        with urllib.request.urlopen(req, timeout=config["time_out"]) as response:
+            mirrorlist = json.loads(response.read().decode("utf8"), object_pairs_hook=collections.OrderedDict)
         fetchmirrors = True
         tempfile = config["work_dir"] + "/.temp.file"
         jsonFn.json_dump_file(mirrorlist, tempfile)

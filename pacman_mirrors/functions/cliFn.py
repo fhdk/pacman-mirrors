@@ -260,6 +260,7 @@ def parse_command_line(self, gtk_available: bool) -> None:
 
     if args.timeout:
         self.max_wait_time = args.timeout
+        self.confg["timeout"] = args.timeout
 
     if args.no_status:
         self.no_status = True

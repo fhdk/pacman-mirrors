@@ -51,7 +51,8 @@ def setup_config() -> tuple:
         "test_file": conf.TEST_FILE,
         "url_mirrors_json": conf.URL_MIRROR_JSON,
         "url_status_json": conf.URL_STATUS_JSON,
-        "arm": False
+        "arm": False,
+        "timeout": 2
     }
     # try to replace default entries by reading conf file
     try:
