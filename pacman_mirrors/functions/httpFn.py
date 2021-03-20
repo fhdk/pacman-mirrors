@@ -23,16 +23,17 @@ import collections
 import filecmp
 import json
 import os
-import requests
 import ssl
 import time
-import urllib.request
-import urllib.parse
-from http.client import HTTPException
 from os import system as system_call
 import socket
 from socket import timeout
-from urllib.error import URLError
+
+# import urllib.request
+# import urllib.parse
+# from urllib.error import URLError
+from http.client import HTTPException
+import requests
 
 from pacman_mirrors import __version__
 from pacman_mirrors.config import configuration as conf
@@ -55,9 +56,11 @@ def download_mirrors(config: object) -> tuple:
     fetchstatus = False
     try:
         # mirrors.json
-        req = urllib.request.Request(url=config["url_mirrors_json"], headers=USER_AGENT)
-        with urllib.request.urlopen(req, timeout=config["timeout"]) as response:
-            mirrorlist = json.loads(response.read().decode("utf8"), object_pairs_hook=collections.OrderedDict)
+        resp = requests.get(url=config["url_mirrors_json"],
+                            headers=USER_AGENT,
+                            timeout=config["timeout"])
+        resp.raise_for_status()
+        mirrorlist = resp.json()
         fetchmirrors = True
         tempfile = config["work_dir"] + "/.temp.file"
         jsonFn.json_dump_file(mirrorlist, tempfile)
@@ -68,32 +71,34 @@ def download_mirrors(config: object) -> tuple:
             elif not filecmp.cmp(tempfile, config["mirror_file"]):
                 jsonFn.json_dump_file(mirrorlist, config["mirror_file"])
         os.remove(tempfile)
-    except (HTTPException, json.JSONDecodeError, URLError):
+    except (json.JSONDecodeError,):
         pass
     try:
         # status.json
-        req = urllib.request.Request(url=config["url_status_json"],
-                                     headers=USER_AGENT)
-        with urllib.request.urlopen(req, timeout=config["timeout"]) as response:
-            statuslist = json.loads(
-                response.read().decode("utf8"),
-                object_pairs_hook=collections.OrderedDict)
+        resp = requests.get(url=config["url_status_json"],
+                            headers=USER_AGENT,
+                            timeout=config["timeout"])
+        statuslist = resp.json()
         fetchstatus = True
         jsonFn.write_json_file(statuslist, config["status_file"])
-    except (HTTPException, json.JSONDecodeError, URLError):
+    except (json.JSONDecodeError,):
         pass
     # result
     return fetchmirrors, fetchstatus
 
 
-def get_ip_country() -> str:
+def get_ip_country(maxwait: int = 2) -> str:
     """
     Get the user country from connection IP (might be VPN who knows)
     :return: country name
     """
+    # noinspection PyBroadException
     try:
-        return requests.get("https://get.geojs.io/v1/ip/country/full").text
-    except (URLError, HTTPException):
+        resp = requests.get("https://get.geojs.io/v1/ip/country/full",
+                            timeout=maxwait)
+        resp.raise_for_status()
+        return resp.text
+    finally:
         return ""
 
 
@@ -112,7 +117,7 @@ def get_mirror_response(url: str, config: object, tty: bool = False, maxwait: in
     response_time = txt.SERVER_RES  # prepare default return value
     probe_stop = None
     message = ""
-    context = ssl.create_default_context()
+    # context = ssl.create_default_context()
     arch = "x86_64"
     if config["arm"]:
         arch = "aarch64"
@@ -120,27 +125,20 @@ def get_mirror_response(url: str, config: object, tty: bool = False, maxwait: in
     if not ssl_verify:
         context.check_hostname = False
         context.verify_mode = ssl.CERT_NONE
-    req = urllib.request.Request(url=probe_url, headers=USER_AGENT)
     probe_start = time.time()
     # noinspection PyBroadException
     try:
         for _ in range(count):
-            response = urllib.request.urlopen(req, timeout=maxwait, context=context)
-            _ = response.read()
+            resp = requests.get(url=probe_url, headers=USER_AGENT, timeout=maxwait)
+            resp.raise_for_status()
+            _ = resp.text
         probe_stop = time.time()
-    except URLError as err:
-        if hasattr(err, "reason"):
-            message = f"{err.reason} '{url}'"
-        elif hasattr(err, "code"):
-            message = f"{err.reason} '{url}'"
     except timeout:
         message = f"{txt.TIMEOUT} '{url}'"
-    except HTTPException:
-        message = f"{txt.HTTP_EXCEPTION} '{url}'"
     except ssl.CertificateError:
         message = f"{ssl.CertificateError} '{url}'"
     except Exception as e:
-        message = f"{e} '{url}'"
+        message = f"{e}"
 
     if message and not quiet:
         util.msg(message=message, urgency=txt.ERR_CLR, tty=tty, newline=True)
@@ -159,7 +157,7 @@ def check_internet_connection(tty: bool = False, maxwait: int = 2) -> bool:
     for host in hosts:
         # noinspection PyBroadException
         try:
-            resp = urllib.request.urlopen(host, timeout=maxwait)
+            resp = requests.get(host, timeout=maxwait)
             break
         except Exception as e:
             util.msg(f"{host} '{e}'", urgency=txt.WRN_CLR, tty=tty)
