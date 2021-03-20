@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.20.0] 2021-03-20
+* issue #157 - rechecked the timeout for urls - refactored to use only requests lib
+
 ## [4.19.3] 2021-03-14
 * added `timeout=config["timeout"] to functions which did implement timeout
 
