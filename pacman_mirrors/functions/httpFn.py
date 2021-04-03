@@ -92,14 +92,11 @@ def get_ip_country(maxwait: int = 2) -> str:
     Get the user country from connection IP (might be VPN who knows)
     :return: country name
     """
-    # noinspection PyBroadException
-    try:
-        resp = requests.get("https://get.geojs.io/v1/ip/country/full",
-                            timeout=maxwait)
-        resp.raise_for_status()
-        return resp.text
-    finally:
-        return ""
+    resp = requests.get("https://get.geojs.io/v1/ip/country/full",
+                        timeout=maxwait)
+    resp.raise_for_status()
+    print(f"DEBUG ME: {resp.text}")
+    return resp.text
 
 
 def get_mirror_response(url: str, config: object, tty: bool = False, maxwait: int = 2,
