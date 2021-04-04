@@ -71,8 +71,13 @@ def download_mirrors(config: object) -> tuple:
             elif not filecmp.cmp(tempfile, config["mirror_file"]):
                 jsonFn.json_dump_file(mirrorlist, config["mirror_file"])
         os.remove(tempfile)
-    except (json.JSONDecodeError,):
-        pass
+    except (json.JSONDecodeError,
+            ConnectionError,
+            ConnectionResetError,
+            ConnectionAbortedError,
+            ConnectionRefusedError):
+        fetchmirrors = False
+
     try:
         # status.json
         resp = requests.get(url=config["url_status_json"],
@@ -81,8 +86,12 @@ def download_mirrors(config: object) -> tuple:
         statuslist = resp.json()
         fetchstatus = True
         jsonFn.write_json_file(statuslist, config["status_file"])
-    except (json.JSONDecodeError,):
-        pass
+    except (json.JSONDecodeError,
+            ConnectionError,
+            ConnectionResetError,
+            ConnectionAbortedError,
+            ConnectionRefusedError):
+        fetchstatus = False
     # result
     return fetchmirrors, fetchstatus
 
