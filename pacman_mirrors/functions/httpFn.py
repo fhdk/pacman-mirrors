@@ -52,16 +52,17 @@ def download_mirrors(config: object) -> tuple:
     :returns: tuple with bool for mirrors.json and status.json
     :rtype: tuple
     """
-    fetchmirrors = False
-    fetchstatus = False
+    fetchmirrors = True
+    fetchstatus = True
+    message = ""
     try:
         # mirrors.json
+        util.msg(message=f"=> Mirror pool: {config['url_mirrors_json']}", urgency=txt.INF_CLR)
         resp = requests.get(url=config["url_mirrors_json"],
                             headers=USER_AGENT,
                             timeout=config["timeout"])
         resp.raise_for_status()
         mirrorlist = resp.json()
-        fetchmirrors = True
         tempfile = config["work_dir"] + "/.temp.file"
         jsonFn.json_dump_file(mirrorlist, tempfile)
         filecmp.clear_cache()
@@ -71,27 +72,47 @@ def download_mirrors(config: object) -> tuple:
             elif not filecmp.cmp(tempfile, config["mirror_file"]):
                 jsonFn.json_dump_file(mirrorlist, config["mirror_file"])
         os.remove(tempfile)
-    except (json.JSONDecodeError,
-            ConnectionError,
-            ConnectionResetError,
-            ConnectionAbortedError,
-            ConnectionRefusedError):
+    except (json.JSONDecodeError,) as jsonError:
+        message = f"Invalid JSON data: {jsonError}"
+    except (requests.exceptions.ConnectionError,) as connError:
+        message = f"Connection: {connError}"
+    except (requests.exceptions.SSLError,) as sslError:
+        message = f"Certificate: {sslError}"
+    except (requests.exceptions.Timeout,) as connTimeout:
+        message = f"Connection: {connTimeout}"
+    except (requests.exceptions.HTTPError,) as httpError:
+        message = f"Connection {httpError}"
+    except Exception as e:
+        message = f"{e}"
+    if message != "":
         fetchmirrors = False
+        util.msg(message=message, urgency=txt.ERR_CLR, newline=True)
+        message = ""
 
     try:
         # status.json
+        util.msg(message=f"=> Mirror status: {config['url_status_json']}", urgency=txt.INF_CLR)
         resp = requests.get(url=config["url_status_json"],
                             headers=USER_AGENT,
                             timeout=config["timeout"])
+        # resp.raise_for_status()
         statuslist = resp.json()
-        fetchstatus = True
         jsonFn.write_json_file(statuslist, config["status_file"])
-    except (json.JSONDecodeError,
-            ConnectionError,
-            ConnectionResetError,
-            ConnectionAbortedError,
-            ConnectionRefusedError):
+    except (json.JSONDecodeError,) as jsonError:
+        message = f"Invalid JSON data: {jsonError}"
+    except (requests.exceptions.ConnectionError,) as connError:
+        message = f"Connection: {connError}"
+    except (requests.exceptions.SSLError,) as sslError:
+        message = f"Certificate: {sslError}"
+    except (requests.exceptions.Timeout,) as connTimeout:
+        message = f"Connection: {connTimeout}"
+    except (requests.exceptions.HTTPError,) as httpError:
+        message = f"Connection {httpError}"
+    except Exception as e:
+        message = f"{e}"
+    if message != "":
         fetchstatus = False
+        util.msg(message=message, urgency=txt.ERR_CLR, newline=True)
     # result
     return fetchmirrors, fetchstatus
 
@@ -104,7 +125,6 @@ def get_ip_country(maxwait: int = 2) -> str:
     resp = requests.get("https://get.geojs.io/v1/ip/country/full",
                         timeout=maxwait)
     resp.raise_for_status()
-    print(f"DEBUG ME: {resp.text}")
     return resp.text
 
 
@@ -139,15 +159,19 @@ def get_mirror_response(url: str, config: object, tty: bool = False, maxwait: in
             resp.raise_for_status()
             _ = resp.text
         probe_stop = time.time()
-    except timeout:
-        message = f"{txt.TIMEOUT} '{url}'"
-    except ssl.CertificateError:
-        message = f"{ssl.CertificateError} '{url}'"
+    except (requests.exceptions.ConnectionError,) as connError:
+        message = f"Connection: {connError}"
+    except (requests.exceptions.SSLError,) as sslError:
+        message = f"Certificate: {sslError}"
+    except (requests.exceptions.Timeout,) as connTimeout:
+        message = f"Connection: {connTimeout}"
+    except (requests.exceptions.HTTPError,) as httpError:
+        message = f"Connection {httpError}"
     except Exception as e:
         message = f"{e}"
 
     if message and not quiet:
-        util.msg(message=message, urgency=txt.ERR_CLR, tty=tty, newline=True)
+        util.msg(message=message, urgency=txt.ERR_CLR, tty=tty)
     if probe_stop:
         response_time = round((probe_stop - probe_start), 3)
     return response_time
@@ -165,8 +189,19 @@ def check_internet_connection(tty: bool = False, maxwait: int = 2) -> bool:
         try:
             resp = requests.get(host, timeout=maxwait)
             break
+
+        except (requests.exceptions.ConnectionError,) as connError:
+            message = f"Connection: {connError}"
+        except (requests.exceptions.SSLError,) as sslError:
+            message = f"Certificate: {sslError}"
+        except (requests.exceptions.Timeout,) as connTimeout:
+            message = f"Connection: {connTimeout}"
+        except (requests.exceptions.HTTPError,) as httpError:
+            message = f"Connection {httpError}"
         except Exception as e:
-            util.msg(f"{host} '{e}'", urgency=txt.WRN_CLR, tty=tty)
+            message = f"{e}"
+
+        util.msg(f"{host} '{message}'", urgency=txt.WRN_CLR, tty=tty)
     return bool(resp)
 
 
@@ -193,7 +228,7 @@ def download_mirror_pool(config: object, tty: bool = False, quiet: bool = False)
     connected = check_internet_connection(tty=tty)
     if connected:
         if not quiet:
-            util.msg(message=f"{txt.DOWNLOADING_MIRROR_FILE} {txt.REPO_SERVER}",
+            util.msg(message=f"{txt.DOWNLOADING_MIRROR_FILE} Manjaro",
                      urgency=txt.INF_CLR,
                      tty=tty)
         result = download_mirrors(config)

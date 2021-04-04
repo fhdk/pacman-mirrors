@@ -23,9 +23,9 @@
 TEST_FILE = "core.db.tar.gz"
 USER_AGENT = "Pacman-Mirrors/"
 URL_MIRROR_JSON = \
-    "https://gitlab.manjaro.org/tools/maintenance-tools/manjaro-web-repo/raw/master/mirrors.json"
+    "https://repo.manjaro.org/mirrors.json"
 URL_STATUS_JSON = "http://repo.manjaro.org/status.json"
-INET_CONN_CHECK_URLS = ["https://gitlab.manjaro.org",
+INET_CONN_CHECK_URLS = ["https://repo.manjaro.org",
                         "https://wikipedia.org",
                         "https://bitbucket.org"]
 # etc files
