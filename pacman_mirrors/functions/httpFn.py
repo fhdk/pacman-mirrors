@@ -29,10 +29,10 @@ from os import system as system_call
 import socket
 from socket import timeout
 
-# import urllib.request
-# import urllib.parse
-# from urllib.error import URLError
-from http.client import HTTPException
+import shutil
+import urllib.request as request
+from contextlib import closing
+from urllib.error import URLError
 import requests
 
 from pacman_mirrors import __version__
@@ -128,6 +128,48 @@ def get_ip_country(maxwait: int = 2) -> str:
     return resp.text
 
 
+def get_http_response(url: str, maxwait: int) -> str:
+    """
+    Used for http mirrors
+    :return: bool
+    """
+    message = ""
+    try:
+        resp = requests.get(url=url, headers=USER_AGENT, timeout=maxwait)
+        resp.raise_for_status()
+        _ = resp.text
+    except (requests.exceptions.ConnectionError,) as connError:
+        message = f"Connection: {connError}"
+    except (requests.exceptions.SSLError,) as sslError:
+        message = f"Certificate: {sslError}"
+    except (requests.exceptions.Timeout,) as connTimeout:
+        message = f"Connection: {connTimeout}"
+    except (requests.exceptions.HTTPError,) as httpError:
+        message = f"Connection {httpError}"
+    except Exception as e:
+        message = f"{e}"
+
+    return message
+
+
+def get_ftp_response(url: str, maxwait: int) -> str:
+    """
+    Used for ftp response
+    :return:
+    """
+    message = ""
+    try:
+        with closing(request.urlopen(url, timeout=maxwait)) as r:
+            with open('file', 'wb') as f:
+                shutil.copyfileobj(r, f)
+    except URLError as e:
+        if e.reason.find('No such file or directory') >= 0:
+            message = f"FileNotFound"
+        else:
+            message = f"{e.reason}"
+    return message
+
+
 def get_mirror_response(url: str, config: object, tty: bool = False, maxwait: int = 2,
                         count: int = 1, quiet: bool = False, ssl_verify: bool = True) -> float:
     """Query mirror by downloading a file and measuring the time taken
@@ -143,7 +185,7 @@ def get_mirror_response(url: str, config: object, tty: bool = False, maxwait: in
     response_time = txt.SERVER_RES  # prepare default return value
     probe_stop = None
     message = ""
-    # context = ssl.create_default_context()
+    context = ssl.create_default_context()
     arch = "x86_64"
     if config["arm"]:
         arch = "aarch64"
@@ -151,27 +193,35 @@ def get_mirror_response(url: str, config: object, tty: bool = False, maxwait: in
     if not ssl_verify:
         context.check_hostname = False
         context.verify_mode = ssl.CERT_NONE
+
     probe_start = time.time()
-    # noinspection PyBroadException
-    try:
-        for _ in range(count):
-            resp = requests.get(url=probe_url, headers=USER_AGENT, timeout=maxwait)
-            resp.raise_for_status()
-            _ = resp.text
+    if probe_url.startswith("http"):
+        message = get_http_response(url=probe_url, maxwait=maxwait)
         probe_stop = time.time()
-    except (requests.exceptions.ConnectionError,) as connError:
-        message = f"Connection: {connError}"
-    except (requests.exceptions.SSLError,) as sslError:
-        message = f"Certificate: {sslError}"
-    except (requests.exceptions.Timeout,) as connTimeout:
-        message = f"Connection: {connTimeout}"
-    except (requests.exceptions.HTTPError,) as httpError:
-        message = f"Connection {httpError}"
-    except Exception as e:
-        message = f"{e}"
+    if probe_url.startswith("ftp"):
+        message = get_ftp_response(url=probe_url, maxwait=maxwait)
+        probe_stop = time.time()
+
+    # # extracted to function get_http_response
+    # try:
+    #     for _ in range(count):
+    #         resp = requests.get(url=probe_url, headers=USER_AGENT, timeout=maxwait)
+    #         resp.raise_for_status()
+    #         _ = resp.text
+    #         probe_stop = time.time()
+    # except (requests.exceptions.ConnectionError,) as connError:
+    #     message = f"Connection: {connError}"
+    # except (requests.exceptions.SSLError,) as sslError:
+    #     message = f"Certificate: {sslError}"
+    # except (requests.exceptions.Timeout,) as connTimeout:
+    #     message = f"Connection: {connTimeout}"
+    # except (requests.exceptions.HTTPError,) as httpError:
+    #     message = f"Connection {httpError}"
+    # except Exception as e:
+    #     message = f"{e}"
 
     if message and not quiet:
-        util.msg(message=message, urgency=txt.ERR_CLR, tty=tty)
+        util.msg(message=f"{message}", urgency=txt.ERR_CLR, tty=tty, newline=True)
     if probe_stop:
         response_time = round((probe_stop - probe_start), 3)
     return response_time

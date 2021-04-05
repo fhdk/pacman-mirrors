@@ -161,6 +161,8 @@ def parse_command_line(self, gtk_available: bool) -> None:
     misc.add_argument("--status",
                       action="store_true",
                       help="Status for the current mirror list.")
+    misc.add_argument("-fc",
+                      action="store_true")
 
     args = parser.parse_args()
 
@@ -299,8 +301,14 @@ def parse_command_line(self, gtk_available: bool) -> None:
             self.default = True
 
         # wayland - sway - console - gtk
-        if os.environ.get("XDG_SESSION_TYPE") == "wayland" or os.environ.get("XDG_SESSION_TYPE") == "tty" or not os.environ.get("DISPLAY") or not gtk_available:
+        if os.environ.get("XDG_SESSION_TYPE") == "wayland" \
+                or os.environ.get("XDG_SESSION_TYPE") == "tty" \
+                or not os.environ.get("DISPLAY") \
+                or not gtk_available:
             self.no_display = True
+
+    if args.fc:
+        self.no_display = True
 
     """
     API handling

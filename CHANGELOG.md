@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.21.0] 2021-04-05
+* issue [#160](https://gitlab.manjaro.org/applications/pacman-mirrors/-/issues/160)
+
 ## [4.20.2] 2021-04-04
 * issue [#158](https://gitlab.manjaro.org/applications/pacman-mirrors/-/issues/158)
 * issue [#159](https://gitlab.manjaro.org/applications/pacman-mirrors/-/issues/159)
