@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.21.1] 2021-04-19
+* add missing cleanup after ftp test
+  (regression from issue [#160](https://gitlab.manjaro.org/applications/pacman-mirrors/-/issues/160))
+
 ## [4.21.0] 2021-04-05
 * issue [#160](https://gitlab.manjaro.org/applications/pacman-mirrors/-/issues/160)
 

@@ -159,9 +159,10 @@ def get_ftp_response(url: str, maxwait: int) -> str:
     """
     message = ""
     try:
-        with closing(request.urlopen(url, timeout=maxwait)) as r:
-            with open('file', 'wb') as f:
-                shutil.copyfileobj(r, f)
+        with closing(request.urlopen(url, timeout=maxwait)) as ftpReq:
+            with open(conf.WORK_DIR + '/.testresponse', 'wb') as testFile:
+                shutil.copyfileobj(ftpReq, testFile)
+            os.remove(conf.WORK_DIR + '/.testresponse')
     except URLError as e:
         if e.reason.find('No such file or directory') >= 0:
             message = f"FileNotFound"
