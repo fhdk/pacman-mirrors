@@ -137,7 +137,7 @@ def get_http_response(url: str, maxwait: int) -> str:
     try:
         resp = requests.get(url=url, headers=USER_AGENT, timeout=maxwait)
         resp.raise_for_status()
-        _ = resp.text
+        # _ = resp.text
     except (requests.exceptions.ConnectionError,) as connError:
         message = f"Connection: {connError}"
     except (requests.exceptions.SSLError,) as sslError:

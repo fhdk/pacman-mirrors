@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [4.21.1] 2021-04-19
+* testing suggestion from issue [#163]((https://gitlab.manjaro.org/applications/pacman-mirrors/-/issues/163))
+
+## [4.21.1] 2021-04-19
 * add missing cleanup after ftp test
   (regression from issue [#160](https://gitlab.manjaro.org/applications/pacman-mirrors/-/issues/160))
 
