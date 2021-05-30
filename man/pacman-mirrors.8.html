@@ -212,7 +212,7 @@
 </ul></li>
 <li><strong>Manjaro mirror pool</strong>: <em><code>/usr/share/pacman-mirrors/mirrors.json</code></em>
 <ul>
-<li>The worldwide mirrorpool comes with installation.</li>
+<li>The worldwide mirrorpool.</li>
 <li>At runtime the file is downloaded from Github and compared with the systems file.</li>
 <li>If the files differs, your local file will be replaced.</li>
 </ul></li>
@@ -261,7 +261,7 @@ pacman-mirrors -f5</code></pre>
 <dt>-f, --fasttrack [<em>NUMBER</em>]</dt>
 <dd>Generates a random mirrorlist for the users current selected branch, mirrors are randomly selected from the users current mirror pool, either a custom pool or the default pool, the randomly selected mirrors are ranked by their current access time. The higher number the higher possibility of a fast mirror. If a number is given the resulting mirrorlist contains that number of servers.
 </dd>
-<dt>-g--geoip</dt>
+<dt>-g, --geoip</dt>
 <dd>Use geolocation if possible, if geoip is not available all mirrors.
 </dd>
 <dt>-i, --interactive [–default]</dt>
@@ -383,7 +383,9 @@ BRANCH: Value from config</code></pre>
 </ul>
 <h2 id="commands-requiring-sudo">Commands requiring sudo</h2>
 <ul>
-<li><p>I want to permanently change branch to unstable, use mirrors from Germany and France, use only https and http protocol in that order</p>
+<li><p>I want to permanently change branch to unstable,</p></li>
+<li><p>I want to use mirrors from Germany and France,</p></li>
+<li><p>I want only https and http protocol in that order</p>
 <p><em>sudo pacman-mirrors –country Germany,France –api –set-branch unstable –procotol https http</em></p></li>
 <li><p>Create a mirrorlist with German mirrors</p>
 <p><em>sudo pacman-mirrors –country Germany</em></p></li>
