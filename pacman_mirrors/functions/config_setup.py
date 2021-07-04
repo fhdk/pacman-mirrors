@@ -26,7 +26,7 @@ from pacman_mirrors.constants import txt
 from pacman_mirrors.functions import util
 
 
-def setup_config() -> tuple:
+def setup_config(self) -> tuple:
     """Get config informations
     :returns: config, custom
     :rtype: tuple

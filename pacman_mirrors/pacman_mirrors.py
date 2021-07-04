@@ -88,7 +88,7 @@ class PacmanMirrors:
         # Load default mirror pool
         # Build mirror list
         """
-        (self.config, self.custom) = config_setup.setup_config()
+        (self.config, self.custom) = config_setup.setup_config(self)
         fileFn.create_dir(self.config["work_dir"])
         cliFn.parse_command_line(self, gtk_available=GTK_AVAILABLE)
         util.aarch64_check(self, write=True)
