@@ -22,6 +22,13 @@ from operator import itemgetter
 
 
 def sort_mirror_pool(worklist: list, field: str = "resp_time", reverse: bool = False) -> list:
+    """
+    Sort the mirror pool
+    :param worklist: list to be sorted
+    :param field: field to sort on
+    :param reverse: direction
+    :return: new list sorted by field
+    """
     result = sorted(worklist, key=itemgetter(field), reverse=reverse)
     # print(f"{result[0]}")
     # for x in result:
