@@ -205,8 +205,9 @@ def get_mirror_response(url: str, config: object, tty: bool = False, maxwait: in
 
     if message and not quiet:
         util.msg(message=f"{message}", urgency=txt.ERR_CLR, tty=tty, newline=True)
-    if probe_stop:
+    if probe_stop and not message:
         response_time = round((probe_stop - probe_start), 3)
+
     return response_time
 
 

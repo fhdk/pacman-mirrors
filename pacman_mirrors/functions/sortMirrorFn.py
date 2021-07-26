@@ -21,6 +21,10 @@
 from operator import itemgetter
 
 
-def sort_mirror_pool(worklist: list, field: float = "resp_time", reverse: bool = False) -> list:
+def sort_mirror_pool(worklist: list, field: str = "resp_time", reverse: bool = False) -> list:
     result = sorted(worklist, key=itemgetter(field), reverse=reverse)
+    # print(f"{result[0]}")
+    # for x in result:
+    #     print(f"resp_time => {x['resp_time']}")
+    # exit()
     return result
