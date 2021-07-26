@@ -203,24 +203,6 @@ def get_mirror_response(url: str, config: object, tty: bool = False, maxwait: in
         message = get_ftp_response(url=probe_url, maxwait=maxwait)
         probe_stop = time.time()
 
-    # # extracted to function get_http_response
-    # try:
-    #     for _ in range(count):
-    #         resp = requests.get(url=probe_url, headers=USER_AGENT, timeout=maxwait)
-    #         resp.raise_for_status()
-    #         _ = resp.text
-    #         probe_stop = time.time()
-    # except (requests.exceptions.ConnectionError,) as connError:
-    #     message = f"Connection: {connError}"
-    # except (requests.exceptions.SSLError,) as sslError:
-    #     message = f"Certificate: {sslError}"
-    # except (requests.exceptions.Timeout,) as connTimeout:
-    #     message = f"Connection: {connTimeout}"
-    # except (requests.exceptions.HTTPError,) as httpError:
-    #     message = f"Connection {httpError}"
-    # except Exception as e:
-    #     message = f"{e}"
-
     if message and not quiet:
         util.msg(message=f"{message}", urgency=txt.ERR_CLR, tty=tty, newline=True)
     if probe_stop:
