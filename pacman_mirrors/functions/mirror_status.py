@@ -17,18 +17,21 @@ C_NONE = colors.RESET
 
 def get_local_mirrors() -> tuple:
     urls = []
-    with open("/etc/pacman.d/mirrorlist", "r") as f_list:
-        for line in f_list:
-            if not line.startswith("Server"):
-                continue
-            line = line.split("=")[1].strip()
-            line = line.split("$")[0]
-            mirror_url = line.split('/')
-            mirror_url.pop()
-            mirror_branch = mirror_url.pop()
-            line = "/".join(mirror_url)
-            urls.append(line + "/",)
-    return mirror_branch, urls
+    try:
+        with open("/etc/pacman.d/mirrorlist", "r") as f_list:
+            for line in f_list:
+                if not line.startswith("Server"):
+                    continue
+                line = line.split("=")[1].strip()
+                line = line.split("$")[0]
+                mirror_url = line.split('/')
+                mirror_url.pop()
+                mirror_branch = mirror_url.pop()
+                line = "/".join(mirror_url)
+                urls.append(line + "/",)
+        return mirror_branch, urls
+    except (FileNotFoundError, UnboundLocalError):
+        return "", []
 
 
 def get_state(states: list, branch: str) -> tuple:
@@ -62,6 +65,11 @@ def print_status(self) -> int:
         return 0
 
     system_branch, mirrors_pacman = get_local_mirrors()
+    # bug out when no local mirrorlist exist
+    if system_branch == "":
+        print(C_KO, "ERROR", C_NONE)
+        return 1
+
     try:
         with request.urlopen('https://repo.manjaro.org/status.json') as f_url:
             req = f_url.read()
