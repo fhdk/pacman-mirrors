@@ -122,9 +122,12 @@ def get_ip_country(maxwait: int = 2) -> str:
     Get the user country from connection IP (might be VPN who knows)
     :return: country name
     """
-    resp = requests.get("https://get.geojs.io/v1/ip/country/full",
-                        timeout=maxwait)
-    resp.raise_for_status()
+    try:
+        resp = requests.get("https://get.geojs.io/v1/ip/country/full",
+                            timeout=maxwait)
+        resp.raise_for_status()
+    except requests.exceptions.ConnectionError:
+        return ""
     return resp.text
 
 
