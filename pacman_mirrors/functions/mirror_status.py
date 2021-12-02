@@ -57,6 +57,7 @@ def print_status(self) -> int:
     :param self:
     :return:
     """
+    # // --- BEGING ---------------------------------------------------------------------
     # If configuration urls are missing - show only first mirror from mirror pool
     if not self.config["url_mirrors_json"] or not self.config["url_status_json"]:
         color = C_OK
@@ -66,6 +67,7 @@ def print_status(self) -> int:
         mirror = get_static_mirror(self.config["mirror_file"])
         print(f"Mirror #1", color, f"{text}", C_NONE, f"{fake} {mirror['country']} {mirror['url']}")
         return 0
+    # // --- END ---------------------------------------------------------------------
 
     system_branch, mirrors_pacman = get_local_mirrors()
     # bug out when no local mirrorlist exist or branch is deprecated
@@ -74,6 +76,8 @@ def print_status(self) -> int:
         return 1
 
     try:
+        # // --- DEBUG ---------------------------------------------------------------
+        # with request.urlopen('http://localhost:8000/status.json') as f_url:
         with request.urlopen('https://repo.manjaro.org/status.json') as f_url:
             req = f_url.read()
     except error.URLError:
@@ -97,10 +101,13 @@ def print_status(self) -> int:
             mirror = [m for m in mirrors if m['url'] == url][0]
             color, text = get_state(mirror["branches"], system_branch)
             len_country = max(len(m['country']) for m in mirrors) + 1
-            if mirror["last_sync"] == -1:
-                mirror["last_sync"] = "--:--"
+            last_sync = mirror["last_sync"]
+            if last_sync == "-1":
+                last_sync = "--:--"
+                color = C_KO
+                text = "--"
             print(f"Mirror #{str(i + 1):2}", color, f"{text}", C_NONE,
-                  f"{mirror['last_sync']:7} {mirror['country']:{len_country}} {mirror['url']}")
+                  f"{last_sync:7} {mirror['country']:{len_country}} {mirror['url']}")
             if i == 0 and color == C_KO:
                 exit_code = 4  # first mirror not sync !
         except IndexError:
