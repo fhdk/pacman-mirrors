@@ -127,6 +127,9 @@ that you connect to a mirror which is up-to-date for your systems branch.
 # ARGUMENTS, METHODS AND OPTIONS
 
 ## METHODS
+-g
+:   Generic default run command. Will use custom mirror pool if defined.
+
 -c, \--country *COUNTRY* [[*COUNTRY*]...]
 :   Creates a custom mirror pool with supplied countries.
 
@@ -141,8 +144,8 @@ the randomly selected mirrors are ranked by their current access time.
 The higher number the higher possibility of a fast mirror.
 If a number is given the resulting mirrorlist contains that number of servers.
 
--g, \--geoip
-:   Use geolocation if possible, if geoip is not available all mirrors.
+--geoip
+:   Use geolocation. If not possible use defined mirror pool. Custom pool if defined
 
 -i, \--interactive [--default]
 :   This is a function designed to leave full control over countries,
@@ -155,7 +158,7 @@ thus allowing for reselecting mirrors for a new custom pool.
 ## API
 
 -a, \--api
-:   Instructs pacman-mirrors to activate processing of API arguments.
+:   Mandatory to process API options.
 
 -B, -S, \--set-branch *BRANCH*
 :   Permanent change branch, using *stable*, *testing* or *unstable*.
