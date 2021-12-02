@@ -21,7 +21,7 @@
 
 import sys
 import time
-
+from operator import itemgetter
 from pacman_mirrors.constants import txt, colors as color
 from pacman_mirrors.functions.httpFn import get_mirror_response
 from pacman_mirrors.functions import util
@@ -148,7 +148,11 @@ def mirror_protocols(mirror: dict) -> list:
                 "url": mirror["url"],
             }
         result.append(m)
-    return result
+    # -------------------------------------------------
+    # monkey patch - sort by protocol desc
+    # return the first to avoid testing all protocols for at mirror
+    result = sorted(result, key=itemgetter("protocols"))
+    return [result[0]]
 
 
 def filter_bad_http(work: list) -> dict:
