@@ -1,7 +1,7 @@
 TEST_FILE = "core.db.tar.gz"
 # http constants
-URL_MIRROR_JSON = "http://repo.manjaro.org/mirrors.json"
-URL_STATUS_JSON = "http://repo.manjaro.org/status.json"
+URL_MIRROR_JSON = "https://repo.manjaro.org/mirrors.json"
+URL_STATUS_JSON = "https://repo.manjaro.org/status.json"
 # etc
 CONFIG_FILE = "tests/mock/etc/pacman-mirrors.conf"
 MIRROR_LIST = "tests/mock/etc/mirrorlist"
