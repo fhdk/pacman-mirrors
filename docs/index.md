@@ -50,7 +50,7 @@ To be able to download the latest status file from repo.manjaro.org
 pacman-mirrors verifies network connection by opening up to
 three different websites. These sites are
 
-1. wikipedia.org
+1. repo.manjaro.org
 2. github.com
 2. bitbucket.org
 

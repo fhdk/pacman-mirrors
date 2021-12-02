@@ -1,6 +1,17 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [4.23.1] 2021-12-02
+* [#165](https://gitlab.manjaro.org/applications/pacman-mirrors/-/issues/165)
+* [#168](https://gitlab.manjaro.org/applications/pacman-mirrors/-/issues/168)
+* [#170](https://gitlab.manjaro.org/applications/pacman-mirrors/-/issues/170)
+* [#172](https://gitlab.manjaro.org/applications/pacman-mirrors/-/issues/172)
+* [#173](https://gitlab.manjaro.org/applications/pacman-mirrors/-/issues/173)
+* [#174](https://gitlab.manjaro.org/applications/pacman-mirrors/-/issues/174)
+* [#175](https://gitlab.manjaro.org/applications/pacman-mirrors/-/issues/175)
+* [#176](https://gitlab.manjaro.org/applications/pacman-mirrors/-/issues/176)
+* [#177](https://gitlab.manjaro.org/applications/pacman-mirrors/-/issues/177)
+
 ## [4.21.1] 2021-04-19
 * testing suggestion from issue [#163]((https://gitlab.manjaro.org/applications/pacman-mirrors/-/issues/163))
 
