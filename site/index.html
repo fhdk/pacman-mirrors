@@ -5,8 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="None">
-
-
+        
+        
         <link rel="shortcut icon" href="img/favicon.ico">
         <title>pacman-mirrors</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -17,7 +17,7 @@
         <script src="js/jquery-1.10.2.min.js" defer></script>
         <script src="js/bootstrap.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
+        <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body class="homepage">
@@ -61,7 +61,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="https://gitlab.manjaro.org/applications/pacman-mirrors/-/blob/master/docs/index.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                                <a href="https://github.com/manjaro/pacman-mirrors/edit/master/docs/index.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
                             </li>
                     </ul>
                 </div>
@@ -77,40 +77,40 @@
         </button>
     </div>
 
-
+    
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
-
+            
             <li class="nav-item" data-level="1"><a href="#name" class="nav-link">NAME</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-
+            
             <li class="nav-item" data-level="1"><a href="#synopsis" class="nav-link">SYNOPSIS</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-
+            
             <li class="nav-item" data-level="1"><a href="#description" class="nav-link">DESCRIPTION</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-
+            
             <li class="nav-item" data-level="1"><a href="#important" class="nav-link">IMPORTANT</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-
+            
             <li class="nav-item" data-level="1"><a href="#operation" class="nav-link">OPERATION</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-
+            
             <li class="nav-item" data-level="1"><a href="#network-connection" class="nav-link">NETWORK CONNECTION</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-
+            
             <li class="nav-item" data-level="1"><a href="#mirror-ranking" class="nav-link">MIRROR RANKING</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#modes" class="nav-link">MODES</a>
@@ -127,7 +127,7 @@
             </li>
               </ul>
             </li>
-
+            
             <li class="nav-item" data-level="1"><a href="#arguments-methods-and-options" class="nav-link">ARGUMENTS, METHODS AND OPTIONS</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#methods" class="nav-link">METHODS</a>
@@ -156,7 +156,7 @@
             </li>
               </ul>
             </li>
-
+            
             <li class="nav-item" data-level="1"><a href="#examples" class="nav-link">EXAMPLES</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#commands" class="nav-link">Commands</a>
@@ -173,27 +173,27 @@
             </li>
               </ul>
             </li>
-
+            
             <li class="nav-item" data-level="1"><a href="#default-configuration" class="nav-link">DEFAULT CONFIGURATION</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-
+            
             <li class="nav-item" data-level="1"><a href="#more-info" class="nav-link">MORE INFO</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-
+            
             <li class="nav-item" data-level="1"><a href="#reporting-bugs" class="nav-link">REPORTING BUGS</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-
+            
             <li class="nav-item" data-level="1"><a href="#see-also" class="nav-link">SEE ALSO</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-
+            
             <li class="nav-item" data-level="1"><a href="#authors" class="nav-link">AUTHORS</a>
               <ul class="nav flex-column">
               </ul>
@@ -313,6 +313,8 @@ These data is always used during mirrorlist generation to ensure
 that you connect to a mirror which is up-to-date for your systems branch.</p>
 <h1 id="arguments-methods-and-options">ARGUMENTS, METHODS AND OPTIONS</h1>
 <h2 id="methods">METHODS</h2>
+<p>-g
+:   Generic default run command. Will use custom mirror pool if defined.</p>
 <p>-c, --country <em>COUNTRY</em> [[<em>COUNTRY</em>]...]
 :   Creates a custom mirror pool with supplied countries.</p>
 <p>--continent
@@ -324,8 +326,8 @@ either a custom pool or the default pool,
 the randomly selected mirrors are ranked by their current access time.
 The higher number the higher possibility of a fast mirror.
 If a number is given the resulting mirrorlist contains that number of servers.</p>
-<p>-g, --geoip
-:   Use geolocation if possible, if geoip is not available all mirrors.</p>
+<p>--geoip
+:   Use geolocation. If not possible use defined mirror pool. Custom pool if defined</p>
 <p>-i, --interactive [--default]
 :   This is a function designed to leave full control over countries,
 mirrors and protocols to the user. This function <strong>DOES NOT</strong>
@@ -335,7 +337,7 @@ mirror file and ignore any preset custom pool,
 thus allowing for reselecting mirrors for a new custom pool.</p>
 <h2 id="api">API</h2>
 <p>-a, --api
-:   Instructs pacman-mirrors to activate processing of API arguments.</p>
+:   Mandatory to process API options.</p>
 <p>-B, -S, --set-branch <em>BRANCH</em>
 :   Permanent change branch, using <em>stable</em>, <em>testing</em> or <em>unstable</em>.</p>
 <p>-p, --prefix <em>PREFIX</em>
@@ -614,5 +616,5 @@ Frede Hundewadt &lt;echo ZmhAbWFuamFyby5vcmcK | base64 -d&gt;
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2021-05-30 05:45:21.963083+00:00
+Build Date UTC : 2021-12-02 15:52:56.597857+00:00
 -->

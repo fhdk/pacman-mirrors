@@ -22,7 +22,7 @@
       padding-top: 50px;
       padding-bottom: 50px;
       hyphens: auto;
-      word-wrap: break-word;
+      overflow-wrap: break-word;
       text-rendering: optimizeLegibility;
       font-kerning: normal;
     }
@@ -93,6 +93,7 @@
     pre code {
       padding: 0;
       overflow: visible;
+      overflow-wrap: normal;
     }
     .sourceCode {
      background-color: transparent;
@@ -252,6 +253,9 @@ pacman-mirrors -f5</code></pre>
 <h1 id="arguments-methods-and-options">ARGUMENTS, METHODS AND OPTIONS</h1>
 <h2 id="methods">METHODS</h2>
 <dl>
+<dt>-g</dt>
+<dd>Generic default run command. Will use custom mirror pool if defined.
+</dd>
 <dt>-c, --country <em>COUNTRY</em> [[<em>COUNTRY</em>]…]</dt>
 <dd>Creates a custom mirror pool with supplied countries.
 </dd>
@@ -261,8 +265,8 @@ pacman-mirrors -f5</code></pre>
 <dt>-f, --fasttrack [<em>NUMBER</em>]</dt>
 <dd>Generates a random mirrorlist for the users current selected branch, mirrors are randomly selected from the users current mirror pool, either a custom pool or the default pool, the randomly selected mirrors are ranked by their current access time. The higher number the higher possibility of a fast mirror. If a number is given the resulting mirrorlist contains that number of servers.
 </dd>
-<dt>-g, --geoip</dt>
-<dd>Use geolocation if possible, if geoip is not available all mirrors.
+<dt>–geoip</dt>
+<dd>Use geolocation. If not possible use defined mirror pool. Custom pool if defined
 </dd>
 <dt>-i, --interactive [–default]</dt>
 <dd>This is a function designed to leave full control over countries, mirrors and protocols to the user. This function <strong>DOES NOT</strong> take into consideration up-to-date mirrors. The optional <strong>–default</strong> forces pacman-mirrors to load the default mirror file and ignore any preset custom pool, thus allowing for reselecting mirrors for a new custom pool.
@@ -271,7 +275,7 @@ pacman-mirrors -f5</code></pre>
 <h2 id="api">API</h2>
 <dl>
 <dt>-a, --api</dt>
-<dd>Instructs pacman-mirrors to activate processing of API arguments.
+<dd>Mandatory to process API options.
 </dd>
 <dt>-B, -S, --set-branch <em>BRANCH</em></dt>
 <dd>Permanent change branch, using <em>stable</em>, <em>testing</em> or <em>unstable</em>.
