@@ -37,7 +37,7 @@ STATUS_FILE = "/var/lib/pacman-mirrors/status.json"
 # repo constants
 BRANCHES = ("stable", "testing", "unstable")
 ARM_BRANCHES = ("arm-stable", "arm-testing", "arm-unstable")
-PROTOCOLS = ("https", "http", "ftp", "ftps")
+PROTOCOLS = ("https", "http", "ftp")
 METHODS = ("rank", "random")
 SSL = ("True", "False")
 REPO_ARCH = "/$repo/$arch"
