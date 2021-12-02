@@ -45,6 +45,9 @@ def get_state(states: list, branch: str) -> tuple:
     if x == 0:
         ret_color = C_KO
         status_text = "--"
+    if x == -1:
+        ret_color = C_KO
+        status_text = "--"
     return ret_color, status_text
 
 
@@ -65,9 +68,9 @@ def print_status(self) -> int:
         return 0
 
     system_branch, mirrors_pacman = get_local_mirrors()
-    # bug out when no local mirrorlist exist
-    if system_branch == "":
-        print(C_KO, "ERROR", C_NONE)
+    # bug out when no local mirrorlist exist or branch is deprecated
+    if system_branch == "" or system_branch == "stable-staging":
+        print(C_KO, "MIRRORLIST ERROR", C_NONE)
         return 1
 
     try:
@@ -94,6 +97,8 @@ def print_status(self) -> int:
             mirror = [m for m in mirrors if m['url'] == url][0]
             color, text = get_state(mirror["branches"], system_branch)
             len_country = max(len(m['country']) for m in mirrors) + 1
+            if mirror["last_sync"] == -1:
+                mirror["last_sync"] = "--:--"
             print(f"Mirror #{str(i + 1):2}", color, f"{text}", C_NONE,
                   f"{mirror['last_sync']:7} {mirror['country']:{len_country}} {mirror['url']}")
             if i == 0 and color == C_KO:
