@@ -144,7 +144,7 @@ the randomly selected mirrors are ranked by their current access time.
 The higher number the higher possibility of a fast mirror.
 If a number is given the resulting mirrorlist contains that number of servers.
 
---geoip
+\--geoip
 :   Use geolocation. If not possible use defined mirror pool. Custom pool if defined
 
 -i, \--interactive [--default]
