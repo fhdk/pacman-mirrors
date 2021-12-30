@@ -50,11 +50,16 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
     ssl_verify = self.config["ssl_verify"]
     result = []
     for mirror in worklist:
+        # get a list of mirror dictionaries ordered by protocol descending
+        # mirror_protocols is monkey patched to return only the first
+        # priority:
+        #      - https
+        #      - http
+        #      - ftp
         work_mirror = mirror_protocols(mirror)
         colon = work_mirror[0]["url"].find(":")
         url = work_mirror[0]["url"][colon:]
         for mirror_proto in work_mirror:
-
             # get protocol
             proto = mirror_proto["protocols"][0]
 
@@ -150,8 +155,8 @@ def mirror_protocols(mirror: dict) -> list:
         result.append(m)
     # -------------------------------------------------
     # monkey patch - sort by protocol desc
-    # return the first to avoid testing all protocols for at mirror
-    result = sorted(result, key=itemgetter("protocols"))
+    # return the first to avoid testing all protocols for one mirror
+    result = sorted(result, key=itemgetter("protocols"), reverse=True)
     return [result[0]]
 
 
