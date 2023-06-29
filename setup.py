@@ -16,7 +16,7 @@ from setuptools import setup
 def update_mirror_file():
     """update mirrors.json from github"""
     countries = list()
-    url = "https://gitlab.manjaro.org/tools/maintenance-tools/manjaro-web-repo/blob/master/mirrors.json"
+    url = "https://dev.manjaro.org/status.json"
     try:
         with urlopen(url) as response:
             countries = json.loads(response.read().decode("utf8"), object_pairs_hook=collections.OrderedDict)
