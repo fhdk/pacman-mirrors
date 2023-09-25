@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "pacman_mirrors"
+version = "4.23.3"
+description = "Mirror provider for Manjaro Linux."
+authors = ["Roland Singer, Esclapion, Philip Müller, Ramon Buldó, Hugo Posnic, Frede Hundewadt"]
+readme = "README.md"
+license = "LICENSE.txt"
+
+classifiers = [
+    'Development Status :: 5 - Production/Stable',
+    'Intended Audience :: End User/Desktop',
+    'License :: OSI Approved :: GPL3 License',
+    'Natural Language :: English',
+    'Programming Language :: Python :: 3.11',
+    'Environment :: Console'
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.31.0"
+
+[tool.poetry.scripts]
+pacman-mirrors = "pacman_mirrors.pacman_mirrors:start"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
