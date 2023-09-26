@@ -60,25 +60,20 @@ def delete_file(filename: str) -> None:
         os.remove(filename)
 
 
-def return_mirror_filename(config: dict, tty: bool = False) -> tuple:
+def return_mirror_filename(config: dict, tty: bool = False) -> str:
     """
     Find the mirror pool file
     :param config: config dictionary
     :param tty:
-    :returns tuple with file and status
+    :returns str:
     """
     filename = ""
-    status = False  # status.json or mirrors.json
-    # decision on file availablity
-    # if check_file(config["status_file"]):
-    #     status = True
-    #     filename = config["status_file"]
     if check_file(filename=config["mirror_file"]):
         filename = config["mirror_file"]
     if not filename:
         util.msg(message=f"\n{txt.HOUSTON}\n", tty=tty, color=color.RED)
         sys.exit(3)
-    return filename, status
+    return filename
 
 
 def write_mirror_list(config: dict, servers: list, tty: bool = False, custom: bool = False,
@@ -102,8 +97,6 @@ def write_mirror_list(config: dict, servers: list, tty: bool = False, custom: bo
             for server in servers:
 
                 server["url"] = f'{util.sanitize_url(server["url"])}{config["branch"]}{config["repo_arch"]}'
-                print(server["url"])
-                exit()
                 if server["speed"] == 99.99:
                     # do not write bad servers to mirrorlist
                     continue
@@ -114,9 +107,8 @@ def write_mirror_list(config: dict, servers: list, tty: bool = False, custom: bo
                         util.msg(message=f"{message:.{cols}}", tty=tty)
                         # print()
                 else:
-                    msg_url = f'{server["url"]}{config["branch"]}'
                     if not quiet:
-                        message = f'{server["country"]:<15} : {msg_url}'
+                        message = f'{server["country"]:<15} : {server["url"]}'
                         util.msg(message=f"{message:.{cols}}", tty=tty)
 
                 # write list entry
