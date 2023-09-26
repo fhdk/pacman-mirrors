@@ -32,9 +32,11 @@ def load_config_mirror_pool(self) -> None:
     """
     if self.geoip or self.continent:
         customFn.delete_custom_pool(self)
+
     if customFn.check_custom_pool(self) and not self.config["country_pool"]:
         customFn.load_custom_pool(self)
         self.selected_countries = self.mirrors.country_pool
+
     else:
         if self.config["country_pool"]:
             self.selected_countries = self.config["country_pool"]
@@ -62,7 +64,17 @@ def seed_mirrors(self, file: str) -> None:
     @param self:
     @param file:
     """
-    mirrors = fileFn.read_mirror_file(file)
+    if self.config["enterprise"]:
+        mirrors = [{
+            "branches": [ 1, 1, 1, 1, 1, 1],
+            "country": "Enterprise",
+            "protocols": [str.split(self.config["static"], ":")[0]],
+            "speed": "0.125",
+            "url": str.split(self.config["static"], "//")[-1]
+        }]
+    else:
+        mirrors = fileFn.read_mirror_file(file)
+
     self.mirrors.seed(mirrors)
     sort_mirror_countries(self)
 

@@ -88,44 +88,45 @@ class PacmanMirrors:
         """
         (self.config, self.custom) = config_setup.setup_config(self)
 
-        fileFn.create_dir(self.config["work_dir"])
+        if self.config["enterprise"]:
 
-        cliFn.parse_command_line(self, gtk_available=GTK_AVAILABLE)
+            fileFn.write_mirror_list(self.config, [m], self.tty)
+            exit(0)
+        else:
 
-        util.aarch64_check(self, write=True)
+            fileFn.create_dir(self.config["work_dir"])
 
-        if not config_setup.sanitize_config(config=self.config):
-            sys.exit(2)
+            cliFn.parse_command_line(self, gtk_available=GTK_AVAILABLE)
 
-        self.network = httpFn.check_internet_connection(tty=self.tty)
+            util.aarch64_check(self, write=True)
 
-        if self.network:
-            httpFn.download_mirror_pool(config=self.config, tty=self.tty, quiet=self.quiet)
+            if not config_setup.sanitize_config(config=self.config):
+                sys.exit(2)
 
-        if self.no_mirrorlist:
-            sys.exit(0)
+            self.network = httpFn.check_internet_connection(tty=self.tty)
 
-        if not self.network:
-            if not self.quiet:
-                pacman_mirrors.functions.util.internet_message(tty=self.tty)
-            self.config["method"] = "random"
-            self.fasttrack = False
-        """
-        # Load configured mirror pool
-        """
-        defaultFn.load_config_mirror_pool(self)
-        """
+            if self.network:
+                httpFn.download_mirror_pool(config=self.config, tty=self.tty, quiet=self.quiet)
+
+            if self.no_mirrorlist:
+                sys.exit(0)
+
+            if not self.network:
+                if not self.quiet:
+                    pacman_mirrors.functions.util.internet_message(tty=self.tty)
+                self.config["method"] = "random"
+                self.fasttrack = False
+            # Load configured mirror pool
+            defaultFn.load_config_mirror_pool(self)
+
         # Decide which type of mirrorlist to create
-        * Fasttrack
-        * Interactive
-        * Default
-        """
+        # Fasttrack
         if self.fasttrack:
             fasttrack.build_mirror_list(self, limit=self.fasttrack)
-
+        # Interactive
         elif self.interactive:
             interactive.build_mirror_list(self)
-
+        # Default
         else:
             common.build_mirror_list(self)
 
