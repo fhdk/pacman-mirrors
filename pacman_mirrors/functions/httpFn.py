@@ -171,7 +171,7 @@ def get_ftp_response(url: str, maxwait: int) -> str:
     return message
 
 
-def get_mirror_response(url: str, config: object, tty: bool = False, maxwait: int = 2,
+def get_mirror_response(url: str, config: dict, tty: bool = False, maxwait: int = 2,
                         count: int = 1, quiet: bool = False, ssl_verify: bool = True) -> float:
     """Query mirror by downloading a file and measuring the time taken
     :param config:
