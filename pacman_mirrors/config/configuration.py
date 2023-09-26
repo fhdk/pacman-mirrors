@@ -30,7 +30,6 @@ MIRROR_LIST = "/etc/pacman.d/mirrorlist"
 # pacman-mirrors dir/files
 WORK_DIR = "/var/lib/pacman-mirrors/"
 CUSTOM_FILE = "/var/lib/pacman-mirrors/custom-mirrors.json"
-# STATUS_FILE = "/var/lib/pacman-mirrors/status.json"
 MIRROR_FILE = "/var/lib/pacman-mirrors/status.json"
 # repo constants
 BRANCHES = ("stable", "testing", "unstable")
