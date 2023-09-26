@@ -60,7 +60,7 @@ def delete_file(filename: str) -> None:
         os.remove(filename)
 
 
-def return_mirror_filename(config: dict, tty: bool = False) -> str:
+def get_mirror_filename(config: dict, tty: bool = False) -> str:
     """
     Find the mirror pool file
     :param config: config dictionary

@@ -89,9 +89,8 @@ class PacmanMirrors:
         (self.config, self.custom) = config_setup.setup_config(self)
 
         if self.config["enterprise"]:
+            defaultFn.seed_mirrors(self, self.config["mirror_file"])
 
-            fileFn.write_mirror_list(self.config, [m], self.tty)
-            exit(0)
         else:
 
             fileFn.create_dir(self.config["work_dir"])
