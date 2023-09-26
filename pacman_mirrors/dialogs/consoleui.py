@@ -87,7 +87,7 @@ class ConsoleUI(npyscreen.NPSAppManaged):
                 server = mirror.split("|")
                 self.custom_list.append({"country": server[0].strip(),
                                          "speed": server[1].strip(),
-                                         "url": server[3].strip()})
+                                         "url": server[2].strip()})
         self.is_done = True
         self.setNextForm(None)
 
