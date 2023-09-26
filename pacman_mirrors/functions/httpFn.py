@@ -85,28 +85,6 @@ def download_mirrors(config: dict) -> tuple:
         util.msg(message=message, urgency=txt.ERR_CLR, newline=True)
         message = ""
 
-    # try:
-    #     # status.json
-    #     util.msg(message=f"=> Mirror status: {config['url_status_json']}", urgency=txt.INF_CLR)
-    #     resp = requests.get(url=config["url_status_json"],
-    #                         headers=USER_AGENT,
-    #                         timeout=config["timeout"])
-    #     # resp.raise_for_status()
-    #     statuslist = resp.json()
-    #     jsonFn.write_json_file(statuslist, config["status_file"])
-    # except (json.JSONDecodeError,) as jsonError:
-    #     message = f"Invalid JSON data: {jsonError}"
-    # except (requests.exceptions.ConnectionError,) as connError:
-    #     message = f"Connection: {connError}"
-    # except (requests.exceptions.SSLError,) as sslError:
-    #     message = f"Certificate: {sslError}"
-    # except (requests.exceptions.Timeout,) as connTimeout:
-    #     message = f"Connection: {connTimeout}"
-    # except (requests.exceptions.HTTPError,) as httpError:
-    #     message = f"Connection {httpError}"
-    # except Exception as e:
-    #     message = f"{e}"
-
     if message != "":
         fetchstatus = False
         util.msg(message=message, urgency=txt.ERR_CLR, newline=True)
@@ -120,8 +98,7 @@ def get_ip_country(maxwait: int = 2) -> str:
     :return: country name
     """
     try:
-        resp = requests.get("https://get.geojs.io/v1/ip/country/full",
-                            timeout=maxwait)
+        resp = requests.get("https://get.geojs.io/v1/ip/country/full", timeout=maxwait)
         resp.raise_for_status()
     except requests.exceptions.ConnectionError:
         return ""
@@ -139,15 +116,15 @@ def get_http_response(url: str, maxwait: int) -> str:
         resp.raise_for_status()
         # _ = resp.text
     except (requests.exceptions.ConnectionError,) as connError:
-        message = f"Connection: {connError}"
+        message = f"ERROR: {connError}"
     except (requests.exceptions.SSLError,) as sslError:
-        message = f"Certificate: {sslError}"
+        message = f"ERROR: {sslError}"
     except (requests.exceptions.Timeout,) as connTimeout:
-        message = f"Connection: {connTimeout}"
+        message = f"ERROR: {connTimeout}"
     except (requests.exceptions.HTTPError,) as httpError:
-        message = f"Connection {httpError}"
+        message = f"ERROR: {httpError}"
     except Exception as e:
-        message = f"{e}"
+        message = f"ERROR: {e}"
 
     return message
 
@@ -163,25 +140,28 @@ def get_ftp_response(url: str, maxwait: int) -> str:
             with open(conf.WORK_DIR + '/.testresponse', 'wb') as testFile:
                 shutil.copyfileobj(ftpReq, testFile)
             os.remove(conf.WORK_DIR + '/.testresponse')
+
     except URLError as e:
         if e.reason.find('No such file or directory') >= 0:
-            message = f"FileNotFound"
+            message = f"ERROR: FileNotFound"
         else:
-            message = f"{e.reason}"
+            message = f"ERROR: {e.reason}"
+    except :
+            message = "ERROR:"
+
     return message
 
 
 def get_mirror_response(url: str, config: dict, tty: bool = False, maxwait: int = 2,
-                        count: int = 1, quiet: bool = False, ssl_verify: bool = True) -> float:
+                        quiet: bool = False, ssl_verify: bool = True) -> float:
     """Query mirror by downloading a file and measuring the time taken
     :param config:
     :param ssl_verify:
     :param tty:
     :param url:
     :param maxwait:
-    :param count:
     :param quiet:
-    :returns always return a float value with response time
+    :returns: always return a float value with response time
     """
     response_time = txt.SERVER_RES  # prepare default return value
     probe_stop = None
@@ -203,8 +183,9 @@ def get_mirror_response(url: str, config: dict, tty: bool = False, maxwait: int 
         message = get_ftp_response(url=probe_url, maxwait=maxwait)
         probe_stop = time.time()
 
-    if message and not quiet:
+    if message.startswith("ERROR:") and not quiet:
         util.msg(message=f"{message}", urgency=txt.ERR_CLR, tty=tty, newline=True)
+
     if probe_stop and not message:
         response_time = round((probe_stop - probe_start), 3)
 
