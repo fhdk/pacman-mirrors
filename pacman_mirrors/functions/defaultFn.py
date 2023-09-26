@@ -62,7 +62,21 @@ def seed_mirrors(self, file: str) -> None:
     @param self:
     @param file:
     """
-    mirrors = fileFn.read_mirror_file(file)
+    if self.config["enterprise"]:
+        import random
+        from decimal import Decimal
+        x = list(range(1,2000))
+        m = {
+            "branches": [1, 1, 1, 1, 1, 1],
+            "country": "Enterprise",
+            "protocols": [str.split(self.config["static"], ":")[0]],
+            "url": str.split(self.config["static"], "//")[-1],
+            "speed": Decimal(int(random.shuffle(x))) / 1000
+        }
+        mirrors = [m]
+    else:
+        mirrors = fileFn.read_mirror_file(file)
+
     self.mirrors.seed(mirrors)
     sort_mirror_countries(self)
 

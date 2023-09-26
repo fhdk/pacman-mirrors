@@ -33,16 +33,6 @@ def build_pool(self) -> list:
     :return: filtered list of available mirrors
     """
 
-    if self.config["enterprise"]:
-        m = {
-            "branches": [ 1, 1, 1, 1, 1, 1],
-            "country": "Enterprise",
-            "protocols": [str.split(self.config["static"], ":")[0]],
-            "url": str.split(self.config["static"], "//")[-1],
-            "speed": "0.078"
-        }
-        return [m]
-
     """
     remove known bad mirrors - last sync 9999:99
     """
