@@ -45,7 +45,7 @@ def build_pool(self) -> list:
 
     if self.config["enterprise"]:
         import random
-        import Decimal
+        from decimal import Decimal
         x = list(range(1, 2000))
         m = {
             "branches": [ 1, 1, 1, 1, 1, 1],
