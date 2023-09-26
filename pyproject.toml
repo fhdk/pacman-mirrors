@@ -18,6 +18,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.11"
 requests = "^2.31.0"
+npyscreen = "^4.10.5"
 
 [tool.poetry.scripts]
 pacman-mirrors = "pacman_mirrors.pacman_mirrors:start"
