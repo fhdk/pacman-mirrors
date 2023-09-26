@@ -110,7 +110,7 @@ def write_mirror_list(config: dict, servers: list, tty: bool = False, custom: bo
                         util.msg(message=f"{message:.{cols}}", tty=tty)
                         # print()
                 else:
-                    msg_url = f'{server["protocol"]}{config["branch"]}'
+                    msg_url = f'{server["url"]}{config["branch"]}'
                     if not quiet:
                         message = f'{server["country"]:<15} : {msg_url}'
                         util.msg(message=f"{message:.{cols}}", tty=tty)
