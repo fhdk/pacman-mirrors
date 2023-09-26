@@ -107,8 +107,6 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
             util.msg(message=message.replace(".....", r_str), tty=self.tty)
             sys.stdout.flush()
 
-        work_mirror["url"] = test_url
-
         if limit is not None:
             if mirror["speed"] == txt.SERVER_RES:
                 continue
