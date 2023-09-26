@@ -135,18 +135,19 @@ def get_ftp_response(url: str, maxwait: int) -> str:
     :return:
     """
     message = ""
+
+    # noinspection PyBroadException
     try:
         with closing(request.urlopen(url, timeout=maxwait)) as ftpReq:
             with open(conf.WORK_DIR + '/.testresponse', 'wb') as testFile:
                 shutil.copyfileobj(ftpReq, testFile)
             os.remove(conf.WORK_DIR + '/.testresponse')
-
     except URLError as e:
         if e.reason.find('No such file or directory') >= 0:
             message = f"ERROR: FileNotFound"
         else:
             message = f"ERROR: {e.reason}"
-    except :
+    except:
             message = "ERROR:"
 
     return message
