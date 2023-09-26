@@ -15,10 +15,10 @@ C_OK = colors.GREEN
 C_NONE = colors.RESET
 
 
-def get_local_mirrors() -> tuple:
+def get_local_mirrors(mirror_list: str) -> tuple:
     urls = []
     try:
-        with open("/etc/pacman.d/mirrorlist", "r") as f_list:
+        with open(mirror_list, "r") as f_list:
             for line in f_list:
                 if not line.startswith("Server"):
                     continue
@@ -65,25 +65,22 @@ def print_status(self) -> int:
         color = C_OK
         text = "OK"
         now = datetime.now()
-        fake = now.strftime("00:%M")
-        mirror = self.config["StaticMirror"]
+        mirror = self.config["static"]
         print(f"Mirror #1", color, f"{text}", C_NONE, f"Enterprise {mirror['url']}")
         return 0
     # // --- END ---------------------------------------------------------------------
 
-    system_branch, mirrors_pacman = get_local_mirrors()
+    system_branch, mirrors_pacman = get_local_mirrors(self.config["mirror_list"])
     # bug out when no local mirrorlist exist or branch is deprecated
     if system_branch == "" or system_branch == "stable-staging":
         print(C_KO, "MIRRORLIST ERROR", C_NONE)
         return 1
 
     try:
-        # // --- DEBUG ---------------------------------------------------------------
-        # with request.urlopen('http://localhost:8000/status.json') as f_url:
-        with request.urlopen('https://repo.manjaro.org/status.json') as f_url:
+        with request.urlopen(self.config["url_mirrors_json"]) as f_url:
             req = f_url.read()
     except error.URLError:
-        msg("Downloading status failed!", color=colors.BLUE)
+        msg("Downloading mirror status failed!", color=colors.BLUE)
         msg("Please check you network connection ...", color=colors.YELLOW)
         return 1  # return failure
     json_data = json.loads(req)

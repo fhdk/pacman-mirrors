@@ -51,8 +51,8 @@ def setup_config(self) -> tuple:
         "url_mirrors_json": conf.URL_MIRROR_MANAGER,
         "arm": False,
         "timeout": 2,
-        "ent": False,
-        "ent_mirror": None
+        "enterprise": False,
+        "static": None
     }
     # try to replace default entries by reading conf file
     try:
@@ -71,9 +71,9 @@ def setup_config(self) -> tuple:
                         config["method"] = value
                     if key == "Branch":
                         config["branch"] = value
-                    if key == "StaticMirror":
+                    if key == "Static":
                         config["enterprise"] = True
-                        config["StaticMirror"] = value
+                        config["static"] = util.sanitize_url(value)
                     if key == "Protocols":
                         if "," in value:
                             config["protocols"] = value.split(",")

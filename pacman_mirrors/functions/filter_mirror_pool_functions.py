@@ -55,7 +55,7 @@ def filter_mirror_protocols(mirror_pool: list, protocols: list) -> list:
     return result
 
 
-def filter_user_branch(mirror_pool: list, config: object) -> list:
+def filter_user_branch(mirror_pool: list, config: dict) -> list:
     """
     Filter mirrorlist on users branch and branch sync state
     :param mirror_pool:

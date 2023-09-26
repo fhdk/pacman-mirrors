@@ -37,8 +37,8 @@ def build_pool(self) -> list:
         m = {
             "branches": [ 1, 1, 1, 1, 1, 1],
             "country": "Enterprise",
-            "protocols": [str.split(self.config["StaticMirror"], ":")[0]],
-            "url": str.split(self.config["StaticMirror"], "//")[-1],
+            "protocols": [str.split(self.config["static"], ":")[0]],
+            "url": str.split(self.config["static"], "//")[-1],
             "speed": "0.078"
         }
         return [m]
