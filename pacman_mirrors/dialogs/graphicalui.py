@@ -63,7 +63,7 @@ class GraphicalUI(Gtk.Window):
                     print("{} KeyError -> {}".format(txt.ERR_CLR, k))
                     pass
 
-            self.store = Gtk.ListStore(bool, str, str, str)
+            self.store = Gtk.ListStore(bool, str, str)
             for mirror_ref in custom_mirrors:
                 self.store.append(list(mirror_ref))
 

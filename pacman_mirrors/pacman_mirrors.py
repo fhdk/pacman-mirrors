@@ -90,6 +90,7 @@ class PacmanMirrors:
         (self.config, self.custom) = config_setup.setup_config(self)
 
         if self.config["enterprise"]:
+            util.msg("Enterprise setup found")
             mirrors = [{
                 "branches": [1, 1, 1, 1, 1, 1],
                 "country": "Enterprise",
