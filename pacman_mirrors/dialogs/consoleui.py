@@ -48,11 +48,9 @@ class ConsoleUI(npyscreen.NPSAppManaged):
 
         header_cols = {"country": txt.I_COUNTRY,
                        "speed": txt.I_RESPONSE,
-                       "last_sync": "",
                        "url": txt.I_URL}
         template = namedtuple("Server", ["country",
                                          "speed",
-                                         "last_sync",
                                          "url"])
 
         main_server_list = [header_cols]
@@ -89,7 +87,6 @@ class ConsoleUI(npyscreen.NPSAppManaged):
                 server = mirror.split("|")
                 self.custom_list.append({"country": server[0].strip(),
                                          "speed": server[1].strip(),
-                                         "last_sync": server[2].strip(),
                                          "url": server[3].strip()})
         self.is_done = True
         self.setNextForm(None)
