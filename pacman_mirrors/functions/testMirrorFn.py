@@ -78,17 +78,17 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
             self.max_wait_time = http_wait
 
         # let's see how responsive you are
-        test_protocol["speed"] = get_mirror_response(
-            url=test_url, config=self.config, tty=self.tty,
-            maxwait=self.max_wait_time, quiet=self.quiet, ssl_verify=ssl_verify)
+        work_mirror["speed"] = get_mirror_response(url=test_url, config=self.config, tty=self.tty,
+                                                   maxwait=self.max_wait_time, quiet=self.quiet,
+                                                   ssl_verify=ssl_verify)
 
         # create a printable string version from the response with appended zeroes
-        r_str = str(test_protocol["speed"])
+        r_str = str(work_mirror["speed"])
         while len(r_str) < 5:
             r_str += "0"
 
         # validate against the defined wait time
-        if test_protocol["speed"] >= self.max_wait_time:
+        if work_mirror["speed"] >= self.max_wait_time:
             # skip line - but not if tty
             if not self.quiet:
                 if self.tty:
@@ -108,16 +108,15 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
             util.msg(message=message.replace(".....", r_str), tty=self.tty)
             sys.stdout.flush()
 
-        probed_mirror = filter_bad_http(work=work_mirror)
-        probed_mirror["url"] = test_url
+        work_mirror["url"] = test_url
 
         if limit is not None:
             if mirror["speed"] == txt.SERVER_RES:
                 continue
             counter += 1
-            result.append(probed_mirror)
+            result.append(work_mirror)
         else:
-            result.append(probed_mirror)
+            result.append(work_mirror)
 
         """
         Equality check will stop execution
