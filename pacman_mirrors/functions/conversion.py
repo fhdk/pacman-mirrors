@@ -24,7 +24,6 @@ from pacman_mirrors.constants import txt
 from pacman_mirrors.functions.util import get_protocol_from_url, location_from_url, msg
 
 
-
 def translate_interactive_to_pool(selection: list, mirror_pool: list, tty: bool = False) -> tuple:
     """
     Translate the interactive selection back to mirror pool
@@ -61,13 +60,11 @@ def translate_pool_to_interactive(mirror_pool: list, tty: bool = False) -> list:
     for mirror in mirror_pool:
         try:
             _ = mirror_pool[0]
-            # last_sync = str(mirror["last_sync"]).split(":")
             mirror_url = location_from_url(mirror["url"])
             for idx, protocol in enumerate(mirror["protocols"]):
                 interactive_list.append({
                     "country": mirror["country"],
                     "speed": str(mirror["speed"]),
-                    # "last_sync": f"{last_sync[0]}h {last_sync[1]}m",
                     "url": f"{protocol}{mirror_url}"
                 })
         except (KeyError, IndexError):

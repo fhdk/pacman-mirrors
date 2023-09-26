@@ -55,7 +55,6 @@ class GraphicalUI(Gtk.Window):
                     custom_mirrors.append(
                         (False,
                          server["country"],
-                         # server["last_sync"],
                          server["url"]))
                 except IndexError as i:
                     print("{} IndexError -> {}".format(txt.ERR_CLR, i))
@@ -84,10 +83,6 @@ class GraphicalUI(Gtk.Window):
             column.set_sort_column_id(1)
             self.tree.append_column(column)
 
-            renderer = Gtk.CellRendererText()
-            column = Gtk.TreeViewColumn(txt.I_LAST_SYNC,
-                                        renderer,
-                                        text=2)
             column.set_sort_column_id(2)
             self.tree.append_column(column)
 
