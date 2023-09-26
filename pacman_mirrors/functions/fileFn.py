@@ -96,7 +96,7 @@ def write_mirror_list(config: dict, servers: list, tty: bool = False, custom: bo
             cols, lines = pacman_mirrors.functions.util.terminal_size()
             for server in servers:
                 print(server)
-                server["url"] = f'{util.sanitize_url(server["url"])}{config["branch"]}{config["repo_arch"]}'
+                server["url"] = f'{server["protocols"][0]}://{util.sanitize_url(server["url"])}{config["branch"]}{config["repo_arch"]}'
                 if server["speed"] == 99.99:
                     # do not write bad servers to mirrorlist
                     continue
