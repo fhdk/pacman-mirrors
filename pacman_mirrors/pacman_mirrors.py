@@ -95,10 +95,8 @@ class PacmanMirrors:
         if not config_setup.sanitize_config(config=self.config):
             sys.exit(2)
         self.network = httpFn.check_internet_connection(tty=self.tty)
-        if self.config["url_mirrors_json"]:
-            # only fetch data files if configuration url are valid
-            if self.network:
-                httpFn.download_mirror_pool(config=self.config, tty=self.tty, quiet=self.quiet)
+        if self.network:
+            httpFn.download_mirror_pool(config=self.config, tty=self.tty, quiet=self.quiet)
         if self.no_mirrorlist:
             sys.exit(0)
         if not self.network:
