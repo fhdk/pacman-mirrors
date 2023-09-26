@@ -90,6 +90,7 @@ class PacmanMirrors:
         (self.config, self.custom) = config_setup.setup_config(self)
 
         if self.config["enterprise"]:
+            self.custom = True
             defaultFn.seed_mirrors(self, self.config["mirror_file"])
 
         else:
