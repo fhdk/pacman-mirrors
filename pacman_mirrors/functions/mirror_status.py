@@ -64,9 +64,8 @@ def print_status(self) -> int:
     if self.config["enterprise"]:
         color = C_OK
         text = "OK"
-        now = datetime.now()
         mirror = self.config["static"]
-        print(f"Mirror #1", color, f"{text}", C_NONE, f"Enterprise {mirror['url']}")
+        print(f"Mirror #1", color, f"{text}", C_NONE, "Enterprise", f"{mirror}")
         return 0
     # // --- END ---------------------------------------------------------------------
 

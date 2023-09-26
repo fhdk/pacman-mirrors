@@ -140,9 +140,9 @@ def parse_command_line(self, gtk_available: bool) -> None:
     misc.add_argument("-q", "--quiet",
                       action="store_true",
                       help=txt.HLP_ARG_QUIET)
-    misc.add_argument("-s", "--no-status",
-                      action="store_true",
-                      help=txt.HLP_ARG_STATUS)
+    # misc.add_argument("-s", "--no-status",
+    #                   action="store_true",
+    #                   help=txt.HLP_ARG_STATUS)
     misc.add_argument("-t", "--timeout",
                       type=int,
                       metavar=txt.SECONDS,
@@ -152,9 +152,9 @@ def parse_command_line(self, gtk_available: bool) -> None:
                       help=txt.HLP_ARG_VERSION)
     misc.add_argument("--no-color",
                       action="store_true")
-    misc.add_argument("--interval",
-                      type=int,
-                      help="Max. number of hours since last sync")
+    # misc.add_argument("--interval",
+    #                   type=int,
+    #                   help="Max. number of hours since last sync")
     misc.add_argument("-g",
                       action="store_true",
                       help="Create mirror list from active pool.")
