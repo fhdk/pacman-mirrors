@@ -53,7 +53,7 @@ def load_default_mirror_pool(self) -> None:
     Load all available mirrors
     @param self:
     """
-    file = fileFn.return_mirror_filename(config=self.config, tty=self.tty)
+    file = fileFn.get_mirror_filename(config=self.config, tty=self.tty)
     # seed mirrors
     seed_mirrors(self, file)
 
