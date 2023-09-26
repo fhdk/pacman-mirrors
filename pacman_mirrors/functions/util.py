@@ -121,6 +121,12 @@ def msg(message: str, urgency: str = "", tty: bool = False, color: str = "", new
             print(f"::{color}{message}{reset}")
 
 
+def sanitize_url(url: str) -> str:
+    if url.endswith("/"):
+        return url
+    return f"{url}/"
+
+
 def strip_protocol(url: str) -> str:
     return url.split("//")[1]
 
