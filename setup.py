@@ -16,14 +16,14 @@ from setuptools import setup
 def update_mirror_file():
     """update mirrors.json from github"""
     countries = list()
-    url = "https://gitlab.manjaro.org/tools/maintenance-tools/manjaro-web-repo/blob/master/mirrors.json"
+    url = "https://mirror-manager.manjaro.org/status.json"
     try:
         with urlopen(url) as response:
             countries = json.loads(response.read().decode("utf8"), object_pairs_hook=collections.OrderedDict)
     except (HTTPException, json.JSONDecodeError, URLError, timeout):
         pass
     if countries:
-        with open("share/mirrors.json", "w") as outfile:
+        with open("share/status.json", "w") as outfile:
             json.dump(countries, outfile, sort_keys=True, indent=4)
 
 
@@ -82,7 +82,7 @@ setup(
     package_dir={'pacman_mirrors': 'pacman_mirrors'},
     data_files=[('/etc', ['conf/pacman-mirrors.conf']),
                 ('/etc/pacman.d', []),
-                ('/var/lib/share/pacman-mirrors', ['sharemirrors.json']),
+                ('/var/lib/share/pacman-mirrors', ['share/mirrors.json']),
                 ('share/man/man8', ['man/pacman-mirrors.8.gz']),
                 ('share/locale/ar/LC_MESSAGES', ['locale/ar/LC_MESSAGES/pacman_mirrors.mo']),
                 ('share/locale/az_AZ/LC_MESSAGES', ['locale/az_AZ/LC_MESSAGES/pacman_mirrors.mo']),
