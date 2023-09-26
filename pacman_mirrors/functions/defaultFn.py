@@ -74,7 +74,8 @@ def seed_mirrors(self, file: str) -> None:
         }]
     else:
         mirrors = fileFn.read_mirror_file(file)
-
+    print(mirrors)
+    exit()
     self.mirrors.seed(mirrors)
     sort_mirror_countries(self)
 
