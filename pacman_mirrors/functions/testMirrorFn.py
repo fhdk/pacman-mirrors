@@ -49,19 +49,14 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
     ssl_wait = self.max_wait_time * 2
     ssl_verify = self.config["ssl_verify"]
     result = []
+
     for mirror in worklist:
         # get a list of mirror dictionaries ordered by protocol descending
         # mirror_protocols is monkey patched to return only the first
-        # priority:
-        #      - https
-        #      - http
-        #      - ftp
         work_mirror = mirror_protocols(mirror)
-        print(mirror)
-        exit()
         # get protocol
         proto = work_mirror["protocols"][0]
-
+        print(proto)
         # generate url with protocol
         test_url = f"{proto}://{work_mirror['url']}"
 
@@ -123,6 +118,7 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
             result.append(probed_mirror)
         else:
             result.append(probed_mirror)
+
         """
         Equality check will stop execution
         when the desired number is reached.
@@ -136,29 +132,27 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
     return result
 
 
-def mirror_protocols(mirror: dict) -> list:
+def mirror_protocols(mirror: dict) -> dict:
     """
     Return a number of copies of mirror - one copy per protocol
     :param: mirror dictionary with a number of protocols
-    :return: list of mirror dictionaries with one protocol per dictionary
+    :return: mirror
     """
     result = []
     for idx, protocol in enumerate(mirror["protocols"]):
         m = {
-                "branches": mirror["branches"],
-                "country": mirror["country"],
-                # "last_sync": mirror["last_sync"],
-                "protocols": [protocol],
-                # "resp_time": mirror["resp_time"],
-                "url": mirror["url"],
-                "speed": mirror["speed"]
-            }
+            "branches": mirror["branches"],
+            "country": mirror["country"],
+            "protocols": [protocol],
+            "speed": mirror["speed"],
+            "url": mirror["url"],
+        }
         result.append(m)
     # -------------------------------------------------
     # monkey patch - sort by protocol desc
     # return the first to avoid testing all protocols for one mirror
     result = sorted(result, key=itemgetter("protocols"), reverse=True)
-    return [result[0]]
+    return result[0]
 
 
 def filter_bad_http(work: list) -> dict:
@@ -170,7 +164,6 @@ def filter_bad_http(work: list) -> dict:
     result = {
         "branches": work[0]["branches"],
         "country": work[0]["country"],
-        # "last_sync": work[0]["last_sync"],
         "protocols": [],
         "speed": "",
         "url": work[0]["url"]
