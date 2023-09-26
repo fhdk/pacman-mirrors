@@ -125,9 +125,6 @@ def build_mirror_list(self) -> None:
             try:
                 _ = mirror_list[0]
                 write_pacman_mirror_list(self, mirror_list)
-                if self.no_status:
-                    util.msg(message=f"{txt.OVERRIDE_STATUS_CHOICE}", urgency=txt.WRN_CLR, tty=self.tty)
-                    util.msg(message=f"{txt.OVERRIDE_STATUS_MIRROR}", urgency=txt.WRN_CLR, tty=self.tty)
             except IndexError:
                 raise IndexError
         except IndexError:
