@@ -65,7 +65,7 @@ def translate_pool_to_interactive(mirror_pool: list, tty: bool = False) -> list:
                 interactive_list.append({
                     "country": mirror["country"],
                     "speed": str(mirror["speed"]),
-                    "url": f"{protocol}{mirror_url}"
+                    "url": f"{protocol}://{mirror_url}"
                 })
         except (KeyError, IndexError):
             msg(message=f"{txt.HOUSTON}! {txt.MIRROR_POOL_EMPTY}!", urgency=txt.WRN_CLR, tty=tty)
