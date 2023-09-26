@@ -53,7 +53,10 @@ class GraphicalUI(Gtk.Window):
                 try:
                     _ = server_list[0]
                     custom_mirrors.append(
-                        (False, server["country"], server["last_sync"], server["url"]))
+                        (False,
+                         server["country"],
+                         # server["last_sync"],
+                         server["url"]))
                 except IndexError as i:
                     print("{} IndexError -> {}".format(txt.ERR_CLR, i))
                     pass
@@ -157,12 +160,12 @@ class GraphicalUI(Gtk.Window):
         if response == Gtk.ResponseType.OK:
             # Quit GUI
             dialog.destroy()
-            for line in self.custom_list:
-                line["last_sync"] = line["last_sync"].replace(" ", ":").replace("h", "").replace("m", "")
+            # for line in self.custom_list:
+            #     line["last_sync"] = line["last_sync"].replace(" ", ":").replace("h", "").replace("m", "")
             if self.random:
                 shuffle(self.custom_list)
             else:
-                self.custom_list.sort(key=itemgetter("resp_time"))
+                self.custom_list.sort(key=itemgetter("speed"))
             self.is_done = True
             Gtk.main_quit()
         elif response == Gtk.ResponseType.CANCEL:

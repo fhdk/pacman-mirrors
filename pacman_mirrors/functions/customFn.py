@@ -25,7 +25,7 @@ from pacman_mirrors.functions import jsonFn
 from pacman_mirrors.functions import validFn
 
 
-def apply_status_to_custom_pool(config: object, custom_pool: list) -> list:
+def apply_status_to_custom_pool(config: dict, custom_pool: list) -> list:
     """
     Apply the current mirror status to the custom mirror file
     :param config: config dictionary
@@ -39,7 +39,7 @@ def apply_status_to_custom_pool(config: object, custom_pool: list) -> list:
         for custom in custom_list:
             for status in status_list:
                 if custom["url"] in status["url"]:
-                    custom["last_sync"] = status["last_sync"]
+                    # custom["last_sync"] = status["last_sync"]
                     custom["branches"] = status["branches"]
         return list(custom_list)
     except (IndexError, KeyError):

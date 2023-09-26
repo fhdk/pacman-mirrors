@@ -75,6 +75,11 @@ def location_from_url(url: str) -> str:
 
 
 def aarch64_check(self, write: bool = False) -> None:
+    """
+    Set config["arm"] = True
+    @param self:
+    @param write:
+    """
     if platform.machine() == "aarch64":
         self.config["arm"] = True
         if "arm" not in self.config["branch"]:

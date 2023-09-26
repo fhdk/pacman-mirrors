@@ -57,17 +57,17 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
         #      - http
         #      - ftp
         work_mirror = mirror_protocols(mirror)
-        colon = work_mirror[0]["url"].find(":")
-        url = work_mirror[0]["url"][colon:]
+        # colon = work_mirror[0]["url"].find(":")
+        # url = work_mirror[0]["url"][colon:]
         for mirror_proto in work_mirror:
             # get protocol
             proto = mirror_proto["protocols"][0]
 
             # generate url with protocol
-            mirror_proto["url"] = f"{proto}{url}"
+            test_url = f"{proto}://{mirror_proto['url']}"
 
             # create message for later display
-            message = f'  ..... {mirror_proto["country"]:<15}: {mirror_proto["url"]}'
+            message = f'  ..... {mirror_proto["country"]:<15}: {test_url}'
 
             # if self.tty do not print theis
             if not self.quiet:
@@ -84,17 +84,17 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
                 self.max_wait_time = http_wait
 
             # let's see how responsive you are
-            mirror_proto["resp_time"] = get_mirror_response(
+            mirror_proto["speed"] = get_mirror_response(
                 url=mirror_proto["url"], config=self.config, tty=self.tty,
                 maxwait=self.max_wait_time, quiet=self.quiet, ssl_verify=ssl_verify)
 
             # create a printable string version from the response with appended zeroes
-            r_str = str(mirror_proto["resp_time"])
+            r_str = str(mirror_proto["speed"])
             while len(r_str) < 5:
                 r_str += "0"
 
             # validate against the defined wait time
-            if mirror_proto["resp_time"] >= self.max_wait_time:
+            if mirror_proto["speed"] >= self.max_wait_time:
                 # skip line - but not if tty
                 if not self.quiet:
                     if self.tty:
@@ -117,7 +117,7 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
         probed_mirror = filter_bad_http(work=work_mirror)
 
         if limit is not None:
-            if mirror["resp_time"] == txt.SERVER_RES:
+            if mirror["speed"] == txt.SERVER_RES:
                 continue
             counter += 1
             result.append(probed_mirror)
@@ -147,10 +147,11 @@ def mirror_protocols(mirror: dict) -> list:
         m = {
                 "branches": mirror["branches"],
                 "country": mirror["country"],
-                "last_sync": mirror["last_sync"],
+                # "last_sync": mirror["last_sync"],
                 "protocols": [protocol],
-                "resp_time": mirror["resp_time"],
+                # "resp_time": mirror["resp_time"],
                 "url": mirror["url"],
+                "speed": mirror["speed"]
             }
         result.append(m)
     # -------------------------------------------------
@@ -169,16 +170,18 @@ def filter_bad_http(work: list) -> dict:
     result = {
         "branches": work[0]["branches"],
         "country": work[0]["country"],
-        "last_sync": work[0]["last_sync"],
+        # "last_sync": work[0]["last_sync"],
         "protocols": [],
-        "resp_time": "",
+        "speed": "",
         "url": work[0]["url"]
     }
     if len(work) > 1:
         for item in work:
-            if item["protocols"][0].endswith("tps") and item["resp_time"] == txt.SERVER_RES:
+            if (item["protocols"][0].endswith("tps")
+                    and item["speed"] == txt.SERVER_RES or
+                    sum(item["branch"] == 0)):
                 continue
             result["protocols"].append(item["protocols"][0])
-            result["resp_time"] = item["resp_time"]
+            result["speed"] = item["speed"]
         return result
     return work[0]

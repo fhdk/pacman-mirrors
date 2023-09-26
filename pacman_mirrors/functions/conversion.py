@@ -21,8 +21,8 @@
 import json
 
 from pacman_mirrors.constants import txt
-from pacman_mirrors.functions.util import \
-    get_country, get_protocol, get_protocol_from_url, location_from_url
+from pacman_mirrors.functions.util import get_protocol_from_url, location_from_url, msg
+
 
 
 def translate_interactive_to_pool(selection: list, mirror_pool: list, tty: bool = False) -> tuple:
@@ -56,29 +56,22 @@ def translate_pool_to_interactive(mirror_pool: list, tty: bool = False) -> list:
     :param tty:
     :param mirror_pool:
     :return: list of dictionaries
-            {
-                "country": "country_name",
-                "resp_time": "m.sss",
-                "last_sync": "HHh MMm",
-                "url": "http://server/repo/"
-            }
     """
     interactive_list = []
     for mirror in mirror_pool:
         try:
             _ = mirror_pool[0]
-            last_sync = str(mirror["last_sync"]).split(":")
+            # last_sync = str(mirror["last_sync"]).split(":")
             mirror_url = location_from_url(mirror["url"])
             for idx, protocol in enumerate(mirror["protocols"]):
                 interactive_list.append({
                     "country": mirror["country"],
-                    "resp_time": str(mirror["resp_time"]),
-                    "last_sync": f"{last_sync[0]}h {last_sync[1]}m",
+                    "speed": str(mirror["speed"]),
+                    # "last_sync": f"{last_sync[0]}h {last_sync[1]}m",
                     "url": f"{protocol}{mirror_url}"
                 })
         except (KeyError, IndexError):
-            msg(
-                message=f"{txt.HOUSTON}! {txt.MIRROR_POOL_EMPTY}!", urgency=txt.WRN_CLR, tty=tty)
+            msg(message=f"{txt.HOUSTON}! {txt.MIRROR_POOL_EMPTY}!", urgency=txt.WRN_CLR, tty=tty)
             break
     return interactive_list
 

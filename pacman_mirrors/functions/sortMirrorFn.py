@@ -21,7 +21,7 @@
 from operator import itemgetter
 
 
-def sort_mirror_pool(worklist: list, field: str = "resp_time", reverse: bool = False) -> list:
+def sort_mirror_pool(worklist: list, field: str = "speed", reverse: bool = False) -> list:
     """
     Sort the mirror pool
     :param worklist: list to be sorted
