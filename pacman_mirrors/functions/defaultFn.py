@@ -65,7 +65,7 @@ def seed_mirrors(self, file: str, status: bool = False) -> None:
     """
     mirrors = fileFn.read_mirror_file(file)
     if status:
-        self.mirrors.seed(mirrors, status=status)
+        self.mirrors.seed(mirrors)
     else:
         self.mirrors.seed(mirrors)
     sort_mirror_countries(self)

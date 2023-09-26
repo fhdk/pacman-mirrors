@@ -55,7 +55,6 @@ class Mirror:
             self.country_pool.append(country)
         # translate negative integer in status.json
         if last_sync == -1:
-            last_sync = txt.SERVER_BAD  # "9999:99"
             resp_time = txt.SERVER_RES  # 99.99
         # sort protocols in reversed order https,http,ftps,ftp
         protocols = sorted(protocols, reverse=True)
@@ -65,17 +64,15 @@ class Mirror:
             "continent": continent,
             "branches": branches,
             "country": country,
-            # "last_sync": last_sync,
             "protocols": protocols,
             "speed": resp_time,
             "url": url
         })
 
-    def seed(self, servers: list, status: bool = False, custom: bool = False, arm: bool = False) -> None:
+    def seed(self, servers: list, custom: bool = False, arm: bool = False) -> None:
         """
         Seed mirrorlist
         @param servers:
-        @param status:
         @param custom:
         @param arm:
         """
@@ -84,29 +81,12 @@ class Mirror:
             self.mirror_pool = []
         for server in servers:
             branches = server["branches"]
-            if len(branches) > 3:
-                branches = branches[0:2]
-                if arm:
-                    branches = branches[3:]
+            branches = branches[:3]
+            if arm:
+                branches = branches[4:]
             self.add(server["country"],
                      server["url"],
                      server["protocols"],
                      branches,
+                     server["speed"]
                      )
-        # for server in servers:
-        #     if status:
-        #         branches = server["branches"]
-        #         if len(branches > 3):
-        #             branches = branches[0:2]
-        #             if arm:
-        #                 branches = branches[3:]
-        #         self.add(server["country"],
-        #                  server["url"],
-        #                  server["protocols"],
-        #                  branches,
-        #                  server["last_sync"]
-        #                  )
-        #     else:
-        #         self.add(server["country"],
-        #                  server["url"],
-        #                  server["protocols"])

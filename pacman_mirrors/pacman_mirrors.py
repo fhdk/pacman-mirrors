@@ -68,7 +68,6 @@ class PacmanMirrors:
         self.network = True
         self.no_display = False
         self.no_mirrorlist = False
-        self.no_status = False
         self.quiet = False
         self.selected_countries = []
         self.tty = False
@@ -89,16 +88,24 @@ class PacmanMirrors:
         # Build mirror list
         """
         (self.config, self.custom) = config_setup.setup_config(self)
+
         fileFn.create_dir(self.config["work_dir"])
+
         cliFn.parse_command_line(self, gtk_available=GTK_AVAILABLE)
+
         util.aarch64_check(self, write=True)
+
         if not config_setup.sanitize_config(config=self.config):
             sys.exit(2)
+
         self.network = httpFn.check_internet_connection(tty=self.tty)
+
         if self.network:
             httpFn.download_mirror_pool(config=self.config, tty=self.tty, quiet=self.quiet)
+
         if self.no_mirrorlist:
             sys.exit(0)
+
         if not self.network:
             if not self.quiet:
                 pacman_mirrors.functions.util.internet_message(tty=self.tty)
@@ -116,8 +123,10 @@ class PacmanMirrors:
         """
         if self.fasttrack:
             fasttrack.build_mirror_list(self, limit=self.fasttrack)
+
         elif self.interactive:
             interactive.build_mirror_list(self)
+
         else:
             common.build_mirror_list(self)
 

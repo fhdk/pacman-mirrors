@@ -103,11 +103,6 @@ def print_status(self) -> int:
             mirror = [m for m in mirrors if m['url'] == url][0]
             color, text = get_state(mirror["branches"], system_branch)
             len_country = max(len(m['country']) for m in mirrors) + 1
-            # last_sync = mirror["last_sync"]
-            # if last_sync == "-1":
-            #     last_sync = "--:--"
-            #     color = C_KO
-            #     text = "--"
             print(f"Mirror #{str(i + 1):2}", color, f"{text}", C_NONE,
                   # f"{last_sync:7} {mirror['country']:{len_country}} {mirror['url']}")
                   f"{mirror['country']:{len_country}} {mirror['url']}")
