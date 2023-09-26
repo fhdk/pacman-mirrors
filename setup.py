@@ -82,7 +82,7 @@ setup(
     package_dir={'pacman_mirrors': 'pacman_mirrors'},
     data_files=[('/etc', ['conf/pacman-mirrors.conf']),
                 ('/etc/pacman.d', []),
-                ('/var/lib/share/pacman-mirrors', ['share/mirrors.json']),
+                ('/var/lib/share/pacman-mirrors', ['share/status.json']),
                 ('share/man/man8', ['man/pacman-mirrors.8.gz']),
                 ('share/locale/ar/LC_MESSAGES', ['locale/ar/LC_MESSAGES/pacman_mirrors.mo']),
                 ('share/locale/az_AZ/LC_MESSAGES', ['locale/az_AZ/LC_MESSAGES/pacman_mirrors.mo']),
