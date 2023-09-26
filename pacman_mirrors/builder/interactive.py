@@ -25,14 +25,9 @@ from random import shuffle
 from pacman_mirrors.builder.builder import build_pool
 from pacman_mirrors.constants import txt
 
-from pacman_mirrors.functions.conversion import \
-    translate_interactive_to_pool, translate_pool_to_interactive
+from pacman_mirrors.functions.conversion import translate_interactive_to_pool, translate_pool_to_interactive
 
-from pacman_mirrors.functions.filter_mirror_pool_functions import \
-    filter_user_branch
-
-from pacman_mirrors.functions.outputFn import \
-    write_custom_mirrors_json, write_pacman_mirror_list
+from pacman_mirrors.functions.outputFn import write_custom_mirrors_json, write_pacman_mirror_list
 
 from pacman_mirrors.functions.sortMirrorFn import sort_mirror_pool
 from pacman_mirrors.functions.testMirrorFn import test_mirror_pool
@@ -75,9 +70,13 @@ def build_mirror_list(self) -> None:
     else:
         # gtk mode
         from pacman_mirrors.dialogs import graphicalui as ui
-
-    interactive = ui.run(server_list=interactive_list, random=self.config["method"] == "random",
-                         default=self.default)
+    custom_list = []
+    is_done = False
+    interactive = ui.run(server_list=interactive_list,
+                         random=self.config["method"] == "random",
+                         default=self.default,
+                         custom_list=custom_list,
+                         is_done=is_done)
 
     # process user choices
     if interactive.is_done:
@@ -85,7 +84,8 @@ def build_mirror_list(self) -> None:
         translate interactive list back to our json format
         """
         custom_pool, mirror_list = translate_interactive_to_pool(selection=interactive.custom_list,
-                                                                 mirror_pool=self.mirrors.mirror_pool, tty=self.tty)
+                                                                 mirror_pool=self.mirrors.mirror_pool,
+                                                                 tty=self.tty)
 
         """
         Try selected method on the mirrorlist

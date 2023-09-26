@@ -33,16 +33,6 @@ def build_pool(self) -> list:
     :return: filtered list of available mirrors
     """
 
-    """
-    remove known bad mirrors - last sync 9999:99
-    """
-    work_pool = filter_bad_mirrors(mirror_pool=self.mirrors.mirror_pool)
-
-    """
-    remove known error mirrors - response time 99.99
-    """
-    work_pool = filter_error_mirrors(mirror_pool=work_pool)
-
     if self.config["enterprise"]:
         m = {
             "branches": [ 1, 1, 1, 1, 1, 1],
@@ -52,6 +42,16 @@ def build_pool(self) -> list:
             "url": str.split(self.config["static"], "//")[-1]
         }
         return [m]
+
+    """
+    remove known bad mirrors - last sync 9999:99
+    """
+    work_pool = filter_bad_mirrors(mirror_pool=self.mirrors.mirror_pool)
+
+    """
+    remove known error mirrors - response time 99.99
+    """
+    work_pool = filter_error_mirrors(mirror_pool=work_pool)
 
     """
     Apply country filter if not fasttrack
