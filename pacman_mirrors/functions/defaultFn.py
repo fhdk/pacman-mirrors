@@ -51,23 +51,19 @@ def load_default_mirror_pool(self) -> None:
     Load all available mirrors
     @param self:
     """
-    (file, status) = fileFn.return_mirror_filename(config=self.config, tty=self.tty)
+    file = fileFn.return_mirror_filename(config=self.config, tty=self.tty)
     # seed mirrors
-    seed_mirrors(self, file, status)
+    seed_mirrors(self, file)
 
 
-def seed_mirrors(self, file: str, status: bool = False) -> None:
+def seed_mirrors(self, file: str) -> None:
     """
     Seed mirrors
     @param self:
     @param file:
-    @param status:
     """
     mirrors = fileFn.read_mirror_file(file)
-    if status:
-        self.mirrors.seed(mirrors)
-    else:
-        self.mirrors.seed(mirrors)
+    self.mirrors.seed(mirrors)
     sort_mirror_countries(self)
 
 
