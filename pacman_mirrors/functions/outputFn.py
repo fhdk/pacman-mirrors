@@ -66,7 +66,7 @@ def tty_default_pool(self) -> None:
     """
     List all available countries
     """
-    defaultFn.load_default_mirror_pool(self, self.config["arm"])
+    defaultFn.load_default_mirror_pool(self)
     print("{}".format("\n".join(self.mirrors.country_pool)))
 
 
