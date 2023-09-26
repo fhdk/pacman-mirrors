@@ -34,6 +34,7 @@ from pacman_mirrors.functions import config_setup
 from pacman_mirrors.functions import defaultFn
 from pacman_mirrors.functions import fileFn
 from pacman_mirrors.functions import httpFn
+from pacman_mirrors.functions import outputFn
 
 from pacman_mirrors.functions import util
 from pacman_mirrors.mirrors.mirror import Mirror
@@ -89,9 +90,16 @@ class PacmanMirrors:
         (self.config, self.custom) = config_setup.setup_config(self)
 
         if self.config["enterprise"]:
-            self.custom = True
-            defaultFn.seed_mirrors(self, self.config["mirror_file"])
-
+            mirrors = [{
+                "branches": [1, 1, 1, 1, 1, 1],
+                "country": "Enterprise",
+                "protocols": [str.split(self.config["static"], ":")[0]],
+                "speed": "0.125",
+                "url": str.split(self.config["static"], "//")[-1]
+            }]
+            outputFn.write_pacman_mirror_list(self, mirrors)
+            outputFn.write_custom_mirrors_json(self, mirrors)
+            exit(0)
         else:
 
             fileFn.create_dir(self.config["work_dir"])

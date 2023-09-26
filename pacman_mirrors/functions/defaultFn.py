@@ -64,16 +64,7 @@ def seed_mirrors(self, file: str) -> None:
     @param self:
     @param file:
     """
-    if self.config["enterprise"]:
-        mirrors = [{
-            "branches": [ 1, 1, 1, 1, 1, 1],
-            "country": "Enterprise",
-            "protocols": [str.split(self.config["static"], ":")[0]],
-            "speed": "0.125",
-            "url": str.split(self.config["static"], "//")[-1]
-        }]
-    else:
-        mirrors = fileFn.read_mirror_file(file)
+    mirrors = fileFn.read_mirror_file(file)
     self.mirrors.seed(mirrors, self.custom)
     sort_mirror_countries(self)
 
