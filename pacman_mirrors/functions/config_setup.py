@@ -71,9 +71,9 @@ def setup_config(self) -> tuple:
                         config["method"] = value
                     if key == "Branch":
                         config["branch"] = value
-                    if key == "Ent":
-                        config["ent"] = True
-                        config["ent_mirror"] = value
+                    if key == "StaticMirror":
+                        config["enterprise"] = True
+                        config["StaticMirror"] = value
                     if key == "Protocols":
                         if "," in value:
                             config["protocols"] = value.split(",")
