@@ -23,7 +23,8 @@ import npyscreen
 
 from collections import namedtuple
 
-import pacman_mirrors.functions.conversion
+from pacman_mirrors.functions.conversion import list_to_tuple
+from pacman_mirrors.functions.conversion import rows_from_tuple
 from pacman_mirrors.constants import txt
 from pacman_mirrors.translation import i18n
 
@@ -33,16 +34,15 @@ _ = i18n.language.gettext
 class ConsoleUI(npyscreen.NPSAppManaged):
     """App"""
 
-    def __init__(self, server_list: list, random: bool, default: bool):
+    def __init__(self, server_list: list, random: bool, default: bool, custom_list: list, is_done: bool):
         npyscreen.NPSAppManaged.__init__(self)
         self.title = txt.I_TITLE_RANDOM if random else txt.I_TITLE
         if default:
             self.title = "Pacman-Mirrors"
 
         # Server lists
-        self.custom_list = []
-
-        self.is_done = False
+        self.custom_list = custom_list
+        self.is_done = is_done
         self.random = random
         self.default = default
 
@@ -54,10 +54,13 @@ class ConsoleUI(npyscreen.NPSAppManaged):
                                          "url"])
 
         main_server_list = [header_cols]
+
         main_server_list.extend(server_list)
-        servers = pacman_mirrors.functions.conversion.list_to_tuple(list_data=main_server_list, named_tuple=template)
+
+        servers = (list_to_tuple(list_data=main_server_list, named_tuple=template))
+
         self.list_title = txt.I_LIST_TITLE
-        self.server_rows = pacman_mirrors.functions.conversion.rows_from_tuple(servers=servers)
+        self.server_rows = rows_from_tuple(servers=servers)
         self.header_row = ("{:<5}".format(txt.I_USE) +
                            (self.server_rows[0].replace("|", " ").strip()))
         del self.server_rows[0]
@@ -67,8 +70,11 @@ class ConsoleUI(npyscreen.NPSAppManaged):
 
         # setup form
         mainform = npyscreen.Form(name=self.title)
+
         mainform.add(npyscreen.TitleFixedText, name=self.list_title)
+
         mainform.add(npyscreen.TitleFixedText, name=self.header_row)
+
         selected_servers = mainform.add(npyscreen.MultiSelect,
                                         max_height=0,
                                         name=self.list_title,
@@ -76,6 +82,7 @@ class ConsoleUI(npyscreen.NPSAppManaged):
                                         values=self.server_rows,
                                         scroll_exit=True)
         mainform.edit()  # activate form
+
         self.done(selection=selected_servers.get_selected_objects())  # done
 
     def done(self, selection: list) -> None:
@@ -92,8 +99,8 @@ class ConsoleUI(npyscreen.NPSAppManaged):
         self.setNextForm(None)
 
 
-def run(server_list: list, random: bool, default: bool) -> object:
+def run(server_list: list, random: bool, custom_list: list, is_done: bool, default: bool = False) -> object:
     """Run"""
-    app = ConsoleUI(server_list=server_list, random=random, default=default)
+    app = ConsoleUI(server_list, random, default, custom_list, is_done)
     app.run()
     return app
