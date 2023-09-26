@@ -61,13 +61,13 @@ def print_status(self) -> int:
     # configuration is enterprise
     # - pacman-mirrors.conf
     # - Ent = http(s)://ent.mirror.tld:8080
-    if self.config["ent"]:
+    if self.config["enterprise"]:
         color = C_OK
         text = "OK"
         now = datetime.now()
         fake = now.strftime("00:%M")
-        mirror = self.config["ent_mirror"]
-        print(f"Mirror #1", color, f"{text}", C_NONE, f"{fake} {mirror['country']} {mirror['url']}")
+        mirror = self.config["StaticMirror"]
+        print(f"Mirror #1", color, f"{text}", C_NONE, f"Enterprise {mirror['url']}")
         return 0
     # // --- END ---------------------------------------------------------------------
 
