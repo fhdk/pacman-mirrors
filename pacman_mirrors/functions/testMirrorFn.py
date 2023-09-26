@@ -57,64 +57,64 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
         #      - http
         #      - ftp
         work_mirror = mirror_protocols(mirror)
-        # colon = work_mirror[0]["url"].find(":")
-        # url = work_mirror[0]["url"][colon:]
-        for mirror_proto in work_mirror:
-            # get protocol
-            proto = mirror_proto["protocols"][0]
+        print(mirror)
+        exit()
+        # get protocol
+        proto = work_mirror["protocols"][0]
 
-            # generate url with protocol
-            test_url = f"{proto}://{mirror_proto['url']}"
+        # generate url with protocol
+        test_url = f"{proto}://{work_mirror['url']}"
 
-            # create message for later display
-            message = f'  ..... {mirror_proto["country"]:<15}: {test_url}'
+        # create message for later display
+        message = f'  ..... {work_mirror["country"]:<15}: {test_url}'
 
-            # if self.tty do not print this
+        # if self.tty do not print this
+        if not self.quiet:
+            if self.tty:
+                pass
+            else:
+                print("{:.{}}".format(message, cols), end="")
+                sys.stdout.flush()
+
+        # https/ftps sometimes takes longer for handshake
+        if proto.endswith("tps"):  # https or ftps
+            self.max_wait_time = ssl_wait
+        else:
+            self.max_wait_time = http_wait
+
+        # let's see how responsive you are
+        test_protocol["speed"] = get_mirror_response(
+            url=test_url, config=self.config, tty=self.tty,
+            maxwait=self.max_wait_time, quiet=self.quiet, ssl_verify=ssl_verify)
+
+        # create a printable string version from the response with appended zeroes
+        r_str = str(test_protocol["speed"])
+        while len(r_str) < 5:
+            r_str += "0"
+
+        # validate against the defined wait time
+        if test_protocol["speed"] >= self.max_wait_time:
+            # skip line - but not if tty
             if not self.quiet:
                 if self.tty:
                     pass
                 else:
-                    print("{:.{}}".format(message, cols), end="")
-                    sys.stdout.flush()
+                    print("\r")
+        else:
+            # only print if not tty
+            if not self.quiet:
+                if self.tty:
+                    pass
+                else:
+                    print(f"\r  {color.GREEN}{r_str}{color.RESET}")
 
-            # https/ftps sometimes takes longer for handshake
-            if proto.endswith("tps"):  # https or ftps
-                self.max_wait_time = ssl_wait
-            else:
-                self.max_wait_time = http_wait
-
-            # let's see how responsive you are
-            mirror_proto["speed"] = get_mirror_response(
-                url=test_url, config=self.config, tty=self.tty,
-                maxwait=self.max_wait_time, quiet=self.quiet, ssl_verify=ssl_verify)
-
-            # create a printable string version from the response with appended zeroes
-            r_str = str(mirror_proto["speed"])
-            while len(r_str) < 5:
-                r_str += "0"
-
-            # validate against the defined wait time
-            if mirror_proto["speed"] >= self.max_wait_time:
-                # skip line - but not if tty
-                if not self.quiet:
-                    if self.tty:
-                        pass
-                    else:
-                        print("\r")
-            else:
-                # only print if not tty
-                if not self.quiet:
-                    if self.tty:
-                        pass
-                    else:
-                        print(f"\r  {color.GREEN}{r_str}{color.RESET}")
-
-            # we have tty then we print with response time
-            if self.tty:
-                util.msg(message=message.replace(".....", r_str), tty=self.tty)
-                sys.stdout.flush()
+        # we have tty then we print with response time
+        if self.tty:
+            util.msg(message=message.replace(".....", r_str), tty=self.tty)
+            sys.stdout.flush()
 
         probed_mirror = filter_bad_http(work=work_mirror)
+        probed_mirror["url"] = test_url
 
         if limit is not None:
             if mirror["speed"] == txt.SERVER_RES:
