@@ -90,7 +90,7 @@ def get_continent(country: str) -> str:
     Database query for continent where country belongs
     :param country:
     """
-    continent = (x for x in countries if country in x["name"])
+    continent = (x for x in countries if country in x["name"].lower())
     for x in continent:
         return x["continent"].strip().replace(" ", "_")
     return ""

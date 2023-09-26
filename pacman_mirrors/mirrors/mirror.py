@@ -58,7 +58,8 @@ class Mirror:
             resp_time = txt.SERVER_RES  # 99.99
         # sort protocols in reversed order https,http,ftps,ftp
         protocols = sorted(protocols, reverse=True)
-        continent = get_continent(country.replace("_", " "))
+        country = country.replace("_", " ")
+        continent = get_continent(country)
         # add to pool
         self.mirror_pool.append({
             "continent": continent,
