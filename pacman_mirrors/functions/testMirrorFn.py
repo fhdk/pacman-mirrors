@@ -69,7 +69,7 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
             # create message for later display
             message = f'  ..... {mirror_proto["country"]:<15}: {test_url}'
 
-            # if self.tty do not print theis
+            # if self.tty do not print this
             if not self.quiet:
                 if self.tty:
                     pass
@@ -85,7 +85,7 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
 
             # let's see how responsive you are
             mirror_proto["speed"] = get_mirror_response(
-                url=mirror_proto["url"], config=self.config, tty=self.tty,
+                url=test_url, config=self.config, tty=self.tty,
                 maxwait=self.max_wait_time, quiet=self.quiet, ssl_verify=ssl_verify)
 
             # create a printable string version from the response with appended zeroes
