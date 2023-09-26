@@ -44,14 +44,11 @@ def build_pool(self) -> list:
     work_pool = filter_error_mirrors(mirror_pool=work_pool)
 
     if self.config["enterprise"]:
-        import random
-        from decimal import Decimal
-        x = list(range(1, 2000))
         m = {
             "branches": [ 1, 1, 1, 1, 1, 1],
             "country": "Enterprise",
             "protocols": [str.split(self.config["static"], ":")[0]],
-            "speed": Decimal(int(random.shuffle(x))) / 1000,
+            "speed": "0.125",
             "url": str.split(self.config["static"], "//")[-1]
         }
         return [m]
