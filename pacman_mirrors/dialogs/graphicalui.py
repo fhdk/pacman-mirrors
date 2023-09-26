@@ -63,7 +63,7 @@ class GraphicalUI(Gtk.Window):
                     print("{} KeyError -> {}".format(txt.ERR_CLR, k))
                     pass
 
-            self.store = Gtk.ListStore(bool, str, str, str)
+            self.store = Gtk.ListStore(bool, str, str)
             for mirror_ref in custom_mirrors:
                 self.store.append(list(mirror_ref))
 
@@ -87,7 +87,7 @@ class GraphicalUI(Gtk.Window):
             self.tree.append_column(column)
 
             renderer = Gtk.CellRendererText()
-            column = Gtk.TreeViewColumn(txt.I_URL,renderer,text=3)
+            column = Gtk.TreeViewColumn(txt.I_URL, renderer, text=3)
             column.set_sort_column_id(3)
             self.tree.append_column(column)
 
