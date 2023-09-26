@@ -28,7 +28,6 @@ pytest = "^7.4.2"
 mkdocs = "^1.5.3"
 flake8 = "^6.1.0"
 lint = "^1.2.1"
-pandoc = "^2.3"
 babel = "^2.12.1"
 
 
