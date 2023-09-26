@@ -58,16 +58,6 @@ def build_pool(self) -> list:
     except IndexError:
         pass
 
-    """
-    Apply --no-status argument if applicable
-    """
-    if self.no_status:
-        """
-        Apply interval filter
-        """
-        if self.interval:
-            work_pool = filter_poor_mirrors(mirror_pool=work_pool, interval=self.interval)
-    else:
-        work_pool = filter_user_branch(mirror_pool=work_pool, config=self.config)
+    work_pool = filter_user_branch(mirror_pool=work_pool, config=self.config)
 
     return work_pool
