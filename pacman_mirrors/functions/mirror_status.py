@@ -15,10 +15,10 @@ C_OK = colors.GREEN
 C_NONE = colors.RESET
 
 
-def get_local_mirrors(mirror_list: str) -> tuple:
+def get_local_mirrors(mirrorlist: str) -> tuple:
     urls = []
     try:
-        with open(mirror_list, "r") as f_list:
+        with open(mirrorlist, "r") as f_list:
             for line in f_list:
                 if not line.startswith("Server"):
                     continue
@@ -57,29 +57,28 @@ def print_status(self) -> int:
     :param self:
     :return:
     """
-    # // --- BEGING ---------------------------------------------------------------------
-    # configuration is enterprise
-    # - pacman-mirrors.conf
-    # - Ent = http(s)://ent.mirror.tld:8080
     if self.config["enterprise"]:
+        # write enterprise config
         color = C_OK
         text = "OK"
-        mirror = self.config["static"]
-        print(f"Mirror #1", color, f"{text}", C_NONE, "Enterprise", f"{mirror}")
+        fake = "00:00"
+        print(f"Mirror #1", color, f"{text}", C_NONE, f"{fake} Enterprise {self.config['static']}")
         return 0
     # // --- END ---------------------------------------------------------------------
 
-    system_branch, mirrors_pacman = get_local_mirrors(self.config["mirror_list"])
+    system_branch, mirrors_pacman = get_local_mirrors(self.config["mirror_file"])
     # bug out when no local mirrorlist exist or branch is deprecated
     if system_branch == "" or system_branch == "stable-staging":
         print(C_KO, "MIRRORLIST ERROR", C_NONE)
         return 1
 
     try:
-        with request.urlopen(self.config["url_mirrors_json"]) as f_url:
+        # // --- DEBUG ---------------------------------------------------------------
+        # with request.urlopen('http://localhost:8000/status.json') as f_url:
+        with request.urlopen('https://repo.manjaro.org/status.json') as f_url:
             req = f_url.read()
     except error.URLError:
-        msg("Downloading mirror status failed!", color=colors.BLUE)
+        msg("Downloading status failed!", color=colors.BLUE)
         msg("Please check you network connection ...", color=colors.YELLOW)
         return 1  # return failure
     json_data = json.loads(req)
@@ -99,8 +98,13 @@ def print_status(self) -> int:
             mirror = [m for m in mirrors if m['url'] == url][0]
             color, text = get_state(mirror["branches"], system_branch)
             len_country = max(len(m['country']) for m in mirrors) + 1
+            last_sync = mirror["last_sync"]
+            if last_sync == "-1":
+                last_sync = "--:--"
+                color = C_KO
+                text = "--"
             print(f"Mirror #{str(i + 1):2}", color, f"{text}", C_NONE,
-                  f"{mirror['country']:{len_country}} {mirror['url']}")
+                  f"{last_sync:7} {mirror['country']:{len_country}} {mirror['url']}")
             if i == 0 and color == C_KO:
                 exit_code = 4  # first mirror not sync !
         except IndexError:
@@ -108,3 +112,13 @@ def print_status(self) -> int:
             exit_code = 5  # not found
 
     return exit_code
+
+
+def get_static_mirror(filename: str) -> dict:
+    """
+    Get first mirror from mirror pool
+    :param filename:
+    :return:
+    """
+    mirror = read_json_file(filename)
+    return mirror[0]

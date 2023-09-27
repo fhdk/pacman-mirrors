@@ -19,12 +19,15 @@
 
 """Manjaro-Mirrors HTTP Functions"""
 
+import collections
 import filecmp
 import json
 import os
 import ssl
 import time
 from os import system as system_call
+import socket
+from socket import timeout
 
 import shutil
 import urllib.request as request
@@ -34,6 +37,7 @@ import requests
 
 from pacman_mirrors import __version__
 from pacman_mirrors.config import configuration as conf
+from pacman_mirrors.constants import timezones
 from pacman_mirrors.constants import txt
 from pacman_mirrors.functions import fileFn
 from pacman_mirrors.functions import jsonFn
@@ -52,16 +56,16 @@ def download_mirrors(config: dict) -> bool:
     message = ""
     try:
         # mirrors.json
-        util.msg(message=f"=> Mirror pool: {config['url_mirrors_json']}", urgency=txt.INF_CLR)
-        resp = requests.get(url=config["url_mirrors_json"],
+        util.msg(message=f"=> Mirror pool: {config['mirror_manager']}", urgency=txt.INF_CLR)
+        resp = requests.get(url=config["mirror_manager"],
                             headers=USER_AGENT,
                             timeout=config["timeout"])
         resp.raise_for_status()
         mirrorlist = resp.json()
-        tempfile = config["work_dir"] + "/.temp.file"
+        tempfile = config["var_dir"] + "/.temp.file"
         jsonFn.json_dump_file(mirrorlist, tempfile)
         filecmp.clear_cache()
-        if fileFn.check_file(conf.WORK_DIR, folder=True):
+        if fileFn.check_file(conf.VAR_DIR, folder=True):
             if not fileFn.check_file(config["mirror_file"]):
                 jsonFn.json_dump_file(mirrorlist, config["mirror_file"])
             elif not filecmp.cmp(tempfile, config["mirror_file"]):
@@ -82,8 +86,6 @@ def download_mirrors(config: dict) -> bool:
     if message != "":
         fetchmirrors = False
         util.msg(message=message, urgency=txt.ERR_CLR, newline=True)
-        message = ""
-
     # result
     return fetchmirrors
 
@@ -94,7 +96,8 @@ def get_ip_country(maxwait: int = 2) -> str:
     :return: country name
     """
     try:
-        resp = requests.get("https://get.geojs.io/v1/ip/country/full", timeout=maxwait)
+        resp = requests.get("https://get.geojs.io/v1/ip/country/full",
+                            timeout=maxwait)
         resp.raise_for_status()
     except requests.exceptions.ConnectionError:
         return ""
@@ -112,15 +115,15 @@ def get_http_response(url: str, maxwait: int) -> str:
         resp.raise_for_status()
         # _ = resp.text
     except (requests.exceptions.ConnectionError,) as connError:
-        message = f"ERROR: {connError}"
+        message = f"Connection: {connError}"
     except (requests.exceptions.SSLError,) as sslError:
-        message = f"ERROR: {sslError}"
+        message = f"Certificate: {sslError}"
     except (requests.exceptions.Timeout,) as connTimeout:
-        message = f"ERROR: {connTimeout}"
+        message = f"Connection: {connTimeout}"
     except (requests.exceptions.HTTPError,) as httpError:
-        message = f"ERROR: {httpError}"
+        message = f"Connection {httpError}"
     except Exception as e:
-        message = f"ERROR: {e}"
+        message = f"{e}"
 
     return message
 
@@ -131,21 +134,16 @@ def get_ftp_response(url: str, maxwait: int) -> str:
     :return:
     """
     message = ""
-
-    # noinspection PyBroadException
     try:
         with closing(request.urlopen(url, timeout=maxwait)) as ftpReq:
-            with open(conf.WORK_DIR + '/.testresponse', 'wb') as testFile:
+            with open(conf.VAR_DIR + '/.testresponse', 'wb') as testFile:
                 shutil.copyfileobj(ftpReq, testFile)
-            os.remove(conf.WORK_DIR + '/.testresponse')
+            os.remove(conf.VAR_DIR + '/.testresponse')
     except URLError as e:
         if e.reason.find('No such file or directory') >= 0:
-            message = f"ERROR: FileNotFound"
+            message = f"FileNotFound"
         else:
-            message = f"ERROR: {e.reason}"
-    except:
-            message = "ERROR:"
-
+            message = f"{e.reason}"
     return message
 
 
@@ -158,7 +156,7 @@ def get_mirror_response(url: str, config: dict, tty: bool = False, maxwait: int 
     :param url:
     :param maxwait:
     :param quiet:
-    :returns: always return a float value with response time
+    :returns always return a float value with response time
     """
     response_time = txt.SERVER_RES  # prepare default return value
     probe_stop = None
@@ -180,9 +178,8 @@ def get_mirror_response(url: str, config: dict, tty: bool = False, maxwait: int 
         message = get_ftp_response(url=probe_url, maxwait=maxwait)
         probe_stop = time.time()
 
-    if message.startswith("ERROR:") and not quiet:
+    if message and not quiet:
         util.msg(message=f"{message}", urgency=txt.ERR_CLR, tty=tty, newline=True)
-
     if probe_stop and not message:
         response_time = round((probe_stop - probe_start), 3)
 
@@ -229,12 +226,11 @@ def ping_host(host: str, tty: bool = False, count: int = 1) -> bool:
 
 
 def download_mirror_pool(config: dict, tty: bool = False, quiet: bool = False) -> bool:
-    """Download updates from mirror-manager.manjaro.org
+    """Download updates from repo.manjaro.org
     :param config:
     :param quiet:
     :param tty:
-    :returns: tuple with True/False for mirrors.json and status.json
-    :rtype: tuple
+    :returns: True/False
     """
     result = None
     connected = check_internet_connection(tty=tty)

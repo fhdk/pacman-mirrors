@@ -148,7 +148,7 @@ RESET_ALL = "pacman-mirrors -c all"
 PREFIX_TIP = ": $mnt | /mnt/install"
 # OPTIONS
 OPT_RANDOM = " '-m/--method random' "
-OPT_COUNTRY = " 'c/--country' "
+OPT_COUNTRY = " '-c/--country' "
 # MIRROR RELATED
 LASTSYNC_OK = "24:00"  # last syncronize in the past 24 hours
 LASTSYNC_NA = "9800:00"  # last syncronization not available
@@ -163,3 +163,9 @@ API_ARGUMENTS_ERROR = "{} {}.".format(ARGUMENT_API, MISSING_ARGUMENT)
 INTERACTIVE_ARGUMENTS_ERROR = "{} {}.".format(ARGUMENT_INTERACTIVE, MISSING_ARGUMENT)
 FASTTRACK_ARGUMENTS_ERROR = "pacman-mirrors: error: argument -s/--no-status: " \
                             "not allowed with argument -f/--fasttrack"
+ASYNC_DISCLAIM = [f"{WRN_CLR}",
+                  f"{WRN_CLR} THE ASYNC ARGUMENT IS EXPERIMENTAL",
+                  f"{WRN_CLR} PROCESS MAY HANG - USE CTRL+C OR CTRL+D",
+                  "REPORT URL: https://gitlab.manjaro.org/applications/pacman-mirrors/issues/",
+                  f"{WRN_CLR} Acknowledge and continue? (Y/n) \r"
+                  ]

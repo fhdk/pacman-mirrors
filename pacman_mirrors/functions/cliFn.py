@@ -140,6 +140,7 @@ def parse_command_line(self, gtk_available: bool) -> None:
     misc.add_argument("-q", "--quiet",
                       action="store_true",
                       help=txt.HLP_ARG_QUIET)
+    # removed - part of refactor for new mirror-manager
     # misc.add_argument("-s", "--no-status",
     #                   action="store_true",
     #                   help=txt.HLP_ARG_STATUS)
@@ -152,6 +153,7 @@ def parse_command_line(self, gtk_available: bool) -> None:
                       help=txt.HLP_ARG_VERSION)
     misc.add_argument("--no-color",
                       action="store_true")
+    # removed - part of refactor for new mirror-manager
     # misc.add_argument("--interval",
     #                   type=int,
     #                   help="Max. number of hours since last sync")
@@ -227,9 +229,10 @@ def parse_command_line(self, gtk_available: bool) -> None:
             print("{}".format(txt.INTERACTIVE_ARGUMENTS_ERROR))
             sys.exit(1)
 
-    """
-    If --interval and not --no-status reject
-    """
+    # """
+    # If --interval and not --no-status reject
+    # """
+    # # removed - part of refactor for new mirror-manager
     # if args.interval and not args.no_status:
     #     print("Version {}\nUSAGE:\n {} {}".format(__version__, "pacman-mirrors", args_summary))
     #     print("Invalid arguments: `--interval` argument only valid with `-s`")
@@ -264,13 +267,14 @@ def parse_command_line(self, gtk_available: bool) -> None:
         self.max_wait_time = args.timeout
         self.config["timeout"] = args.timeout
 
+    # removed - part of refactor for new mirror-manager
     # if args.no_status:
     #     self.no_status = True
     #
     # if args.interval:
     #     self.interval = args.interval
-    else:
-        self.interval = None
+    # else:
+    #     self.interval = None
 
     """
     Generation methods
@@ -286,6 +290,7 @@ def parse_command_line(self, gtk_available: bool) -> None:
             customFn.delete_custom_pool(self)
 
     if args.fasttrack is not None:
+        # # removed - part of refactor for new mirror-manager
         # if args.no_status:
         #     print("Version {}\nUSAGE:\n {} {}".format(__version__, "pacman-mirrors", args_summary))
         #     print("{}".format(txt.FASTTRACK_ARGUMENTS_ERROR))

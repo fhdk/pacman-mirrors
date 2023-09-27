@@ -21,10 +21,11 @@
 import json
 
 from pacman_mirrors.constants import txt
-from pacman_mirrors.functions.util import get_protocol_from_url, location_from_url, msg
+from pacman_mirrors.functions.util import msg
+from pacman_mirrors.functions.util import get_protocol
 
 
-def translate_interactive_to_pool(selection: list, mirror_pool: list) -> tuple:
+def interactive_to_pool(selection: list, mirror_pool: list, tty: bool = False) -> tuple:
     """
     Translate the interactive selection back to mirror pool
     :param tty:
@@ -36,11 +37,11 @@ def translate_interactive_to_pool(selection: list, mirror_pool: list) -> tuple:
     mirror_list = []
 
     for mirror in mirror_pool:
-        location = location_from_url(mirror["url"])
+        location = mirror["url"]
         selected = (x for x in selection if location in x["url"])
         protocols = []
         for item in selected:
-            protocols.append(get_protocol_from_url(item["url"]))
+            protocols.append(get_protocol(item["url"]))
         if protocols:
             m = mirror
             m["protocols"] = protocols
@@ -49,27 +50,34 @@ def translate_interactive_to_pool(selection: list, mirror_pool: list) -> tuple:
     return custom_pool, mirror_list
 
 
-def translate_pool_to_interactive(mirror_pool: list, tty: bool = False) -> list:
+def pool_to_interactive(mirror_pool: list, tty: bool = False) -> list:
     """
     Translate mirror pool for interactive display
     :param tty:
     :param mirror_pool:
     :return: list of dictionaries
+            {
+                "country": "country_name",
+                "resp_time": "m.sss",
+                "last_sync": "HHh MMm",
+                "url": "http://server/repo/"
+            }
     """
     interactive_list = []
     for mirror in mirror_pool:
         try:
             _ = mirror_pool[0]
-            mirror_url = location_from_url(mirror["url"])
+            last_sync = str(mirror["last_sync"]).split(":")
             for idx, protocol in enumerate(mirror["protocols"]):
                 interactive_list.append({
                     "country": mirror["country"],
                     "resp_time": str(mirror["resp_time"]),
-                    "last_sync": "",
-                    "url": f"{protocol}://{mirror_url}"
+                    "last_sync": f"{last_sync[0]}h {last_sync[1]}m",
+                    "url": f'{protocol}://{mirror["url"]}'
                 })
         except (KeyError, IndexError):
-            msg(message=f"{txt.HOUSTON}! {txt.MIRROR_POOL_EMPTY}!", urgency=txt.WRN_CLR, tty=tty)
+            msg(
+                message=f"{txt.HOUSTON}! {txt.MIRROR_POOL_EMPTY}!", urgency=txt.WRN_CLR, tty=tty)
             break
     return interactive_list
 

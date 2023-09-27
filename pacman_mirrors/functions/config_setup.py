@@ -34,25 +34,27 @@ def setup_config(self) -> tuple:
     custom = False
     # default config
     config = {
+        "arm": False,
         "branch": "stable",
         "branches": conf.BRANCHES,
         "config_file": conf.CONFIG_FILE,
         "country_pool": [],
         "custom_file": conf.CUSTOM_FILE,
+        "enterprise": False,  # refactor - part of refactor for new mirror-manager
         "method": "rank",
-        "work_dir": conf.WORK_DIR,
         "mirror_file": conf.MIRROR_FILE,
         "mirror_list": conf.MIRROR_LIST,
+        "mirror_manager": conf.MIRROR_MANAGER,
         "no_update": False,
         "protocols": [],
         "repo_arch": conf.REPO_ARCH,
         "ssl_verify": True,
+        "static": None,
+        # "status_file": conf.STATUS_FILE, # removed - part of refactor for new mirror-manager
         "test_file": conf.TEST_FILE,
-        "url_mirrors_json": conf.URL_MIRROR_MANAGER,
-        "arm": False,
         "timeout": 2,
-        "enterprise": False,
-        "static": None
+        # "url_status_json": conf.URL_STATUS_JSON, #  removed - part of refactor for new mirror-manager
+        "var_dir": conf.VAR_DIR,
     }
     # try to replace default entries by reading conf file
     try:
@@ -71,9 +73,6 @@ def setup_config(self) -> tuple:
                         config["method"] = value
                     if key == "Branch":
                         config["branch"] = value
-                    if key == "Static":
-                        config["enterprise"] = True
-                        config["static"] = util.sanitize_url(value)
                     if key == "Protocols":
                         if "," in value:
                             config["protocols"] = value.split(",")
@@ -85,6 +84,10 @@ def setup_config(self) -> tuple:
                         config["test_file"] = value
                         if not config["test_file"]:
                             config["test_file"] = conf.TEST_FILE
+                    # refactor Enterprise mirror option
+                    if key == "Static":
+                        self.config["enterprise"] = True
+                        self.config["static"] = value
 
     except (PermissionError, OSError) as err:
         util.msg(
@@ -122,6 +125,12 @@ def sanitize_config(config: dict) -> bool:
         if p not in conf.PROTOCOLS:
             errors.append("     'Protocols = {}'; {} {}".format(
                 config["protocols"], txt.EXP_CLR, ",".join(conf.PROTOCOLS)))
+    if config["enterprise"]:
+        # check static mirror - simple validation
+        if "://" or "." not in config["static"]:
+            errors.append("     'Static = {}'; {} (e.g. 'http://domain.tld/manjaro/')".format(
+                config["static"], txt.EXP_CLR))
+
     if len(errors):
         print(header)
         for e in errors:

@@ -60,7 +60,7 @@ def delete_file(filename: str) -> None:
         os.remove(filename)
 
 
-def get_mirror_filename(config: dict, tty: bool = False) -> str:
+def return_mirror_filename(config: dict, tty: bool = False) -> str:
     """
     Find the mirror pool file
     :param config: config dictionary
@@ -82,10 +82,10 @@ def write_mirror_list(config: dict, servers: list, tty: bool = False, custom: bo
     Write servers to /etc/pacman.d/mirrorlist
     :param config: configuration dictionary
     :param servers: list of servers to write
-    :param tty: flag
-    :param custom: flag
-    :param quiet: flag
-    :param interactive: flag
+    :param tty:
+    :param custom:
+    :param quiet:
+    :param interactive:
     """
     try:
         with open(config["mirror_list"], "w") as outfile:
@@ -95,19 +95,18 @@ def write_mirror_list(config: dict, servers: list, tty: bool = False, custom: bo
             write_mirrorlist_header(outfile, custom=custom)
             cols, lines = pacman_mirrors.functions.util.terminal_size()
             for server in servers:
-                server["url"] = f'{server["protocols"][0]}://{util.sanitize_url(server["url"])}{config["branch"]}{config["repo_arch"]}'
                 if server["resp_time"] == 99.99:
                     # do not write bad servers to mirrorlist
                     continue
-
                 if interactive:
                     if not quiet:
-                        message = f'{server["country"]:<15} : {server["url"]}'
+                        message = f'{server["country"]:<15} : {server["url2"]}'
                         util.msg(message=f"{message:.{cols}}", tty=tty)
                         # print()
                 else:
+                    msg_url = f'{server["url2"]}{config["branch"]}'
                     if not quiet:
-                        message = f'{server["country"]:<15} : {server["url"]}'
+                        message = f'{server["country"]:<15} : {msg_url}'
                         util.msg(message=f"{message:.{cols}}", tty=tty)
 
                 # write list entry
@@ -164,4 +163,4 @@ def write_mirrorlist_entry(handle: any, mirror: dict) -> None:
     """
     workitem = mirror
     handle.write(f'## Country : {workitem["country"]}\n')
-    handle.write(f'Server = {workitem["url"]}\n\n')
+    handle.write(f'Server = {workitem["url2"]}\n\n')
