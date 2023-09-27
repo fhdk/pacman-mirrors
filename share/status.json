@@ -1,1 +1,1923 @@
-[{"country": "bangladesh", "url": "bd.mirror.vanehost.com/Manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.518"}, {"country": "belarus", "url": "mirror.datacenter.by/pub/mirrors/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.159"}, {"country": "belgium", "url": "ftp.belnet.be/mirrors/manjaro/repos/", "protocols": ["http", "https"], "branches": [0, 1, 1, 0, 0, 0], "speed": "0.081"}, {"country": "belgium", "url": "mirror.futureweb.be/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.084"}, {"country": "brazil", "url": "mirror.ufam.edu.br/manjaro/", "protocols": ["http", "https"], "branches": [0, 1, 1, 0, 0, 0], "speed": "1.202"}, {"country": "brazil", "url": "linorg.usp.br/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "1.158"}, {"country": "bulgaria", "url": "mirror.telepoint.bg/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.133"}, {"country": "bulgaria", "url": "manjaro.ipacct.com/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.091"}, {"country": "canada", "url": "mirror.csclub.uwaterloo.ca/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.639"}, {"country": "canada", "url": "mirror.xenyth.net/manjaro/", "protocols": ["http", "https"], "branches": [0, 1, 1, 0, 0, 0], "speed": "0.388"}, {"country": "canada", "url": "muug.ca/mirror/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 0, 0, 0], "speed": "0.463"}, {"country": "chile", "url": "mirror1.cl.netactuate.com/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.697"}, {"country": "china", "url": "mirrors.pku.edu.cn/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "1.705"}, {"country": "china", "url": "mirror.nju.edu.cn/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.752"}, {"country": "china", "url": "mirrors.huaweicloud.com/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "1.386"}, {"country": "china", "url": "mirrors.aliyun.com/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.064"}, {"country": "china", "url": "mirrors.ustc.edu.cn/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "2.398"}, {"country": "china", "url": "mirrors.tuna.tsinghua.edu.cn/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.969"}, {"country": "china", "url": "mirrors.sjtug.sjtu.edu.cn/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "2.401"}, {"country": "china", "url": "mirrors.jlu.edu.cn/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.778"}, {"country": "china", "url": "mirrors.zju.edu.cn/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "2.198"}, {"country": "costa_rica", "url": "mirrors.ucr.ac.cr/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "1.439"}, {"country": "czechia", "url": "mirror.dkm.cz/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.044"}, {"country": "czechia", "url": "mirrors.nic.cz/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.082"}, {"country": "czechia", "url": "mirror.it4i.cz/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.158"}, {"country": "colombia", "url": "edgeuno-bog2.mm.fcix.net/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.531"}, {"country": "denmark", "url": "mirrors.dotsrc.org/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.086"}, {"country": "estonia", "url": "mirrors.xtom.ee/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.111"}, {"country": "finland", "url": "manjaro.kyberorg.fi/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.095"}, {"country": "france", "url": "ftp.free.org/mirrors/repo.manjaro.org/repos/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.056"}, {"country": "france", "url": "mirror.ibakerserver.pt/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.124"}, {"country": "france", "url": "manjaro.ynh.ovh/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.108"}, {"country": "georgia", "url": "repos.silknet.com/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.252"}, {"country": "germany", "url": "mirror.alpix.eu/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.034"}, {"country": "germany", "url": "mirrors.xtom.de/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.036"}, {"country": "germany", "url": "ftp.gwdg.de/pub/linux/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.089"}, {"country": "germany", "url": "mirror.23m.com/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.028"}, {"country": "germany", "url": "ftp.halifax.rwth-aachen.de/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.045"}, {"country": "germany", "url": "ftp.tu-chemnitz.de/pub/linux/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.089"}, {"country": "germany", "url": "mirror.netcologne.de/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.052"}, {"country": "germany", "url": "mirror.seahost.de/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.091"}, {"country": "unknown", "url": "mirrors.manjaro.org/repo/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.045"}, {"country": "hungary", "url": "quantum-mirror.hu/mirrors/pub/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.148"}, {"country": "iran", "url": "repo.iut.ac.ir/repo/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.496"}, {"country": "iran", "url": "mirror.bardia.tech/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.395"}, {"country": "italy", "url": "manjaro.mirror.garr.it/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.162"}, {"country": "italy", "url": "ba.mirror.garr.it/mirrors/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.260"}, {"country": "italy", "url": "ct.mirror.garr.it/mirrors/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.259"}, {"country": "india", "url": "mirrors.piconets.webwerks.in/manjaro-mirror/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.478"}, {"country": "indonesia", "url": "kartolo.sby.datautama.net.id/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.665"}, {"country": "mauritius", "url": "manjarolinux-mirror.cloud.mu/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.678"}, {"country": "japan", "url": "ftp.riken.jp/Linux/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "1.127"}, {"country": "japan", "url": "mirrors.xtom.jp/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.847"}, {"country": "japan", "url": "ftp.tsukuba.wide.ad.jp/Linux/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "1.278"}, {"country": "japan", "url": "mirror.phoepsilonix.love/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.793"}, {"country": "kenya", "url": "manjaro.mirror.liquidtelecom.com/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.904"}, {"country": "netherlands", "url": "manjaro.mirror.wearetriple.com/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.054"}, {"country": "netherlands", "url": "manjaro.mirrors.lavatech.top/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.085"}, {"country": "netherlands", "url": "ftp.nluug.nl/pub/os/Linux/distr/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.150"}, {"country": "netherlands", "url": "ftp.snt.utwente.nl/pub/linux/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.056"}, {"country": "netherlands", "url": "mirror.koddos.net/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.060"}, {"country": "new_zealand", "url": "mirror.2degrees.nz/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.894"}, {"country": "norway", "url": "mirror.terrahost.no/linux/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.251"}, {"country": "poland", "url": "ftp.icm.edu.pl/pub/Linux/dist/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.151"}, {"country": "poland", "url": "ftp.psnc.pl/linux/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.130"}, {"country": "poland", "url": "repo.skni.umcs.pl/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.156"}, {"country": "portugal", "url": "mirrors.up.pt/pub/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.184"}, {"country": "russia", "url": "mirror.yandex.ru/mirrors/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.137"}, {"country": "russia", "url": "mirror.kamtv.ru/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.566"}, {"country": "russia", "url": "mirror.truenetwork.ru/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.626"}, {"country": "singapore", "url": "mirror.freedif.org/Manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.648"}, {"country": "south_africa", "url": "manjaro.mirror.ac.za/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.571"}, {"country": "korea", "url": "mirror.funami.tech/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.727"}, {"country": "spain", "url": "ftp.caliu.cat/pub/distribucions/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.223"}, {"country": "spain", "url": "mirrors.ft.uam.es/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.169"}, {"country": "sweden", "url": "ftp.lysator.liu.se/pub/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 0, 0, 0], "speed": "0.137"}, {"country": "sweden", "url": "mirror.zetup.net/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.971"}, {"country": "sweden", "url": "ftpmirror1.infania.net/mirror/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.111"}, {"country": "switzerland", "url": "mirror.init7.net/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.042"}, {"country": "taiwan", "url": "free.nchc.org.tw/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.894"}, {"country": "taiwan", "url": "mirror.archlinux.tw/Manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.706"}, {"country": "thailand", "url": "mirror.kku.ac.th/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.830"}, {"country": "turkey", "url": "ftp.linux.org.tr/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.167"}, {"country": "ukraine", "url": "manjaro.astra.in.ua/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.273"}, {"country": "ukraine", "url": "fastmirror.pp.ua/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.100"}, {"country": "united_kingdom", "url": "www.mirrorservice.org/sites/repo.manjaro.org/repos/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.115"}, {"country": "united_kingdom", "url": "manjaro.mirrors.uk2.net/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.073"}, {"country": "united_kingdom", "url": "mirrors.gethosted.online/manjaro/repos/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.137"}, {"country": "united_kingdom", "url": "mirror.vinehost.net/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.105"}, {"country": "united_states", "url": "mirror.fcix.net/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.505"}, {"country": "united_states", "url": "nnenix.mm.fcix.net/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.339"}, {"country": "united_states", "url": "irltoolkit.mm.fcix.net/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.429"}, {"country": "united_states", "url": "ziply.mm.fcix.net/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.496"}, {"country": "united_states", "url": "repo.ialab.dsu.edu/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.394"}, {"country": "united_states", "url": "mirrors.ocf.berkeley.edu/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.799"}, {"country": "united_states", "url": "mirror.math.princeton.edu/pub/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.412"}, {"country": "united_states", "url": "mnvoip.mm.fcix.net/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.529"}, {"country": "united_states", "url": "forksystems.mm.fcix.net/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.276"}, {"country": "united_states", "url": "codingflyboy.mm.fcix.net/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.476"}, {"country": "united_states", "url": "coresite.mm.fcix.net/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.310"}, {"country": "united_states", "url": "ridgewireless.mm.fcix.net/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.466"}, {"country": "united_states", "url": "opencolo.mm.fcix.net/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.466"}, {"country": "united_states", "url": "southfront.mm.fcix.net/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.416"}, {"country": "united_states", "url": "volico.mm.fcix.net/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.340"}, {"country": "united_states", "url": "ohioix.mm.fcix.net/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.333"}, {"country": "united_states", "url": "mirrors.sonic.net/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.924"}, {"country": "united_states", "url": "mirrors.gigenet.com/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.599"}, {"country": "united_states", "url": "nocix.mm.fcix.net/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.385"}, {"country": "united_states", "url": "ask4.mm.fcix.net/manjaro/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.087"}, {"country": "uruguay", "url": "manjaro.repo.cure.edu.uy/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "1.111"}, {"country": "uzbekistan", "url": "mirror.dc.uz/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "0.363"}, {"country": "korea", "url": "devpg.net/manjaro/", "protocols": ["http", "https"], "branches": [0, 0, 0, 0, 0, 0], "speed": "1.769"}, {"country": "denmark", "url": "manjaro.dk/repo/", "protocols": ["http", "https"], "branches": [1, 1, 1, 1, 1, 1], "speed": "0.122"}]
+[
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "bangladesh",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.518",
+        "url": "bd.mirror.vanehost.com/Manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "belarus",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.159",
+        "url": "mirror.datacenter.by/pub/mirrors/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            1,
+            1,
+            0,
+            0,
+            0
+        ],
+        "country": "belgium",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.081",
+        "url": "ftp.belnet.be/mirrors/manjaro/repos/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "belgium",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.084",
+        "url": "mirror.futureweb.be/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            1,
+            1,
+            0,
+            0,
+            0
+        ],
+        "country": "brazil",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "1.202",
+        "url": "mirror.ufam.edu.br/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "brazil",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "1.158",
+        "url": "linorg.usp.br/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "bulgaria",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.133",
+        "url": "mirror.telepoint.bg/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "bulgaria",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.091",
+        "url": "manjaro.ipacct.com/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "canada",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.639",
+        "url": "mirror.csclub.uwaterloo.ca/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            1,
+            1,
+            0,
+            0,
+            0
+        ],
+        "country": "canada",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.388",
+        "url": "mirror.xenyth.net/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+        ],
+        "country": "canada",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.463",
+        "url": "muug.ca/mirror/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "chile",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.697",
+        "url": "mirror1.cl.netactuate.com/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "china",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "1.705",
+        "url": "mirrors.pku.edu.cn/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "china",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.752",
+        "url": "mirror.nju.edu.cn/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "china",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "1.386",
+        "url": "mirrors.huaweicloud.com/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "china",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.064",
+        "url": "mirrors.aliyun.com/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "china",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "2.398",
+        "url": "mirrors.ustc.edu.cn/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "china",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.969",
+        "url": "mirrors.tuna.tsinghua.edu.cn/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "china",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "2.401",
+        "url": "mirrors.sjtug.sjtu.edu.cn/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "china",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.778",
+        "url": "mirrors.jlu.edu.cn/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "china",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "2.198",
+        "url": "mirrors.zju.edu.cn/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "costa_rica",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "1.439",
+        "url": "mirrors.ucr.ac.cr/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "czechia",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.044",
+        "url": "mirror.dkm.cz/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "czechia",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.082",
+        "url": "mirrors.nic.cz/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "czechia",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.158",
+        "url": "mirror.it4i.cz/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "colombia",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.531",
+        "url": "edgeuno-bog2.mm.fcix.net/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "denmark",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.086",
+        "url": "mirrors.dotsrc.org/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "estonia",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.111",
+        "url": "mirrors.xtom.ee/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "finland",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.095",
+        "url": "manjaro.kyberorg.fi/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "france",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.056",
+        "url": "ftp.free.org/mirrors/repo.manjaro.org/repos/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "france",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.124",
+        "url": "mirror.ibakerserver.pt/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "france",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.108",
+        "url": "manjaro.ynh.ovh/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "georgia",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.252",
+        "url": "repos.silknet.com/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "germany",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.034",
+        "url": "mirror.alpix.eu/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "germany",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.036",
+        "url": "mirrors.xtom.de/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "germany",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.089",
+        "url": "ftp.gwdg.de/pub/linux/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "germany",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.028",
+        "url": "mirror.23m.com/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "germany",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.045",
+        "url": "ftp.halifax.rwth-aachen.de/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "germany",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.089",
+        "url": "ftp.tu-chemnitz.de/pub/linux/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "germany",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.052",
+        "url": "mirror.netcologne.de/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "germany",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.091",
+        "url": "mirror.seahost.de/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "unknown",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.045",
+        "url": "mirrors.manjaro.org/repo/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "hungary",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.148",
+        "url": "quantum-mirror.hu/mirrors/pub/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "iran",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.496",
+        "url": "repo.iut.ac.ir/repo/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "iran",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.395",
+        "url": "mirror.bardia.tech/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "italy",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.162",
+        "url": "manjaro.mirror.garr.it/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "italy",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.260",
+        "url": "ba.mirror.garr.it/mirrors/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "italy",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.259",
+        "url": "ct.mirror.garr.it/mirrors/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "india",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.478",
+        "url": "mirrors.piconets.webwerks.in/manjaro-mirror/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "indonesia",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.665",
+        "url": "kartolo.sby.datautama.net.id/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "mauritius",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.678",
+        "url": "manjarolinux-mirror.cloud.mu/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "japan",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "1.127",
+        "url": "ftp.riken.jp/Linux/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "japan",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.847",
+        "url": "mirrors.xtom.jp/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "japan",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "1.278",
+        "url": "ftp.tsukuba.wide.ad.jp/Linux/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "japan",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.793",
+        "url": "mirror.phoepsilonix.love/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "kenya",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.904",
+        "url": "manjaro.mirror.liquidtelecom.com/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "netherlands",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.054",
+        "url": "manjaro.mirror.wearetriple.com/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "netherlands",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.085",
+        "url": "manjaro.mirrors.lavatech.top/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "netherlands",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.150",
+        "url": "ftp.nluug.nl/pub/os/Linux/distr/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "netherlands",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.056",
+        "url": "ftp.snt.utwente.nl/pub/linux/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "netherlands",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.060",
+        "url": "mirror.koddos.net/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "new_zealand",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.894",
+        "url": "mirror.2degrees.nz/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "norway",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.251",
+        "url": "mirror.terrahost.no/linux/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "poland",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.151",
+        "url": "ftp.icm.edu.pl/pub/Linux/dist/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "poland",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.130",
+        "url": "ftp.psnc.pl/linux/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "poland",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.156",
+        "url": "repo.skni.umcs.pl/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "portugal",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.184",
+        "url": "mirrors.up.pt/pub/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "russia",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.137",
+        "url": "mirror.yandex.ru/mirrors/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "russia",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.566",
+        "url": "mirror.kamtv.ru/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "russia",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.626",
+        "url": "mirror.truenetwork.ru/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "singapore",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.648",
+        "url": "mirror.freedif.org/Manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "south_africa",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.571",
+        "url": "manjaro.mirror.ac.za/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "korea",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.727",
+        "url": "mirror.funami.tech/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "spain",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.223",
+        "url": "ftp.caliu.cat/pub/distribucions/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "spain",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.169",
+        "url": "mirrors.ft.uam.es/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+        ],
+        "country": "sweden",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.137",
+        "url": "ftp.lysator.liu.se/pub/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "sweden",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.971",
+        "url": "mirror.zetup.net/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "sweden",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.111",
+        "url": "ftpmirror1.infania.net/mirror/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "switzerland",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.042",
+        "url": "mirror.init7.net/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "taiwan",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.894",
+        "url": "free.nchc.org.tw/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "taiwan",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.706",
+        "url": "mirror.archlinux.tw/Manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "thailand",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.830",
+        "url": "mirror.kku.ac.th/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "turkey",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.167",
+        "url": "ftp.linux.org.tr/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "ukraine",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.273",
+        "url": "manjaro.astra.in.ua/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "ukraine",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.100",
+        "url": "fastmirror.pp.ua/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "united_kingdom",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.115",
+        "url": "www.mirrorservice.org/sites/repo.manjaro.org/repos/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "united_kingdom",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.073",
+        "url": "manjaro.mirrors.uk2.net/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "united_kingdom",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.137",
+        "url": "mirrors.gethosted.online/manjaro/repos/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "united_kingdom",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.105",
+        "url": "mirror.vinehost.net/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "united_states",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.505",
+        "url": "mirror.fcix.net/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "united_states",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.339",
+        "url": "nnenix.mm.fcix.net/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "united_states",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.429",
+        "url": "irltoolkit.mm.fcix.net/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "united_states",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.496",
+        "url": "ziply.mm.fcix.net/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "united_states",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.394",
+        "url": "repo.ialab.dsu.edu/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "united_states",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.799",
+        "url": "mirrors.ocf.berkeley.edu/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "united_states",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.412",
+        "url": "mirror.math.princeton.edu/pub/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "united_states",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.529",
+        "url": "mnvoip.mm.fcix.net/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "united_states",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.276",
+        "url": "forksystems.mm.fcix.net/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "united_states",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.476",
+        "url": "codingflyboy.mm.fcix.net/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "united_states",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.310",
+        "url": "coresite.mm.fcix.net/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "united_states",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.466",
+        "url": "ridgewireless.mm.fcix.net/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "united_states",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.466",
+        "url": "opencolo.mm.fcix.net/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "united_states",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.416",
+        "url": "southfront.mm.fcix.net/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "united_states",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.340",
+        "url": "volico.mm.fcix.net/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "united_states",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.333",
+        "url": "ohioix.mm.fcix.net/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "united_states",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.924",
+        "url": "mirrors.sonic.net/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "united_states",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.599",
+        "url": "mirrors.gigenet.com/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "united_states",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.385",
+        "url": "nocix.mm.fcix.net/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "united_states",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.087",
+        "url": "ask4.mm.fcix.net/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "uruguay",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "1.111",
+        "url": "manjaro.repo.cure.edu.uy/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "uzbekistan",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.363",
+        "url": "mirror.dc.uz/manjaro/"
+    },
+    {
+        "branches": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "country": "korea",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "1.769",
+        "url": "devpg.net/manjaro/"
+    },
+    {
+        "branches": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+        ],
+        "country": "denmark",
+        "protocols": [
+            "http",
+            "https"
+        ],
+        "speed": "0.122",
+        "url": "manjaro.dk/repo/"
+    }
+]
