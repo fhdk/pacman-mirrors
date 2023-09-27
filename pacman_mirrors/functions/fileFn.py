@@ -95,6 +95,7 @@ def write_mirror_list(config: dict, servers: list, tty: bool = False, custom: bo
             write_mirrorlist_header(outfile, custom=custom)
             cols, lines = pacman_mirrors.functions.util.terminal_size()
             for server in servers:
+                server["url2"] = f'{server["url2"]}{config["branch"]}{config["repo_arch"]}'
                 if server["resp_time"] == 99.99:
                     # do not write bad servers to mirrorlist
                     continue
