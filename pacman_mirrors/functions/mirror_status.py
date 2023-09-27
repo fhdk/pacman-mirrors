@@ -89,7 +89,6 @@ def print_status(self) -> int:
             temp = mirror.copy()
             temp["url"] = f"{protocol}://{temp['url']}"
             mirrors.append(temp)
-            print(temp)
 
     mirrors = [m for m in mirrors if m['url'] in mirrors_pacman]
 
