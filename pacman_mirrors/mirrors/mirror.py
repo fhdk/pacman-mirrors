@@ -57,6 +57,8 @@ class Mirror:
         # fetch the correct naming for country
         # work around the data file is all lower case
         continent, country = get_continent(alias.replace("_", " "))
+        if not country:
+            country = "Global CDN"
         if country not in self.country_pool:
             self.country_pool.append(country)
         internal = {
