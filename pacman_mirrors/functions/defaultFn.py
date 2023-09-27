@@ -54,6 +54,11 @@ def load_default_mirror_pool(self) -> None:
     seed_mirrors(self, filename)
 
 
+def mirror_seed_from_data(self, data: list) -> list:
+    self.mirrors.seed(data, False, self.config["arm"])
+    return self.mirrors.mirror_pool
+
+
 def seed_mirrors(self, file: str) -> None:
     """
     Seed mirrors
