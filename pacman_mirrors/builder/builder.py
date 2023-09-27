@@ -47,5 +47,5 @@ def build_pool(self) -> list:
         pass
 
     work_pool = filter_user_branch(mirror_pool=work_pool, config=self.config)
-
+    print(work_pool)
     return work_pool
