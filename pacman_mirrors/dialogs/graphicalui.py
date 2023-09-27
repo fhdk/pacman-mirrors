@@ -36,7 +36,7 @@ _ = i18n.language.gettext
 class GraphicalUI(Gtk.Window):
     """Class GraphicalUI"""
 
-    def __init__(self, server_list: list, random: bool, default: bool, custom_list: list, is_done: bool):
+    def __init__(self, server_list: list, random: bool, default: bool):
         title = txt.I_TITLE_RANDOM if random else txt.I_TITLE
         if default:
             title = "Manjaro Mirrors"
@@ -53,10 +53,7 @@ class GraphicalUI(Gtk.Window):
                 try:
                     _ = server_list[0]
                     custom_mirrors.append(
-                        (False,
-                         server["country"],
-                         "",
-                         server["url"]))
+                        (False, server["country"], server["last_sync"], server["url"]))
                 except IndexError as i:
                     print("{} IndexError -> {}".format(txt.ERR_CLR, i))
                     pass
@@ -84,11 +81,17 @@ class GraphicalUI(Gtk.Window):
             column.set_sort_column_id(1)
             self.tree.append_column(column)
 
+            renderer = Gtk.CellRendererText()
+            column = Gtk.TreeViewColumn(txt.I_LAST_SYNC,
+                                        renderer,
+                                        text=2)
             column.set_sort_column_id(2)
             self.tree.append_column(column)
 
             renderer = Gtk.CellRendererText()
-            column = Gtk.TreeViewColumn(txt.I_URL, renderer, text=3)
+            column = Gtk.TreeViewColumn(txt.I_URL,
+                                        renderer,
+                                        text=3)
             column.set_sort_column_id(3)
             self.tree.append_column(column)
 
@@ -97,10 +100,13 @@ class GraphicalUI(Gtk.Window):
             header = Gtk.Label(txt.I_LIST_TITLE)
             button_cancel = Gtk.Button(txt.I_CANCEL)
             button_cancel.connect("clicked", self.cancel)
-            self.button_done = Gtk.Button(txt.I_CONFIRM, sensitive=False)
+            self.button_done = Gtk.Button(txt.I_CONFIRM,
+                                          sensitive=False)
             self.button_done.connect("clicked", self.done)
 
-            grid = Gtk.Grid(column_homogeneous=True, column_spacing=10, row_spacing=10)
+            grid = Gtk.Grid(column_homogeneous=True,
+                            column_spacing=10,
+                            row_spacing=10)
             grid.attach(header, 0, 0, 2, 1)
             grid.attach(scrolled_tree, 0, 1, 2, 1)
             grid.attach(button_cancel, 0, 2, 1, 1)
@@ -110,9 +116,9 @@ class GraphicalUI(Gtk.Window):
 
             # Server lists
             self.server_list = server_list
-            self.custom_list = custom_list
-            self.is_done = is_done
+            self.custom_list = []
 
+            self.is_done = False
         except RuntimeError:
             self.gtk_init = False
 
@@ -151,21 +157,21 @@ class GraphicalUI(Gtk.Window):
         if response == Gtk.ResponseType.OK:
             # Quit GUI
             dialog.destroy()
-            # for line in self.custom_list:
-            #     line["last_sync"] = line["last_sync"].replace(" ", ":").replace("h", "").replace("m", "")
+            for line in self.custom_list:
+                line["last_sync"] = line["last_sync"].replace(" ", ":").replace("h", "").replace("m", "")
             if self.random:
                 shuffle(self.custom_list)
             else:
-                self.custom_list.sort(key=itemgetter("speed"))
+                self.custom_list.sort(key=itemgetter("resp_time"))
             self.is_done = True
             Gtk.main_quit()
         elif response == Gtk.ResponseType.CANCEL:
             dialog.destroy()  # Go back to selection
 
 
-def run(server_list: list, random: bool, custom_list: list, is_done: bool, default: bool = False) -> object:
+def run(server_list: list, random: bool, default: bool = False) -> object:
     """Run"""
-    window = GraphicalUI(server_list, random, default, custom_list, is_done)
+    window = GraphicalUI(server_list, random, default)
     if window.gtk_init:
         window.connect("delete-event", Gtk.main_quit)
         window.show_all()
