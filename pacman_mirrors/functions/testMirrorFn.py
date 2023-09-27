@@ -77,17 +77,17 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
             self.max_wait_time = http_wait
 
         # let's see how responsive you are
-        work_mirror["speed"] = get_mirror_response(url=test_url, config=self.config, tty=self.tty,
+        work_mirror["resp_time"] = get_mirror_response(url=test_url, config=self.config, tty=self.tty,
                                                    maxwait=self.max_wait_time, quiet=self.quiet,
                                                    ssl_verify=ssl_verify)
 
         # create a printable string version from the response with appended zeroes
-        r_str = str(work_mirror["speed"])
+        r_str = str(work_mirror["resp_time"])
         while len(r_str) < 5:
             r_str += "0"
 
         # validate against the defined wait time
-        if work_mirror["speed"] >= self.max_wait_time:
+        if work_mirror["resp_time"] >= self.max_wait_time:
             # skip line - but not if tty
             if not self.quiet:
                 if self.tty:
@@ -108,7 +108,7 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
             sys.stdout.flush()
 
         if limit is not None:
-            if mirror["speed"] == txt.SERVER_RES:
+            if mirror["resp_time"] == txt.SERVER_RES:
                 continue
             counter += 1
             result.append(work_mirror)
@@ -139,7 +139,7 @@ def mirror_protocols(mirror: dict) -> dict:
             "branches": mirror["branches"],
             "country": mirror["country"],
             "protocols": [protocol],
-            "speed": mirror["speed"],
+            "resp_time": mirror["resp_time"],
             "url": mirror["url"],
         }
         result.append(m)
@@ -160,16 +160,16 @@ def filter_bad_http(work: list) -> dict:
         "branches": work[0]["branches"],
         "country": work[0]["country"],
         "protocols": [],
-        "speed": "",
+        "resp_time": "",
         "url": work[0]["url"]
     }
     if len(work) > 1:
         for item in work:
             if (item["protocols"][0].endswith("tps")
-                    and item["speed"] == txt.SERVER_RES or
+                    and item["resp_time"] == txt.SERVER_RES or
                     sum(item["branch"] == 0)):
                 continue
             result["protocols"].append(item["protocols"][0])
-            result["speed"] = item["speed"]
+            result["resp_time"] = item["resp_time"]
         return result
     return work[0]

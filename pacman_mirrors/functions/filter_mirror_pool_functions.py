@@ -30,10 +30,8 @@ def filter_mirror_country(mirror_pool: list, country_pool: list) -> list:
     :rtype: list
     """
     result = []
-    print(mirror_pool, country_pool)
-    exit()
     for mirror in mirror_pool:
-        if str.lower(mirror["country"]) in country_pool:
+        if mirror["country"] in country_pool:
             result.append(mirror)
     return result
 
