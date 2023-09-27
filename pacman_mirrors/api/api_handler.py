@@ -93,14 +93,16 @@ def set_config(self, set_pfx: str = None, set_branch: str = None,
         fileFn.create_dir(foldername=set_pfx + "/etc/pacman.d")
         mirror = [
             {
-                "url": apifn.sanitize_url(set_url),
+                "url": apifn.strip_protocol(set_url),
                 "country": "BUILDMIRROR",
-                "protocols": [set_url[:set_url.find(":")]],
-                "resp_time": "00.00"
+                "protocols": [apifn.strip_url(set_url)],
+                "resp_time": "00.00",
+                "speed": "00:00",
+                "branches": [1, 1, 1, 1, 1, 1],
+                "url2": apifn.sanitize_url(set_url),
             }
         ]
-        fileFn.write_mirror_list(
-            config=self.config, servers=mirror, tty=self.tty, quiet=self.quiet)
+        fileFn.write_mirror_list(config=self.config, servers=mirror, tty=self.tty, quiet=self.quiet)
         # exit gracefully
         sys.exit(0)
     """
