@@ -36,23 +36,25 @@ def filter_bad_mirrors(mirror_pool: list) -> list:
     :return: list with bad mirrors removed
     """
     result = []
-    mirrors = (x for x in mirror_pool if x["speed"] != txt.SERVER_BAD)
+    mirrors = (x for x in mirror_pool
+               if x["speed"] != txt.SERVER_BAD
+               and sum(x["branches"] == 0))
     for mirror in mirrors:
         result.append(mirror)
     return result
 
 
-def filter_error_mirrors(mirror_pool: list) -> list:
-    """
-    Remove mirrors with resp_time == 99.99
-    :param mirror_pool:
-    :return: list with error mirrors removed
-    """
-    result = []
-    mirrors = (x for x in mirror_pool if x["speed"] != txt.SERVER_RES)
-    for mirror in mirrors:
-        result.append(mirror)
-    return result
+# def filter_error_mirrors(mirror_pool: list) -> list:
+#     """
+#     Remove mirrors with resp_time == 99.99
+#     :param mirror_pool:
+#     :return: list with error mirrors removed
+#     """
+#     result = []
+#     mirrors = (x for x in mirror_pool if x["speed"] != txt.SERVER_RES)
+#     for mirror in mirrors:
+#         result.append(mirror)
+#     return result
 
 
 # def filter_poor_mirrors(mirror_pool: list, interval: int = 720) -> list:
