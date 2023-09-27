@@ -286,10 +286,10 @@ def parse_command_line(self, gtk_available: bool) -> None:
             customFn.delete_custom_pool(self)
 
     if args.fasttrack is not None:
-        if args.no_status:
-            print("Version {}\nUSAGE:\n {} {}".format(__version__, "pacman-mirrors", args_summary))
-            print("{}".format(txt.FASTTRACK_ARGUMENTS_ERROR))
-            sys.exit(1)
+        # if args.no_status:
+        #     print("Version {}\nUSAGE:\n {} {}".format(__version__, "pacman-mirrors", args_summary))
+        #     print("{}".format(txt.FASTTRACK_ARGUMENTS_ERROR))
+        #     sys.exit(1)
 
         self.fasttrack = args.fasttrack
         self.geoip = False
