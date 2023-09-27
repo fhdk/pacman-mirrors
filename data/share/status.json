@@ -13,7 +13,7 @@
             "http",
             "https"
         ],
-        "speed": "0.518",
+        "resp_time": "0.518",
         "url": "bd.mirror.vanehost.com/Manjaro/"
     },
     {
@@ -30,7 +30,7 @@
             "http",
             "https"
         ],
-        "speed": "0.159",
+        "resp_time": "0.159",
         "url": "mirror.datacenter.by/pub/mirrors/manjaro/"
     },
     {
@@ -47,7 +47,7 @@
             "http",
             "https"
         ],
-        "speed": "0.081",
+        "resp_time": "0.081",
         "url": "ftp.belnet.be/mirrors/manjaro/repos/"
     },
     {
@@ -64,7 +64,7 @@
             "http",
             "https"
         ],
-        "speed": "0.084",
+        "resp_time": "0.084",
         "url": "mirror.futureweb.be/manjaro/"
     },
     {
@@ -81,7 +81,7 @@
             "http",
             "https"
         ],
-        "speed": "1.202",
+        "resp_time": "1.202",
         "url": "mirror.ufam.edu.br/manjaro/"
     },
     {
@@ -98,7 +98,7 @@
             "http",
             "https"
         ],
-        "speed": "1.158",
+        "resp_time": "1.158",
         "url": "linorg.usp.br/manjaro/"
     },
     {
@@ -115,7 +115,7 @@
             "http",
             "https"
         ],
-        "speed": "0.133",
+        "resp_time": "0.133",
         "url": "mirror.telepoint.bg/manjaro/"
     },
     {
@@ -132,7 +132,7 @@
             "http",
             "https"
         ],
-        "speed": "0.091",
+        "resp_time": "0.091",
         "url": "manjaro.ipacct.com/manjaro/"
     },
     {
@@ -149,7 +149,7 @@
             "http",
             "https"
         ],
-        "speed": "0.639",
+        "resp_time": "0.639",
         "url": "mirror.csclub.uwaterloo.ca/manjaro/"
     },
     {
@@ -166,7 +166,7 @@
             "http",
             "https"
         ],
-        "speed": "0.388",
+        "resp_time": "0.388",
         "url": "mirror.xenyth.net/manjaro/"
     },
     {
@@ -183,7 +183,7 @@
             "http",
             "https"
         ],
-        "speed": "0.463",
+        "resp_time": "0.463",
         "url": "muug.ca/mirror/manjaro/"
     },
     {
@@ -200,7 +200,7 @@
             "http",
             "https"
         ],
-        "speed": "0.697",
+        "resp_time": "0.697",
         "url": "mirror1.cl.netactuate.com/manjaro/"
     },
     {
@@ -217,7 +217,7 @@
             "http",
             "https"
         ],
-        "speed": "1.705",
+        "resp_time": "1.705",
         "url": "mirrors.pku.edu.cn/manjaro/"
     },
     {
@@ -234,7 +234,7 @@
             "http",
             "https"
         ],
-        "speed": "0.752",
+        "resp_time": "0.752",
         "url": "mirror.nju.edu.cn/manjaro/"
     },
     {
@@ -251,7 +251,7 @@
             "http",
             "https"
         ],
-        "speed": "1.386",
+        "resp_time": "1.386",
         "url": "mirrors.huaweicloud.com/manjaro/"
     },
     {
@@ -268,7 +268,7 @@
             "http",
             "https"
         ],
-        "speed": "0.064",
+        "resp_time": "0.064",
         "url": "mirrors.aliyun.com/manjaro/"
     },
     {
@@ -285,7 +285,7 @@
             "http",
             "https"
         ],
-        "speed": "2.398",
+        "resp_time": "2.398",
         "url": "mirrors.ustc.edu.cn/manjaro/"
     },
     {
@@ -302,7 +302,7 @@
             "http",
             "https"
         ],
-        "speed": "0.969",
+        "resp_time": "0.969",
         "url": "mirrors.tuna.tsinghua.edu.cn/manjaro/"
     },
     {
@@ -319,7 +319,7 @@
             "http",
             "https"
         ],
-        "speed": "2.401",
+        "resp_time": "2.401",
         "url": "mirrors.sjtug.sjtu.edu.cn/manjaro/"
     },
     {
@@ -336,7 +336,7 @@
             "http",
             "https"
         ],
-        "speed": "0.778",
+        "resp_time": "0.778",
         "url": "mirrors.jlu.edu.cn/manjaro/"
     },
     {
@@ -353,7 +353,7 @@
             "http",
             "https"
         ],
-        "speed": "2.198",
+        "resp_time": "2.198",
         "url": "mirrors.zju.edu.cn/manjaro/"
     },
     {
@@ -370,7 +370,7 @@
             "http",
             "https"
         ],
-        "speed": "1.439",
+        "resp_time": "1.439",
         "url": "mirrors.ucr.ac.cr/manjaro/"
     },
     {
@@ -387,7 +387,7 @@
             "http",
             "https"
         ],
-        "speed": "0.044",
+        "resp_time": "0.044",
         "url": "mirror.dkm.cz/manjaro/"
     },
     {
@@ -404,7 +404,7 @@
             "http",
             "https"
         ],
-        "speed": "0.082",
+        "resp_time": "0.082",
         "url": "mirrors.nic.cz/manjaro/"
     },
     {
@@ -421,7 +421,7 @@
             "http",
             "https"
         ],
-        "speed": "0.158",
+        "resp_time": "0.158",
         "url": "mirror.it4i.cz/manjaro/"
     },
     {
@@ -438,7 +438,7 @@
             "http",
             "https"
         ],
-        "speed": "0.531",
+        "resp_time": "0.531",
         "url": "edgeuno-bog2.mm.fcix.net/manjaro/"
     },
     {
@@ -455,7 +455,7 @@
             "http",
             "https"
         ],
-        "speed": "0.086",
+        "resp_time": "0.086",
         "url": "mirrors.dotsrc.org/manjaro/"
     },
     {
@@ -472,7 +472,7 @@
             "http",
             "https"
         ],
-        "speed": "0.111",
+        "resp_time": "0.111",
         "url": "mirrors.xtom.ee/manjaro/"
     },
     {
@@ -489,7 +489,7 @@
             "http",
             "https"
         ],
-        "speed": "0.095",
+        "resp_time": "0.095",
         "url": "manjaro.kyberorg.fi/"
     },
     {
@@ -506,7 +506,7 @@
             "http",
             "https"
         ],
-        "speed": "0.056",
+        "resp_time": "0.056",
         "url": "ftp.free.org/mirrors/repo.manjaro.org/repos/"
     },
     {
@@ -523,7 +523,7 @@
             "http",
             "https"
         ],
-        "speed": "0.124",
+        "resp_time": "0.124",
         "url": "mirror.ibakerserver.pt/manjaro/"
     },
     {
@@ -540,7 +540,7 @@
             "http",
             "https"
         ],
-        "speed": "0.108",
+        "resp_time": "0.108",
         "url": "manjaro.ynh.ovh/"
     },
     {
@@ -557,7 +557,7 @@
             "http",
             "https"
         ],
-        "speed": "0.252",
+        "resp_time": "0.252",
         "url": "repos.silknet.com/manjaro/"
     },
     {
@@ -574,7 +574,7 @@
             "http",
             "https"
         ],
-        "speed": "0.034",
+        "resp_time": "0.034",
         "url": "mirror.alpix.eu/manjaro/"
     },
     {
@@ -591,7 +591,7 @@
             "http",
             "https"
         ],
-        "speed": "0.036",
+        "resp_time": "0.036",
         "url": "mirrors.xtom.de/manjaro/"
     },
     {
@@ -608,7 +608,7 @@
             "http",
             "https"
         ],
-        "speed": "0.089",
+        "resp_time": "0.089",
         "url": "ftp.gwdg.de/pub/linux/manjaro/"
     },
     {
@@ -625,7 +625,7 @@
             "http",
             "https"
         ],
-        "speed": "0.028",
+        "resp_time": "0.028",
         "url": "mirror.23m.com/manjaro/"
     },
     {
@@ -642,7 +642,7 @@
             "http",
             "https"
         ],
-        "speed": "0.045",
+        "resp_time": "0.045",
         "url": "ftp.halifax.rwth-aachen.de/manjaro/"
     },
     {
@@ -659,7 +659,7 @@
             "http",
             "https"
         ],
-        "speed": "0.089",
+        "resp_time": "0.089",
         "url": "ftp.tu-chemnitz.de/pub/linux/manjaro/"
     },
     {
@@ -676,7 +676,7 @@
             "http",
             "https"
         ],
-        "speed": "0.052",
+        "resp_time": "0.052",
         "url": "mirror.netcologne.de/manjaro/"
     },
     {
@@ -693,7 +693,7 @@
             "http",
             "https"
         ],
-        "speed": "0.091",
+        "resp_time": "0.091",
         "url": "mirror.seahost.de/manjaro/"
     },
     {
@@ -710,7 +710,7 @@
             "http",
             "https"
         ],
-        "speed": "0.045",
+        "resp_time": "0.045",
         "url": "mirrors.manjaro.org/repo/"
     },
     {
@@ -727,7 +727,7 @@
             "http",
             "https"
         ],
-        "speed": "0.148",
+        "resp_time": "0.148",
         "url": "quantum-mirror.hu/mirrors/pub/manjaro/"
     },
     {
@@ -744,7 +744,7 @@
             "http",
             "https"
         ],
-        "speed": "0.496",
+        "resp_time": "0.496",
         "url": "repo.iut.ac.ir/repo/manjaro/"
     },
     {
@@ -761,7 +761,7 @@
             "http",
             "https"
         ],
-        "speed": "0.395",
+        "resp_time": "0.395",
         "url": "mirror.bardia.tech/manjaro/"
     },
     {
@@ -778,7 +778,7 @@
             "http",
             "https"
         ],
-        "speed": "0.162",
+        "resp_time": "0.162",
         "url": "manjaro.mirror.garr.it/manjaro/"
     },
     {
@@ -795,7 +795,7 @@
             "http",
             "https"
         ],
-        "speed": "0.260",
+        "resp_time": "0.260",
         "url": "ba.mirror.garr.it/mirrors/manjaro/"
     },
     {
@@ -812,7 +812,7 @@
             "http",
             "https"
         ],
-        "speed": "0.259",
+        "resp_time": "0.259",
         "url": "ct.mirror.garr.it/mirrors/manjaro/"
     },
     {
@@ -829,7 +829,7 @@
             "http",
             "https"
         ],
-        "speed": "0.478",
+        "resp_time": "0.478",
         "url": "mirrors.piconets.webwerks.in/manjaro-mirror/"
     },
     {
@@ -846,7 +846,7 @@
             "http",
             "https"
         ],
-        "speed": "0.665",
+        "resp_time": "0.665",
         "url": "kartolo.sby.datautama.net.id/manjaro/"
     },
     {
@@ -863,7 +863,7 @@
             "http",
             "https"
         ],
-        "speed": "0.678",
+        "resp_time": "0.678",
         "url": "manjarolinux-mirror.cloud.mu/"
     },
     {
@@ -880,7 +880,7 @@
             "http",
             "https"
         ],
-        "speed": "1.127",
+        "resp_time": "1.127",
         "url": "ftp.riken.jp/Linux/manjaro/"
     },
     {
@@ -897,7 +897,7 @@
             "http",
             "https"
         ],
-        "speed": "0.847",
+        "resp_time": "0.847",
         "url": "mirrors.xtom.jp/manjaro/"
     },
     {
@@ -914,7 +914,7 @@
             "http",
             "https"
         ],
-        "speed": "1.278",
+        "resp_time": "1.278",
         "url": "ftp.tsukuba.wide.ad.jp/Linux/manjaro/"
     },
     {
@@ -931,7 +931,7 @@
             "http",
             "https"
         ],
-        "speed": "0.793",
+        "resp_time": "0.793",
         "url": "mirror.phoepsilonix.love/manjaro/"
     },
     {
@@ -948,7 +948,7 @@
             "http",
             "https"
         ],
-        "speed": "0.904",
+        "resp_time": "0.904",
         "url": "manjaro.mirror.liquidtelecom.com/"
     },
     {
@@ -965,7 +965,7 @@
             "http",
             "https"
         ],
-        "speed": "0.054",
+        "resp_time": "0.054",
         "url": "manjaro.mirror.wearetriple.com/"
     },
     {
@@ -982,7 +982,7 @@
             "http",
             "https"
         ],
-        "speed": "0.085",
+        "resp_time": "0.085",
         "url": "manjaro.mirrors.lavatech.top/"
     },
     {
@@ -999,7 +999,7 @@
             "http",
             "https"
         ],
-        "speed": "0.150",
+        "resp_time": "0.150",
         "url": "ftp.nluug.nl/pub/os/Linux/distr/manjaro/"
     },
     {
@@ -1016,7 +1016,7 @@
             "http",
             "https"
         ],
-        "speed": "0.056",
+        "resp_time": "0.056",
         "url": "ftp.snt.utwente.nl/pub/linux/manjaro/"
     },
     {
@@ -1033,7 +1033,7 @@
             "http",
             "https"
         ],
-        "speed": "0.060",
+        "resp_time": "0.060",
         "url": "mirror.koddos.net/manjaro/"
     },
     {
@@ -1050,7 +1050,7 @@
             "http",
             "https"
         ],
-        "speed": "0.894",
+        "resp_time": "0.894",
         "url": "mirror.2degrees.nz/manjaro/"
     },
     {
@@ -1067,7 +1067,7 @@
             "http",
             "https"
         ],
-        "speed": "0.251",
+        "resp_time": "0.251",
         "url": "mirror.terrahost.no/linux/manjaro/"
     },
     {
@@ -1084,7 +1084,7 @@
             "http",
             "https"
         ],
-        "speed": "0.151",
+        "resp_time": "0.151",
         "url": "ftp.icm.edu.pl/pub/Linux/dist/manjaro/"
     },
     {
@@ -1101,7 +1101,7 @@
             "http",
             "https"
         ],
-        "speed": "0.130",
+        "resp_time": "0.130",
         "url": "ftp.psnc.pl/linux/manjaro/"
     },
     {
@@ -1118,7 +1118,7 @@
             "http",
             "https"
         ],
-        "speed": "0.156",
+        "resp_time": "0.156",
         "url": "repo.skni.umcs.pl/manjaro/"
     },
     {
@@ -1135,7 +1135,7 @@
             "http",
             "https"
         ],
-        "speed": "0.184",
+        "resp_time": "0.184",
         "url": "mirrors.up.pt/pub/manjaro/"
     },
     {
@@ -1152,7 +1152,7 @@
             "http",
             "https"
         ],
-        "speed": "0.137",
+        "resp_time": "0.137",
         "url": "mirror.yandex.ru/mirrors/manjaro/"
     },
     {
@@ -1169,7 +1169,7 @@
             "http",
             "https"
         ],
-        "speed": "0.566",
+        "resp_time": "0.566",
         "url": "mirror.kamtv.ru/manjaro/"
     },
     {
@@ -1186,7 +1186,7 @@
             "http",
             "https"
         ],
-        "speed": "0.626",
+        "resp_time": "0.626",
         "url": "mirror.truenetwork.ru/manjaro/"
     },
     {
@@ -1203,7 +1203,7 @@
             "http",
             "https"
         ],
-        "speed": "0.648",
+        "resp_time": "0.648",
         "url": "mirror.freedif.org/Manjaro/"
     },
     {
@@ -1220,7 +1220,7 @@
             "http",
             "https"
         ],
-        "speed": "0.571",
+        "resp_time": "0.571",
         "url": "manjaro.mirror.ac.za/"
     },
     {
@@ -1237,7 +1237,7 @@
             "http",
             "https"
         ],
-        "speed": "0.727",
+        "resp_time": "0.727",
         "url": "mirror.funami.tech/manjaro/"
     },
     {
@@ -1254,7 +1254,7 @@
             "http",
             "https"
         ],
-        "speed": "0.223",
+        "resp_time": "0.223",
         "url": "ftp.caliu.cat/pub/distribucions/manjaro/"
     },
     {
@@ -1271,7 +1271,7 @@
             "http",
             "https"
         ],
-        "speed": "0.169",
+        "resp_time": "0.169",
         "url": "mirrors.ft.uam.es/manjaro/"
     },
     {
@@ -1288,7 +1288,7 @@
             "http",
             "https"
         ],
-        "speed": "0.137",
+        "resp_time": "0.137",
         "url": "ftp.lysator.liu.se/pub/manjaro/"
     },
     {
@@ -1305,7 +1305,7 @@
             "http",
             "https"
         ],
-        "speed": "0.971",
+        "resp_time": "0.971",
         "url": "mirror.zetup.net/manjaro/"
     },
     {
@@ -1322,7 +1322,7 @@
             "http",
             "https"
         ],
-        "speed": "0.111",
+        "resp_time": "0.111",
         "url": "ftpmirror1.infania.net/mirror/manjaro/"
     },
     {
@@ -1339,7 +1339,7 @@
             "http",
             "https"
         ],
-        "speed": "0.042",
+        "resp_time": "0.042",
         "url": "mirror.init7.net/manjaro/"
     },
     {
@@ -1356,7 +1356,7 @@
             "http",
             "https"
         ],
-        "speed": "0.894",
+        "resp_time": "0.894",
         "url": "free.nchc.org.tw/manjaro/"
     },
     {
@@ -1373,7 +1373,7 @@
             "http",
             "https"
         ],
-        "speed": "0.706",
+        "resp_time": "0.706",
         "url": "mirror.archlinux.tw/Manjaro/"
     },
     {
@@ -1390,7 +1390,7 @@
             "http",
             "https"
         ],
-        "speed": "0.830",
+        "resp_time": "0.830",
         "url": "mirror.kku.ac.th/manjaro/"
     },
     {
@@ -1407,7 +1407,7 @@
             "http",
             "https"
         ],
-        "speed": "0.167",
+        "resp_time": "0.167",
         "url": "ftp.linux.org.tr/manjaro/"
     },
     {
@@ -1424,7 +1424,7 @@
             "http",
             "https"
         ],
-        "speed": "0.273",
+        "resp_time": "0.273",
         "url": "manjaro.astra.in.ua/"
     },
     {
@@ -1441,7 +1441,7 @@
             "http",
             "https"
         ],
-        "speed": "0.100",
+        "resp_time": "0.100",
         "url": "fastmirror.pp.ua/manjaro/"
     },
     {
@@ -1458,7 +1458,7 @@
             "http",
             "https"
         ],
-        "speed": "0.115",
+        "resp_time": "0.115",
         "url": "www.mirrorservice.org/sites/repo.manjaro.org/repos/"
     },
     {
@@ -1475,7 +1475,7 @@
             "http",
             "https"
         ],
-        "speed": "0.073",
+        "resp_time": "0.073",
         "url": "manjaro.mirrors.uk2.net/"
     },
     {
@@ -1492,7 +1492,7 @@
             "http",
             "https"
         ],
-        "speed": "0.137",
+        "resp_time": "0.137",
         "url": "mirrors.gethosted.online/manjaro/repos/"
     },
     {
@@ -1509,7 +1509,7 @@
             "http",
             "https"
         ],
-        "speed": "0.105",
+        "resp_time": "0.105",
         "url": "mirror.vinehost.net/manjaro/"
     },
     {
@@ -1526,7 +1526,7 @@
             "http",
             "https"
         ],
-        "speed": "0.505",
+        "resp_time": "0.505",
         "url": "mirror.fcix.net/manjaro/"
     },
     {
@@ -1543,7 +1543,7 @@
             "http",
             "https"
         ],
-        "speed": "0.339",
+        "resp_time": "0.339",
         "url": "nnenix.mm.fcix.net/manjaro/"
     },
     {
@@ -1560,7 +1560,7 @@
             "http",
             "https"
         ],
-        "speed": "0.429",
+        "resp_time": "0.429",
         "url": "irltoolkit.mm.fcix.net/manjaro/"
     },
     {
@@ -1577,7 +1577,7 @@
             "http",
             "https"
         ],
-        "speed": "0.496",
+        "resp_time": "0.496",
         "url": "ziply.mm.fcix.net/manjaro/"
     },
     {
@@ -1594,7 +1594,7 @@
             "http",
             "https"
         ],
-        "speed": "0.394",
+        "resp_time": "0.394",
         "url": "repo.ialab.dsu.edu/manjaro/"
     },
     {
@@ -1611,7 +1611,7 @@
             "http",
             "https"
         ],
-        "speed": "0.799",
+        "resp_time": "0.799",
         "url": "mirrors.ocf.berkeley.edu/manjaro/"
     },
     {
@@ -1628,7 +1628,7 @@
             "http",
             "https"
         ],
-        "speed": "0.412",
+        "resp_time": "0.412",
         "url": "mirror.math.princeton.edu/pub/manjaro/"
     },
     {
@@ -1645,7 +1645,7 @@
             "http",
             "https"
         ],
-        "speed": "0.529",
+        "resp_time": "0.529",
         "url": "mnvoip.mm.fcix.net/manjaro/"
     },
     {
@@ -1662,7 +1662,7 @@
             "http",
             "https"
         ],
-        "speed": "0.276",
+        "resp_time": "0.276",
         "url": "forksystems.mm.fcix.net/manjaro/"
     },
     {
@@ -1679,7 +1679,7 @@
             "http",
             "https"
         ],
-        "speed": "0.476",
+        "resp_time": "0.476",
         "url": "codingflyboy.mm.fcix.net/manjaro/"
     },
     {
@@ -1696,7 +1696,7 @@
             "http",
             "https"
         ],
-        "speed": "0.310",
+        "resp_time": "0.310",
         "url": "coresite.mm.fcix.net/manjaro/"
     },
     {
@@ -1713,7 +1713,7 @@
             "http",
             "https"
         ],
-        "speed": "0.466",
+        "resp_time": "0.466",
         "url": "ridgewireless.mm.fcix.net/manjaro/"
     },
     {
@@ -1730,7 +1730,7 @@
             "http",
             "https"
         ],
-        "speed": "0.466",
+        "resp_time": "0.466",
         "url": "opencolo.mm.fcix.net/manjaro/"
     },
     {
@@ -1747,7 +1747,7 @@
             "http",
             "https"
         ],
-        "speed": "0.416",
+        "resp_time": "0.416",
         "url": "southfront.mm.fcix.net/manjaro/"
     },
     {
@@ -1764,7 +1764,7 @@
             "http",
             "https"
         ],
-        "speed": "0.340",
+        "resp_time": "0.340",
         "url": "volico.mm.fcix.net/manjaro/"
     },
     {
@@ -1781,7 +1781,7 @@
             "http",
             "https"
         ],
-        "speed": "0.333",
+        "resp_time": "0.333",
         "url": "ohioix.mm.fcix.net/manjaro/"
     },
     {
@@ -1798,7 +1798,7 @@
             "http",
             "https"
         ],
-        "speed": "0.924",
+        "resp_time": "0.924",
         "url": "mirrors.sonic.net/manjaro/"
     },
     {
@@ -1815,7 +1815,7 @@
             "http",
             "https"
         ],
-        "speed": "0.599",
+        "resp_time": "0.599",
         "url": "mirrors.gigenet.com/manjaro/"
     },
     {
@@ -1832,7 +1832,7 @@
             "http",
             "https"
         ],
-        "speed": "0.385",
+        "resp_time": "0.385",
         "url": "nocix.mm.fcix.net/manjaro/"
     },
     {
@@ -1849,7 +1849,7 @@
             "http",
             "https"
         ],
-        "speed": "0.087",
+        "resp_time": "0.087",
         "url": "ask4.mm.fcix.net/manjaro/"
     },
     {
@@ -1866,7 +1866,7 @@
             "http",
             "https"
         ],
-        "speed": "1.111",
+        "resp_time": "1.111",
         "url": "manjaro.repo.cure.edu.uy/"
     },
     {
@@ -1883,7 +1883,7 @@
             "http",
             "https"
         ],
-        "speed": "0.363",
+        "resp_time": "0.363",
         "url": "mirror.dc.uz/manjaro/"
     },
     {
@@ -1900,7 +1900,7 @@
             "http",
             "https"
         ],
-        "speed": "1.769",
+        "resp_time": "1.769",
         "url": "devpg.net/manjaro/"
     },
     {
@@ -1917,7 +1917,7 @@
             "http",
             "https"
         ],
-        "speed": "0.122",
+        "resp_time": "0.122",
         "url": "manjaro.dk/repo/"
     }
 ]

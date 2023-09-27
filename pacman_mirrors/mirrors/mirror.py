@@ -59,14 +59,15 @@ class Mirror:
         # sort protocols in reversed order https,http,ftps,ftp
         protocols = sorted(protocols, reverse=True)
         country = country.replace("_", " ")
-        continent = get_continent(country)
+        (country_name, continent_name) = get_continent(country)
         # add to pool
         self.mirror_pool.append({
-            "continent": continent,
+            "continent": continent_name,
             "branches": branches,
-            "country": country,
+            "country": country_name,
             "protocols": protocols,
-            "speed": resp_time,
+            "resp_time": resp_time,
+            "last_sync": "",
             "url": url
         })
 

@@ -39,7 +39,7 @@ def apply_status_to_custom_pool(config: dict, custom_pool: list) -> list:
         for custom in custom_list:
             for status in status_list:
                 if custom["url"] in status["url"]:
-                    custom["speed"] = status["speed"]
+                    custom["resp_time"] = status["resp_time"]
                     custom["resp_time"] = ""
                     custom["last_sync"] = status["last_sync"]
                     custom["branches"] = status["branches"]

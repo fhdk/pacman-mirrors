@@ -64,7 +64,7 @@ def translate_pool_to_interactive(mirror_pool: list, tty: bool = False) -> list:
             for idx, protocol in enumerate(mirror["protocols"]):
                 interactive_list.append({
                     "country": mirror["country"],
-                    "resp_time": str(mirror["speed"]),
+                    "resp_time": str(mirror["resp_time"]),
                     "last_sync": "",
                     "url": f"{protocol}://{mirror_url}"
                 })

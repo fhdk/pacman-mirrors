@@ -95,7 +95,7 @@ class PacmanMirrors:
                 "branches": [1, 1, 1, 1, 1, 1],
                 "country": "Enterprise",
                 "protocols": [str.split(self.config["static"], ":")[0]],
-                "speed": "0.125",
+                "resp_time": "0.125",
                 "url": str.split(self.config["static"], "//")[-1]
             }]
             outputFn.write_pacman_mirror_list(self, mirrors)

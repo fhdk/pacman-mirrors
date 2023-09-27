@@ -64,7 +64,7 @@ def build_mirror_list(self, limit: int) -> None:
         """
         # sort the result
         """
-        work_pool = sort_mirror_pool(worklist=work_pool, field="speed", reverse=False)
+        work_pool = sort_mirror_pool(worklist=work_pool, field="resp_time", reverse=False)
         write_pacman_mirror_list(self=self, selected_servers=work_pool)
 
     except IndexError:
