@@ -199,6 +199,14 @@ def sanitize_url(url: str) -> str:
     return url + "/"
 
 
+def strip_protocol(url: str) -> str:
+    return util.strip_protocol(url)
+
+
+def strip_url(url: str) -> str:
+    return util.get_protocol(url)
+
+
 def write_config_branch(branch: str, filename: str, tty: bool = False, quiet: bool = False) -> None:
     """Write branch
     :param branch:
