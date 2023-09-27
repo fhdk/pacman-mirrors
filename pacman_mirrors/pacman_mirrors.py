@@ -101,9 +101,8 @@ class PacmanMirrors:
             }]
             outputFn.write_pacman_mirror_list(self, mirrors)
             outputFn.write_custom_mirrors_json(self, mirrors)
-            exit(0)
-        else:
 
+        else:
             fileFn.create_dir(self.config["work_dir"])
 
             cliFn.parse_command_line(self, gtk_available=GTK_AVAILABLE)
@@ -129,16 +128,16 @@ class PacmanMirrors:
             # Load configured mirror pool
             defaultFn.load_config_mirror_pool(self)
 
-        # Decide which type of mirrorlist to create
-        # Fasttrack
-        if self.fasttrack:
-            fasttrack.build_mirror_list(self, limit=self.fasttrack)
-        # Interactive
-        elif self.interactive:
-            interactive.build_mirror_list(self)
-        # Default
-        else:
-            common.build_mirror_list(self)
+            # Decide which type of mirrorlist to create
+            # Fasttrack
+            if self.fasttrack:
+                fasttrack.build_mirror_list(self, limit=self.fasttrack)
+            # Interactive
+            elif self.interactive:
+                interactive.build_mirror_list(self)
+            # Default
+            else:
+                common.build_mirror_list(self)
 
 
 if __name__ == "__main__":
