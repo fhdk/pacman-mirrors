@@ -22,13 +22,13 @@
 # http constants
 TEST_FILE = "core.db.tar.gz"
 USER_AGENT = "Pacman-Mirrors/"
-URL_MIRROR_MANAGER = "https://mirror-manager.manjaro.org/status.json"
+MIRROR_MANAGER = "https://mirror-manager.manjaro.org/status.json"
 INET_CONN_CHECK_URLS = ["https://mirror-manager.manjaro.org"]
 # etc files
 CONFIG_FILE = "/etc/pacman-mirrors.conf"
 MIRROR_LIST = "/etc/pacman.d/mirrorlist"
 # pacman-mirrors dir/files
-WORK_DIR = "/var/lib/pacman-mirrors/"
+VAR_DIR = "/var/lib/pacman-mirrors/"
 CUSTOM_FILE = "/var/lib/pacman-mirrors/custom-mirrors.json"
 MIRROR_FILE = "/var/lib/pacman-mirrors/status.json"
 # repo constants

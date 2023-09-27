@@ -26,15 +26,15 @@ from pacman_mirrors.functions.validFn import country_list_is_valid, custom_confi
 
 def wash_country_list(country_list: list):
     washed = []
-    for country in country_list:
-        codename = country.lower()
-        result = country
-        codenames = (r for r in countries if r["code"].lower() == codename or r["name"].lower() == codename)
-        for search in codenames:
-            if search is not None:
-                result = search["name"]
-        if result not in washed:
-            washed.append(result)
+    for p in country_list:
+        c = p.lower()
+        r = p
+        search = (r for r in countries if r["code"].lower() == c or r["name"].lower() == c)
+        for s in search:
+            if s is not None:
+                r = s["name"]
+        if r not in washed:
+            washed.append(r)
     return washed
 
 
@@ -94,12 +94,12 @@ def get_continent(country: str) -> tuple:
     country_name = ""
     real_country = (x for x in countries if country in str.lower(x["name"]))
     for y in real_country:
-        country_name = y
+        country_name = y["name"]
     continent = (x for x in countries if country in str.lower(x["name"]))
     for x in continent:
         continent_name = x["continent"].strip().replace(" ", "_")
 
-    return country_name, continent_name
+    return continent_name, country_name
 
 
 def get_continent_countries(continent: str, mirror_pool: list) -> list:

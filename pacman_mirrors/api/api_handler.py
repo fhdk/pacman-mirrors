@@ -55,7 +55,7 @@ def set_config(self, set_pfx: str = None, set_branch: str = None,
         self.config["custom_file"] = set_pfx + self.config["custom_file"]
         self.config["mirror_file"] = set_pfx + self.config["mirror_file"]
         self.config["mirror_list"] = set_pfx + self.config["mirror_list"]
-        self.config["work_dir"] = set_pfx + self.config["work_dir"]
+        self.config["var_dir"] = set_pfx + self.config["var_dir"]
 
     """
     # First API task: Set branch
