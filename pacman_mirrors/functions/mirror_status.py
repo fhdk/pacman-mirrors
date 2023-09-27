@@ -5,10 +5,9 @@ from urllib import error
 import json
 from pacman_mirrors.constants import colors
 from pacman_mirrors.functions import printFn
-from pacman_mirrors.functions.util import strip_protocol
 from pacman_mirrors.functions.util import msg
-from datetime import datetime
 from pacman_mirrors.functions.jsonFn import read_json_file
+from pacman_mirrors.functions.defaultFn import mirror_seed_from_data
 
 C_KO = colors.RED
 C_OK = colors.GREEN
@@ -27,8 +26,8 @@ def get_local_mirrors(mirrorlist: str) -> tuple:
                 mirror_url = line.split('/')
                 mirror_url.pop()
                 mirror_branch = mirror_url.pop()
-                line = "/".join(mirror_url)
-                urls.append(line + "/",)
+                # line = "/".join(mirror_url)
+                urls.append(line)
         return mirror_branch, urls
     except (FileNotFoundError, UnboundLocalError):
         return "", []
@@ -66,7 +65,7 @@ def print_status(self) -> int:
         return 0
     # // --- END ---------------------------------------------------------------------
 
-    system_branch, mirrors_pacman = get_local_mirrors(self.config["mirror_file"])
+    system_branch, mirrors_pacman = get_local_mirrors(self.config["mirror_list"])
     # bug out when no local mirrorlist exist or branch is deprecated
     if system_branch == "" or system_branch == "stable-staging":
         print(C_KO, "MIRRORLIST ERROR", C_NONE)
@@ -75,19 +74,22 @@ def print_status(self) -> int:
     try:
         # // --- DEBUG ---------------------------------------------------------------
         # with request.urlopen('http://localhost:8000/status.json') as f_url:
-        with request.urlopen('https://repo.manjaro.org/status.json') as f_url:
+        with request.urlopen(self.config["mirror_manager"]) as f_url:
             req = f_url.read()
     except error.URLError:
         msg("Downloading status failed!", color=colors.BLUE)
         msg("Please check you network connection ...", color=colors.YELLOW)
         return 1  # return failure
     json_data = json.loads(req)
+    data = mirror_seed_from_data(self, json_data)
     mirrors = []
-    for mirror in json_data:
+
+    for mirror in data:
         for protocol in mirror["protocols"]:
             temp = mirror.copy()
-            temp["url"] = f"{protocol}://{strip_protocol(temp['url'])}"
+            temp["url"] = f"{protocol}://{temp['url']}"
             mirrors.append(temp)
+            print(temp)
 
     mirrors = [m for m in mirrors if m['url'] in mirrors_pacman]
 
