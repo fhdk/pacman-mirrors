@@ -90,6 +90,8 @@ class PacmanMirrors:
         # Build mirror list
         """
         (self.config, self.custom) = config_setup.setup_config(self)
+        fileFn.create_dir(self.config["var_dir"])
+        cliFn.parse_command_line(self, gtk_available=GTK_AVAILABLE)
 
         if self.config["enterprise"]:
             self.custom = False
@@ -109,8 +111,6 @@ class PacmanMirrors:
             exit(0)
         else:
             # default pacman-mirrors
-            fileFn.create_dir(self.config["var_dir"])
-            cliFn.parse_command_line(self, gtk_available=GTK_AVAILABLE)
             util.aarch64_check(self, write=True)
             if not config_setup.sanitize_config(config=self.config):
                 sys.exit(2)

@@ -336,6 +336,4 @@ def parse_command_line(self, gtk_available: bool) -> None:
                 else:
                     self.config["protocols"] = args.proto
 
-        api_handler.set_config(self, set_pfx=args.prefix,
-                               set_branch=setbranch, re_branch=rebranch,
-                               set_protocols=setprotocols, set_url=url)
+        api_handler.set_config(self, set_pfx=args.prefix, set_branch=setbranch, re_branch=rebranch, set_protocols=setprotocols, set_url=url)

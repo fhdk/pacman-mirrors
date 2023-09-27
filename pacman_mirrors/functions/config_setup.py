@@ -64,29 +64,28 @@ def setup_config(self) -> tuple:
                 if line.startswith("#") or "=" not in line:
                     continue
                 (key, value) = line.split("=", 1)
-                key = key.lstrip().rstrip().lower()
+                key = key.lstrip().rstrip()
                 value = value.lstrip()
                 if key and value:
                     if value.startswith("\"") and value.endswith("\""):
                         value = value[1:-1]
-                    if key == "method":
+                    if key == "Method":
                         config["method"] = value
-                    if key == "branch":
+                    if key == "Branch":
                         config["branch"] = value
-                    if key == "protocols":
+                    if key == "Protocols":
                         if "," in value:
                             config["protocols"] = value.split(",")
                         else:
                             config["protocols"] = value.split(" ")
-                    if key == "sslverify":
+                    if key == "SSLVerify":
                         config["ssl_verify"] = value.lower().capitalize()
                     if key == "TestFile":
                         config["test_file"] = value
                         if not config["test_file"]:
                             config["test_file"] = configuration.TEST_FILE
                     # refactor Enterprise mirror option
-                    if key == "static":
-                        custom = False
+                    if key == "Static":
                         config["enterprise"] = True
                         config["static"] = value
 
