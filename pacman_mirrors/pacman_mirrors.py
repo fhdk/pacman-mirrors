@@ -99,7 +99,6 @@ class PacmanMirrors:
                 "url": str.split(self.config["static"], "//")[-1]
             }]
             outputFn.write_pacman_mirror_list(self, mirrors)
-            outputFn.write_custom_mirrors_json(self, mirrors)
 
         else:
             fileFn.create_dir(self.config["work_dir"])
