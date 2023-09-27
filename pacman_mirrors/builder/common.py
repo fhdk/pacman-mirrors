@@ -22,8 +22,7 @@
 from random import shuffle
 
 from pacman_mirrors.builder.builder import build_pool
-from pacman_mirrors.functions.filter_mirror_status_functions import \
-    filter_error_mirrors
+# from pacman_mirrors.functions.filter_mirror_status_functions import filter_error_mirrors
 
 from pacman_mirrors.constants import txt
 
