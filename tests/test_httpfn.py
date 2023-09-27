@@ -15,23 +15,27 @@ from pacman_mirrors.pacman_mirrors import PacmanMirrors
 from . import mock_configuration as mock
 
 config = {
+    "arm": False,
     "branch": "stable",
     "branches": mock.BRANCHES,
     "config_file": mock.CONFIG_FILE,
+    "country_pool": [],
     "custom_file": mock.CUSTOM_FILE,
+    "enterprise": False,  # refactor - part of refactor for new mirror-manager
     "method": "rank",
     "mirror_file": mock.MIRROR_FILE,
     "mirror_list": mock.MIRROR_LIST,
+    "mirror_manager": mock.MIRROR_MANAGER,
     "no_update": False,
-    "country_pool": [],
     "protocols": [],
     "repo_arch": mock.REPO_ARCH,
     "ssl_verify": True,
+    "static": None,
+    # "status_file": conf.STATUS_FILE, # removed - part of refactor for new mirror-manager
     "test_file": mock.TEST_FILE,
-    "url_mirrors_json": mock.URL_MIRROR_MANAGER,
-    "work_dir": mock.WORK_DIR,
-    "arm": False,
-    "timeout": 2
+    "timeout": 2,
+    # "url_status_json": conf.URL_STATUS_JSON, #  removed - part of refactor for new mirror-manager
+    "var_dir": mock.VAR_DIR,
 }
 
 
