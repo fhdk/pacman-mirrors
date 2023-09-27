@@ -92,6 +92,9 @@ class PacmanMirrors:
         (self.config, self.custom) = config_setup.setup_config(self)
 
         if self.config["enterprise"]:
+            self.custom = False
+            if os.path.isfile(self.config["custom_file"]):
+                os.remove(self.config["custom_file"])
             # write enterprice mirror list
             util.msg("Enterprise setup found")
             mirrors = [{
