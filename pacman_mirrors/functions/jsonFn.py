@@ -53,7 +53,7 @@ def write_json_file(data: list, filename: str, dictionary: bool = False) -> bool
     """
     try:
         if dictionary:
-            with open(filename, "wb") as outfile:
+            with open(filename, "w") as outfile:
                 json.dump(data, outfile)
         else:
             with open(filename, "w") as outfile:

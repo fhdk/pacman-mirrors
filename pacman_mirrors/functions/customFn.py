@@ -32,14 +32,16 @@ def apply_status_to_custom_pool(config: dict, custom_pool: list) -> list:
     :param custom_pool: the custom mirror pool
     :return: custom mirror pool with status applied
     """
-    status_list = tuple(jsonFn.read_json_file(filename=config["status_file"], dictionary=False))
+    status_list = tuple(jsonFn.read_json_file(filename=config["mirror_file"], dictionary=False))
     custom_list = tuple(custom_pool)
     try:
         _ = status_list[0]
         for custom in custom_list:
             for status in status_list:
                 if custom["url"] in status["url"]:
-                    # custom["last_sync"] = status["last_sync"]
+                    custom["speed"] = status["speed"]
+                    custom["resp_time"] = ""
+                    custom["last_sync"] = status["last_sync"]
                     custom["branches"] = status["branches"]
         return list(custom_list)
     except (IndexError, KeyError):

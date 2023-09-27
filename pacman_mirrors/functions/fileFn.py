@@ -151,8 +151,8 @@ def write_mirrorlist_header(handle: any, custom: bool = False) -> None:
         handle.write(f"## Manjaro Linux {txt.MIRROR_LIST_DEFAULT_HEADER}\n"
                      f"## {txt.MIRROR_LIST_GENERATED_ON} {generated_timestamp}\n"
                      "##\n"
-                     f"## {txt.PLEASE_USE} '{txt.MODIFY_DEFAULT} [{txt.NUMBER}]' {txt.MIRROR_LIST_DEFAULT_MODIFY}\n"
-                     f"## ({txt.USE_ZERO_FOR_ALL})\n")
+                     f"## {txt.PLEASE_USE} '{txt.MODIFY_DEFAULT}' {txt.MIRROR_LIST_DEFAULT_MODIFY}\n")
+
     handle.write("##\n\n")
 
 
