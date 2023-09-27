@@ -42,14 +42,13 @@ from pacman_mirrors.functions import util
 USER_AGENT = {"User-Agent": "{}{}".format(conf.USER_AGENT, __version__)}
 
 
-def download_mirrors(config: dict) -> tuple:
+def download_mirrors(config: dict) -> bool:
     """Retrieve mirrors from manjaro.org
     :param config:
     :returns: tuple with bool for mirrors.json and status.json
     :rtype: tuple
     """
     fetchmirrors = True
-    fetchstatus = True
     message = ""
     try:
         # mirrors.json
@@ -85,11 +84,8 @@ def download_mirrors(config: dict) -> tuple:
         util.msg(message=message, urgency=txt.ERR_CLR, newline=True)
         message = ""
 
-    if message != "":
-        fetchstatus = False
-        util.msg(message=message, urgency=txt.ERR_CLR, newline=True)
     # result
-    return fetchmirrors, fetchstatus
+    return fetchmirrors
 
 
 def get_ip_country(maxwait: int = 2) -> str:
@@ -232,8 +228,8 @@ def ping_host(host: str, tty: bool = False, count: int = 1) -> bool:
     return system_call("ping -c{} {} > /dev/null".format(count, host)) == 0
 
 
-def download_mirror_pool(config: dict, tty: bool = False, quiet: bool = False) -> tuple:
-    """Download updates from repo.manjaro.org
+def download_mirror_pool(config: dict, tty: bool = False, quiet: bool = False) -> bool:
+    """Download updates from mirror-manager.manjaro.org
     :param config:
     :param quiet:
     :param tty:
@@ -249,19 +245,10 @@ def download_mirror_pool(config: dict, tty: bool = False, quiet: bool = False) -
                      tty=tty)
         result = download_mirrors(config)
     else:
-        # if not fileFn.check_file(config["status_file"]):
-        #     if not quiet:
-        #         util.msg(message=f"{txt.MIRROR_FILE} {config['status_file']} {txt.IS_MISSING}",
-        #                  urgency=txt.WRN_CLR,
-        #                  tty=tty)
-        #         util.msg(message=f"{txt.FALLING_BACK} {conf.MIRROR_FILE}",
-        #                  urgency=txt.WRN_CLR,
-        #                  tty=tty)
-        #     result = (True, False)
         if not fileFn.check_file(config["mirror_file"]):
             if not quiet:
                 util.msg(message=f"{txt.HOUSTON}",
                          urgency=txt.HOUSTON,
                          tty=tty)
-            result = (False, False)
+            result = False
     return result
