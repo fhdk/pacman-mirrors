@@ -17,13 +17,10 @@
 #
 # Authors: Frede Hundewadt <echo ZmhAbWFuamFyby5vcmcK | base64 -d>
 
-from pacman_mirrors.functions.filter_mirror_pool_functions import \
-    filter_mirror_protocols, filter_mirror_country, filter_user_branch
-
-from pacman_mirrors.functions.filter_mirror_status_functions import \
-    filter_bad_mirrors, filter_error_mirrors
-
-from pacman_mirrors.functions.outputFn import write_custom_mirrors_json
+from pacman_mirrors.functions.filter_mirror_pool_functions import filter_mirror_protocols
+from pacman_mirrors.functions.filter_mirror_pool_functions import filter_mirror_country
+from pacman_mirrors.functions.filter_mirror_pool_functions import filter_user_branch
+from pacman_mirrors.functions.filter_mirror_status_functions import filter_bad_mirrors
 
 
 def build_pool(self) -> list:
@@ -32,16 +29,7 @@ def build_pool(self) -> list:
     :param self:
     :return: filtered list of available mirrors
     """
-
-    """
-    remove known bad mirrors - last sync 9999:99
-    """
-    work_pool = filter_bad_mirrors(mirror_pool=self.mirrors.mirror_pool)
-
-    """
-    remove known error mirrors - response time 99.99
-    """
-    work_pool = filter_error_mirrors(mirror_pool=work_pool)
+    work_pool = self.mirrors.mirror_pool
 
     """
     Apply country filter if not fasttrack
