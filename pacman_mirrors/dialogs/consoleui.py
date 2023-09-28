@@ -31,7 +31,6 @@ _ = i18n.language.gettext
 
 
 class ConsoleUI(npyscreen.NPSAppManaged):
-    """App"""
 
     def __init__(self, server_list: list, random: bool, default: bool):
         npyscreen.NPSAppManaged.__init__(self)
@@ -40,9 +39,9 @@ class ConsoleUI(npyscreen.NPSAppManaged):
             self.title = "Pacman-Mirrors"
 
         # Server lists
-        self.custom_list = []
+        self._custom_list = []
 
-        self.is_done = False
+        self._is_done = False
         self.random = random
         self.default = default
 
@@ -64,6 +63,12 @@ class ConsoleUI(npyscreen.NPSAppManaged):
         self.header_row = ("{:<5}".format(txt.I_USE) + (self.server_rows[0].replace("|", " ").strip()))
 
         del self.server_rows[0]
+
+    def is_done(self):
+        return self._is_done
+
+    def custom_list(self):
+        return self._custom_list
 
     def main(self):
         """Main"""
@@ -88,11 +93,11 @@ class ConsoleUI(npyscreen.NPSAppManaged):
         if selection:
             for mirror in selection:
                 server = mirror.split("|")
-                self.custom_list.append({"country": server[0].strip(),
+                self._custom_list.append({"country": server[0].strip(),
                                          "resp_time": server[1].strip(),
                                          "last_sync": server[2].strip(),
                                          "url": server[3].strip()})
-        self.is_done = True
+        self._is_done = True
         self.setNextForm(None)
 
 

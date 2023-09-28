@@ -25,8 +25,7 @@ from random import shuffle
 from pacman_mirrors.builder.builder import build_pool
 from pacman_mirrors.constants import txt
 
-from pacman_mirrors.functions.conversion import \
-    interactive_to_pool, pool_to_interactive
+from pacman_mirrors.functions.conversion import interactive_to_pool, pool_to_interactive
 
 from pacman_mirrors.functions.filter_mirror_pool_functions import \
     filter_user_branch
@@ -37,6 +36,7 @@ from pacman_mirrors.functions.outputFn import \
 from pacman_mirrors.functions.sortMirrorFn import sort_mirror_pool
 from pacman_mirrors.functions.testMirrorFn import test_mirror_pool
 from pacman_mirrors.functions import util
+from pacman_mirrors.dialogs import cutie
 
 
 def build_mirror_list(self) -> None:
@@ -56,84 +56,89 @@ def build_mirror_list(self) -> None:
         else:
             shuffle(worklist)
 
-    """
-    Create a list for display in ui.
-    The gui and the console ui expect the supplied list
-    to be in the old country dictionary format.
-    {
-        "country": "country_name",
-        "resp_time": "m.sss",
-        "last_sync": "HHh MMm",
-        "url": "http://server/repo/"
-    }
-    """
-    interactive_list = pool_to_interactive(mirror_pool=worklist, tty=self.tty)
+    # translate ppol to interactive
+    # interactive_list = pool_to_interactive(mirror_pool=worklist, tty=self.tty)
 
-    # import the correct ui
-    if self.no_display or self.config["arm"]:
-        # in console mode
-        from pacman_mirrors.dialogs import consoleui as ui
-    else:
-        # gtk mode
-        from pacman_mirrors.dialogs import graphicalui as ui
-
-    interactive = ui.run(server_list=interactive_list,
-                         random=self.config["method"] == "random",
-                         default=self.default)
+    # # import the correct ui
+    # if self.no_display or self.config["arm"]:
+    #     # in console mode
+    #     from pacman_mirrors.dialogs import consoleui as ui
+    #     interactive = ui.ConsoleUI
+    # else:
+    #     # gtk mode
+    #     from pacman_mirrors.dialogs import graphicalui as ui
+    #     interactive = ui.GraphicalUI
+    #
+    # ui.run(server_list=interactive_list,
+    #        random=self.config["method"] == "random",
+    #        default=self.default)
 
     # process user choices
-    if interactive.is_done:
-        """
-        translate interactive list back to our json format
-        """
-        custom_pool, mirror_list = interactive_to_pool(selection=interactive.custom_list,
-                                                       mirror_pool=self.mirrors.mirror_pool,
-                                                       tty=self.tty)
+    # if interactive.is_done:
 
-        """
-        Try selected method on the mirrorlist
-        """
-        try:
-            _ = mirror_list[0]
-            # using the default runs method after selection
-            if self.default:
-                if self.config["method"] == "rank":
-                    mirror_list = test_mirror_pool(self=self, worklist=mirror_list)
-                    mirror_list = sorted(mirror_list, key=itemgetter("resp_time"))
-                else:
-                    shuffle(mirror_list)
-        except IndexError:
-            pass
+    available = []
+    for m in worklist:
+        for p in m["protocols"]:
+            available.append(f'{p}://{m["url"]}')
 
-        """
-        Write custom mirror pool
-        Write mirrorlist
-        """
-        try:
-            _ = custom_pool[0]
-            self.custom = True
-            self.config["country_pool"] = ["Custom"]
+    result = cutie.select_multiple(available)
 
-            """
-            Writing the custom mirror pool file
-            """
-            write_custom_mirrors_json(self=self, selected_mirrors=custom_pool)
+    mirror_list = [select for idx, select in enumerate(available) if idx in result]
 
-            """
-            Writing mirrorlist
-            If the mirror list is empty because
-            no up-to-date mirrors exist for users branch
-            raise IndexError to the outer try-catch
-            """
-            try:
-                _ = mirror_list[0]
-                write_pacman_mirror_list(self, mirror_list)
-                # # removed - part of refactor for new mirror-manager
-                # if self.no_status:
-                #     util.msg(message=f"{txt.OVERRIDE_STATUS_CHOICE}", urgency=txt.WRN_CLR, tty=self.tty)
-                #     util.msg(message=f"{txt.OVERRIDE_STATUS_MIRROR}", urgency=txt.WRN_CLR, tty=self.tty)
-            except IndexError:
-                raise IndexError
-        except IndexError:
-            util.msg(message=f"{txt.NO_SELECTION}", urgency=txt.WRN_CLR, tty=self.tty)
-            util.msg(message=f"{txt.NO_CHANGE}", urgency=txt.INF_CLR, tty=self.tty)
+    custom_pool = [select for idx, select in enumerate(worklist) if idx in result]
+    if mirror_list:
+        print(f"mirrorlist {len(mirror_list)}/{len(available)}\nselection:", mirror_list)
+        print(f"custompool {len(custom_pool)}/{len(custom_pool)}\nselection:", custom_pool)
+
+    # translate interactive list back
+    # custom_pool, mirror_list = interactive_to_pool(selection=custom_list,
+    #                                                mirror_pool=self.mirrors.mirror_pool,
+    #                                                tty=self.tty)
+
+    # """
+    # Try selected method on the mirrorlist
+    # """
+    # try:
+    #     _ = mirror_list[0]
+    #     # using the default runs method after selection
+    #     if self.default:
+    #         if self.config["method"] == "rank":
+    #             mirror_list = test_mirror_pool(self=self, worklist=mirror_list)
+    #             mirror_list = sorted(mirror_list, key=itemgetter("resp_time"))
+    #         else:
+    #             shuffle(mirror_list)
+    # except IndexError:
+    #     pass
+    #
+    # """
+    # Write custom mirror pool
+    # Write mirrorlist
+    # """
+    # try:
+    #     _ = custom_pool[0]
+    #     self.custom = True
+    #     self.config["country_pool"] = ["Custom"]
+    #
+    #     """
+    #     Writing the custom mirror pool file
+    #     """
+    #     write_custom_mirrors_json(self=self, selected_mirrors=custom_pool)
+    #
+    #     """
+    #     Writing mirrorlist
+    #     If the mirror list is empty because
+    #     no up-to-date mirrors exist for users branch
+    #     raise IndexError to the outer try-catch
+    #     """
+    #     try:
+    #         _ = mirror_list[0]
+    #         write_pacman_mirror_list(self, mirror_list)
+    #         # # removed - part of refactor for new mirror-manager
+    #         # if self.no_status:
+    #         #     util.msg(message=f"{txt.OVERRIDE_STATUS_CHOICE}", urgency=txt.WRN_CLR, tty=self.tty)
+    #         #     util.msg(message=f"{txt.OVERRIDE_STATUS_MIRROR}", urgency=txt.WRN_CLR, tty=self.tty)
+    #     except IndexError:
+    #         raise IndexError
+    # except IndexError:
+    #     util.msg(message=f"{txt.NO_SELECTION}", urgency=txt.WRN_CLR, tty=self.tty)
+    #     util.msg(message=f"{txt.NO_CHANGE}", urgency=txt.INF_CLR, tty=self.tty)

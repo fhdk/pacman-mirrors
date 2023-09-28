@@ -116,11 +116,17 @@ class GraphicalUI(Gtk.Window):
 
             # Server lists
             self.server_list = server_list
-            self.custom_list = []
+            self._custom_list = []
 
-            self.is_done = False
+            self._is_done = False
         except RuntimeError:
             self.gtk_init = False
+
+    def is_done(self):
+        return self._is_done
+
+    def custom_list(self):
+        return self._custom_list
 
     def on_toggle(self, widget, path):
         """Add or remove server from custom list"""
@@ -128,17 +134,17 @@ class GraphicalUI(Gtk.Window):
         if self.store[path][0]:
             for server in self.server_list:
                 if server["url"] == self.store[path][3]:
-                    self.custom_list.append(server)
+                    self._custom_list.append(server)
         else:
-            for server in self.custom_list:
+            for server in self._custom_list:
                 if server["url"] == self.store[path][3]:
-                    self.custom_list.remove(server)
-        self.button_done.set_sensitive(bool(self.custom_list))
+                    self._custom_list.remove(server)
+        self.button_done.set_sensitive(bool(self._custom_list))
 
     def cancel(self, button):
         """Cancel mirrorlist"""
-        self.custom_list = []
-        self.is_done = True
+        self._custom_list = []
+        self._is_done = True
         Gtk.main_quit()
 
     def done(self, button):
@@ -157,13 +163,13 @@ class GraphicalUI(Gtk.Window):
         if response == Gtk.ResponseType.OK:
             # Quit GUI
             dialog.destroy()
-            for line in self.custom_list:
+            for line in self._custom_list:
                 line["last_sync"] = line["last_sync"].replace(" ", ":").replace("h", "").replace("m", "")
             if self.random:
-                shuffle(self.custom_list)
+                shuffle(self._custom_list)
             else:
-                self.custom_list.sort(key=itemgetter("resp_time"))
-            self.is_done = True
+                self._custom_list.sort(key=itemgetter("resp_time"))
+            self._is_done = True
             Gtk.main_quit()
         elif response == Gtk.ResponseType.CANCEL:
             dialog.destroy()  # Go back to selection
