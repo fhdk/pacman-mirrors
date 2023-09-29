@@ -41,9 +41,9 @@ coverage:
 
 build-doc: clean-build
 	mkdocs build
-	pandoc data/docs/index.md -f markdown -t html -s -o data/man/pacman-mirrors.8.html
 
 build-man:
+	pandoc data/docs/index.md -f markdown -t html -s -o data/man/pacman-mirrors.8.html
 	pandoc -s -t man data/docs/index.md -o data/man/pacman-mirrors.8
 	gzip data/man/pacman-mirrors.8 -fq
 
