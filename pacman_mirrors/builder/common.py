@@ -54,7 +54,7 @@ def build_mirror_list(self) -> None:
 
     if self.config["method"] == "rank":
         work_pool = test_mirror_pool(self=self, worklist=work_pool)
-        work_pool = sort_mirror_pool(worklist=work_pool, field="resp_time", reverse=False)
+        work_pool = sort_mirror_pool(worklist=work_pool, field="speed", reverse=False)
     else:
         shuffle(work_pool)
 
