@@ -16,7 +16,7 @@ help:
 
 clean: clean-build clean-test
 tests: lint unit-test
-build: extract-pot compile-mo
+build: extract-pot compile-mo build-man
 	poetry build
 
 clean-build:
@@ -41,10 +41,10 @@ coverage:
 
 build-doc: clean-build
 	mkdocs build
-	mkdir build
-	mkdir build/man
-	pandoc -s -t man data/docs/index.md -o data/man/pacman-mirrors.8
 	pandoc data/docs/index.md -f markdown -t html -s -o data/man/pacman-mirrors.8.html
+
+build-man:
+	pandoc -s -t man data/docs/index.md -o data/man/pacman-mirrors.8
 	gzip data/man/pacman-mirrors.8 -fq
 
 extract-pot:
@@ -59,13 +59,15 @@ push-pot:
 pull-po:
 	tx pull -a
 
-install-dev: 
+install-dev: install-data
 	poetry install
 
 run-dev:
 	poetry run pacman_mirrors
 
-install:
+install: build install-data
+
+install-data:
 	install -D data/share/mirrors.json /usr/share/pacman-mirrors/mirrors.json
 	install -D data/etc/pacman-mirrors.conf /etc/
 	install -D data/bin/pacman-mirrors /usr/bin/
