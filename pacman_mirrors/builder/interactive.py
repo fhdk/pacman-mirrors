@@ -99,7 +99,7 @@ def build_mirror_list(self) -> None:
             if self.default:
                 if self.config["method"] == "rank":
                     mirror_list = test_mirror_pool(self=self, worklist=mirror_list)
-                    mirror_list = sorted(mirror_list, key=itemgetter("resp_time"))
+                    mirror_list = sorted(mirror_list, key=itemgetter("speed"))
                 else:
                     shuffle(mirror_list)
         except IndexError:
