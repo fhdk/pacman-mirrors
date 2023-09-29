@@ -21,7 +21,6 @@ build: extract-pot compile-mo build-man
 
 clean-build:
 	rm -fr dist/
-	rm -fr build/
 
 clean-test:
 	rm -f .coverage
@@ -39,7 +38,7 @@ coverage:
 	coverage html
 	firefox htmlcov/index.html
 
-build-doc: clean-build
+build-doc: 
 	mkdocs build
 
 build-man:
