@@ -5,6 +5,7 @@ description = "Mirror provider for Manjaro Linux."
 authors = ["Roland Singer, Esclapion, Philip Müller, Ramon Buldó, Hugo Posnic, Frede Hundewadt"]
 readme = "README.md"
 license = "LICENSE.txt"
+repository = "https://gitlab.manjaro.org/applications/pacman-mirrors"
 
 classifiers = [
     'Development Status :: 5 - Production/Stable',
@@ -14,6 +15,9 @@ classifiers = [
     'Programming Language :: Python :: 3.11',
     'Environment :: Console'
 ]
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://gitlab.manjaro.org/applications/pacman-mirrors/-/issues"
 
 [tool.poetry.dependencies]
 python = "^3.11"
