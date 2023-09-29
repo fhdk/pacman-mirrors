@@ -1,36 +1,26 @@
-.PHONY: clean-pyc clean-build docs clean
+.PHONY: clean-build docs clean
 
 help:
 	@echo "clean - remove all build, test, coverage and Python artifacts"
 	@echo "clean-build - remove build artifacts"
-	@echo "clean-pyc - remove Python file artifacts"
 	@echo "clean-test - remove test and coverage artifacts"
-	@echo "lint - check style with flake8"
-	@echo "test - run tests quickly with the default Python"
+	@echo "tests - run all tests"
 	@echo "coverage - check code coverage quickly with the default Python"
-	@echo "docs - generate MkDocs HTML documentation, man page using Pandoc, including API docs"
-	@echo "release - package and upload a release"
-	@echo "dist - package"
-	@echo "install - install the package to the active Python's site-packages"
-	@echo "pot-file - extract messages to locale/pacman_mirrors.pot"
+	@echo "build-doc - generate MkDocs HTML documentation, man page using Pandoc, including API docs"
+	@echo "install-dev - install in venv"
+	@echo "run-dev - run in venv"
+	@echo "extract-pot - extract messages to locale/messages.pot"
+	@echo "compile-mo -compile pot messages to locale/"
 	@echo "push-pot - push pot file to transifex"
 	@echo "pull-po - pull all translations from transifex"
-	@echo "mo-files - generate .mo files"
 
-clean: clean-build clean-pyc clean-test
+clean: clean-build clean-test
+tests: lint unit-test
+build: extract-pot compile-mo
+    poetry build
 
 clean-build:
-	rm -fr build/
 	rm -fr dist/
-	rm -fr .eggs/
-	find . -name '*.egg-info' -exec rm -fr {} +
-	find . -name '*.egg' -exec rm -f {} +
-
-clean-pyc:
-	find . -name '*.pyc' -exec rm -f {} +
-	find . -name '*.pyo' -exec rm -f {} +
-	find . -name '*~' -exec rm -f {} +
-	find . -name '__pycache__' -exec rm -fr {} +
 
 clean-test:
 	rm -f .coverage
@@ -39,48 +29,35 @@ clean-test:
 lint:
 	flake8 pacman_mirrors tests
 
-tests:
-	python setup.py test
-
-test:
-	python setup.py test
+unit-test:
+	poetry run pytest
 
 coverage:
-	coverage run --source pacman_mirrors setup.py test
+	coverage run pacman_mirrors tests 
 	coverage report -m
 	coverage html
 	firefox htmlcov/index.html
 
-docs:
+build-doc:
 	mkdocs build
-	pandoc -s -t man docs/index.md -o man/pacman-mirrors.8
-	pandoc docs/index.md -f markdown -t html -s -o man/pacman-mirrors.8.html
-	gzip man/pacman-mirrors.8 -fq
+	pandoc -s -t man docs/index.md -o build/man/pacman-mirrors.8
+	pandoc docs/index.md -f markdown -t html -s -o build/man/pacman-mirrors.8.html
+	gzip build/man/pacman-mirrors.8 -fq
 
-man-page:
-	pandoc -s -t man docs/index.md -o man/pacman-mirrors.8
-	man man/pacman-mirrors.8
+install-dev: clean mo-files
+	poetry install
 
-release: clean
-	python setup.py sdist upload
-	python setup.py bdist_wheel upload
+run-dev:
+    poetry run pacman_mirrors
 
-dist: clean
-	python setup.py sdist
-	python setup.py bdist_wheel
-	ls -l dist
+extract-pot:
+	pybabel extract --input-dirs=pacman_mirrors --output-file=locale/pacman_mirrors.pot
 
-install: clean mo-files
-	python setup.py install --root=$(DESTDIR) --optimize=1
-
-pot-file:
-	python setup.py extract_messages --output-file locale/pacman_mirrors.pot
+compile-mo:
+	pybabel compile -D pacman_mirrors -d locale
 
 push-pot:
 	tx push -s
 
 pull-po:
 	tx pull -a
-
-mo-files:
-	python setup.py compile_catalog --directory locale --domain pacman_mirrors
