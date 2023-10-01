@@ -6,8 +6,12 @@ help:
 	@echo "clean-test - remove test and coverage artifacts"
 	@echo "tests - run all tests"
 	@echo "coverage - check code coverage quickly with the default Python"
-	@echo "build-doc - generate MkDocs HTML documentation, man page usin ePandoc, includin eAPI docs"
+	@echo "build-html-docs - generate MkDocs HTML documentation"
+	@echo "build-man - generate Man pages"
 	@echo "install-dev - install in venv"
+	@echo "install - build and install everything"
+	@echo "install-data - Install data files"
+	@echo "uninstall - remove installed data files"
 	@echo "run-dev - run in venv"
 	@echo "extract-pot - extract messages to locale/messages.pot"
 	@echo "compile-mo -compile pot messages to locale/"
@@ -38,7 +42,7 @@ coverage:
 	coverage html
 	firefox htmlcov/index.html
 
-build-doc: 
+build-html-docs: 
 	mkdocs build
 
 build-man:
