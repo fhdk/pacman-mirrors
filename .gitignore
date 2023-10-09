@@ -25,9 +25,7 @@ pip-log.txt
 .tox
 nosetests.xml
 htmlcov
-mock/etc/pacman.d/mirrorlist
-mock/usr/share/pacman-mirrors/mirrors.json
-mock/var/lib/pacman-mirrors/status.json
+mock/*
 
 # Translations
 *.mo
