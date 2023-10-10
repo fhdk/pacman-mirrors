@@ -1,11 +1,3 @@
-# Dev env:
-```
-poetry install
-poetry shell
-poetry pytest
-poetry run pacman-mirrors
-```
-
 # pacman-mirrors
 
 Package that provides all mirrors for Manjaro Linux.
