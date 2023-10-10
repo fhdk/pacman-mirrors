@@ -1,0 +1,53 @@
+[tool.poetry]
+name = "pacman_mirrors"
+version = "4.23.3"
+description = "Mirror provider for Manjaro Linux."
+authors = ["Roland Singer, Esclapion, Philip Müller, Ramon Buldó, Hugo Posnic, Frede Hundewadt"]
+readme = "README.md"
+license = "LICENSE.txt"
+repository = "https://gitlab.manjaro.org/applications/pacman-mirrors"
+
+classifiers = [
+    'Development Status :: 5 - Production/Stable',
+    'Intended Audience :: End User/Desktop',
+    'License :: OSI Approved :: GPL3 License',
+    'Natural Language :: English',
+    'Programming Language :: Python :: 3.11',
+    'Environment :: Console'
+]
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://gitlab.manjaro.org/applications/pacman-mirrors/-/issues"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.31.0"
+npyscreen = "^4.10.5"
+
+[tool.poetry.scripts]
+pacman-mirrors = "pacman_mirrors.pacman_mirrors:start"
+
+[tool.poetry.group.lint.dependencies]
+flake9 = "^3.8.3.post2"
+lint = "^1.2.1"
+coverage = "^7.3.1"
+
+[tool.poetry.group.docs.dependencies]
+mkdocs = "^1.5.3"
+
+[tool.poetry.group.translations.dependencies]
+babel = "^2.12.1"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.4.2"
+pytest-cov = "^4.1.0"
+
+[tool.flake8]
+#ignore = "E203,E266,H106,H904"
+max-line-length = 88
+max-complexity = 25
+hang-closing = true
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

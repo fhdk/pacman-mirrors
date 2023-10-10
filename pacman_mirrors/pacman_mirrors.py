@@ -24,7 +24,6 @@
 """Pacman-Mirrors Main Module"""
 
 import importlib.util
-import os
 import sys
 
 import pacman_mirrors.functions.util
@@ -123,8 +122,10 @@ class PacmanMirrors:
         else:
             common.build_mirror_list(self)
 
-
-if __name__ == "__main__":
+def start():
     app = PacmanMirrors()
     app.run()
+
+if __name__ == "__main__":
+   start()
 
