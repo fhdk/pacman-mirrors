@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import subprocess
+from subprocess import PIPE, run, CalledProcessError
 import unittest
 
 branches = ("stable", "testing", "unstable")
@@ -8,17 +8,26 @@ branches = ("stable", "testing", "unstable")
 def _test_command_works_properly(args):
     cmd = "sudo /usr/bin/python /usr/bin/pacman-mirrors "
     try:
-        result = subprocess.run(cmd + args, check=True, capture_output=True, text=True, shell=True)
-    except subprocess.CalledProcessError as error:
+        result = run(
+            cmd + args,
+            check=True,
+            capture_output=True,
+            text=True,
+            shell=True
+            )
+        
+        return result.stdout
+    except CalledProcessError as error:
         print(error.stdout)
         print(error.stderr)
         raise error
     
 class TestDefaultConfig(unittest.TestCase):
-    
+    # TODO implement mirrorlist outputcheck using test-checkpoints.md guidelines
+
     def test_branch(self):
         args = "--api --get-branch"
-        _test_command_works_properly(args)
+        self.local_branch = _test_command_works_properly(args)
 
     def test_gioip(self):
         for i in branches:
@@ -50,6 +59,15 @@ class TestDefaultConfig(unittest.TestCase):
     def test_interactive_country(self):
         args = "-i -c Italy --api -B stable"
         _test_command_works_properly(args)
+
+    def test_reset_mirrors(self):
+        args = "-c all"
+        _test_command_works_properly(args)
+
+    def test_invalid_arguments(self):
+        args = "--invalid-args"
+        _test_command_works_properly(args)
+
 
 if __name__ == "__main__":
     unittest.main()
