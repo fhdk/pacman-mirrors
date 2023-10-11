@@ -117,7 +117,7 @@ def test_mirror_pool(self, worklist: list, limit=None) -> list:
             result.append(work_mirror)
         else:
             result.append(work_mirror)
-
+        print(work_mirror)
         """
         Equality check will stop execution
         when the desired number is reached.
