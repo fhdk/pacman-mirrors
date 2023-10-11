@@ -21,7 +21,7 @@ from pacman_mirrors.functions.filter_mirror_pool_functions import \
     filter_mirror_protocols, filter_mirror_country, filter_user_branch
 
 from pacman_mirrors.functions.filter_mirror_status_functions import \
-    filter_bad_mirrors, filter_error_mirrors, filter_poor_mirrors
+    filter_bad_mirrors, filter_error_mirrors
 
 from pacman_mirrors.functions.outputFn import write_custom_mirrors_json
 

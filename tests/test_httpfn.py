@@ -14,7 +14,7 @@ from pacman_mirrors.functions import httpFn, config_setup, cliFn, defaultFn
 from pacman_mirrors.pacman_mirrors import PacmanMirrors
 from . import mock_configuration as mock
 
-test_conf = {
+config = {
     "branch": "stable",
     "branches": mock.BRANCHES,
     "config_file": mock.CONFIG_FILE,
@@ -26,11 +26,9 @@ test_conf = {
     "country_pool": [],
     "protocols": [],
     "repo_arch": mock.REPO_ARCH,
-    "status_file": mock.STATUS_FILE,
     "ssl_verify": True,
     "test_file": mock.TEST_FILE,
-    "url_mirrors_json": mock.URL_MIRROR_JSON,
-    "url_status_json": mock.URL_STATUS_JSON,
+    "url_mirrors_json": mock.URL_MIRROR_MANAGER,
     "work_dir": mock.WORK_DIR,
     "arm": False,
     "timeout": 2
@@ -52,37 +50,18 @@ class TestHttpFn(unittest.TestCase):
                              mock_os_getuid):
         """TEST: geoip country IS avaiable"""
         mock_os_getuid.return_value = 0
-        mock_build_config.return_value = test_conf
+        mock_build_config.return_value = config
         mock_get_geoip_country.return_value = ["Denmark"]
+        self.config = config
         with unittest.mock.patch("sys.argv",
                                  ["pacman-mirrors",
                                   "--geoip"]):
             app = PacmanMirrors()
-            app.config = config_setup.setup_config()
+            app.config = config_setup.setup_config(self)
             cliFn.parse_command_line(app, True)
             defaultFn.load_default_mirror_pool(app)
             app.selected_countries = httpFn.get_ip_country()
             assert app.selected_countries == ["Denmark"]
-
-    # @patch("os.getuid")
-    # @patch.object(httpFn, "get_ip_country")
-    # @patch.object(configFn, "setup_config")
-    # def test_geoip_not_available(self,
-    #                              mock_build_config,
-    #                              mock_get_geoip_country,
-    #                              mock_os_getuid):
-    #     """TEST: geoip country IS NOT available"""
-    #     mock_os_getuid.return_value = 0
-    #     mock_get_geoip_country.return_value = "Antarctica"
-    #     mock_build_config.return_value = test_conf
-    #     with unittest.mock.patch("sys.argv",
-    #                              ["pacman-mirrors",
-    #                               "--geoip"]):
-    #         app = PacmanMirrors()
-    #         app.config = configFn.setup_config()
-    #         cli.parse_command_line(app, True)
-    #         defaultFn.load_default_mirror_pool(app)
-    #         assert app.selected_countries == app.mirrors.country_pool
 
     def tearDown(self):
         """Tear down"""

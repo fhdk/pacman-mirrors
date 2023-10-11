@@ -60,7 +60,7 @@ def delete_file(filename: str) -> None:
         os.remove(filename)
 
 
-def return_mirror_filename(config: object, tty: bool = False) -> tuple:
+def return_mirror_filename(config: dict, tty: bool = False) -> tuple:
     """
     Find the mirror pool file
     :param config: config dictionary
@@ -70,10 +70,10 @@ def return_mirror_filename(config: object, tty: bool = False) -> tuple:
     filename = ""
     status = False  # status.json or mirrors.json
     # decision on file availablity
-    if check_file(config["status_file"]):
-        status = True
-        filename = config["status_file"]
-    elif check_file(filename=config["mirror_file"]):
+    # if check_file(config["status_file"]):
+    #     status = True
+    #     filename = config["status_file"]
+    if check_file(filename=config["mirror_file"]):
         filename = config["mirror_file"]
     if not filename:
         util.msg(message=f"\n{txt.HOUSTON}\n", tty=tty, color=color.RED)
@@ -81,7 +81,7 @@ def return_mirror_filename(config: object, tty: bool = False) -> tuple:
     return filename, status
 
 
-def write_mirror_list(config: object, servers: list, tty: bool = False, custom: bool = False,
+def write_mirror_list(config: dict, servers: list, tty: bool = False, custom: bool = False,
                       quiet: bool = False, interactive: bool = False) -> None:
     """
     Write servers to /etc/pacman.d/mirrorlist
@@ -104,7 +104,7 @@ def write_mirror_list(config: object, servers: list, tty: bool = False, custom: 
                 protocol = server["protocols"][0]
                 pos = url.find(":")
                 server["url"] = f'{protocol}{url[pos:]}{config["branch"]}{config["repo_arch"]}'
-                if server["resp_time"] == 99.99:
+                if server["speed"] == 99.99:
                     # do not write bad servers to mirrorlist
                     continue
                 if interactive:
@@ -121,8 +121,7 @@ def write_mirror_list(config: object, servers: list, tty: bool = False, custom: 
                 # write list entry
                 write_mirrorlist_entry(outfile, server)
             if not quiet:
-                util.msg(
-                    message=f'{txt.MIRROR_LIST_SAVED}: {config["mirror_list"]}', urgency=txt.INF_CLR, tty=tty)
+                util.msg(message=f'{txt.MIRROR_LIST_SAVED}: {config["mirror_list"]}', urgency=txt.INF_CLR, tty=tty)
     except OSError as err:
         util.msg(message=f"{txt.CANNOT_WRITE_FILE}: {err.filename}: {err.strerror}", urgency=txt.ERR_CLR, tty=tty)
 
@@ -138,7 +137,7 @@ def read_mirror_file(filename: str) -> list:
     return jsonFn.read_json_file(filename, dictionary=True)
 
 
-def write_mirrorlist_header(handle: object, custom: bool = False) -> None:
+def write_mirrorlist_header(handle: any, custom: bool = False) -> None:
     """
     Write mirrorlist header
     :param handle: handle to a file opened for writing
@@ -165,7 +164,7 @@ def write_mirrorlist_header(handle: object, custom: bool = False) -> None:
     handle.write("##\n\n")
 
 
-def write_mirrorlist_entry(handle: object, mirror: dict) -> None:
+def write_mirrorlist_entry(handle: any, mirror: dict) -> None:
     """
     Write mirror to mirror list or file
     :param handle: handle to a file opened for writing

@@ -27,7 +27,7 @@ from pacman_mirrors.functions import util
 
 
 def setup_config(self) -> tuple:
-    """Get config informations
+    """Get config information
     :returns: config, custom
     :rtype: tuple
     """
@@ -47,12 +47,12 @@ def setup_config(self) -> tuple:
         "protocols": [],
         "repo_arch": conf.REPO_ARCH,
         "ssl_verify": True,
-        "status_file": conf.STATUS_FILE,
         "test_file": conf.TEST_FILE,
-        "url_mirrors_json": conf.URL_MIRROR_JSON,
-        "url_status_json": conf.URL_STATUS_JSON,
+        "url_mirrors_json": conf.URL_MIRROR_MANAGER,
         "arm": False,
-        "timeout": 2
+        "timeout": 2,
+        "ent": False,
+        "ent_mirror": None
     }
     # try to replace default entries by reading conf file
     try:
@@ -71,6 +71,9 @@ def setup_config(self) -> tuple:
                         config["method"] = value
                     if key == "Branch":
                         config["branch"] = value
+                    if key == "Ent":
+                        config["ent"] = True
+                        config["ent_mirror"] = value
                     if key == "Protocols":
                         if "," in value:
                             config["protocols"] = value.split(",")
@@ -90,7 +93,7 @@ def setup_config(self) -> tuple:
     return config, custom
 
 
-def sanitize_config(config: object) -> bool:
+def sanitize_config(config: dict) -> bool:
     """
     Verify configuration
     :param config:

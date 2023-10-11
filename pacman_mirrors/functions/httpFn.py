@@ -19,15 +19,12 @@
 
 """Manjaro-Mirrors HTTP Functions"""
 
-import collections
 import filecmp
 import json
 import os
 import ssl
 import time
 from os import system as system_call
-import socket
-from socket import timeout
 
 import shutil
 import urllib.request as request
@@ -37,7 +34,6 @@ import requests
 
 from pacman_mirrors import __version__
 from pacman_mirrors.config import configuration as conf
-from pacman_mirrors.constants import timezones
 from pacman_mirrors.constants import txt
 from pacman_mirrors.functions import fileFn
 from pacman_mirrors.functions import jsonFn
@@ -46,7 +42,7 @@ from pacman_mirrors.functions import util
 USER_AGENT = {"User-Agent": "{}{}".format(conf.USER_AGENT, __version__)}
 
 
-def download_mirrors(config: object) -> tuple:
+def download_mirrors(config: dict) -> tuple:
     """Retrieve mirrors from manjaro.org
     :param config:
     :returns: tuple with bool for mirrors.json and status.json
@@ -66,7 +62,7 @@ def download_mirrors(config: object) -> tuple:
         tempfile = config["work_dir"] + "/.temp.file"
         jsonFn.json_dump_file(mirrorlist, tempfile)
         filecmp.clear_cache()
-        if fileFn.check_file(conf.USR_DIR, folder=True):
+        if fileFn.check_file(conf.WORK_DIR, folder=True):
             if not fileFn.check_file(config["mirror_file"]):
                 jsonFn.json_dump_file(mirrorlist, config["mirror_file"])
             elif not filecmp.cmp(tempfile, config["mirror_file"]):
@@ -89,27 +85,28 @@ def download_mirrors(config: object) -> tuple:
         util.msg(message=message, urgency=txt.ERR_CLR, newline=True)
         message = ""
 
-    try:
-        # status.json
-        util.msg(message=f"=> Mirror status: {config['url_status_json']}", urgency=txt.INF_CLR)
-        resp = requests.get(url=config["url_status_json"],
-                            headers=USER_AGENT,
-                            timeout=config["timeout"])
-        # resp.raise_for_status()
-        statuslist = resp.json()
-        jsonFn.write_json_file(statuslist, config["status_file"])
-    except (json.JSONDecodeError,) as jsonError:
-        message = f"Invalid JSON data: {jsonError}"
-    except (requests.exceptions.ConnectionError,) as connError:
-        message = f"Connection: {connError}"
-    except (requests.exceptions.SSLError,) as sslError:
-        message = f"Certificate: {sslError}"
-    except (requests.exceptions.Timeout,) as connTimeout:
-        message = f"Connection: {connTimeout}"
-    except (requests.exceptions.HTTPError,) as httpError:
-        message = f"Connection {httpError}"
-    except Exception as e:
-        message = f"{e}"
+    # try:
+    #     # status.json
+    #     util.msg(message=f"=> Mirror status: {config['url_status_json']}", urgency=txt.INF_CLR)
+    #     resp = requests.get(url=config["url_status_json"],
+    #                         headers=USER_AGENT,
+    #                         timeout=config["timeout"])
+    #     # resp.raise_for_status()
+    #     statuslist = resp.json()
+    #     jsonFn.write_json_file(statuslist, config["status_file"])
+    # except (json.JSONDecodeError,) as jsonError:
+    #     message = f"Invalid JSON data: {jsonError}"
+    # except (requests.exceptions.ConnectionError,) as connError:
+    #     message = f"Connection: {connError}"
+    # except (requests.exceptions.SSLError,) as sslError:
+    #     message = f"Certificate: {sslError}"
+    # except (requests.exceptions.Timeout,) as connTimeout:
+    #     message = f"Connection: {connTimeout}"
+    # except (requests.exceptions.HTTPError,) as httpError:
+    #     message = f"Connection {httpError}"
+    # except Exception as e:
+    #     message = f"{e}"
+
     if message != "":
         fetchstatus = False
         util.msg(message=message, urgency=txt.ERR_CLR, newline=True)
@@ -253,7 +250,7 @@ def ping_host(host: str, tty: bool = False, count: int = 1) -> bool:
     return system_call("ping -c{} {} > /dev/null".format(count, host)) == 0
 
 
-def download_mirror_pool(config: object, tty: bool = False, quiet: bool = False) -> tuple:
+def download_mirror_pool(config: dict, tty: bool = False, quiet: bool = False) -> tuple:
     """Download updates from repo.manjaro.org
     :param config:
     :param quiet:
@@ -270,15 +267,15 @@ def download_mirror_pool(config: object, tty: bool = False, quiet: bool = False)
                      tty=tty)
         result = download_mirrors(config)
     else:
-        if not fileFn.check_file(config["status_file"]):
-            if not quiet:
-                util.msg(message=f"{txt.MIRROR_FILE} {config['status_file']} {txt.IS_MISSING}",
-                         urgency=txt.WRN_CLR,
-                         tty=tty)
-                util.msg(message=f"{txt.FALLING_BACK} {conf.MIRROR_FILE}",
-                         urgency=txt.WRN_CLR,
-                         tty=tty)
-            result = (True, False)
+        # if not fileFn.check_file(config["status_file"]):
+        #     if not quiet:
+        #         util.msg(message=f"{txt.MIRROR_FILE} {config['status_file']} {txt.IS_MISSING}",
+        #                  urgency=txt.WRN_CLR,
+        #                  tty=tty)
+        #         util.msg(message=f"{txt.FALLING_BACK} {conf.MIRROR_FILE}",
+        #                  urgency=txt.WRN_CLR,
+        #                  tty=tty)
+        #     result = (True, False)
         if not fileFn.check_file(config["mirror_file"]):
             if not quiet:
                 util.msg(message=f"{txt.HOUSTON}",

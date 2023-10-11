@@ -58,13 +58,15 @@ def print_status(self) -> int:
     :return:
     """
     # // --- BEGING ---------------------------------------------------------------------
-    # If configuration urls are missing - show only first mirror from mirror pool
-    if not self.config["url_mirrors_json"] or not self.config["url_status_json"]:
+    # configuration is enterprise
+    # - pacman-mirrors.conf
+    # - Ent = http(s)://ent.mirror.tld:8080
+    if self.config["ent"]:
         color = C_OK
         text = "OK"
         now = datetime.now()
         fake = now.strftime("00:%M")
-        mirror = get_static_mirror(self.config["mirror_file"])
+        mirror = self.config["ent_mirror"]
         print(f"Mirror #1", color, f"{text}", C_NONE, f"{fake} {mirror['country']} {mirror['url']}")
         return 0
     # // --- END ---------------------------------------------------------------------
@@ -101,13 +103,14 @@ def print_status(self) -> int:
             mirror = [m for m in mirrors if m['url'] == url][0]
             color, text = get_state(mirror["branches"], system_branch)
             len_country = max(len(m['country']) for m in mirrors) + 1
-            last_sync = mirror["last_sync"]
-            if last_sync == "-1":
-                last_sync = "--:--"
-                color = C_KO
-                text = "--"
+            # last_sync = mirror["last_sync"]
+            # if last_sync == "-1":
+            #     last_sync = "--:--"
+            #     color = C_KO
+            #     text = "--"
             print(f"Mirror #{str(i + 1):2}", color, f"{text}", C_NONE,
-                  f"{last_sync:7} {mirror['country']:{len_country}} {mirror['url']}")
+                  # f"{last_sync:7} {mirror['country']:{len_country}} {mirror['url']}")
+                  f"{mirror['country']:{len_country}} {mirror['url']}")
             if i == 0 and color == C_KO:
                 exit_code = 4  # first mirror not sync !
         except IndexError:
@@ -115,13 +118,3 @@ def print_status(self) -> int:
             exit_code = 5  # not found
 
     return exit_code
-
-
-def get_static_mirror(filename: str) -> dict:
-    """
-    Get first mirror from mirror pool
-    :param filename:
-    :return:
-    """
-    mirror = read_json_file(filename)
-    return mirror[0]

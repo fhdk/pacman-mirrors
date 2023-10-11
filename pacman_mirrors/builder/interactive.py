@@ -52,7 +52,7 @@ def build_mirror_list(self) -> None:
         # if not default run method before selection
         if self.config["method"] == "rank":
             worklist = test_mirror_pool(self=self, worklist=worklist)
-            worklist = sort_mirror_pool(worklist=worklist, field="resp_time", reverse=False)
+            worklist = sort_mirror_pool(worklist=worklist, field="speed", reverse=False)
         else:
             shuffle(worklist)
 
@@ -62,8 +62,7 @@ def build_mirror_list(self) -> None:
     to be in the old country dictionary format.
     {
         "country": "country_name",
-        "resp_time": "m.sss",
-        "last_sync": "HHh MMm",
+        "speed": "m.sss",
         "url": "http://server/repo/"
     }
     """
@@ -97,7 +96,7 @@ def build_mirror_list(self) -> None:
             if self.default:
                 if self.config["method"] == "rank":
                     mirror_list = test_mirror_pool(self=self, worklist=mirror_list)
-                    mirror_list = sorted(mirror_list, key=itemgetter("resp_time"))
+                    mirror_list = sorted(mirror_list, key=itemgetter("speed"))
                 else:
                     shuffle(mirror_list)
         except IndexError:

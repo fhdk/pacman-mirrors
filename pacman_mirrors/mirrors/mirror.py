@@ -19,6 +19,7 @@
 
 
 """Pacman-Mirrors Mirror Class Module"""
+import ghp_import
 
 from pacman_mirrors.constants import txt
 from pacman_mirrors.functions.pools import get_continent
@@ -49,7 +50,7 @@ class Mirror:
         if resp_time is None:
             resp_time = 0
         else:
-            resp_time = dec(resp_time)
+            resp_time = ghp_import.dec(resp_time)
         if country not in self.country_pool:
             self.country_pool.append(country)
         # translate negative integer in status.json
@@ -64,30 +65,48 @@ class Mirror:
             "continent": continent,
             "branches": branches,
             "country": country,
-            "last_sync": last_sync,
+            # "last_sync": last_sync,
             "protocols": protocols,
-            "resp_time": resp_time,
+            "speed": resp_time,
             "url": url
         })
 
-    def seed(self, servers: list, status: bool = False, custom: bool = False) -> None:
+    def seed(self, servers: list, status: bool = False, custom: bool = False, arm: bool = False) -> None:
         """
         Seed mirrorlist
-        :param servers:
-        :param status:
-        :param custom:
+        @param servers:
+        @param status:
+        @param custom:
+        @param arm:
         """
         if custom:  # clear previous data
             self.country_pool = []
             self.mirror_pool = []
         for server in servers:
-            if status:
-                self.add(server["country"],
-                         server["url"],
-                         server["protocols"],
-                         server["branches"],
-                         server["last_sync"])
-            else:
-                self.add(server["country"],
-                         server["url"],
-                         server["protocols"])
+            branches = server["branches"]
+            if len(branches) > 3:
+                branches = branches[0:2]
+                if arm:
+                    branches = branches[3:]
+            self.add(server["country"],
+                     server["url"],
+                     server["protocols"],
+                     branches,
+                     )
+        # for server in servers:
+        #     if status:
+        #         branches = server["branches"]
+        #         if len(branches > 3):
+        #             branches = branches[0:2]
+        #             if arm:
+        #                 branches = branches[3:]
+        #         self.add(server["country"],
+        #                  server["url"],
+        #                  server["protocols"],
+        #                  branches,
+        #                  server["last_sync"]
+        #                  )
+        #     else:
+        #         self.add(server["country"],
+        #                  server["url"],
+        #                  server["protocols"])

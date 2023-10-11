@@ -50,7 +50,8 @@ def write_pacman_mirror_list(self, selected_servers) -> None:
         fileFn.write_mirror_list(config=self.config, servers=selected_servers, tty=self.tty,
                                  custom=self.custom, quiet=self.quiet, interactive=True)
     else:
-        fileFn.write_mirror_list(config=self.config, servers=selected_servers, tty=self.tty, quiet=self.quiet)
+        fileFn.write_mirror_list(config=self.config, servers=selected_servers, tty=self.tty,
+                                 quiet=self.quiet)
 
 
 def tty_custom_pool(self) -> None:
@@ -65,7 +66,7 @@ def tty_default_pool(self) -> None:
     """
     List all available countries
     """
-    defaultFn.load_default_mirror_pool(self)
+    defaultFn.load_default_mirror_pool(self, self.config["arm"])
     print("{}".format("\n".join(self.mirrors.country_pool)))
 
 

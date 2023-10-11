@@ -28,11 +28,9 @@ test_conf = {
     "country_pool": [],
     "protocols": [],
     "repo_arch": mock.REPO_ARCH,
-    "status_file": mock.STATUS_FILE,
     "ssl_verify": True,
     "test_file": mock.TEST_FILE,
-    "url_mirrors_json": mock.URL_MIRROR_JSON,
-    "url_status_json": mock.URL_STATUS_JSON,
+    "url_mirrors_json": mock.URL_MIRROR_MANAGER,
     "arm": False,
     "timeout": 2
 }
@@ -56,10 +54,10 @@ class TestPacmanMirrors(unittest.TestCase):
                                  ["pacman-mirrors",
                                   "-f5"]):
             app = PacmanMirrors()
-            app.config = config_setup.setup_config()
+            app.config = config_setup.setup_config(self)
             fileFn.create_dir(test_conf["work_dir"])
             cliFn.parse_command_line(app, True)
-            httpFn.download_mirror_pool(app.config)
+            httpFn.download_mirror_pool(test_conf)
             defaultFn.load_default_mirror_pool(app)
             fasttrack.build_mirror_list(app, app.fasttrack)
 
@@ -76,7 +74,7 @@ class TestPacmanMirrors(unittest.TestCase):
                                   "-c", "all",
                                   "-m", "random"]):
             app = PacmanMirrors()
-            app.config = config_setup.setup_config()
+            app.config = config_setup.setup_config(self)
             fileFn.create_dir(test_conf["work_dir"])
             cliFn.parse_command_line(app, True)
             httpFn.download_mirror_pool(app.config)
@@ -95,7 +93,7 @@ class TestPacmanMirrors(unittest.TestCase):
                                  ["pacman-mirrors",
                                   "-c", "all"]):
             app = PacmanMirrors()
-            app.config = config_setup.setup_config()
+            app.config = config_setup.setup_config(self)
             fileFn.create_dir(test_conf["work_dir"])
             cliFn.parse_command_line(app, True)
             httpFn.download_mirror_pool(app.config)

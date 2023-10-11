@@ -97,7 +97,7 @@ def set_config(self, set_pfx: str = None, set_branch: str = None,
                 "url": apifn.sanitize_url(set_url),
                 "country": "BUILDMIRROR",
                 "protocols": [set_url[:set_url.find(":")]],
-                "resp_time": "00.00"
+                "speed": "00.00"
             }
         ]
         fileFn.write_mirror_list(
