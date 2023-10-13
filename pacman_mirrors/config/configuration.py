@@ -33,8 +33,8 @@ CONFIG_FILE = "/etc/pacman-mirrors.conf"
 MIRROR_LIST = "/etc/pacman.d/mirrorlist"
 # pacman-mirrors dir/files
 VAR_DIR = "/var/lib/pacman-mirrors/"
-CUSTOM_FILE = f"{VAR_DIR}/custom-mirrors.json"
-MIRROR_FILE = f"{VAR_DIR}/status.json"
+CUSTOM_FILE = f"{VAR_DIR}custom-mirrors.json"
+MIRROR_FILE = f"{VAR_DIR}status.json"
 # repo constants
 BRANCHES = ("stable", "testing", "unstable")
 PROTOCOLS = ("https", "http", "ftp")
