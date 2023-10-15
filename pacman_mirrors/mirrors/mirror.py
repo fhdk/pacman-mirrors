@@ -32,13 +32,16 @@ class Mirror:
         self.country_pool = []
         self.mirror_pool = []
 
-    def add(self, alias: str, url: str, protocols: list, branches: list = None, resp_time: str = None) -> None:
+    def add(self, alias: str, url: str, protocols: list, branches: list,
+            resp_time: str, last_sync: str, score: int) -> None:
         """Append mirror
         :param alias:
         :param url:
         :param protocols:
-        :param branches: optional from status.json
-        :param resp_time: optional from status.json
+        :param branches:
+        :param resp_time:
+        :param last_sync:
+        :param score:
         """
         if branches is None:
             branches = [-1, -1, -1]
@@ -65,12 +68,13 @@ class Mirror:
             "continent": continent,
             "branches": branches,
             "country": country,
-            "last_sync": "00:00",
+            "last_sync": last_sync,
             "protocols": protocols,
             "resp_time": resp_time,
+            "score": score,
             "speed": resp_time,
             "url": url,
-            "url2": f"{protocols[0]}://{url}"
+            "url2": f"{protocols[0]}://{url}",
         }
         self.mirror_pool.extend([internal])
 
@@ -93,14 +97,17 @@ class Mirror:
                 # take last three instead
                 branches = server["branches"][-3]
             # add server to list
-            self.add(server["country"], server["url"], server["protocols"], branches, server["speed"])
+            self.add(server["country"], server["url"], server["protocols"], branches,
+                     server["speed"], server["last_sync"], server["score"])
 
     @staticmethod
     def copy_to_extern(server: dict) -> dict:
         return {
             "country": str(server["country"]).replace(" ", "_").lower(),
-            "url": server["url"],
-            "protocols": server["protocols"],
             "branches": server["branches"],
+            "last_sync": server["last_sync"],
+            "protocols": server["protocols"],
+            "score": server["score"],
             "speed": server["resp_time"],
+            "url": server["url"],
         }
