@@ -115,11 +115,11 @@ def print_status(self) -> int:
     return exit_code
 
 
-def get_static_mirror(filename: str) -> dict:
-    """
-    Get first mirror from mirror pool
-    :param filename:
-    :return:
-    """
-    mirror = read_json_file(filename)
-    return mirror[0]
+# def get_static_mirror(filename: str) -> dict:
+#     """
+#     Get first mirror from mirror pool
+#     :param filename:
+#     :return:
+#     """
+#     mirror = read_json_file(filename)
+#     return mirror[0]
