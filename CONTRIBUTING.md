@@ -50,21 +50,29 @@ If you are proposing a feature:
 
 ## Get Started!
 
+* An editor of choice e.g.
+   * Visual Studio Code `pacman -Syu code`
+   * PyCharm Community `pacman -Syu pycharm-community`
+
+## Python environment
+Poetry will setup your enviroment and any dependecies you need
+
+    ```
+   git clone https://gitlab.manjaro.org/applications/pacman-mirrors.git
+   cd pacman-mirrors
+   sudo pacman -Syu python-poetry make transifex-client
+   poetry install
+   poetry shell
+   poetry run pacman-mirrors
+    ```
+
 Ready to contribute? Here's how to set up `pacman-mirrors` for local development.
 
 * Fork the `pacman-mirrors` repo on GitHub.
 * Clone your fork locally:
     
 ```
-$ git clone https://gitlab.manjaro.org/your-name-here/pacman-mirrors.git
-```
-    
-* Install your local copy into a virtualenv. Assuming you have [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) installed, this is how you set up your fork for local development
-
-```    
-$ mkvirtualenv pacman-mirrors
-$ cd pacman-mirrors/
-$ python setup.py develop
+git clone https://gitlab.manjaro.org/your-name-here/pacman-mirrors.git
 ```
 
 * Create a branch for local development:
@@ -73,13 +81,11 @@ $ python setup.py develop
 $ git checkout -b name-of-your-bugfix-or-feature
 ```
 
-   Now you can make your changes locally.
-
-* When you're done making changes, check that your changes pass flake8 and the tests:
+* Make your changes localy When you're done, check that your changes pass flake8 and unitest:
 
 ```
-$ flake8 pacman-mirrors tests
-$ python setup.py test
+flake8 pacman-mirrors tests
+poetry run pytests
 ```
 
 * To get flake8, just pip install it into your virtualenv (see notes below).
@@ -93,12 +99,6 @@ $ git push origin name-of-your-bugfix-or-feature
 
 * Submit a pull request through the GitHub website.
 
-## Test Guidelines
-
-```
-make test
-
-```
 ### Generated Mirrorlist Verification
 From experience it is so easy to forget verification of the generated mirrorlists.
 
@@ -124,33 +124,8 @@ Before you submit a pull request, check that it meets these guidelines:
 * If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring, and add the
    feature to the list in README.md.
-* The pull request should work for Python 3.4+, and for PyPy. Check
-   https://travis-ci.org/manjaro/pacman-mirrors/pull_requests
-   and make sure that the tests pass for all supported Python versions.
 
-## Tips
-
-To run a subset of tests:
-
+# Using make
 ```
-$ python -m unittest tests.test_pacman_mirrors
+make -h
 ```
-
-## Developing environment
-
-* An editor of choice e.g.
-   * Visual Studio Code `pacman -Syu code`
-   * PyCharm Community `pacman -Syu pycharm-community`
-* Pandoc converter `pacman -Syu pandoc`
-* Python environment
-
-    ```
-    $ git clone https://gitlab.manjaro.org/applications/pacman-mirrors.git
-    $ cd pacman-mirrors
-    $ sudo pacman -Syu python-virtualenvwrapper
-    $ mkvirtualenv pacman-mirrors
-    $ python setup.py develop
-    $ pip install mkdocs coverage babel flake8 npyscreen transifex-client
-    ```
-
-* Remember to `source /usr/bin/virtualenvwrapper.sh` to get the virtualenv CLI

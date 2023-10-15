@@ -1,22 +1,21 @@
-# Translations template for pacman-mirrors.
-# Copyright (C) 2019 ORGANIZATION
-# This file is distributed under the same license as the pacman-mirrors
-# project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+# Translations template for PROJECT.
+# Copyright (C) 2023 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: pacman-mirrors 4.16\n"
+"Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-12-11 10:40+0100\n"
+"POT-Creation-Date: 2023-09-29 18:18+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.7.0\n"
+"Generated-By: Babel 2.12.1\n"
 
 #: pacman_mirrors/constants/txt.py:29
 msgid "ERROR"
@@ -90,7 +89,7 @@ msgstr ""
 msgid "SECONDS"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:49 pacman_mirrors/constants/txt.py:135
+#: pacman_mirrors/constants/txt.py:49 pacman_mirrors/constants/txt.py:133
 msgid "URL"
 msgstr ""
 
@@ -130,299 +129,299 @@ msgstr ""
 msgid "Comma separated list of countries, from which mirrors will be used"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:61
+#: pacman_mirrors/constants/txt.py:60
 msgid "Use continent from geolocation"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:62
+#: pacman_mirrors/constants/txt.py:61
 msgid "Load default mirror file"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:63
+#: pacman_mirrors/constants/txt.py:62
 msgid "Generate mirrorlist with a number of up-to-date mirrors. Overrides"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:65
+#: pacman_mirrors/constants/txt.py:63
 msgid "Generate mirrorlist with defaults"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:66
+#: pacman_mirrors/constants/txt.py:64
 msgid "Get current country using geolocation"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:67
+#: pacman_mirrors/constants/txt.py:65
 msgid "List all available countries"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:68
+#: pacman_mirrors/constants/txt.py:66
 msgid "Generate custom mirrorlist"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:69
+#: pacman_mirrors/constants/txt.py:67
 msgid "Generation method"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:70
+#: pacman_mirrors/constants/txt.py:68
 msgid "Use to skip generation of mirrorlist"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:71
+#: pacman_mirrors/constants/txt.py:69
 msgid "Quiet mode - less verbose output"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:72
+#: pacman_mirrors/constants/txt.py:70
 msgid "Ignore mirror branch status"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:73
+#: pacman_mirrors/constants/txt.py:71
 msgid "Syncronize pacman databases"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:74
+#: pacman_mirrors/constants/txt.py:72
 msgid "Maximum waiting time for server response"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:75
+#: pacman_mirrors/constants/txt.py:73
 msgid "Print the pacman-mirrors version"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:77
+#: pacman_mirrors/constants/txt.py:75
 msgid "Branch in config is changed"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:78
+#: pacman_mirrors/constants/txt.py:76
 msgid "Protocols in config is changed"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:79
+#: pacman_mirrors/constants/txt.py:77
 msgid "Re-branch requires a branch to work with"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:80
+#: pacman_mirrors/constants/txt.py:78
 msgid "Branch in mirror list is changed"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:81
+#: pacman_mirrors/constants/txt.py:79
 msgid "Available countries are"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:82
+#: pacman_mirrors/constants/txt.py:80
 msgid "Could not download from"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:83
+#: pacman_mirrors/constants/txt.py:81
 msgid "Cannot read file"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:84
+#: pacman_mirrors/constants/txt.py:82
 msgid "Cannot write file"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:85
+#: pacman_mirrors/constants/txt.py:83
 msgid "Converting custom mirror file to new format"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:86
+#: pacman_mirrors/constants/txt.py:84
 msgid "Custom mirror file"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:87
+#: pacman_mirrors/constants/txt.py:85
 msgid "Custom mirror file saved"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:88
+#: pacman_mirrors/constants/txt.py:86
 msgid "User generated mirror list"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:89
+#: pacman_mirrors/constants/txt.py:87
 msgid "The custom pool is empty"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:90
+#: pacman_mirrors/constants/txt.py:88
 msgid "The default pool is empty"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:91
+#: pacman_mirrors/constants/txt.py:89
 msgid "Deprecated argument"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:92
+#: pacman_mirrors/constants/txt.py:90
 msgid "doesn't exist."
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:93
+#: pacman_mirrors/constants/txt.py:91
 msgid "Downloading mirrors from"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:94
+#: pacman_mirrors/constants/txt.py:92
 msgid "Falling back to"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:95
+#: pacman_mirrors/constants/txt.py:93
 msgid "Internet connection appears to be down"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:96
+#: pacman_mirrors/constants/txt.py:94
 msgid "Mirror list is generated using random method"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:97
+#: pacman_mirrors/constants/txt.py:95
 msgid "Invalid setting in"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:98
+#: pacman_mirrors/constants/txt.py:96
 msgid "is missing"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:99
+#: pacman_mirrors/constants/txt.py:97
 msgid "The mirror file"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:100
+#: pacman_mirrors/constants/txt.py:98
 msgid "Mirror list generated and saved to"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:101
+#: pacman_mirrors/constants/txt.py:99
 msgid "Generated on"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:102
+#: pacman_mirrors/constants/txt.py:100
 msgid "custom mirrorlist"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:103
+#: pacman_mirrors/constants/txt.py:101
 msgid "To reset custom mirrorlist"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:104
+#: pacman_mirrors/constants/txt.py:102
 msgid "default mirrorlist"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:105
+#: pacman_mirrors/constants/txt.py:103
 msgid "to modify mirrorlist"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:106
+#: pacman_mirrors/constants/txt.py:104
 msgid "The mirror pool is empty"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:107
+#: pacman_mirrors/constants/txt.py:105
 msgid "Mirror ranking is not available"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:108
+#: pacman_mirrors/constants/txt.py:106
 msgid "argument is missing"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:109
+#: pacman_mirrors/constants/txt.py:107
 msgid "Must have root privileges"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:110
+#: pacman_mirrors/constants/txt.py:108
 msgid "The mirrors has not changed"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:111
+#: pacman_mirrors/constants/txt.py:109
 msgid "No mirrors in selection"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:112
+#: pacman_mirrors/constants/txt.py:110
 msgid "Option"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:113
+#: pacman_mirrors/constants/txt.py:111
 msgid "You have chosen to override the status for your system branch."
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:114
+#: pacman_mirrors/constants/txt.py:112
 msgid "Servers in the mirror list might not be up-to-date."
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:115
+#: pacman_mirrors/constants/txt.py:113
 msgid "Please use"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:116
+#: pacman_mirrors/constants/txt.py:114
 msgid "Querying mirrors"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:117
+#: pacman_mirrors/constants/txt.py:115
 msgid "Randomizing mirror list"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:118
+#: pacman_mirrors/constants/txt.py:116
 msgid "To remove custom config run "
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:119
+#: pacman_mirrors/constants/txt.py:117
 msgid "This may take some time"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:120
+#: pacman_mirrors/constants/txt.py:118
 msgid "unknown country"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:121
+#: pacman_mirrors/constants/txt.py:119
 msgid "Use 0 for all mirrors"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:122
+#: pacman_mirrors/constants/txt.py:120
 msgid "Using all mirrors"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:123
+#: pacman_mirrors/constants/txt.py:121
 msgid "Using custom mirror file"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:124
+#: pacman_mirrors/constants/txt.py:122
 msgid "Using default mirror file"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:125
+#: pacman_mirrors/constants/txt.py:123
 msgid "Writing mirror list"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:128
+#: pacman_mirrors/constants/txt.py:126
 msgid "Manjaro mirrors by response time"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:129
+#: pacman_mirrors/constants/txt.py:127
 msgid "Manjaro mirrors in random order"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:130
+#: pacman_mirrors/constants/txt.py:128
 msgid "Check mirrors for your personal list"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:131
+#: pacman_mirrors/constants/txt.py:129
 msgid "Use"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:132
+#: pacman_mirrors/constants/txt.py:130
 msgid "Country"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:133
+#: pacman_mirrors/constants/txt.py:131
 msgid "Resp"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:134
+#: pacman_mirrors/constants/txt.py:132
 msgid "Sync"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:136
+#: pacman_mirrors/constants/txt.py:134
 msgid "Cancel"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:137
+#: pacman_mirrors/constants/txt.py:135
 msgid "OK"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:138
+#: pacman_mirrors/constants/txt.py:136
 msgid "Confirm selections"
 msgstr ""
 
-#: pacman_mirrors/constants/txt.py:139
+#: pacman_mirrors/constants/txt.py:137
 msgid "I want to use these mirrors"
 msgstr ""
 
