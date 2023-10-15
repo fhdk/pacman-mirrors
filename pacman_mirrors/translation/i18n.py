@@ -35,7 +35,7 @@ CODESET = "utf-8"
 # will use the first translation available in the list
 LANGUAGES = []
 try:
-    user_locale = locale.getdefaultlocale()[0]
+    user_locale = locale.getlocale()
     if user_locale:
         LANGUAGES += user_locale
 except ValueError:
