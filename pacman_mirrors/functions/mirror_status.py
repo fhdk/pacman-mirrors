@@ -27,7 +27,9 @@ def get_local_mirrors(mirrorlist: str) -> tuple:
                 mirror_url.pop()
                 mirror_branch = mirror_url.pop()
                 # line = "/".join(mirror_url)
+                line = f"{mirror_url[2]}/{mirror_url[3]}/"
                 urls.append(line)
+        print(mirror_branch, mirror_url)
         return mirror_branch, urls
     except (FileNotFoundError, UnboundLocalError):
         return "", []
@@ -87,7 +89,7 @@ def print_status(self) -> int:
     for mirror in data:
         for protocol in mirror["protocols"]:
             temp = mirror.copy()
-            temp["url"] = f"{protocol}://{temp['url']}"
+            temp["url"] = temp['url']
             mirrors.append(temp)
 
     mirrors = [m for m in mirrors if m['url'] in mirrors_pacman]

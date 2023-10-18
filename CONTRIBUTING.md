@@ -57,20 +57,20 @@ If you are proposing a feature:
 ## Python environment
 Poetry will setup your enviroment and any dependecies you need
 
-    ```
-   git clone https://gitlab.manjaro.org/applications/pacman-mirrors.git
-   cd pacman-mirrors
-   sudo pacman -Syu python-poetry make transifex-client
-   poetry install
-   poetry shell
-   poetry run pacman-mirrors
-    ```
+```
+git clone https://gitlab.manjaro.org/applications/pacman-mirrors.git
+cd pacman-mirrors
+sudo pacman -Syu python-poetry make transifex-client
+poetry install
+poetry shell
+poetry run pacman-mirrors
+```
 
 Ready to contribute? Here's how to set up `pacman-mirrors` for local development.
 
 * Fork the `pacman-mirrors` repo on GitHub.
 * Clone your fork locally:
-    
+
 ```
 git clone https://gitlab.manjaro.org/your-name-here/pacman-mirrors.git
 ```
@@ -108,7 +108,7 @@ As the mirrorlists can be generated in a variety of ways - a list of verificatio
 2. `sudo pacman-mirrors -f`
 3. `sudo pacman-mirrors -c Germany`
 4. `sudo pacman-mirrors -c Germany -i`
-5. `sudo pacman-mirrors -aP https -c Germany` 
+5. `sudo pacman-mirrors -aP https -c Germany`
 6. `sudo pacman-mirrors -aP https http -c Germany -i`
 7. `sudo pacman-mirrors -aP http https -c Germany -i`
 8. `sudo pacman-mirrors -aP https http -c Germany`
