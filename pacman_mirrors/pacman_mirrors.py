@@ -140,6 +140,7 @@ class PacmanMirrors:
                 # common
                 common.build_mirror_list(self)
 
+
 def start():
     app = PacmanMirrors()
     app.run()
