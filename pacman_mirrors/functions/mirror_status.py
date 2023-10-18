@@ -29,7 +29,6 @@ def get_local_mirrors(mirrorlist: str) -> tuple:
                 # line = "/".join(mirror_url)
                 line = f"{mirror_url[2]}/{mirror_url[3]}/"
                 urls.append(line)
-        print(mirror_branch, mirror_url)
         return mirror_branch, urls
     except (FileNotFoundError, UnboundLocalError):
         return "", []
