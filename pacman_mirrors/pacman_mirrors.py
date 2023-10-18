@@ -94,15 +94,16 @@ class PacmanMirrors:
 
         if self.config["enterprise"]:
             self.custom = False
-            if os.path.isfile(self.config["custom_file"]):
-                os.remove(self.config["custom_file"])
-            # write enterprice mirror list
+            if fileFn.check_file(self.config["custom_file"]):
+                fileFn.delete_file(self.config["custom_file"])
+            # write enterprise mirror list
             util.msg("Enterprise setup found")
             mirrors = [{
                 "branches": [1, 1, 1, 1, 1, 1],
                 "country": "Enterprise",
                 "protocols": [str(self.config["static"]).split(":")[0]],
                 "resp_time": "0.125",
+                "last_sync": "00:13",
                 "url": str(self.config["static"]).split("//")[-1],
                 "url2": self.config["static"]
             }]
