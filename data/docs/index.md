@@ -364,6 +364,10 @@ editing your pacman-mirrors configuration.
     ## Use only if you fully trust all ssl-enabled mirrors.
     # SSLVerify = True
 
+    ## Set a static mirror to be used instead of the official mirror pool
+    ## e.g. Static = https://domain.tld/manjaro/
+    # Static =
+
 
 # MORE INFO
 * [https://wiki.manjaro.org/index.php?title=Pacman-mirrors](https://wiki.manjaro.org/index.php?title=Pacman-mirrors)
