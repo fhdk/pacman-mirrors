@@ -20,7 +20,11 @@ help:
 
 clean: clean-build clean-test
 tests: lint unit-test
-build: extract-pot compile-mo build-man
+
+download-data:
+    curl -o data/share/mirrors.json https://repo.manjaro.org/mirrors.json
+
+build: download-data extract-pot compile-mo build-man
 	poetry build
 
 clean-build:
@@ -37,12 +41,12 @@ unit-test:
 	poetry run pytest
 
 coverage:
-	coverage run pacman_mirrors tests 
+	coverage run pacman_mirrors tests
 	coverage report -m
 	coverage html
 	firefox htmlcov/index.html
 
-build-html-docs: 
+build-html-docs:
 	mkdocs build
 
 build-man:

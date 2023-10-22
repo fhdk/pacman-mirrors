@@ -146,6 +146,6 @@ def start():
     app = PacmanMirrors()
     app.run()
 
-if __name__ == "__main__":
-   start()
 
+if __name__ == "__main__":
+    start()
