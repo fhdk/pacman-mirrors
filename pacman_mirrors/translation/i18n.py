@@ -35,8 +35,9 @@ LANGUAGES = []
 
 try:
     user_locale = locale.getlocale()
-    if user_locale:
-        LANGUAGES += user_locale
+    if user_locale is (None, None):
+        raise ValueError
+    LANGUAGES += user_locale
 except ValueError:
     LANGUAGES += FALLBACK_LANG
 
