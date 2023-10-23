@@ -60,7 +60,7 @@ print()
 
 # Lets tell those details to gettext
 #  (nothing to change here for you)
-gettext.install(True)
+gettext.install(APP_NAME, LOCALE_DIR, "*")
 gettext.bindtextdomain(APP_NAME, LOCALE_DIR)
 gettext.textdomain(APP_NAME)
 language = gettext.translation(APP_NAME, LOCALE_DIR, LANGUAGES, fallback=True)
