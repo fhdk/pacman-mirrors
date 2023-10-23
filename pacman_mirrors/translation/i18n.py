@@ -29,26 +29,24 @@ import gettext
 APP_NAME = "pacman_mirrors"
 APP_DIR = os.path.join(sys.prefix, "share")
 LOCALE_DIR = os.path.join(APP_DIR, "locale")
-CODESET = "UTF-8"
-# Now we need to choose the language. We will provide a list, and gettext
-# will use the first translation available in the list
+CODESET = "utf-8"
+FALLBACK_LANG = ("en_US", CODESET.upper())
 LANGUAGES = []
+
 try:
     user_locale = locale.getlocale()
     if user_locale:
         LANGUAGES += user_locale
 except ValueError:
-    pass
+    LANGUAGES += FALLBACK_LANG
 
-# this is untested no way to replicate error
-if not user_locale:
-   # try to set locale manualy
-   locale.setlocale(locale.LC_ALL, f'en_US.{CODESET}')
-   LANGUAGES += user_locale
-   print("Manual LOCALE",  user_locale)
+lang = os.environ.get("LANGUAGE", "").split(":")
+if not lang:
+    lang = os.environ.get("LANG", "").split(":")
 
-LANGUAGES += os.environ.get("LANGUAGE", "").split(":")
-LANGUAGES += ["en_US"]
+LANGUAGES += lang
+LANGUAGES += FALLBACK_LANG
+
 
 # debug variable output
 print()
