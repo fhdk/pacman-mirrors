@@ -41,6 +41,13 @@ try:
 except ValueError:
     pass
 
+# this is untested no way to replicate error
+if not user_locale:
+   # try to set locale manualy
+   locale.setlocale(locale.LC_ALL, f'en_US.{CODESET}')
+   LANGUAGES += user_locale
+   print("Manual LOCALE",  user_locale)
+
 LANGUAGES += os.environ.get("LANGUAGE", "").split(":")
 LANGUAGES += ["en_US"]
 
