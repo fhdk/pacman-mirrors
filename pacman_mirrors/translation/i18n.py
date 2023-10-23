@@ -35,7 +35,7 @@ LANGUAGES = []
 
 try:
     user_locale = locale.getlocale()
-    if user_locale is (None, None):
+    if user_locale == (None, None):
         raise ValueError
     LANGUAGES += user_locale
 except ValueError:
@@ -59,7 +59,7 @@ print()
 
 # Lets tell those details to gettext
 #  (nothing to change here for you)
-gettext.install(APP_NAME, LOCALE_DIR, "*")
+gettext.install(APP_NAME, LOCALE_DIR)
 gettext.bindtextdomain(APP_NAME, LOCALE_DIR)
 gettext.textdomain(APP_NAME)
 language = gettext.translation(APP_NAME, LOCALE_DIR, LANGUAGES, fallback=True)
