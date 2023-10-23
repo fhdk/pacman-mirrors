@@ -41,12 +41,12 @@ unit-test:
 	poetry run pytest
 
 coverage:
-	coverage run pacman_mirrors tests 
+	coverage run pacman_mirrors tests
 	coverage report -m
 	coverage html
 	firefox htmlcov/index.html
 
-build-html-docs: 
+build-html-docs:
 	mkdocs build
 
 build-man:
