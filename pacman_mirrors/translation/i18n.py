@@ -39,15 +39,10 @@ try:
         raise ValueError
     LANGUAGES += user_locale
 except ValueError:
-    LANGUAGES += FALLBACK_LANG
+    pass
 
-lang = os.environ.get("LANGUAGE", "").split(":")
-if not lang:
-    lang = os.environ.get("LANG", "").split(":")
-
-LANGUAGES += lang
-LANGUAGES += FALLBACK_LANG
-
+LANGUAGES += os.environ.get("LANGUAGE", "").split(":")
+LANGUAGES += ["en_US"]
 
 # debug variable output
 print()
