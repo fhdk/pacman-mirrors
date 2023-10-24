@@ -92,7 +92,7 @@ class Mirror:
             # assume x86_64
             branches = server["branches"][:3]
             if arm:
-                # take last three instead
+                # take last three instead (which is the same as the first 3 in case of custom pool)
                 branches = server["branches"][-3]
             # add server to list
             self.add(server["country"], server["url"], server["protocols"], branches,
