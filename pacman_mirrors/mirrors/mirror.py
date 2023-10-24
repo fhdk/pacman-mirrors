@@ -20,9 +20,7 @@
 
 """Pacman-Mirrors Mirror Class Module"""
 
-from pacman_mirrors.constants import txt
 from pacman_mirrors.functions.pools import get_continent
-from decimal import Decimal
 
 
 class Mirror:
