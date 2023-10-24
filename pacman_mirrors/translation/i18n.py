@@ -30,22 +30,36 @@ APP_NAME = "pacman_mirrors"
 APP_DIR = os.path.join(sys.prefix, "share")
 LOCALE_DIR = os.path.join(APP_DIR, "locale")
 CODESET = "utf-8"
+FALLBACK_LANG = "en_US"
 
-# Now we need to choose the language. We will provide a list, and gettext
-# will use the first translation available in the list
+# Now we need to choose the language.
+# We will provide a list,
+# and gettext will use the first translation available in the list
 LANGUAGES = []
 try:
     user_locale = locale.getlocale()
-    if user_locale:
-        LANGUAGES += user_locale
+    # locale.getlocale returns a tuple
+    # e.g. ("en_DK", "UTF-8")
+    if user_locale == (None, None):
+        # no user_locale exist ignore the values
+        raise ValueError
+    LANGUAGES += user_locale
+    # adding user_locale changes
+    # adds two elements to LANGUAGES ["en_DK", "UTF-8"]
+    # but there is no language named "UTF-8" ?
 except ValueError:
-    pass
-LANGUAGES += os.environ.get("LANGUAGE", "").split(":")
-LANGUAGES += ["en_US"]
+    LANGUAGES += FALLBACK_LANG
 
-# Lets tell those details to gettext
+lang = os.environ.get("LANGUAGE", "").split(":")
+if not lang:
+    lang = os.environ.get("LANG", "").split(":")
+
+LANGUAGES += lang
+LANGUAGES += FALLBACK_LANG
+
+# Let us tell those details to gettext
 #  (nothing to change here for you)
-gettext.install(APP_NAME, LOCALE_DIR, "*")
+gettext.install(APP_NAME, LOCALE_DIR)
 gettext.bindtextdomain(APP_NAME, LOCALE_DIR)
 gettext.textdomain(APP_NAME)
 language = gettext.translation(APP_NAME, LOCALE_DIR, LANGUAGES, fallback=True)
