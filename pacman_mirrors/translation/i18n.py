@@ -49,12 +49,12 @@ LANGUAGES += lang
 LANGUAGES += FALLBACK_LANG
 
 # debug variable output
-print()
-print("LANGUAGES", LANGUAGES)
-print("APP_DIR", APP_DIR)
-print("LOCALE_DIR", LOCALE_DIR)
-print("LOCALE",  user_locale)
-print()
+#print()
+#print("LANGUAGES", LANGUAGES)
+#print("APP_DIR", APP_DIR)
+#print("LOCALE_DIR", LOCALE_DIR)
+#print("LOCALE",  user_locale)
+#print()
 
 # Lets tell those details to gettext
 #  (nothing to change here for you)
