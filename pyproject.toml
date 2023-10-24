@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pacman_mirrors"
-version = "4.23.3"
+version = "4.24.0"
 description = "Mirror provider for Manjaro Linux."
 authors = ["Roland Singer, Esclapion, Philip Müller, Ramon Buldó, Hugo Posnic, Frede Hundewadt"]
 readme = "README.md"
