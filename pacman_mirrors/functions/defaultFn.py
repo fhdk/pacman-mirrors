@@ -66,7 +66,7 @@ def seed_mirrors(self, file: str) -> None:
     # read mirrors from file
     mirrors = fileFn.read_mirror_file(file)
     # seed mirrors into config
-    self.mirrors.seed(mirrors, False, self.config["arm"])
+    self.mirrors.seed(mirrors, arm=self.config["arm"], custom=self.custom)
     # sort mirrors and countries
     sort_mirror_countries(self)
 
