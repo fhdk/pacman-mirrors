@@ -51,11 +51,11 @@ def get_language():
         return "en_US"
     
 # debug variable output
-print()
-print("APP_DIR", APP_DIR)
-print("LOCALE_DIR", LOCALE_DIR)
-print("LOCALE",  get_language())
-print()
+#print()
+#print("APP_DIR", APP_DIR)
+#print("LOCALE_DIR", LOCALE_DIR)
+#print("LOCALE",  get_language())
+#print()
 
 # Lets tell those details to gettext
 #  (nothing to change here for you)
