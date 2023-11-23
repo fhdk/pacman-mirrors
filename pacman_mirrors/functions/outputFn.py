@@ -34,9 +34,13 @@ def write_custom_mirrors_json(self, selected_mirrors: list) -> None:
     :param selected_mirrors:
     :return:
     """
+    local_pool = []
+    for selected in selected_mirrors:
+        local_pool.append(self.mirrors.copy_to_extern(selected))
+
     util.msg(message=f"{txt.CUSTOM_MIRROR_LIST}", urgency=txt.INF_CLR, tty=self.tty)
     util.msg(message="------------------------------------------------------------", tty=self.tty)
-    jsonFn.write_json_file(data=selected_mirrors, filename=self.config["custom_file"])
+    jsonFn.write_json_file(data=local_pool, filename=self.config["custom_file"])
     util.msg(message=f'{txt.CUSTOM_MIRROR_FILE_SAVED}: {self.config["custom_file"]}', urgency=txt.INF_CLR, tty=self.tty)
 
 

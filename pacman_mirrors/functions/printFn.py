@@ -45,5 +45,3 @@ def red_msg(message: str) -> None:
 def yellow_msg(message: str) -> None:
     """Helper for printing yellow messages"""
     print("{}{}{}".format(color.YELLOW, message, color.RESET))
-
-

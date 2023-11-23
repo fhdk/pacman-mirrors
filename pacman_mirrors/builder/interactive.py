@@ -26,7 +26,7 @@ from pacman_mirrors.builder.builder import build_pool
 from pacman_mirrors.constants import txt
 
 from pacman_mirrors.functions.conversion import \
-    translate_interactive_to_pool, translate_pool_to_interactive
+    interactive_to_pool, pool_to_interactive
 
 from pacman_mirrors.functions.filter_mirror_pool_functions import \
     filter_user_branch
@@ -67,7 +67,7 @@ def build_mirror_list(self) -> None:
         "url": "http://server/repo/"
     }
     """
-    interactive_list = translate_pool_to_interactive(mirror_pool=worklist, tty=self.tty)
+    interactive_list = pool_to_interactive(mirror_pool=worklist, tty=self.tty)
 
     # import the correct ui
     if self.no_display or self.config["arm"]:
@@ -77,7 +77,8 @@ def build_mirror_list(self) -> None:
         # gtk mode
         from pacman_mirrors.dialogs import graphicalui as ui
 
-    interactive = ui.run(server_list=interactive_list, random=self.config["method"] == "random",
+    interactive = ui.run(server_list=interactive_list,
+                         random=self.config["method"] == "random",
                          default=self.default)
 
     # process user choices
@@ -85,8 +86,9 @@ def build_mirror_list(self) -> None:
         """
         translate interactive list back to our json format
         """
-        custom_pool, mirror_list = translate_interactive_to_pool(selection=interactive.custom_list,
-                                                                 mirror_pool=self.mirrors.mirror_pool, tty=self.tty)
+        custom_pool, mirror_list = interactive_to_pool(selection=interactive.custom_list,
+                                                       mirror_pool=self.mirrors.mirror_pool,
+                                                       tty=self.tty)
 
         """
         Try selected method on the mirrorlist
@@ -97,7 +99,7 @@ def build_mirror_list(self) -> None:
             if self.default:
                 if self.config["method"] == "rank":
                     mirror_list = test_mirror_pool(self=self, worklist=mirror_list)
-                    mirror_list = sorted(mirror_list, key=itemgetter("resp_time"))
+                    mirror_list = sorted(mirror_list, key=itemgetter("speed"))
                 else:
                     shuffle(mirror_list)
         except IndexError:
@@ -126,9 +128,10 @@ def build_mirror_list(self) -> None:
             try:
                 _ = mirror_list[0]
                 write_pacman_mirror_list(self, mirror_list)
-                if self.no_status:
-                    util.msg(message=f"{txt.OVERRIDE_STATUS_CHOICE}", urgency=txt.WRN_CLR, tty=self.tty)
-                    util.msg(message=f"{txt.OVERRIDE_STATUS_MIRROR}", urgency=txt.WRN_CLR, tty=self.tty)
+                # # removed - part of refactor for new mirror-manager
+                # if self.no_status:
+                #     util.msg(message=f"{txt.OVERRIDE_STATUS_CHOICE}", urgency=txt.WRN_CLR, tty=self.tty)
+                #     util.msg(message=f"{txt.OVERRIDE_STATUS_MIRROR}", urgency=txt.WRN_CLR, tty=self.tty)
             except IndexError:
                 raise IndexError
         except IndexError:

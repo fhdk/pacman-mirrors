@@ -199,6 +199,14 @@ def sanitize_url(url: str) -> str:
     return url + "/"
 
 
+def strip_protocol(url: str) -> str:
+    return util.strip_protocol(url)
+
+
+def strip_url(url: str) -> str:
+    return util.get_protocol(url)
+
+
 def write_config_branch(branch: str, filename: str, tty: bool = False, quiet: bool = False) -> None:
     """Write branch
     :param branch:
@@ -213,10 +221,7 @@ def write_config_branch(branch: str, filename: str, tty: bool = False, quiet: bo
     else:
         branch = "Branch = {}\n".format(branch)
     try:
-        with open(
-            filename) as cnf, tempfile.NamedTemporaryFile(
-            "w+t", dir=os.path.dirname(
-                filename), delete=False) as tmp:
+        with open(filename) as cnf, tempfile.NamedTemporaryFile("w+t", dir=os.path.dirname(filename), delete=False) as tmp:
             replaced = False
             for line in cnf:
                 if lookfor in line:
@@ -229,11 +234,9 @@ def write_config_branch(branch: str, filename: str, tty: bool = False, quiet: bo
         os.replace(tmp.name, filename)
         os.chmod(filename, 0o644)
         if not quiet:
-            util.msg(
-                message=f"{txt.API_CONF_RE_BRANCH}", urgency=txt.INF_CLR, tty=tty)
+            util.msg(message=f"{txt.API_CONF_RE_BRANCH}", urgency=txt.INF_CLR, tty=tty)
     except OSError as err:
-        util.msg(
-            message=f"{txt.CANNOT_READ_FILE}: {err.filename}: {err.strerror}", urgency=txt.ERR_CLR, tty=tty)
+        util.msg(message=f"{txt.CANNOT_READ_FILE}: {err.filename}: {err.strerror}", urgency=txt.ERR_CLR, tty=tty)
         sys.exit(2)
 
 

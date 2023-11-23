@@ -22,6 +22,7 @@
 
 from pacman_mirrors.constants import txt
 from pacman_mirrors.functions.pools import get_continent
+from decimal import Decimal
 
 
 class Mirror:
@@ -31,63 +32,82 @@ class Mirror:
         self.country_pool = []
         self.mirror_pool = []
 
-    def add(self, country: str, url: str, protocols: list,
-            branches: list = None, last_sync: str = None,
-            resp_time: str = None) -> None:
+    def add(self, alias: str, url: str, protocols: list, branches: list,
+            resp_time: str, last_sync: str, score: int) -> None:
         """Append mirror
-        :param country:
+        :param alias:
         :param url:
         :param protocols:
-        :param branches: optional from status.json
-        :param last_sync: optional from status.json
-        :param resp_time: optional from status.json
+        :param branches:
+        :param resp_time:
+        :param last_sync:
+        :param score:
         """
         if branches is None:
             branches = [-1, -1, -1]
-        if last_sync is None:
-            last_sync = "00:00"
+        # if last_sync is None:
+        #     last_sync = "00:00"
         if resp_time is None:
             resp_time = 0
         else:
-            resp_time = dec(resp_time)
-        if country not in self.country_pool:
-            self.country_pool.append(country)
+            resp_time = resp_time
         # translate negative integer in status.json
-        if last_sync == -1:
-            last_sync = txt.SERVER_BAD  # "9999:99"
-            resp_time = txt.SERVER_RES  # 99.99
+        # if last_sync == -1:
+        #     last_sync = txt.SERVER_BAD  # "9999:99"
+        #     resp_time = txt.SERVER_RES  # 99.99
         # sort protocols in reversed order https,http,ftps,ftp
         protocols = sorted(protocols, reverse=True)
-        continent = get_continent(country.replace("_", " "))
-        # add to pool
-        self.mirror_pool.append({
+        # fetch the correct naming for country
+        # work around the data file is all lower case
+        continent, country = get_continent(alias.replace("_", " "))
+        if not country:
+            country = "Global CDN"
+        if country not in self.country_pool:
+            self.country_pool.append(country)
+        internal = {
             "continent": continent,
             "branches": branches,
             "country": country,
             "last_sync": last_sync,
             "protocols": protocols,
             "resp_time": resp_time,
-            "url": url
-        })
+            "score": score,
+            "speed": resp_time,
+            "url": url,
+            "url2": f"{protocols[0]}://{url}",
+        }
+        self.mirror_pool.extend([internal])
 
-    def seed(self, servers: list, status: bool = False, custom: bool = False) -> None:
+    def seed(self, servers: list, arm: bool, custom: bool = False) -> None:
         """
         Seed mirrorlist
         :param servers:
-        :param status:
         :param custom:
+        :param arm:
         """
         if custom:  # clear previous data
             self.country_pool = []
             self.mirror_pool = []
         for server in servers:
-            if status:
-                self.add(server["country"],
-                         server["url"],
-                         server["protocols"],
-                         server["branches"],
-                         server["last_sync"])
-            else:
-                self.add(server["country"],
-                         server["url"],
-                         server["protocols"])
+            # new layout has all branches in branhes
+            # take only branches matching architecture
+            # assume x86_64
+            branches = server["branches"][:3]
+            if arm:
+                # take last three instead
+                branches = server["branches"][-3]
+            # add server to list
+            self.add(server["country"], server["url"], server["protocols"], branches,
+                     server["speed"], server["last_sync"], server["score"])
+
+    @staticmethod
+    def copy_to_extern(server: dict) -> dict:
+        return {
+            "country": str(server["country"]).replace(" ", "_").lower(),
+            "branches": server["branches"],
+            "last_sync": server["last_sync"],
+            "protocols": server["protocols"],
+            "score": server["score"],
+            "speed": server["resp_time"],
+            "url": server["url"],
+        }

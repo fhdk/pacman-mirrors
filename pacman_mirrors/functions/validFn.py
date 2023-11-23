@@ -45,7 +45,7 @@ def country_list_is_valid(onlycountry: list, countrylist: list, tty: bool = Fals
     """
     for country in onlycountry:
         if country not in countrylist:
-            util.msg(message=f"{txt.OPTION}{txt.OPT_COUNTRY}: {txt.OPT_COUNTRY}: '{txt.UNKNOWN_COUNTRY}'",
+            util.msg(message=f"{txt.OPTION}{txt.OPT_COUNTRY}: {txt.UNKNOWN_COUNTRY} '{country}'",
                      urgency=txt.WRN_CLR,
                      tty=tty)
             util.msg(message=f"{txt.AVAILABLE_COUNTRIES}",

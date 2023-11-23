@@ -54,7 +54,7 @@ def build_mirror_list(self) -> None:
 
     if self.config["method"] == "rank":
         work_pool = test_mirror_pool(self=self, worklist=work_pool)
-        work_pool = sort_mirror_pool(worklist=work_pool, field="resp_time", reverse=False)
+        work_pool = sort_mirror_pool(worklist=work_pool, field="speed", reverse=False)
     else:
         shuffle(work_pool)
 
@@ -69,9 +69,10 @@ def build_mirror_list(self) -> None:
                      urgency=txt.INF_CLR, tty=self.tty)
             util.msg(message=f"{txt.REMOVE_CUSTOM_CONFIG} 'sudo {txt.RESET_ALL}'",
                      urgency=txt.INF_CLR, tty=self.tty)
-        if self.no_status:
-            util.msg(message=f"{txt.OVERRIDE_STATUS_CHOICE}", urgency=txt.WRN_CLR, tty=self.tty)
-            util.msg(message=f"{txt.OVERRIDE_STATUS_MIRROR}", urgency=txt.WRN_CLR, tty=self.tty)
+        # # removed - part of refactor for new mirror-manager
+        # if self.no_status:
+        #     util.msg(message=f"{txt.OVERRIDE_STATUS_CHOICE}", urgency=txt.WRN_CLR, tty=self.tty)
+        #     util.msg(message=f"{txt.OVERRIDE_STATUS_MIRROR}", urgency=txt.WRN_CLR, tty=self.tty)
     except IndexError:
         util.msg(message=f"{txt.NO_SELECTION}", urgency=txt.WRN_CLR, tty=self.tty)
         util.msg(message=f"{txt.NO_CHANGE}", urgency=txt.INF_CLR, tty=self.tty)

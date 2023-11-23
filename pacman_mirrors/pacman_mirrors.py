@@ -34,6 +34,7 @@ from pacman_mirrors.functions import config_setup
 from pacman_mirrors.functions import defaultFn
 from pacman_mirrors.functions import fileFn
 from pacman_mirrors.functions import httpFn
+from pacman_mirrors.functions import outputFn
 
 from pacman_mirrors.functions import util
 from pacman_mirrors.mirrors.mirror import Mirror
@@ -67,7 +68,7 @@ class PacmanMirrors:
         self.network = True
         self.no_display = False
         self.no_mirrorlist = False
-        self.no_status = False
+        # self.no_status = False
         self.quiet = False
         self.selected_countries = []
         self.tty = False
@@ -88,39 +89,58 @@ class PacmanMirrors:
         # Build mirror list
         """
         (self.config, self.custom) = config_setup.setup_config(self)
-        fileFn.create_dir(self.config["work_dir"])
+        fileFn.create_dir(self.config["var_dir"])
         cliFn.parse_command_line(self, gtk_available=GTK_AVAILABLE)
-        util.aarch64_check(self, write=True)
-        if not config_setup.sanitize_config(config=self.config):
-            sys.exit(2)
-        self.network = httpFn.check_internet_connection(tty=self.tty)
-        if self.config["url_mirrors_json"] and self.config["url_status_json"]:
-            # only fetch data files if configuration url are valid
+
+        if self.config["enterprise"]:
+            self.custom = False
+            if fileFn.check_file(self.config["custom_file"]):
+                fileFn.delete_file(self.config["custom_file"])
+            # write enterprise mirror list
+            util.msg("Enterprise setup found")
+            mirrors = [{
+                "branches": [1, 1, 1, 1, 1, 1],
+                "country": "Enterprise",
+                "protocols": [str(self.config["static"]).split(":")[0]],
+                "resp_time": "0.125",
+                "last_sync": "00:13",
+                "url": str(self.config["static"]).split("//")[-1],
+                "url2": self.config["static"]
+            }]
+            outputFn.write_pacman_mirror_list(self, mirrors)
+            exit(0)
+        else:
+            # default pacman-mirrors
+            util.aarch64_check(self, write=True)
+            if not config_setup.sanitize_config(config=self.config):
+                sys.exit(2)
+
+            self.network = httpFn.check_internet_connection(tty=self.tty)
             if self.network:
                 httpFn.download_mirror_pool(config=self.config, tty=self.tty, quiet=self.quiet)
-        if self.no_mirrorlist:
-            sys.exit(0)
-        if not self.network:
-            if not self.quiet:
-                pacman_mirrors.functions.util.internet_message(tty=self.tty)
-            self.config["method"] = "random"
-            self.fasttrack = False
-        """
-        # Load configured mirror pool
-        """
-        defaultFn.load_config_mirror_pool(self)
-        """
-        # Decide which type of mirrorlist to create
-        * Fasttrack
-        * Interactive
-        * Default
-        """
-        if self.fasttrack:
-            fasttrack.build_mirror_list(self, limit=self.fasttrack)
-        elif self.interactive:
-            interactive.build_mirror_list(self)
-        else:
-            common.build_mirror_list(self)
+
+            if self.no_mirrorlist:
+                sys.exit(0)
+
+            if not self.network:
+                if not self.quiet:
+                    pacman_mirrors.functions.util.internet_message(tty=self.tty)
+                self.config["method"] = "random"
+                self.fasttrack = False
+
+            # load configured mirror pool
+            defaultFn.load_config_mirror_pool(self)
+
+            if self.fasttrack:
+                # fasttrack
+                fasttrack.build_mirror_list(self, limit=self.fasttrack)
+            elif self.interactive:
+                # interactive
+                interactive.build_mirror_list(self)
+            else:
+                # common
+                common.build_mirror_list(self)
+
 
 def start():
     app = PacmanMirrors()

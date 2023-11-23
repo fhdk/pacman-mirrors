@@ -25,14 +25,14 @@ from pacman_mirrors.functions import jsonFn
 from pacman_mirrors.functions import validFn
 
 
-def apply_status_to_custom_pool(config: object, custom_pool: list) -> list:
+def apply_status_to_custom_pool(config: dict, custom_pool: list) -> list:
     """
     Apply the current mirror status to the custom mirror file
     :param config: config dictionary
     :param custom_pool: the custom mirror pool
     :return: custom mirror pool with status applied
     """
-    status_list = tuple(jsonFn.read_json_file(filename=config["status_file"], dictionary=False))
+    status_list = tuple(jsonFn.read_json_file(filename=config["mirror_file"], dictionary=False))
     custom_list = tuple(custom_pool)
     try:
         _ = status_list[0]

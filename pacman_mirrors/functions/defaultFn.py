@@ -31,6 +31,7 @@ def load_config_mirror_pool(self) -> None:
     """
     if self.geoip or self.continent:
         customFn.delete_custom_pool(self)
+
     if customFn.check_custom_pool(self) and not self.config["country_pool"]:
         customFn.load_custom_pool(self)
         self.selected_countries = self.mirrors.country_pool
@@ -38,6 +39,7 @@ def load_config_mirror_pool(self) -> None:
         if self.config["country_pool"]:
             self.selected_countries = self.config["country_pool"]
         load_default_mirror_pool(self)
+
     """
     Validate the list of selected countries
     """
@@ -48,19 +50,24 @@ def load_default_mirror_pool(self) -> None:
     """
     Load all available mirrors
     """
-    (file, status) = fileFn.return_mirror_filename(config=self.config, tty=self.tty)
-    seed_mirrors(self, file, status)
+    filename = fileFn.return_mirror_filename(config=self.config, tty=self.tty)
+    seed_mirrors(self, filename)
 
 
-def seed_mirrors(self, file: str, status: bool = False) -> None:
+def mirror_seed_from_data(self, data: list) -> list:
+    self.mirrors.seed(data, False, self.config["arm"])
+    return self.mirrors.mirror_pool
+
+
+def seed_mirrors(self, file: str) -> None:
     """
     Seed mirrors
     """
+    # read mirrors from file
     mirrors = fileFn.read_mirror_file(file)
-    if status:
-        self.mirrors.seed(mirrors, status=status)
-    else:
-        self.mirrors.seed(mirrors)
+    # seed mirrors into config
+    self.mirrors.seed(mirrors, False, self.config["arm"])
+    # sort mirrors and countries
     sort_mirror_countries(self)
 
 

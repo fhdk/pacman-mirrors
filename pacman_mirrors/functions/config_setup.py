@@ -21,48 +21,50 @@
 
 import sys
 
-from pacman_mirrors.config import configuration as conf
+from pacman_mirrors.config import configuration
 from pacman_mirrors.constants import txt
 from pacman_mirrors.functions import util
 
 
 def setup_config(self) -> tuple:
-    """Get config informations
+    """Get config information
     :returns: config, custom
     :rtype: tuple
     """
     custom = False
     # default config
     config = {
+        "arm": False,
         "branch": "stable",
-        "branches": conf.BRANCHES,
-        "config_file": conf.CONFIG_FILE,
+        "branches": configuration.BRANCHES,
+        "config_file": configuration.CONFIG_FILE,
         "country_pool": [],
-        "custom_file": conf.CUSTOM_FILE,
+        "custom_file": configuration.CUSTOM_FILE,
+        "enterprise": False,  # refactor - part of refactor for new mirror-manager
         "method": "rank",
-        "work_dir": conf.WORK_DIR,
-        "mirror_file": conf.MIRROR_FILE,
-        "mirror_list": conf.MIRROR_LIST,
+        "mirror_file": configuration.MIRROR_FILE,
+        "mirror_list": configuration.MIRROR_LIST,
+        "mirror_manager": configuration.MIRROR_MANAGER,
         "no_update": False,
         "protocols": [],
-        "repo_arch": conf.REPO_ARCH,
+        "repo_arch": configuration.REPO_ARCH,
         "ssl_verify": True,
-        "status_file": conf.STATUS_FILE,
-        "test_file": conf.TEST_FILE,
-        "url_mirrors_json": conf.URL_MIRROR_JSON,
-        "url_status_json": conf.URL_STATUS_JSON,
-        "arm": False,
-        "timeout": 2
+        "static": "",
+        # "status_file": conf.STATUS_FILE, # removed - part of refactor for new mirror-manager
+        "test_file": configuration.TEST_FILE,
+        "timeout": 2,
+        # "url_status_json": conf.URL_STATUS_JSON, #  removed - part of refactor for new mirror-manager
+        "var_dir": configuration.VAR_DIR,
     }
     # try to replace default entries by reading conf file
     try:
-        with open(config["config_file"]) as conf_file:
+        with open(configuration.CONFIG_FILE) as conf_file:
             for line in conf_file:
                 line = line.strip()
                 if line.startswith("#") or "=" not in line:
                     continue
                 (key, value) = line.split("=", 1)
-                key = key.rstrip()
+                key = key.lstrip().rstrip()
                 value = value.lstrip()
                 if key and value:
                     if value.startswith("\"") and value.endswith("\""):
@@ -81,44 +83,53 @@ def setup_config(self) -> tuple:
                     if key == "TestFile":
                         config["test_file"] = value
                         if not config["test_file"]:
-                            config["test_file"] = conf.TEST_FILE
+                            config["test_file"] = configuration.TEST_FILE
+                    # refactor Enterprise mirror option
+                    if key == "Static":
+                        config["enterprise"] = True
+                        config["static"] = value
 
     except (PermissionError, OSError) as err:
-        util.msg(
-            message=f"{txt.CANNOT_READ_FILE}: {err.filename}: {err.strerror}", urgency=txt.ERR_CLR, tty=self.tty)
+        util.msg(message=f"{txt.CANNOT_READ_FILE}: {err.filename}: {err.strerror}", urgency=txt.ERR_CLR, tty=self.tty)
         sys.exit(2)
     return config, custom
 
 
-def sanitize_config(config: object) -> bool:
+def sanitize_config(config: dict) -> bool:
     """
     Verify configuration
     :param config:
     """
     errors = []
-    header = f".: {txt.ERR_CLR}: {txt.INVALID_SETTING_IN} `{conf.CONFIG_FILE}`"
+    header = f".: {txt.ERR_CLR}: {txt.INVALID_SETTING_IN} `{configuration.CONFIG_FILE}`"
     # Check Method
-    if config["method"] not in conf.METHODS:
+    if config["method"] not in configuration.METHODS:
         errors.append("     'Method = {}'; {} {}".format(
-            config["method"], txt.EXP_CLR, "|".join(conf.METHODS)))
+            config["method"], txt.EXP_CLR, "|".join(configuration.METHODS)))
     # Check Branch
     if config["arm"]:
-        if config["branch"] not in conf.ARM_BRANCHES:
+        if config["branch"] not in configuration.ARM_BRANCHES:
             errors.append("     'Branch = {}'; {} {}".format(
-                config["branch"], txt.EXP_CLR, "|".join(conf.ARM_BRANCHES)))
+                config["branch"], txt.EXP_CLR, "|".join(configuration.ARM_BRANCHES)))
     else:
-        if config["branch"] not in conf.BRANCHES:
+        if config["branch"] not in configuration.BRANCHES:
             errors.append("     'Branch = {}'; {} {}".format(
-                config["branch"], txt.EXP_CLR, "|".join(conf.BRANCHES)))
+                config["branch"], txt.EXP_CLR, "|".join(configuration.BRANCHES)))
     # Check SSLVerify
-    if str(config["ssl_verify"]) not in conf.SSL:
+    if str(config["ssl_verify"]) not in configuration.SSL:
         errors.append("     'SSLVerify = {}'; {} {}".format(
-            config["ssl_verify"], txt.EXP_CLR, "|".join(conf.SSL)))
+            config["ssl_verify"], txt.EXP_CLR, "|".join(configuration.SSL)))
     # Check Protocols
     for p in config["protocols"]:
-        if p not in conf.PROTOCOLS:
+        if p not in configuration.PROTOCOLS:
             errors.append("     'Protocols = {}'; {} {}".format(
-                config["protocols"], txt.EXP_CLR, ",".join(conf.PROTOCOLS)))
+                config["protocols"], txt.EXP_CLR, ",".join(configuration.PROTOCOLS)))
+    if config["enterprise"]:
+        # check static mirror - simple validation
+        if "://" or "." not in config["static"]:
+            errors.append("     'Static = {}'; {} (e.g. 'http://domain.tld/manjaro/')".format(
+                config["static"], txt.EXP_CLR))
+
     if len(errors):
         print(header)
         for e in errors:

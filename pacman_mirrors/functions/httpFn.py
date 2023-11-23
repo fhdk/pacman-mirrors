@@ -46,27 +46,26 @@ from pacman_mirrors.functions import util
 USER_AGENT = {"User-Agent": "{}{}".format(conf.USER_AGENT, __version__)}
 
 
-def download_mirrors(config: object) -> tuple:
+def download_mirrors(config: dict) -> bool:
     """Retrieve mirrors from manjaro.org
     :param config:
     :returns: tuple with bool for mirrors.json and status.json
     :rtype: tuple
     """
     fetchmirrors = True
-    fetchstatus = True
     message = ""
     try:
         # mirrors.json
-        util.msg(message=f"=> Mirror pool: {config['url_mirrors_json']}", urgency=txt.INF_CLR)
-        resp = requests.get(url=config["url_mirrors_json"],
+        util.msg(message=f"=> Mirror pool: {config['mirror_manager']}", urgency=txt.INF_CLR)
+        resp = requests.get(url=config["mirror_manager"],
                             headers=USER_AGENT,
                             timeout=config["timeout"])
         resp.raise_for_status()
         mirrorlist = resp.json()
-        tempfile = config["work_dir"] + "/.temp.file"
+        tempfile = config["var_dir"] + "/.temp.file"
         jsonFn.json_dump_file(mirrorlist, tempfile)
         filecmp.clear_cache()
-        if fileFn.check_file(conf.USR_DIR, folder=True):
+        if fileFn.check_file(conf.VAR_DIR, folder=True):
             if not fileFn.check_file(config["mirror_file"]):
                 jsonFn.json_dump_file(mirrorlist, config["mirror_file"])
             elif not filecmp.cmp(tempfile, config["mirror_file"]):
@@ -87,34 +86,8 @@ def download_mirrors(config: object) -> tuple:
     if message != "":
         fetchmirrors = False
         util.msg(message=message, urgency=txt.ERR_CLR, newline=True)
-        message = ""
-
-    try:
-        # status.json
-        util.msg(message=f"=> Mirror status: {config['url_status_json']}", urgency=txt.INF_CLR)
-        resp = requests.get(url=config["url_status_json"],
-                            headers=USER_AGENT,
-                            timeout=config["timeout"])
-        # resp.raise_for_status()
-        statuslist = resp.json()
-        jsonFn.write_json_file(statuslist, config["status_file"])
-    except (json.JSONDecodeError,) as jsonError:
-        message = f"Invalid JSON data: {jsonError}"
-    except (requests.exceptions.ConnectionError,) as connError:
-        message = f"Connection: {connError}"
-    except (requests.exceptions.SSLError,) as sslError:
-        message = f"Certificate: {sslError}"
-    except (requests.exceptions.Timeout,) as connTimeout:
-        message = f"Connection: {connTimeout}"
-    except (requests.exceptions.HTTPError,) as httpError:
-        message = f"Connection {httpError}"
-    except Exception as e:
-        message = f"{e}"
-    if message != "":
-        fetchstatus = False
-        util.msg(message=message, urgency=txt.ERR_CLR, newline=True)
     # result
-    return fetchmirrors, fetchstatus
+    return fetchmirrors
 
 
 def get_ip_country(maxwait: int = 2) -> str:
@@ -163,9 +136,9 @@ def get_ftp_response(url: str, maxwait: int) -> str:
     message = ""
     try:
         with closing(request.urlopen(url, timeout=maxwait)) as ftpReq:
-            with open(conf.WORK_DIR + '/.testresponse', 'wb') as testFile:
+            with open(conf.VAR_DIR + '/.testresponse', 'wb') as testFile:
                 shutil.copyfileobj(ftpReq, testFile)
-            os.remove(conf.WORK_DIR + '/.testresponse')
+            os.remove(conf.VAR_DIR + '/.testresponse')
     except URLError as e:
         if e.reason.find('No such file or directory') >= 0:
             message = f"FileNotFound"
@@ -174,15 +147,14 @@ def get_ftp_response(url: str, maxwait: int) -> str:
     return message
 
 
-def get_mirror_response(url: str, config: object, tty: bool = False, maxwait: int = 2,
-                        count: int = 1, quiet: bool = False, ssl_verify: bool = True) -> float:
+def get_mirror_response(url: str, config: dict, tty: bool = False, maxwait: int = 2,
+                        quiet: bool = False, ssl_verify: bool = True) -> float:
     """Query mirror by downloading a file and measuring the time taken
     :param config:
     :param ssl_verify:
     :param tty:
     :param url:
     :param maxwait:
-    :param count:
     :param quiet:
     :returns always return a float value with response time
     """
@@ -253,13 +225,12 @@ def ping_host(host: str, tty: bool = False, count: int = 1) -> bool:
     return system_call("ping -c{} {} > /dev/null".format(count, host)) == 0
 
 
-def download_mirror_pool(config: object, tty: bool = False, quiet: bool = False) -> tuple:
+def download_mirror_pool(config: dict, tty: bool = False, quiet: bool = False) -> bool:
     """Download updates from repo.manjaro.org
     :param config:
     :param quiet:
     :param tty:
-    :returns: tuple with True/False for mirrors.json and status.json
-    :rtype: tuple
+    :returns: True/False
     """
     result = None
     connected = check_internet_connection(tty=tty)
@@ -270,19 +241,10 @@ def download_mirror_pool(config: object, tty: bool = False, quiet: bool = False)
                      tty=tty)
         result = download_mirrors(config)
     else:
-        if not fileFn.check_file(config["status_file"]):
-            if not quiet:
-                util.msg(message=f"{txt.MIRROR_FILE} {config['status_file']} {txt.IS_MISSING}",
-                         urgency=txt.WRN_CLR,
-                         tty=tty)
-                util.msg(message=f"{txt.FALLING_BACK} {conf.MIRROR_FILE}",
-                         urgency=txt.WRN_CLR,
-                         tty=tty)
-            result = (True, False)
         if not fileFn.check_file(config["mirror_file"]):
             if not quiet:
                 util.msg(message=f"{txt.HOUSTON}",
                          urgency=txt.HOUSTON,
                          tty=tty)
-            result = (False, False)
+            result = False
     return result

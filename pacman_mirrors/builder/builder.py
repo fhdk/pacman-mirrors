@@ -23,8 +23,6 @@ from pacman_mirrors.functions.filter_mirror_pool_functions import \
 from pacman_mirrors.functions.filter_mirror_status_functions import \
     filter_bad_mirrors, filter_error_mirrors, filter_poor_mirrors
 
-from pacman_mirrors.functions.outputFn import write_custom_mirrors_json
-
 
 def build_pool(self) -> list:
     """
@@ -58,16 +56,19 @@ def build_pool(self) -> list:
     except IndexError:
         pass
 
-    """
-    Apply --no-status argument if applicable
-    """
-    if self.no_status:
-        """
-        Apply interval filter
-        """
-        if self.interval:
-            work_pool = filter_poor_mirrors(mirror_pool=work_pool, interval=self.interval)
-    else:
-        work_pool = filter_user_branch(mirror_pool=work_pool, config=self.config)
+    # # removed - part of refactor for new mirror-manager
+    # """
+    # Apply --no-status argument if applicable
+    # """
+    # if self.no_status:
+    #     """
+    #     Apply interval filter
+    #     """
+    #     if self.interval:
+    #         work_pool = filter_poor_mirrors(mirror_pool=work_pool, interval=self.interval)
+    # else:
+    #
+
+    work_pool = filter_user_branch(mirror_pool=work_pool, config=self.config)
 
     return work_pool

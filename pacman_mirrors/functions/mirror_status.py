@@ -5,20 +5,19 @@ from urllib import error
 import json
 from pacman_mirrors.constants import colors
 from pacman_mirrors.functions import printFn
-from pacman_mirrors.functions.util import strip_protocol
 from pacman_mirrors.functions.util import msg
-from datetime import datetime
 from pacman_mirrors.functions.jsonFn import read_json_file
+from pacman_mirrors.functions.defaultFn import mirror_seed_from_data
 
 C_KO = colors.RED
 C_OK = colors.GREEN
 C_NONE = colors.RESET
 
 
-def get_local_mirrors() -> tuple:
+def get_local_mirrors(mirrorlist: str) -> tuple:
     urls = []
     try:
-        with open("/etc/pacman.d/mirrorlist", "r") as f_list:
+        with open(mirrorlist, "r") as f_list:
             for line in f_list:
                 if not line.startswith("Server"):
                     continue
@@ -27,8 +26,9 @@ def get_local_mirrors() -> tuple:
                 mirror_url = line.split('/')
                 mirror_url.pop()
                 mirror_branch = mirror_url.pop()
-                line = "/".join(mirror_url)
-                urls.append(line + "/",)
+                # line = "/".join(mirror_url)
+                line = f"{mirror_url[2]}/{mirror_url[3]}/"
+                urls.append(line)
         return mirror_branch, urls
     except (FileNotFoundError, UnboundLocalError):
         return "", []
@@ -57,19 +57,16 @@ def print_status(self) -> int:
     :param self:
     :return:
     """
-    # // --- BEGING ---------------------------------------------------------------------
-    # If configuration urls are missing - show only first mirror from mirror pool
-    if not self.config["url_mirrors_json"] or not self.config["url_status_json"]:
+    if self.config["enterprise"]:
+        # write enterprise config
         color = C_OK
         text = "OK"
-        now = datetime.now()
-        fake = now.strftime("00:%M")
-        mirror = get_static_mirror(self.config["mirror_file"])
-        print(f"Mirror #1", color, f"{text}", C_NONE, f"{fake} {mirror['country']} {mirror['url']}")
+        fake = "00:00"
+        print(f"Mirror #1", color, f"{text}", C_NONE, f"{fake} Enterprise {self.config['static']}")
         return 0
     # // --- END ---------------------------------------------------------------------
 
-    system_branch, mirrors_pacman = get_local_mirrors()
+    system_branch, mirrors_pacman = get_local_mirrors(self.config["mirror_list"])
     # bug out when no local mirrorlist exist or branch is deprecated
     if system_branch == "" or system_branch == "stable-staging":
         print(C_KO, "MIRRORLIST ERROR", C_NONE)
@@ -78,18 +75,20 @@ def print_status(self) -> int:
     try:
         # // --- DEBUG ---------------------------------------------------------------
         # with request.urlopen('http://localhost:8000/status.json') as f_url:
-        with request.urlopen('https://repo.manjaro.org/status.json') as f_url:
+        with request.urlopen(self.config["mirror_manager"]) as f_url:
             req = f_url.read()
     except error.URLError:
         msg("Downloading status failed!", color=colors.BLUE)
         msg("Please check you network connection ...", color=colors.YELLOW)
         return 1  # return failure
     json_data = json.loads(req)
+    data = mirror_seed_from_data(self, json_data)
     mirrors = []
-    for mirror in json_data:
+
+    for mirror in data:
         for protocol in mirror["protocols"]:
             temp = mirror.copy()
-            temp["url"] = f"{protocol}://{strip_protocol(temp['url'])}"
+            temp["url"] = temp['url']
             mirrors.append(temp)
 
     mirrors = [m for m in mirrors if m['url'] in mirrors_pacman]
@@ -117,11 +116,11 @@ def print_status(self) -> int:
     return exit_code
 
 
-def get_static_mirror(filename: str) -> dict:
-    """
-    Get first mirror from mirror pool
-    :param filename:
-    :return:
-    """
-    mirror = read_json_file(filename)
-    return mirror[0]
+# def get_static_mirror(filename: str) -> dict:
+#     """
+#     Get first mirror from mirror pool
+#     :param filename:
+#     :return:
+#     """
+#     mirror = read_json_file(filename)
+#     return mirror[0]

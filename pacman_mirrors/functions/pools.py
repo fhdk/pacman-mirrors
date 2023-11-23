@@ -85,15 +85,21 @@ def build_country_list(self: list) -> list:
     return result
 
 
-def get_continent(country: str) -> str:
+def get_continent(country: str) -> tuple:
     """
     Database query for continent where country belongs
     :param country:
     """
-    continent = (x for x in countries if country in x["name"])
+    continent_name = ""
+    country_name = ""
+    real_country = (x for x in countries if country in str.lower(x["name"]))
+    for y in real_country:
+        country_name = y["name"]
+    continent = (x for x in countries if country in str.lower(x["name"]))
     for x in continent:
-        return x["continent"].strip().replace(" ", "_")
-    return ""
+        continent_name = x["continent"].strip().replace(" ", "_")
+
+    return continent_name, country_name
 
 
 def get_continent_countries(continent: str, mirror_pool: list) -> list:
