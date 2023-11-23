@@ -57,7 +57,7 @@ def get_language():
 gettext.install(APP_NAME, LOCALE_DIR)
 gettext.bindtextdomain(APP_NAME, LOCALE_DIR)
 gettext.textdomain(APP_NAME)
-anguage = gettext.translation(APP_NAME, LOCALE_DIR, [get_language()], fallback=True)
+language = gettext.translation(APP_NAME, LOCALE_DIR, [get_language()], fallback=True)
 
 # Add this to every module:
 #
