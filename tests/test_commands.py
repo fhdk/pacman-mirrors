@@ -5,6 +5,7 @@ import unittest
 
 branches = ("stable", "testing", "unstable")
 
+
 def _test_command_works_properly(args):
     cmd = "sudo /usr/bin/python /usr/bin/pacman-mirrors "
     result = {
@@ -20,15 +21,16 @@ def _test_command_works_properly(args):
             text=True,
             shell=True
             )
-        
-        result["stdout"] = shell.stdout        
+
+        result["stdout"] = shell.stdout
         return result
     except CalledProcessError as error:
         result["stdout"] = error.stdout
         result["stderr"] = error.stderr
         result["error"] = error
         return result
-    
+
+
 class TestDefaultConfig(unittest.TestCase):
     # TODO implement mirrorlist outputcheck using test-checkpoints.md guidelines
 

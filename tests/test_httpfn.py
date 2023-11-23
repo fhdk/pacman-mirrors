@@ -19,7 +19,7 @@ config = {
     "branch": "stable",
     "branches": mock.BRANCHES,
     "config_file": mock.CONFIG_FILE,
-    "country_pool": [],
+    "country_pool": ["Denmark"],
     "custom_file": mock.CUSTOM_FILE,
     "enterprise": False,  # refactor - part of refactor for new mirror-manager
     "method": "rank",

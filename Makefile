@@ -22,7 +22,7 @@ clean: clean-build clean-test
 tests: lint unit-test
 
 download-data:
-	curl -o data/share/mirrors.json https://repo.manjaro.org/mirrors.json
+    curl -o data/share/status.json https://mirror-manager.manjaro.org/status.json
 
 build: download-data extract-pot compile-mo build-man
 	poetry build
@@ -75,7 +75,7 @@ run-dev:
 install: build install-data
 
 install-data:
-	install -D data/share/mirrors.json /usr/share/pacman-mirrors/mirrors.json
+	install -D data/share/status.json /var/lib/pacman-mirrors/status.json
 	install -D data/etc/pacman-mirrors.conf /etc/
 	install -D data/bin/pacman-mirrors /usr/bin/
 	install -D data/man/pacman-mirrors.8.gz /usr/share/man/man8/
@@ -139,7 +139,7 @@ install-data:
 	install -D data/locale/nb/LC_MESSAGES/pacman_mirrors.po /usr/share/locale/nb/LC_MESSAGES/pacman_mirrors.mo
 
 uninstall:
-	rm /usr/share/pacman-mirrors/mirrors.json
+	rm /var/lib/pacman-mirrors/status.json
 	rm /etc/pacman-mirrors.conf
 	rm /usr/bin/pacman-mirrors
 	rm /usr/share/man/man8/pacman-mirrors.8.gz

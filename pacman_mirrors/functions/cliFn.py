@@ -165,6 +165,8 @@ def parse_command_line(self, gtk_available: bool) -> None:
                       help="Status for the current mirror list.")
     misc.add_argument("-fc",
                       action="store_true")
+    misc.add_argument("--debug",
+                      action="store_true")
 
     args = parser.parse_args()
 
@@ -177,6 +179,9 @@ def parse_command_line(self, gtk_available: bool) -> None:
         printFn.blue_msg(f"Pacman-mirrors version {__version__}")
         exit_code = mirror_status.print_status(self)
         sys.exit(exit_code)
+
+    if args.debug:
+        self.debug = True
 
     if args.help:
         parser.print_help()

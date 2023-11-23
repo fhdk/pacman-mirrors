@@ -29,40 +29,40 @@ import gettext
 APP_NAME = "pacman_mirrors"
 APP_DIR = os.path.join(sys.prefix, "share")
 LOCALE_DIR = os.path.join(APP_DIR, "locale")
+CODESET = "utf-8"
+FALLBACK_LANG = "en_US"
 
-def get_language():
-    if locale.getlocale()[0] is not None:
-       return locale.getlocale()[0]
-    
-    elif os.environ.get("LC_ALL") is not None:
-        return os.environ.get("LC_ALL").split(".")[0]
-    
-    elif os.environ.get("LANGUAGE") is not None:
-        return os.environ.get("LANGUAGE").split(".")[0]
-    
-    elif os.environ.get("LANG") is not None:
-        return os.environ.get("LANG").split(".")[0]
-    
-    elif os.environ.get("GDM_LANG") is not None:
-        return os.environ.get("GDM_LANG").split(".")[0]
-    
-    else:
-        print("No translations found for your language, using english")
-        return "en_US"
-    
-# debug variable output
-#print()
-#print("APP_DIR", APP_DIR)
-#print("LOCALE_DIR", LOCALE_DIR)
-#print("LOCALE",  get_language())
-#print()
+# Now we need to choose the language.
+# We will provide a list,
+# and gettext will use the first translation available in the list
+LANGUAGES = []
+try:
+    user_locale = locale.getlocale()
+    # locale.getlocale returns a tuple
+    # e.g. ("en_DK", "UTF-8")
+    if user_locale == (None, None):
+        # no user_locale exist ignore the values
+        raise ValueError
+    LANGUAGES += user_locale
+    # adding user_locale changes
+    # adds two elements to LANGUAGES ["en_DK", "UTF-8"]
+    # but there is no language named "UTF-8" ?
+except ValueError:
+    LANGUAGES += FALLBACK_LANG
 
-# Lets tell those details to gettext
+lang = os.environ.get("LANGUAGE", "").split(":")
+if not lang:
+    lang = os.environ.get("LANG", "").split(":")
+
+LANGUAGES += lang
+LANGUAGES += FALLBACK_LANG
+
+# Let us tell those details to gettext
 #  (nothing to change here for you)
 gettext.install(APP_NAME, LOCALE_DIR)
 gettext.bindtextdomain(APP_NAME, LOCALE_DIR)
 gettext.textdomain(APP_NAME)
-language = gettext.translation(APP_NAME, LOCALE_DIR, [get_language()], fallback=True)
+language = gettext.translation(APP_NAME, LOCALE_DIR, LANGUAGES, fallback=True)
 
 # Add this to every module:
 #

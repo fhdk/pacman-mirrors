@@ -77,13 +77,9 @@ entry in the configuration file.
    * The file holds configuration for pacman-mirrors.
 * **The mirrorlist**: *`/etc/pacman.d/mirrorlist`*
    * The file contains a number of servers which `pacman` uses to update your system.
-* **Manjaro mirror pool**: *`/usr/share/pacman-mirrors/mirrors.json`*
-   * The worldwide mirrorpool.
-   * At runtime the file is downloaded from Github and compared with the systems file.
-   * If the files differs, your local file will be replaced.
-* **Manjaro mirror pool status**: *`/var/lib/pacman-mirrors/status.json`*
+* **Manjaro mirror pool with status**: *`/var/lib/pacman-mirrors/status.json`*
    * The mirrorpool status file.
-   * It is the data you see displayed at repo.manjaro.org.
+   * It is the data you see displayed at mirror-manager.manjaro.org.
    * The file is downloaded and saved on every run of pacman-mirrors.
 * **Custom mirror pool**: *`/var/lib/pacman-mirrors/custom-mirrors.json`*
    * The file is your custom mirror pool
@@ -106,10 +102,9 @@ The reason: You have limited your mirror pool too much and none of your selected
 Some options are mutual exclusive and will throw an arguments error:
 
 * **--country**, **--fasttrack**, **--geoip**, **--continent**
-* **--fasttrack** and **--no-status**
 
-Some arguments requires another argument present to have effect.
-If such conditions rise pacman-mirrors will throw an arguments error.
+Some arguments require another argument present to have effect.
+If such conditions rise pacman-mirrors will throw an argument error.
 
 The arguments can appear in any order except for arguments which takes additional options
 in which case the options must follow immediately after the argument with or without space,
@@ -200,9 +195,6 @@ thus allowing for reselecting mirrors for a new custom pool.
 
 -q, \--quiet
 :   Make pacman-mirrors silent.
-
--s, \--no-status
-:   Ignore up-to-date status for system branch.
 
 \--status
 :   Print status for mirrors in system mirror list
@@ -314,7 +306,7 @@ editing your pacman-mirrors configuration.
     *sudo pacman-mirrors --country all*
 
 ## Advanced use samples - BEWARE OF THE DRAGONS
-* Change system branch and dont change the mirrorlist
+* Change system branch and do not change the mirrorlist
 
     *sudo pacman-mirrors -naS unstable*
 
@@ -322,7 +314,7 @@ editing your pacman-mirrors configuration.
 
     *sudo pacman-mirrors -naRS unstable*
 
-* Change protocols you will accept but dont touch the mirrorlist
+* Change protocols you will accept but do not change the mirrorlist
 
     *sudo pacman-mirrors -naP https http*
 

@@ -59,6 +59,7 @@ class PacmanMirrors:
         }
         self.continent = False
         self.custom = False
+        self.debug = False
         self.default = False
         self.fasttrack = None
         self.geoip = False
@@ -146,6 +147,6 @@ def start():
     app = PacmanMirrors()
     app.run()
 
-if __name__ == "__main__":
-   start()
 
+if __name__ == "__main__":
+    start()
